@@ -42,3 +42,5 @@ gem 'spring',        group: :development
 # Easily include static pages in your Rails app.
 gem 'high_voltage'
 
+# To load assets in Heroku.
+gem 'rails_12factor', group: :production
