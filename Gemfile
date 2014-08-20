@@ -38,3 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+# Easily include static pages in your Rails app.
+gem 'high_voltage'
+
