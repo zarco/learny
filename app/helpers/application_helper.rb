@@ -6,7 +6,7 @@ module ApplicationHelper
   def site_url
     if Rails.env.production?
       # Production URL
-      "http://www.learny.me/"
+      "http://learny-prod.herokuapp.com/"
     else
       # Our dev & test URL
       "http://localhost:3000"
