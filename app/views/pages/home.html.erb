@@ -1,7 +1,7 @@
 <% provide(:title, '') %>
 
 <% provide(:jumbotron, '
-      <h1>Welcome to Learny!</h1>
+      <h1>'+t('views.legends.welcome_to_learny',default: 'Welcome to Learny!')+'</h1>
       <p> The best place to find the best teachers for those things you always wanted to learn!</p>
       <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
   '.html_safe)%>
@@ -11,6 +11,7 @@
     <div class="row">
       <div class="col-md-4">
         <h2>Heading</h2>
+        <p><%= t('views.legends.welcome_to_learny')%></p>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
       </div>

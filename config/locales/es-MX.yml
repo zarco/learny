@@ -1,0 +1,107 @@
+es-MX:
+  devise:
+    sessions:
+      sign_in: 'Entrar'
+      sign_out: 'Salir'
+      sign_up_subscriber: 'Subscribirse'
+      sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia?'
+      sign_in_welcome: '¡Bienvenido!, proporciona tus datos para ingresar'
+      your_account: 'Tu Cuenta'
+    passwords:
+      forgot_password: '¿Olvidaste tu contraseña?'
+      send_reset_instructions: "Enviarme un correo electrónico con instrucciones sobre cómo reestablecer mi contraseña"
+    registrations:
+       edit:
+        are_you_sure: "¿Estás seguro?"
+        cancel_my_account: "Cancelar mi cuenta"
+        leave_blank_if_you_don_t_want_to_change_it: "Dejarla en blanco si no deseas cambiarlo"
+        title: "Actualiza tus datos"
+        current_password_hint: "Necesitamos tu contraseña actual para realizar los cambios"
+        update: "Actualizar"
+        unhappy: "Unhappy"
+  activerecord:
+    models:
+      administrator: 'Administrador'
+      genre: 'Género'
+      subscriber: 'Subscriptor'
+      video: 'Video'
+    attributes:
+      administrator:
+        email: 'Correo electrónico'
+        password: 'Contraseña'
+        password_confirmation: 'Confirmar contraseña'
+        remember_me: 'Recordar sesión'
+        current_password: 'Constraseña actual'
+      genre:
+        name: 'Nombre'
+        is_active: '¿Activo?'
+      subscriber:
+        first_name: 'Nombre'
+        last_name: 'Apellidos'
+        email: 'Correo electrónico'
+        password: 'Contraseña'
+        password_confirmation: 'Confirmar contraseña'
+        remember_me: 'Recordar sesión'
+        current_password: 'Constraseña actual'
+      video:
+       title: 'Título'
+       year: 'Año'
+       release: 'Lanzamiento'
+       runtime: 'Duración'
+       director: 'Director'
+       writer: 'Escritor'
+       actors: 'Actores'
+       plot: 'Trama'
+       language: 'Idioma'
+       country: 'País'
+       poster: 'Poster'
+       file: 'Archivo'
+       is_active: '¿Activo?'
+       views: 'Reproducciones'
+
+  "true": "Si"
+  "false": "No"
+
+  views:
+    actions:
+      new: 'Nuevo'
+      edit: 'Editar'
+      save: 'Guardar'
+      saving: 'Guardando...'
+      cancel: 'Cancelar'
+      search: 'Buscar'
+      download: 'Descargar'
+      invite: 'Invitar'
+      subscribe: '¡Prueba nuestro servicio!'
+      history: 'Historial'
+
+    legends:
+      'yes': 'Si'
+      'no': 'No'
+      new: 'Nuevo'
+      edit: 'Actualizar'
+      view_course: 'Ver curso'
+      glossary: 'Glosario'
+      faq: 'P+F'
+      references: 'Referencias'
+      email_missing: 'El correo electrónico no puede ir en blanco.'
+      confirmed: '¿Confirmado?'
+      welcome_to_learny: '¡Bienvenido a Learny!'
+  
+    status:
+      active: 'Activo'
+      inactive: 'Inactivo'
+
+# kaminari
+    pagination:
+      first: '&laquo;'
+      last: '&raquo;'
+      previous: '&larr;'
+      next: '&rarr;'
+      truncate: '&hellip;'
+
+# Carrierwave I18n
+  errors:
+    messages:
+      extension_white_list_error: "No se permite adjuntar archivos con extensión(es): %{extension}, las extensions permitidas son: %{allowed_types}"
+
