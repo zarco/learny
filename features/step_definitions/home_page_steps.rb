@@ -6,6 +6,6 @@ When(/^I am on the homepage$/) do
   visit root_path
 end
 
-Then(/^I should see the "(.*?)" message$/) do |message|
-  expect(page).to have_content(message)
+Then(/^I should see the welcome message$/) do 
+  expect(page).to have_content(I18n.t('views.legends.welcome_to_learny',default: 'Welcome to Learny!'))
 end
