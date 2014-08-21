@@ -44,3 +44,17 @@ gem 'high_voltage'
 
 # To load assets in Heroku.
 gem 'rails_12factor', group: :production
+
+
+group :test do
+  gem 'ffaker'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'cucumber-rails', require: false
+end
+
+group :test,:development do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.0.0'
+end
