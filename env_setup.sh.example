@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#
+# #Run as $>. ./env_setup.sh
+#
+
+
+# Amazon S3
+# Set the following env variables with
+# the information to access a valid
+# bucket in Amazon S3
+#
+#
+
+
+export S3_KEY=
+export S3_SECRET=
+export S3_REGION=
+export S3_BUCKET_NAME=
+export S3_ASSET_URL=
+
+#
+#Unicorn
+#
+export PORT=3000

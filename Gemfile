@@ -61,4 +61,11 @@ end
 
 gem 'devise'
 
+gem 'haml-rails'
+
+gem 'carrierwave'
+gem 'fog', '~> 1.3.1'
+gem 'mini_magick'
+
+
 gem 'unicorn'
