@@ -11,7 +11,11 @@ When(/^select the Sign up as student option$/) do
 end
 
 Then(/^I can see the sign in form for students$/) do
-  visit student_registration_path
+  expect(page).to have_content(Student.human_attribute_name(:email))
+  expect(page).to have_content(Student.human_attribute_name(:password))
+  expect(page).to have_content(Student.human_attribute_name(:password_confirmation))
+  expect(page).to have_content(Student.human_attribute_name(:first_name))
+  expect(page).to have_content(Student.human_attribute_name(:last_name))
 end
 
 Given(/^I am at the sign up page$/) do

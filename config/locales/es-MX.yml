@@ -21,44 +21,19 @@ es-MX:
         unhappy: "Unhappy"
   activerecord:
     models:
-      administrator: 'Administrador'
-      genre: 'Género'
-      subscriber: 'Subscriptor'
-      video: 'Video'
+      student: 'Estudiante'
+      expert: 'Experto'
+      venue: 'Establecimiento'
     attributes:
-      administrator:
+      student:
         email: 'Correo electrónico'
         password: 'Contraseña'
         password_confirmation: 'Confirmar contraseña'
         remember_me: 'Recordar sesión'
         current_password: 'Constraseña actual'
-      genre:
-        name: 'Nombre'
-        is_active: '¿Activo?'
-      subscriber:
         first_name: 'Nombre'
-        last_name: 'Apellidos'
-        email: 'Correo electrónico'
-        password: 'Contraseña'
-        password_confirmation: 'Confirmar contraseña'
-        remember_me: 'Recordar sesión'
-        current_password: 'Constraseña actual'
-      video:
-       title: 'Título'
-       year: 'Año'
-       release: 'Lanzamiento'
-       runtime: 'Duración'
-       director: 'Director'
-       writer: 'Escritor'
-       actors: 'Actores'
-       plot: 'Trama'
-       language: 'Idioma'
-       country: 'País'
-       poster: 'Poster'
-       file: 'Archivo'
-       is_active: '¿Activo?'
-       views: 'Reproducciones'
-
+        last_name: 'Apellido'
+      
   "true": "Si"
   "false": "No"
 

@@ -1,5 +1,6 @@
 LearnyApp::Application.routes.draw do
 
+  devise_for :students
   get '/about'    => 'high_voltage/pages#show', id: 'about'
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
   get '/privacy'  => 'high_voltage/pages#show', id: 'privacy'
@@ -12,6 +13,7 @@ LearnyApp::Application.routes.draw do
 end
 
 # Rails.application.routes.draw do
+#  devise_for :students
 # root 'welcome#index'	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
