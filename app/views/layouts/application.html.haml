@@ -1,0 +1,59 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => meta_description, :name => "description"}/
+    %meta{:content => meta_author, :name => "author"}/
+    %meta{:content => meta_keywords, :name => "Keywords"}/
+    %title= full_title(yield(:title))
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    
+    / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+    %a{:href => "#Top"}
+  %body
+    .navbar.navbar-fixed-top.navbar-inverse{:role => "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to image_tag( asset_path('L.png'), size: "25x30", alt: "L") + 'earny', site_url, :class => "navbar-brand"
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav.pull-right
+            %li{:class => 'active'} 
+              - if current_page?(root_path) 
+                = link_to "Home", root_path
+            %li{:class => 'active'} 
+              - if current_page?(about_path) 
+                = link_to "About", about_path
+            %li{:class => 'active'} 
+              - if current_page?(contact_path) 
+                = link_to "Contact", contact_path
+        / /.nav-collapse
+      / /.container
+    / /.navbar
+
+    .main
+      = yield
+    
+      / /container
+    
+    
+    %footer
+      %hr/
+      %p.pull-right
+        = link_to '<span class="glyphicon-class glyphicon glyphicon-chevron-up"></span> Back to top'.html_safe, '#Top'
+      %p
+        \© #{Time.now.year}#{site_name}
+        \•
+        \#{link_to "Privacy", privacy_path}
+        \•
+        \#{link_to "Terms", terms_path}
+      
