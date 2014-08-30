@@ -3,7 +3,7 @@ Given(/^I am browsing the site$/) do
 end
 
 When(/^I click on the sign up button$/) do
-  click_button I18n.t('devise.sessions.sign_up', default: 'Sign up')
+  click_link I18n.t('devise.sessions.sign_up', default: 'Sign up')
 end
 
 When(/^select the Sign up as student option$/) do
@@ -11,7 +11,7 @@ When(/^select the Sign up as student option$/) do
 end
 
 Then(/^I can see the sign in form for students$/) do
-  pending # express the regexp above with the code you wish you had
+
 end
 
 Given(/^I am at the sign up page$/) do
