@@ -8,7 +8,8 @@
     %p
       The best place to find the best teachers for those things you always wanted to learn!
     %p
-      = link_to t('devise.sessions.sign_up', default: 'Subscribe'), '#', class: "btn btn-primary btn-subscribe" 
+      %button.btn.btn-primary.btn-lg{'data-toggle'=>"modal", 'data-target'=>'#mdl_signin'}
+        = t('devise.sessions.sign_up', default: 'Sign up') 
     
       
 .container
@@ -30,3 +31,30 @@
       %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
       %p
         %a.btn.btn-default{:href => "#", :role => "button"} View details »
+        
+
+#mdl_signin.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .bootstrap-dialog-header
+          %button.close{:type=>'button',  'data-dismiss' => 'modal', 'aria-hidden'=> 'true'} x
+          %h4.modal-title
+            = t('devise.sessions.sign_up', default: 'Sign up') 
+      .modal-body
+        .row
+          .col-md-4
+            = link_to '#', {:class => 'btn btn-success btn-lg'} do
+              %i.glyphicon.glyphicon-user
+              = t('views.legends.student',default: 'Student')
+              
+          .col-md-4
+            = link_to '#', {:class => 'btn btn-success btn-lg'} do
+              %i.glyphicon.glyphicon-briefcase
+              = t('views.legends.expert',default: 'Expert')
+          .col-md-4
+            = link_to '#', {:class => 'btn btn-success btn-lg'} do
+              %i.glyphicon.glyphicon-home
+              = t('views.legends.venue',default: 'Venue')
+      .modal-footer
+          

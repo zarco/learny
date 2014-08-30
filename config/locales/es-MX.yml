@@ -87,7 +87,9 @@ es-MX:
       email_missing: 'El correo electrónico no puede ir en blanco.'
       confirmed: '¿Confirmado?'
       welcome_to_learny: '¡Bienvenido a Learny!'
-  
+      student: 'Estudiante'
+      expert: 'Experto'
+      venue: 'Establecimiento'
     status:
       active: 'Activo'
       inactive: 'Inactivo'
