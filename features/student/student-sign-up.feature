@@ -9,7 +9,7 @@ Feature: The student can sign up into the platform
 		Given I am browsing the site
 		When I click on the sign up button
 		And select the Sign up as student option
-		Then I can see the sign in form for students
+		Then I can see the sign up form for students
 		
 	Scenario: Student's sign up successful
 		Given I am at the sign up page
