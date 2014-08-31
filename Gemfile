@@ -69,3 +69,5 @@ gem 'mini_magick'
 
 
 gem 'unicorn'
+
+gem "letter_opener", :group => :development
