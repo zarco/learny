@@ -10,7 +10,7 @@ When(/^select the Sign up as student option$/) do
   click_link I18n.t('views.legends.student',default: 'Student')
 end
 
-Then(/^I can see the sign in form for students$/) do
+Then(/^I can see the sign un form for students$/) do
   expect(page).to have_content(Student.human_attribute_name(:email))
   expect(page).to have_content(Student.human_attribute_name(:password))
   expect(page).to have_content(Student.human_attribute_name(:password_confirmation))
