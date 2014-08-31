@@ -1,0 +1,60 @@
+- provide(:title, '')
+
+
+.jumbotron
+  .container
+    %h1
+      = t 'views.legends.welcome_to_learny', default: 'Welcome to Learny!'
+    %p
+      The best place to find the best teachers for those things you always wanted to learn!
+    %p
+      %button.btn.btn-primary.btn-lg{'data-toggle'=>"modal", 'data-target'=>'#mdl_signin'}
+        = t('devise.sessions.sign_up', default: 'Sign up') 
+    
+      
+.container
+  / Example row of columns
+  .row
+    .col-md-4
+      %h2 Heading
+      %p= t('views.legends.welcome_to_learny')
+      %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+      %p
+        %a.btn.btn-default{:href => "#", :role => "button"} View details »
+    .col-md-4
+      %h2 Heading
+      %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+      %p
+        %a.btn.btn-default{:href => "#", :role => "button"} View details »
+    .col-md-4
+      %h2 Heading
+      %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      %p
+        %a.btn.btn-default{:href => "#", :role => "button"} View details »
+        
+
+#mdl_signin.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .bootstrap-dialog-header
+          %button.close{:type=>'button',  'data-dismiss' => 'modal', 'aria-hidden'=> 'true'} x
+          %h4.modal-title
+            = t('devise.sessions.sign_up', default: 'Sign up') 
+      .modal-body
+        .row
+          .col-md-4
+            = link_to new_student_registration_path, {:class => 'btn btn-success btn-lg'} do
+              %i.glyphicon.glyphicon-user
+              = t('views.legends.student',default: 'Student')
+              
+          .col-md-4
+            = link_to '#', {:class => 'btn btn-success btn-lg'} do
+              %i.glyphicon.glyphicon-briefcase
+              = t('views.legends.expert',default: 'Expert')
+          .col-md-4
+            = link_to '#', {:class => 'btn btn-success btn-lg'} do
+              %i.glyphicon.glyphicon-home
+              = t('views.legends.venue',default: 'Venue')
+      .modal-footer
+          

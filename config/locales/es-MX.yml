@@ -3,7 +3,7 @@ es-MX:
     sessions:
       sign_in: 'Entrar'
       sign_out: 'Salir'
-      sign_up_subscriber: 'Subscribirse'
+      sign_up: 'Subscribirse'
       sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia?'
       sign_in_welcome: '¡Bienvenido!, proporciona tus datos para ingresar'
       your_account: 'Tu Cuenta'
@@ -21,44 +21,19 @@ es-MX:
         unhappy: "Unhappy"
   activerecord:
     models:
-      administrator: 'Administrador'
-      genre: 'Género'
-      subscriber: 'Subscriptor'
-      video: 'Video'
+      student: 'Estudiante'
+      expert: 'Experto'
+      venue: 'Establecimiento'
     attributes:
-      administrator:
+      student:
         email: 'Correo electrónico'
         password: 'Contraseña'
         password_confirmation: 'Confirmar contraseña'
         remember_me: 'Recordar sesión'
         current_password: 'Constraseña actual'
-      genre:
-        name: 'Nombre'
-        is_active: '¿Activo?'
-      subscriber:
         first_name: 'Nombre'
-        last_name: 'Apellidos'
-        email: 'Correo electrónico'
-        password: 'Contraseña'
-        password_confirmation: 'Confirmar contraseña'
-        remember_me: 'Recordar sesión'
-        current_password: 'Constraseña actual'
-      video:
-       title: 'Título'
-       year: 'Año'
-       release: 'Lanzamiento'
-       runtime: 'Duración'
-       director: 'Director'
-       writer: 'Escritor'
-       actors: 'Actores'
-       plot: 'Trama'
-       language: 'Idioma'
-       country: 'País'
-       poster: 'Poster'
-       file: 'Archivo'
-       is_active: '¿Activo?'
-       views: 'Reproducciones'
-
+        last_name: 'Apellido'
+      
   "true": "Si"
   "false": "No"
 
@@ -87,7 +62,9 @@ es-MX:
       email_missing: 'El correo electrónico no puede ir en blanco.'
       confirmed: '¿Confirmado?'
       welcome_to_learny: '¡Bienvenido a Learny!'
-  
+      student: 'Estudiante'
+      expert: 'Experto'
+      venue: 'Establecimiento'
     status:
       active: 'Activo'
       inactive: 'Inactivo'

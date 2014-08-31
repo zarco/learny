@@ -56,7 +56,7 @@ end
 
 group :test,:development do
   gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails'
 end
 
 gem 'devise'
@@ -69,3 +69,5 @@ gem 'mini_magick'
 
 
 gem 'unicorn'
+
+gem "letter_opener", :group => :development
