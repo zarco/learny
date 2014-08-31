@@ -18,18 +18,22 @@ Then(/^I can see the sign up form for students$/) do
   expect(page).to have_content(Student.human_attribute_name(:last_name))
 end
 
-Given(/^I am at the sign up page$/) do
+Given(/^I am at the student's sign up page$/) do
   visit new_student_registration_path
 end
 
-When(/^I fill in the blanks with my data$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I send my data for the registration as student$/) do
+  @student = FactoryGirl.build(:student)
+  fill_in Student.human_attribute_name(:email), with: @student.email
+  fill_in Student.human_attribute_name(:password), with: @student.password
+  fill_in Student.human_attribute_name(:password_confirmation), with: @student.password_confirmation
+  fill_in Student.human_attribute_name(:first_name), with: @student.first_name
+  fill_in Student.human_attribute_name(:last_name), with: @student.last_name
+  click_button I18n.t('devise.sessions.sign_up')
 end
 
-When(/^submit the form$/) do
-  pending # express the regexp above with the code you wish you had
-end
 
 Then(/^I can see a confirmation message$/) do
-  pending # express the regexp above with the code you wish you had
+#expect(page).to have_content(Student.human_attribute_name(:email))
+  expect(page).to have_content(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
 end

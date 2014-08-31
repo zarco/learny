@@ -1,5 +1,6 @@
 Feature: The student can sign up into the platform
-	In order to 
+	In order to become a registrered student
+	And participate in courses
 	As a guest
 	I want to sign up as student
 	
@@ -12,7 +13,6 @@ Feature: The student can sign up into the platform
 		Then I can see the sign up form for students
 		
 	Scenario: Student's sign up successful
-		Given I am at the sign up page
-		When I fill in the blanks with my data
-		And submit the form
+		Given I am at the student's sign up page
+		When I send my data for the registration as student
 		Then I can see a confirmation message
