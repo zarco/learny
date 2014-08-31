@@ -23,3 +23,6 @@ export S3_ASSET_URL=
 #Unicorn
 #
 export PORT=3000
+
+export MAIL_USER=cursos@learny.me
+export MAIL_PASSWORD=

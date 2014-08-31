@@ -1,5 +1,5 @@
 Feature: The student can sign up into the platform
-	In order to become a registrered student
+	In order to become a registered student
 	And participate in courses
 	As a guest
 	I want to sign up as student
