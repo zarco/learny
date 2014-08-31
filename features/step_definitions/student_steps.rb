@@ -19,7 +19,7 @@ Then(/^I can see the sign in form for students$/) do
 end
 
 Given(/^I am at the sign up page$/) do
-  pending # express the regexp above with the code you wish you had
+  visit new_student_registration_path
 end
 
 When(/^I fill in the blanks with my data$/) do
