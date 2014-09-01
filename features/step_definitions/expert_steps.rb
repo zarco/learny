@@ -11,9 +11,15 @@ Then(/^I can see the sign up form for experts$/) do
 end
 
 Given(/^I am at the expert's sign up page$/) do
-  pending # express the regexp above with the code you wish you had
+  visit new_expert_registration_path
 end
 
 When(/^I send my data for the registration as expert$/) do
-  pending # express the regexp above with the code you wish you had
+  @expert = FactoryGirl.build(:expert)
+  fill_in Expert.human_attribute_name(:email), with: @expert.email
+  fill_in Expert.human_attribute_name(:password), with: @expert.password
+  fill_in Expert.human_attribute_name(:password_confirmation), with: @expert.password_confirmation
+  fill_in Expert.human_attribute_name(:first_name), with: @expert.first_name
+  fill_in Expert.human_attribute_name(:last_name), with: @expert.last_name
+  click_button I18n.t('devise.sessions.sign_up')
 end

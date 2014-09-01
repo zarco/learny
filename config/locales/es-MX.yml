@@ -35,6 +35,14 @@ es-MX:
         current_password: 'Constraseña actual'
         first_name: 'Nombre'
         last_name: 'Apellido'
+      expert:
+        email: 'Correo electrónico'
+        password: 'Contraseña'
+        password_confirmation: 'Confirmar contraseña'
+        remember_me: 'Recordar sesión'
+        current_password: 'Constraseña actual'
+        first_name: 'Nombre'
+        last_name: 'Apellido'
       venue:
         email: 'Correo electrónico'
         password: 'Contraseña'
