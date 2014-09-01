@@ -1,5 +1,6 @@
 LearnyApp::Application.routes.draw do
 
+  devise_for :venues
   devise_for :students
   get '/about'    => 'high_voltage/pages#show', id: 'about'
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
