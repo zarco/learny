@@ -19,6 +19,8 @@ es-MX:
         current_password_hint: "Necesitamos tu contraseña actual para realizar los cambios"
         update: "Actualizar"
         unhappy: "Unhappy"
+    confirmations:
+        did_not_received: "¿No recibiste el correo de confirmacion?"
   activerecord:
     models:
       student: 'Estudiante'
@@ -33,6 +35,13 @@ es-MX:
         current_password: 'Constraseña actual'
         first_name: 'Nombre'
         last_name: 'Apellido'
+      venue:
+        email: 'Correo electrónico'
+        password: 'Contraseña'
+        password_confirmation: 'Confirmar contraseña'
+        remember_me: 'Recordar sesión'
+        current_password: 'Constraseña actual'
+        name: 'Nombre'
       
   "true": "Si"
   "false": "No"
