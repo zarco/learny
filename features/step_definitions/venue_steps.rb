@@ -1,5 +1,7 @@
 When(/^select the Sign up as venue option$/) do
-  click_link I18n.t('views.legends.venue',default: 'Venue')
+  within(:css, '#mdl_signin') do
+    click_link I18n.t('views.legends.venue',default: 'Venue')
+  end
 end
 
 Then(/^I can see the sign up form for venues$/) do
