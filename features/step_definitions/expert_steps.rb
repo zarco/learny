@@ -1,5 +1,7 @@
 When(/^select the Sign up as expert option$/) do
-  click_link I18n.t('views.legends.expert',default: 'Expert')
+  within(:css, '#mdl_signin') do
+    click_link I18n.t('views.legends.expert',default: 'Expert')
+  end
 end
 
 Then(/^I can see the sign up form for experts$/) do

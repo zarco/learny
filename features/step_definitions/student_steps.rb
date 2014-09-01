@@ -7,7 +7,9 @@ When(/^I click on the sign up button$/) do
 end
 
 When(/^select the Sign up as student option$/) do
-  click_link I18n.t('views.legends.student',default: 'Student')
+  within(:css, '#mdl_signin') do
+    click_link I18n.t('views.legends.student',default: 'Student')
+  end
 end
 
 Then(/^I can see the sign up form for students$/) do
