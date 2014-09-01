@@ -25,3 +25,32 @@ When(/^I send my data for the registration as expert$/) do
   fill_in Expert.human_attribute_name(:last_name), with: @expert.last_name
   click_button I18n.t('devise.sessions.sign_up')
 end
+
+Given(/^I am logged in as expert$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+
+Given(/^I am at my home page as expert$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I click on the button for proposing a new course$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I go to the form for proposing a new course$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given(/^I am at the form for proposing a new course$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I submit the required information for proposing a course called "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I can see the "(.*?)" course listed in the "(.*?)" state in 'My courses' page$/) do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
