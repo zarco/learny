@@ -3,7 +3,11 @@ When(/^select the Sign up as expert option$/) do
 end
 
 Then(/^I can see the sign up form for experts$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(page).to have_content(Expert.human_attribute_name(:email))
+  expect(page).to have_content(Expert.human_attribute_name(:password))
+  expect(page).to have_content(Expert.human_attribute_name(:password_confirmation))
+  expect(page).to have_content(Expert.human_attribute_name(:first_name))
+  expect(page).to have_content(Expert.human_attribute_name(:last_name))
 end
 
 Given(/^I am at the expert's sign up page$/) do
