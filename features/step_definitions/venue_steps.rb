@@ -10,9 +10,14 @@ Then(/^I can see the sign up form for venues$/) do
 end
 
 Given(/^I am at the venues's sign up page$/) do
-  pending # express the regexp above with the code you wish you had
+  visit new_venue_registration_path
 end
 
 When(/^I send my data for the registration as venue$/) do
-  pending # express the regexp above with the code you wish you had
+  @venue = FactoryGirl.build(:venue)
+  fill_in Venue.human_attribute_name(:email), with: @venue.email
+  fill_in Venue.human_attribute_name(:password), with: @venue.password
+  fill_in Venue.human_attribute_name(:password_confirmation), with: @venue.password_confirmation
+  fill_in Venue.human_attribute_name(:name), with: @venue.name
+  click_button I18n.t('devise.sessions.sign_up')
 end
