@@ -1,12 +1,14 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_expert!, only: [:create, :update, :destroy]
+  before_filter :authenticate_expert!, only: [:index, :create, :update, :destroy]
   
   
   # GET /workshops
   # GET /workshops.json
   def index
-    @workshops = Workshop.all
+    if expert_signed_in? 
+      @workshops = current_expert.workshops
+    end
   end
 
   # GET /workshops/1
@@ -27,7 +29,8 @@ class WorkshopsController < ApplicationController
   # POST /workshops.json
   def create
     @workshop = Workshop.new(workshop_params)
-
+    @workshop.expert=current_expert
+    
     respond_to do |format|
       if @workshop.save
         format.html { redirect_to @workshop, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }

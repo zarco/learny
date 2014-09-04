@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904190844) do
+ActiveRecord::Schema.define(version: 20140904215223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140904190844) do
     t.text     "description"
     t.integer  "max_number_participants"
     t.integer  "state",                   default: 0
+    t.integer  "expert_id"
   end
 
 end

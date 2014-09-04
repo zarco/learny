@@ -78,7 +78,8 @@ es-MX:
       subscribe: '¡Prueba nuestro servicio!'
       history: 'Historial'
       propose: 'Proponer'  
-      
+      my_workshops: 'Mis talleres'
+            
     legends:
       'yes': 'Si'
       'no': 'No'
