@@ -1,12 +1,5 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe ExpertsController, :type => :controller do
-
-  describe "GET home" do
-    it "returns http success" do
-      get :home
-      expect(response).to be_success
-    end
-  end
 
 end

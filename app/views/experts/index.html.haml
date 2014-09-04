@@ -33,46 +33,7 @@
       .panel-heading
         %h3.panel-title Proponer Nuevo Curso
       .panel-body
-        %form{:role => "form"}
-          .form-group
-            %label{:for => "tema1"} Nombre
-            %input#tema1.form-control{:placeholder => "Nombre del curso, taller o plática"}/
-          .form-group.col-md-6
-            %label{:for => "tipo1"} Tipo
-            .input-group
-              %label.radio-inline
-                %input#tipo1{:checked => "true", :name => "tipo-curso", :type => "radio"}>/
-                Taller o clase
-              %label.radio-inline
-                %input#tipo2{:name => "tipo-curso", :type => "radio"}>/
-                Curso
-          .form-group.col-md-3
-            %label{:for => "duracion"} Duración
-            .input-group
-              %input#duracion.form-control/
-              %span.input-group-addon horas
-          .form-group.col-md-3
-            %label{:for => "precio"} Precio
-            .input-group
-              %span.input-group-addon $
-              %input#precio.form-control/
-          .form-group
-            %label{:for => "establecimiento"} Establecimiento
-            .input-group
-              %input#establecimiento.form-control{:placeholder => "Buscar establecimiento", :readonly => "readonly"}/
-              %span.input-group-btn
-                %button.btn.btn-default{:type => "button"}
-                  %span.glyphicon.glyphicon-search
-          .form-group
-            %label{:for => "a-quien-se-dirige"} ¿A quien está dirigido?
-            %input#a-quien-se-dirige.form-control/
-          .form-group
-            %label{:for => "precio"} ¿Los estudiantes requieren conocimientos previos?
-            %input#conocimientos-previos.form-control{:type => "number"}/
-          .form-group
-            %label{:for => "agenda-curso"} Agenda / Temario
-            %textarea.form-control{:rows => "5"}
-          %button.btn.btn-primary{:type => "submit"} Proponer
+        =render 'workshops/form', object: @workshop
   .col-md-4
     #pnl-badges.panel.panel-primary
       .panel-heading

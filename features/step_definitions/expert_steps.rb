@@ -28,31 +28,28 @@ end
 
 Given(/^I am logged in as expert$/) do
   @expert = FactoryGirl.create(:expert)
+  @expert.confirm!
   visit new_expert_session_path
   fill_in Expert.human_attribute_name(:email), with: @expert.email
   fill_in Expert.human_attribute_name(:password), with: @expert.password
   click_button I18n.t('devise.sessions.sign_in')
 end
 
-
 Given(/^I am at my home page as expert$/) do
   visit expert_root_path
 end
 
-When(/^I click on the button for proposing a new workshop$/) do
-  pending # express the regexp above with the code you wish you had
-end
+When(/^I submit the required information for proposing a workshop called "(.*?)"$/) do |name|
+  @workshop = FactoryGirl.build(:workshop, {:name => name})
+  within('#new_workshop') do
+    fill_in Workshop.human_attribute_name(:name), with: @workshop.name
+    fill_in Workshop.human_attribute_name(:price), with: @workshop.price
+    fill_in Workshop.human_attribute_name(:length), with: @workshop.length
+    fill_in Workshop.human_attribute_name(:previous_skills), with: @workshop.previous_skills
+    fill_in Workshop.human_attribute_name(:agenda), with: @workshop.agenda
 
-Then(/^I go to the form for proposing a new workshop$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I am at the form for proposing a new workshop$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-When(/^I submit the required information for proposing a workshop called "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+    click_button I18n.t('views.actions.propose')
+  end
 end
 
 Then(/^I can see the "(.*?)" workshop listed in the "(.*?)" state in 'My workshops' page$/) do |arg1, arg2|

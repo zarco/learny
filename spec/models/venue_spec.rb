@@ -14,5 +14,10 @@ describe Venue do
     it { should respond_to :name }
   end
 
+  describe 'validations' do
+    subject { FactoryGirl.build(:venue) }
+    it { should validate_presence_of :name }
+  end
+
 end
 

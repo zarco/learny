@@ -51,7 +51,13 @@ es-MX:
         remember_me: 'Recordar sesión'
         current_password: 'Constraseña actual'
         name: 'Nombre'
-      
+      workshop:
+        name: 'Nombre'
+        agenda: 'Agenda'
+        length: 'Duración'
+        price: 'Precio'
+        previous_skills: 'Conocimientos previos'
+        target_public: 'Público Objetivo'      
   "true": "Si"
   "false": "No"
 
