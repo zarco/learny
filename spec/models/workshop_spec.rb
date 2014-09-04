@@ -16,6 +16,8 @@ describe Workshop do
     it { should respond_to :agenda }
     it { should respond_to :length }
     it { should respond_to :price }
+    it { should respond_to :description}
+    it { should respond_to :max_number_participants}
   end
   
   describe 'validations' do
@@ -24,5 +26,6 @@ describe Workshop do
     it { should validate_presence_of :agenda }
     it { should validate_presence_of :length }
     it { should validate_presence_of :price }
+    it { should respond_to :description}
   end
 end

@@ -6,19 +6,15 @@
         - @workshop.errors.full_messages.each do |msg|
           %li= msg
 
-
   .form-group
     = f.label :name
     = f.text_field :name, autofocus: true, :class => 'form-control' ,:placeholder => "Nombre del curso, taller o plática" 
+  .form-group
+    = f.label :description
+    = f.text_area :description, :class => 'form-control', :rows=>4
   .form-group.col-md-6
-    %label{:for => "tipo1"} Tipo
-    .input-group
-      %label.radio-inline
-        %input#tipo1{:checked => "true", :name => "tipo-curso", :type => "radio"}>/
-        Taller o clase
-      %label.radio-inline
-        %input#tipo2{:name => "tipo-curso", :type => "radio"}>/
-        Curso
+    = f.label :max_number_participants
+    = f.text_field :max_number_participants, :class => 'form-control', :type => "number"
   .form-group.col-md-3
     = f.label :length
     .input-group
@@ -44,7 +40,7 @@
     = f.text_field :previous_skills, :class => 'form-control'
   .form-group
     = f.label :agenda
-    = f.text_area :agenda, :class => 'form-control', :rows=>6
+    = f.text_area :agenda, :class => 'form-control', :rows=>4
             
   .actions 
     = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg'

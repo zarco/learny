@@ -1,17 +1,22 @@
 %h1 Listing workshops
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @workshops.each do |workshop|
+.container
+  %table.table
     %tr
-      %td= link_to 'Show', workshop
-      %td= link_to 'Edit', edit_workshop_path(workshop)
-      %td= link_to 'Destroy', workshop, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
+      %th= Workshop.human_attribute_name(:name)
+      %th= Workshop.human_attribute_name(:state)
+      %th
+      
+  
+    - @workshops.each do |workshop|
+      %tr
+        %td= workshop.name
+        %td= t('views.states.'+workshop.state, default: workshop.state)
+        %td
+          = link_to 'Show', workshop
+          = link_to 'Edit', edit_workshop_path(workshop)
+          = link_to 'Destroy', workshop, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  
+  %br
 
 = link_to 'New Workshop', new_workshop_path

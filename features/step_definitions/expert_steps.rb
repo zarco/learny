@@ -43,6 +43,8 @@ When(/^I submit the required information for proposing a workshop called "(.*?)"
   @workshop = FactoryGirl.build(:workshop, {:name => name})
   within('#new_workshop') do
     fill_in Workshop.human_attribute_name(:name), with: @workshop.name
+    fill_in Workshop.human_attribute_name(:description), with: @workshop.description
+    fill_in Workshop.human_attribute_name(:max_number_participants), with: @workshop.max_number_participants
     fill_in Workshop.human_attribute_name(:price), with: @workshop.price
     fill_in Workshop.human_attribute_name(:length), with: @workshop.length
     fill_in Workshop.human_attribute_name(:previous_skills), with: @workshop.previous_skills
@@ -52,6 +54,22 @@ When(/^I submit the required information for proposing a workshop called "(.*?)"
   end
 end
 
-Then(/^I can see the "(.*?)" workshop listed in the "(.*?)" state in 'My workshops' page$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Then(/^I can see the "(.*?)" workshop listed in the "(.*?)" state in 'My workshops' page$/) do |title, state|
+  visit workshops_path
+  expect(page).to have_content(title)
+  state_label='views.states.'+state
+  expect(page).to have_content(I18n.t(state_label))
+end
+
+Then(/^I can see a confirmation message and the details of the "(.*?)" workshop$/) do |arg1|
+  expect(page).to have_content(I18n.t('views.legends.workshop.proposed_successfully',
+    default: 'Workshop successfully proposed.'))
+  expect(page).to have_content(@workshop.name)
+  expect(page).to have_content(@workshop.description)
+  expect(page).to have_content(@workshop.agenda)
+
+end
+
+Given(/^I am at the form for proposing a new workshop$/) do
+  visit new_workshop_path
 end

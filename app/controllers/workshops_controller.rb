@@ -1,5 +1,8 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_expert!, only: [:create, :update, :destroy]
+  
+  
   # GET /workshops
   # GET /workshops.json
   def index
@@ -27,10 +30,10 @@ class WorkshopsController < ApplicationController
 
     respond_to do |format|
       if @workshop.save
-        format.html { redirect_to @workshop, notice: 'Workshop was successfully created.' }
+        format.html { redirect_to @workshop, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
         format.json { render :show, status: :created, location: @workshop }
       else
-        format.html { render :new }
+        format.html { render root_path }
         format.json { render json: @workshop.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +72,6 @@ class WorkshopsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def workshop_params
-    params.require(:workshop).permit(:name, :target_public, :agenda, :previous_skills, :price, :length)
+    params.require(:workshop).permit(:name, :target_public, :agenda, :previous_skills, :price, :length, :max_number_participants, :description)
   end
 end

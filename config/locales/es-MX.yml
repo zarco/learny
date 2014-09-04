@@ -57,7 +57,11 @@ es-MX:
         length: 'Duración'
         price: 'Precio'
         previous_skills: 'Conocimientos previos'
-        target_public: 'Público Objetivo'      
+        target_public: 'Público Objetivo'
+        description: 'Descripción'
+        max_number_participants: 'Número máximo de participantes'
+        state: 'Estado'
+                
   "true": "Si"
   "false": "No"
 
@@ -92,11 +96,19 @@ es-MX:
       venue: 'Establecimiento'
       experts:
         propose_new_workshop: 'Proponer nuevo taller'
-
+      workshop:
+        proposed_successfully: 'Taller propuesto exitosamente.'
+      
     status:
       active: 'Activo'
       inactive: 'Inactivo'
 
+    states:
+      proposed: 'Propuesto'
+      stand_by: 'En espera'
+      scheduled: 'Calendarizado'
+      cancelled: 'Cancelado'
+      given: 'Impartido'
 # kaminari
     pagination:
       first: '&laquo;'

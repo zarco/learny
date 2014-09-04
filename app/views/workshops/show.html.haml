@@ -1,6 +1,243 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_workshop_path(@workshop)
-\|
-= link_to 'Back', workshops_path
+.container.body
+  .row
+    .col-md-8
+      .jumbotron.overview
+        .row.well
+          .col-md-12
+            .text-right
+              %button.btn.btn-lg.btn-success{:type => "button"}
+                %span.glyphicon.glyphicon-gift
+                Añadir a lista de deseos
+            %blockquote
+              %h1
+                = @workshop.name
+          .description
+            = @workshop.description
+        .row.well
+          .row
+            .col-xs-6
+              %p Inicio: 22-Julio-2014, 16:00 hrs
+            .col-xs-6
+              %p Costo: #{@workshop.price / @workshop.max_number_participants} MXN
+          .row
+            .col-xs-6.text-center
+              %button.btn.btn-lg.btn-warning{"data-target" => "#temario", "data-toggle" => "modal", :type => "button"}
+                %span.glyphicon.glyphicon-list-alt
+                Temario
+            .col-xs-6.text-center
+              %button.btn.btn-lg.btn-primary{:type => "button"}
+                %span.glyphicon.glyphicon-log-in
+                Asistir
+        %button.btn.btn-lg.btn-danger{:type => "button"}
+          %span.glyphicon.glyphicon-fire
+          Reportar tema
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title Tu experto
+        .panel-body
+          .col-md-5
+            %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_expertos/steve_wozniak.jpg"}/
+          .col-md-7
+            %blockquote
+              %h5
+                %a{:href => "../expertos/conoce_experto.html"} Stephan Gary Wozniak
+              %h6
+                Ingeniero, Inventor
+          .row
+            .col-md-12
+              %p
+                Cofundador de la compañia de Apple, mis inventos han sido reconocidos como grandes contribuciones a la revolución de las computadoras, desarrollé el Apple I y el Apple II, siempre he amado todo lo que requiere pensar mucho.
+            .col-xs-12
+              %blockquote
+                %p Reconocimientos
+              .panel-body.badges-content
+                .scroll-panel
+                  .row-fluid
+                    %img.my-badge{:alt => "badge", :src => "../images/badges/badges001.jpg"}/
+                    %img.my-badge{:alt => "badge", :src => "../images/badges/badges002.jpg"}/
+                    %img.my-badge{:alt => "badge", :src => "../images/badges/badges003.jpg"}/
+                    %img.my-badge{:alt => "badge", :src => "../images/badges/badges008.jpg"}/
+                    %img.my-badge{:alt => "badge", :src => "../images/badges/badges007.jpg"}/
+                    %img.my-badge{:alt => "badge", :src => "../images/badges/badges010.jpg"}/
+            .col-xs-12
+              %p
+                Calificación:
+                %span.glyphicon.glyphicon-star
+                %span.glyphicon.glyphicon-star
+                %span.glyphicon.glyphicon-star
+                %span.glyphicon.glyphicon-star
+  .row
+    .col-ms-12.panel.panel-primary
+      .panel-heading
+        %h3.panel-title Establecimiento
+      .panel-body
+        .col-md-4.panel
+          .col-md-12
+            %blockquote
+              %h4
+                %a{:href => "../cursos/1.html"} El depósito
+            %p
+              Es un lugar donde podrás pasar un buen rato con tus colegas y disfrutar de aquellas conversaciones amenas disfrutando de una gran variedad de cervezas donde nuestra filosofía es “Que el cliente decida que tomar” debido a nuestra gran variedad con la que contamos.
+        .col-md-4.panel
+          .col-md-12
+            %img.featurette-image.img-responsive{:alt => "Profile", :src => "../images/ubicacion.png"}/
+        .col-md-4.panel
+          .col-md-12
+            #myCarousel.carousel.slide{"data-ride" => "carousel"}
+              / Indicators
+              %ol.carousel-indicators
+                %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+                %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+                %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+              .carousel-inner
+                .item.active
+                  %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_entrada.jpg"}/
+                .item
+                  %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_ambiente.jpg"}/
+                .item
+                  %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_lugar.jpg"}/
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+                %span.glyphicon.glyphicon-chevron-left
+              %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+                %span.glyphicon.glyphicon-chevron-right
+            / /.carousel
+        .row
+          .col-md-4
+            .col-xs-4
+              %a{:href => "#"}
+                %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_estudiantes/carlos.jpg"}/
+            .col-xs-8
+              %blockquote
+                %h5
+                  %a{:href => "#"}
+                    Carlos Zarco
+            %p
+              "Uno de mis lugares favoritos para unos buenos tragos y cerrar negocios."
+          .col-md-4
+            .col-xs-4
+              %a{:href => "#"}
+                %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/larry.jpg"}/
+            .col-xs-8
+              %blockquote
+                %h5
+                  %a{:href => "#"}
+                    Larry Page
+            %p
+              "Mmmm, mucha gente me gusta mas ir en horario godinez, asi no hay tanta gente."
+          .col-md-4
+            .col-xs-4
+              %a{:href => "#"}
+                %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_estudiantes/rihanna.jpg"}/
+            .col-xs-8
+              %blockquote
+                %h5
+                  %a{:href => "#"}
+                    Robyn Rihanna Fenty
+            %p
+              Siempre asisto a este lugar ya que hay buen ambiente y es agradable disfrutar una conversación.
+  .row
+    .col-ms-12.panel.panel-primary
+      .panel-heading
+        %h3.panel-title Más detalles
+      .panel-body
+        .col-md-8.panel
+          .col-md-12
+            %blockquote
+              %h3
+                ¿Quieres saber más?
+            %p
+              Sí tienes alguna pregunta no dudes en preguntar, los mensajes serán entregados directamente a tu experto para atenderte en lo que desees.
+            %form{:role => "form"}
+              .col-xs-10
+                %textarea.form-control{:rows => "5"}
+              %button.btn.btn-primary{:type => "submit"}
+                %span.glyphicon.glyphicon-pencil
+                Publicar
+        .col-md-4.panel
+          .col-xs-12
+            .panel.panel-primary
+              .panel-heading
+                %h3.panel-title Asistentes
+              .panel-body
+                .row.panel
+                  .col-xs-4
+                    %a{:href => "#"}
+                      %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/megan.jpg"}/
+                  .col-xs-7
+                    %blockquote
+                      %h5
+                        %a{:href => "../cursos/1.html"} Megan Fox
+                .row.panel
+                  .col-xs-4
+                    %a{:href => "#"}
+                      %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/expert.png"}/
+                  .col-xs-7
+                    %blockquote
+                      %h5
+                        %a{:href => "../cursos/1.html"} Ricardo Castañeda
+                .row.panel
+                  .col-xs-4
+                    %a{:href => "#"}
+                      %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/student.png"}/
+                  .col-xs-7
+                    %blockquote
+                      %h5
+                        %a{:href => "../cursos/1.html"} Jonathan Delgado
+          .col-xs-12
+            .panel.panel-primary
+              .panel-heading
+                %h3.panel-title Cursos pasados
+              .panel-body
+                .row
+                  .col-xs-12
+                    %blockquote
+                      %p
+                        %a{:href => "../cursos/1.html"} Canto Gutural
+                      %p Julio - 2014
+                      %p
+                        Calificación:
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+                .row
+                  .col-xs-12
+                    %blockquote
+                      %p
+                        %a{:href => "../cursos/1.html"} Canto Arabe
+                      %p Noviembre - 2013
+                      %p
+                        Calificación:
+                        %span.glyphicon.glyphicon-star
+                        %span.glyphicon.glyphicon-star
+  %footer
+    %p.pull-right
+      %a{:href => "#"}
+        %button.btn.btn-default.btn-lg{:type => "button"}
+          %span.glyphicon.glyphicon-chevron-up
+    %p
+      © 2014 Learny, Inc. ·
+      = succeed "\u{b7}" do
+        %a{:href => "#"} Privacy
+      %a{:href => "#"} Terms
+  / Modal
+  #temario.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+            %span.sr-only Close
+          %h4#myModalLabel.modal-title
+            %span.glyphicon.glyphicon-list-alt
+            =@workshop.name
+        .modal-body
+          =@workshop.agenda
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+  
+  
+  = link_to 'Edit', edit_workshop_path(@workshop)
+  \|
+  = link_to 'Back', expert_root_path
