@@ -67,9 +67,8 @@ es-MX:
       invite: 'Invitar'
       subscribe: '¡Prueba nuestro servicio!'
       history: 'Historial'
-      experts:
-        propose_new_workshop: 'Proponer nuevo taller'
-
+      propose: 'Proponer'  
+      
     legends:
       'yes': 'Si'
       'no': 'No'
@@ -85,6 +84,9 @@ es-MX:
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      experts:
+        propose_new_workshop: 'Proponer nuevo taller'
+
     status:
       active: 'Activo'
       inactive: 'Inactivo'
