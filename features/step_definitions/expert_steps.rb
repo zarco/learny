@@ -27,30 +27,34 @@ When(/^I send my data for the registration as expert$/) do
 end
 
 Given(/^I am logged in as expert$/) do
-  pending # express the regexp above with the code you wish you had
+  @expert = FactoryGirl.create(:expert)
+  visit new_expert_session_path
+  fill_in Expert.human_attribute_name(:email), with: @expert.email
+  fill_in Expert.human_attribute_name(:password), with: @expert.password
+  click_button I18n.t('devise.sessions.sign_in')
 end
 
 
 Given(/^I am at my home page as expert$/) do
+  visit expert_root_path
+end
+
+When(/^I click on the button for proposing a new workshop$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I click on the button for proposing a new course$/) do
+Then(/^I go to the form for proposing a new workshop$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I go to the form for proposing a new course$/) do
+Given(/^I am at the form for proposing a new workshop$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^I am at the form for proposing a new course$/) do
+When(/^I submit the required information for proposing a workshop called "(.*?)"$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I submit the required information for proposing a course called "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I can see the "(.*?)" course listed in the "(.*?)" state in 'My courses' page$/) do |arg1, arg2|
+Then(/^I can see the "(.*?)" workshop listed in the "(.*?)" state in 'My workshops' page$/) do |arg1, arg2|
   pending # express the regexp above with the code you wish you had
 end
