@@ -1,4 +1,6 @@
 LearnyApp::Application.routes.draw do
+  
+  resources :workshops
   devise_for :students
   devise_for :experts
   devise_for :venues
@@ -10,11 +12,25 @@ LearnyApp::Application.routes.draw do
 
   get '/home', to: redirect('/')
 
-  root :to => 'high_voltage/pages#show', id: 'home'
+  get 'experts/index'
+
+
+
+  authenticated :expert do
+    root to: 'experts#index', as: :expert_root
+  end
+  
+  unauthenticated do
+    root :to => 'high_voltage/pages#show', id: 'home'
+  end
+
+
 
 end
 
 # Rails.application.routes.draw do
+
+
 #  devise_for :students
 # root 'welcome#index'	
   # The priority is based upon order of creation: first created -> highest priority.

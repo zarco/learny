@@ -1,0 +1,46 @@
+= form_for @workshop, html: {class: "form-workshop center",role:'form'} do |f|
+  - if @workshop.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@workshop.errors.count, "error")} prohibited this workshop from being saved:"
+      %ul
+        - @workshop.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, autofocus: true, :class => 'form-control' ,:placeholder => "Nombre del curso, taller o plática" 
+  .form-group
+    = f.label :description
+    = f.text_area :description, :class => 'form-control', :rows=>4
+  .form-group.col-md-6
+    = f.label :max_number_participants
+    = f.text_field :max_number_participants, :class => 'form-control', :type => "number"
+  .form-group.col-md-3
+    = f.label :length
+    .input-group
+      = f.text_field :length, autofocus: true, :class => 'form-control', :type => "number"
+      %span.input-group-addon horas
+  .form-group.col-md-3
+    = f.label :price
+    .input-group
+      %span.input-group-addon $
+      = f.text_field :price, autofocus: true, :class => 'form-control', :type => "money"
+  .form-group
+    %label{:for => "establecimiento"} Establecimiento
+    .input-group
+      %input#establecimiento.form-control{:placeholder => "Buscar establecimiento", :readonly => "readonly"}/
+      %span.input-group-btn
+        %button.btn.btn-default{:type => "button"}
+          %span.glyphicon.glyphicon-search
+  .form-group
+    = f.label :target_public
+    = f.text_field :target_public, :class=>'form-control'
+  .form-group
+    = f.label :previous_skills
+    = f.text_field :previous_skills, :class => 'form-control'
+  .form-group
+    = f.label :agenda
+    = f.text_area :agenda, :class => 'form-control', :rows=>4
+            
+  .actions 
+    = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg'

@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to image_tag( asset_path('L.png'), size: "25x30", alt: "L") + 'earny', site_url, :class => "navbar-brand"
+      = link_to image_tag( 'L.png', size: "25x30", alt: "L") + 'earny', root_path, :class => "navbar-brand"
     .collapse.navbar-collapse
       
       
@@ -35,6 +35,9 @@
               %li
                 = link_to edit_expert_registration_path do
                   = t('devise.sessions.your_account',default:'Your Account')
+              %li
+                = link_to workshops_path do
+                  = t('views.actions.my_workshops',default:'My Workshops')
               %li
                 = link_to '#' do
                   = t('views.actions.history',default:'History')

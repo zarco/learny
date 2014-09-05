@@ -1,7 +1,7 @@
 es-MX:
   devise:
     sessions:
-      sign_in: 'Entrar'
+      sign_in: 'Ingresar'
       sign_out: 'Salir'
       sign_up: 'Subscribirse'
       sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia?'
@@ -26,6 +26,7 @@ es-MX:
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      workshop: 'Workshop'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -50,7 +51,17 @@ es-MX:
         remember_me: 'Recordar sesión'
         current_password: 'Constraseña actual'
         name: 'Nombre'
-      
+      workshop:
+        name: 'Nombre'
+        agenda: 'Agenda'
+        length: 'Duración'
+        price: 'Precio'
+        previous_skills: 'Conocimientos previos'
+        target_public: 'Público Objetivo'
+        description: 'Descripción'
+        max_number_participants: 'Número máximo de participantes'
+        state: 'Estado'
+                
   "true": "Si"
   "false": "No"
 
@@ -66,7 +77,9 @@ es-MX:
       invite: 'Invitar'
       subscribe: '¡Prueba nuestro servicio!'
       history: 'Historial'
-
+      propose: 'Proponer'  
+      my_workshops: 'Mis talleres'
+            
     legends:
       'yes': 'Si'
       'no': 'No'
@@ -82,10 +95,21 @@ es-MX:
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      experts:
+        propose_new_workshop: 'Proponer nuevo taller'
+      workshop:
+        proposed_successfully: 'Taller propuesto exitosamente.'
+      
     status:
       active: 'Activo'
       inactive: 'Inactivo'
 
+    states:
+      proposed: 'Propuesto'
+      stand_by: 'En espera'
+      scheduled: 'Calendarizado'
+      cancelled: 'Cancelado'
+      given: 'Impartido'
 # kaminari
     pagination:
       first: '&laquo;'
