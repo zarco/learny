@@ -1,0 +1,153 @@
+.container
+  .row
+    .col-md-8
+      .jumbotron.next-courses
+        .row.well
+          .col-md-4
+            .panel.panel-danger
+              .panel-heading
+                %h3.panel-title
+              .panel-body
+                %h1.text-center
+                  14
+              .panel-footer
+                %h4.text-center
+                  Septiembre
+          .col-md-8
+            %blockquote
+              %h2
+                %a{:href => "../cursos/detalle_curso.html"} Taller de canto gutural
+              %h3
+                %a{:href => "../establecimientos/conoce_establecimiento.html"} Circo Volador
+              %p
+                %a{:href => "#"}
+                  %strong 9:00am
+            %ul.pager
+              %li
+                %a{:href => "#"} ← Previo
+              %li
+                %a{:href => "#"} Siguiente →
+            %a.pull-right{:href => "#"}
+              %span.badge.alert-danger 4
+              Asistentes
+    / Reconocimientos
+    .col-md-4
+      #pnl-badges.panel.panel-primary
+        .panel-heading
+          %h3.panel-title Mis Reconocimientos
+        .panel-body.badges-content
+          .scroll-panel
+            .row-fluid
+              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges001.jpg"}/
+              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges002.jpg"}/
+              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges003.jpg"}/
+              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges008.jpg"}/
+              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges007.jpg"}/
+              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges010.jpg"}/
+      / Ranking
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title Ranking
+        .panel-body
+          %table.table
+            %thead
+              %tr
+                %th #
+                %th Establecimiento
+                %th Giro
+                %th Puntos
+            %tbody
+              %tr.info
+                %td 1
+                %td Cafe 7
+                %td Cafeteria
+                %td 10500
+              %tr
+                %td 2
+                %td El Deposito
+                %td Bar
+                %td 8900
+              %tr
+                %td 3
+                %td Starbucks
+                %td Cafeteria
+                %td 8500
+  / Solicitudes
+  .row
+    .col-md-8
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title Solicitudes
+        .panel-body
+          %table.table
+            %thead
+              %tr
+                %th # Asistentes
+                %th Tema
+                %th Instructor
+                %th Fecha
+            %tbody
+              %tr
+                %td 5
+                %td Ingles II
+                %td Barak Obama
+                %td 06/06/2014
+              %tr
+                %td 2
+                %td Historia de Rusia
+                %td Vladimir Putin
+                %td 12/09/2014
+              %tr
+                %td 3
+                %td Post-Produccion Fotografica
+                %td Roger Waters
+                %td 16/08/2014
+    / Referencias
+    .col-md-4
+      .panel.panel-primary.comentarios
+        .panel-heading
+          %h3.panel-title Comentarios Recientes
+        .panel-body
+          .row
+            .col-xs-4
+              %a{:href => "#"}
+                %img.img-circle{:alt => "Larry Page", :src => "#"}/
+            .col-xs-8
+              %blockquote
+                %p
+                  "Sus crepas de nutella son lo mejor!"
+                %p
+                  %small Larry Page
+          .row
+            .col-xs-4
+              %a{:href => "#"}
+                %img.img-circle{:alt => "Megan Fox", :src => "#"}/
+            .col-xs-8
+              %blockquote
+                %p
+                  "El mejor café de la zona!"
+                %p
+                  %small Megan Fox
+    .col-md-8
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title Cursos en busca de lugar
+        .panel-body
+          %table.table
+            %thead
+              %tr
+                %th # Asistentes
+                %th Tema
+                %th Instructor
+                %th Fecha
+            %tbody
+              %tr
+                %td 5
+                %td Ingles II
+                %td Barak Obama
+                %td 06/06/2014
+              %tr
+                %td 2
+                %td Historia de Rusia
+                %td Vladimir Putin
+                %td 12/09/2014

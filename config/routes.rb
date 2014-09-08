@@ -1,5 +1,7 @@
 LearnyApp::Application.routes.draw do
   
+  get 'venues/index'
+
   resources :workshops
   devise_for :students
   devise_for :experts
@@ -15,6 +17,9 @@ LearnyApp::Application.routes.draw do
   get 'experts/index'
 
 
+  authenticated :venue do
+    root to: 'venues#index', as: :venue_root
+  end
 
   authenticated :expert do
     root to: 'experts#index', as: :expert_root
