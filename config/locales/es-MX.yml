@@ -79,6 +79,7 @@ es-MX:
       history: 'Historial'
       propose: 'Proponer'  
       my_workshops: 'Mis talleres'
+      make_reservation: 'Hacer reservacion'
             
     legends:
       'yes': 'Si'

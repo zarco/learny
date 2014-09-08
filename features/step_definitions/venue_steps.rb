@@ -1,6 +1,5 @@
 
-When(/^select the Sign up as venue 
-option$/) do
+When(/^select the Sign up as venue option$/) do
   within(:css, '#mdl_signin') do
     click_link I18n.t('views.legends.venue',default: 'Venue')
   end
@@ -46,7 +45,7 @@ Given(/^the "(.*?)" calendar is selected$/) do |arg1|
 end
 
 When(/^I click on the 'Create reservation' button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_link I18n.t('views.actions.make_reservation')
 end
 
 When(/^afterwards, I sumbit the required information for the reservation$/) do
