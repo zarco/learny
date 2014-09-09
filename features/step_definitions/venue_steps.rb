@@ -49,7 +49,8 @@ When(/^I click on the 'Create reservation' button$/) do
 end
 
 When(/^afterwards, I sumbit the required information for the reservation$/) do
-  pending # express the regexp above with the code you wish you had
+  visit new_reservation_path
+  
 end
 
 Then(/^I can see the new even on the "(.*?)" calendar$/) do |arg1|
