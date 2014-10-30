@@ -1,0 +1,24 @@
+%h1 Listing reservations
+
+.table-responsive
+  %table.table.table-striped
+    %tr
+      %th= Reservation.human_attribute_name(:start_at)
+      %th= Reservation.human_attribute_name(:final_time)
+      %th= Reservation.human_attribute_name(:max_participants)
+      %th
+      %th
+      %th
+  
+    - @reservations.each do |reservation|
+      %tr
+        %td= reservation.start_at
+        %td= reservation.final_time
+        %td= reservation.max_participants
+        %td= link_to 'Show', reservation
+        %td= link_to 'Edit', edit_reservation_path(reservation)
+        %td= link_to 'Destroy', reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reservation', new_reservation_path

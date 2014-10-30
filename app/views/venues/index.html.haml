@@ -30,7 +30,7 @@
             %a.pull-right{:href => "#"}
               %span.badge.alert-danger 4
               Asistentes
-        =link_to '#', {:class=>'btn btn-primary'} do
+        =link_to new_reservation_path, {:class=>'btn btn-primary'} do
           =t('views.actions.make_reservation', default: 'Make a reservation')
     / Reconocimientos
     .col-md-4

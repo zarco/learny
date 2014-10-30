@@ -11,7 +11,7 @@ Scenario: The venue makes a reservation in the default calendar
 #	And the "default" calendar is selected
 	When I click on the 'Create reservation' button
 	And afterwards, I sumbit the required information for the reservation
-	Then I can see the new even on the "default" calendar
+	Then I can see the new reservation on the "default" calendar
 
 #Scenario: Define a new calendar
 #	Given I am at my home page as venue

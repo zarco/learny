@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909000230) do
+ActiveRecord::Schema.define(version: 20140912070521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calendars", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "venue_id"
+    t.boolean  "is_default", default: false, null: false
+  end
 
   create_table "experts", force: true do |t|
     t.string   "first_name"
@@ -48,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140909000230) do
     t.boolean  "all_day",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "calendar_id"
   end
 
   create_table "students", force: true do |t|
@@ -100,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140909000230) do
 
   create_table "workshops", force: true do |t|
     t.string   "name"
-    t.float    "price"
+    t.integer  "price"
     t.integer  "length"
     t.string   "previous_skills"
     t.text     "agenda"

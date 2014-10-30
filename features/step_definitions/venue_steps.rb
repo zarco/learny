@@ -50,10 +50,15 @@ end
 
 When(/^afterwards, I sumbit the required information for the reservation$/) do
   visit new_reservation_path
-  
+  @reservation=FactoryGirl.build(:reservation)
+  select_datetime @reservation.start_at.to_s, :from=> Reservation.human_attribute_name(:start_at)
+  select_time @reservation.final_time.to_s, :from=> Reservation.human_attribute_name(:final_time)
+  fill_in Reservation.human_attribute_name(:max_participants), with: @reservation.max_participants
+  #select 'default', from: Reservation.human_attribute_name(:calendar_id)
+  click_button I18n.t('views.actions.make_reservation')
 end
 
-Then(/^I can see the new even on the "(.*?)" calendar$/) do |arg1|
+Then(/^I can see the new reservation on the "(.*?)" calendar$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 

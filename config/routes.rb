@@ -1,11 +1,14 @@
 LearnyApp::Application.routes.draw do
   
+  resources :reservations
+
   get 'venues/index'
 
   resources :workshops
   devise_for :students
   devise_for :experts
-  devise_for :venues
+  devise_for :venues, :controllers => { :registrations => "venues/registrations" }
+  
   
   get '/about'    => 'high_voltage/pages#show', id: 'about'
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
@@ -34,8 +37,6 @@ LearnyApp::Application.routes.draw do
 end
 
 # Rails.application.routes.draw do
-
-
 #  devise_for :students
 # root 'welcome#index'	
   # The priority is based upon order of creation: first created -> highest priority.
