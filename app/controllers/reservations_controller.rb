@@ -31,12 +31,10 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    puts(reservation_params)
     @reservation = Reservation.create(reservation_params)
-
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to reservations_path, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to @reservation.calendar, notice: 'Reservation was successfully created.' }
         format.json { render :index, status: :created }
       else
         format.html { render :new }

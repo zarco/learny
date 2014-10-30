@@ -1,5 +1,7 @@
 LearnyApp::Application.routes.draw do
   
+  resources :calendars
+
   resources :reservations
 
   get 'venues/index'
@@ -37,6 +39,7 @@ LearnyApp::Application.routes.draw do
 end
 
 # Rails.application.routes.draw do
+
 #  devise_for :students
 # root 'welcome#index'	
   # The priority is based upon order of creation: first created -> highest priority.

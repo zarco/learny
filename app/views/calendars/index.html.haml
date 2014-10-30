@@ -1,0 +1,20 @@
+%h1 Listing calendars
+
+.table-responsive
+  %table.table.table-striped
+    %tr
+      %th= Calendar.human_attribute_name(:title)
+      %th
+      %th
+      %th
+  
+    - @calendars.each do |calendar|
+      %tr
+        %td= calendar.title
+        %td= link_to 'Show', calendar
+        %td= link_to 'Edit', edit_calendar_path(calendar)
+        %td= link_to 'Destroy', calendar, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Calendar', new_calendar_path

@@ -51,7 +51,7 @@ end
 When(/^afterwards, I sumbit the required information for the reservation$/) do
   visit new_reservation_path
   @reservation=FactoryGirl.build(:reservation)
-  select_datetime @reservation.start_at.to_s, :from=> Reservation.human_attribute_name(:start_at)
+  select_datetime @reservation.starts_at.to_s, :from=> Reservation.human_attribute_name(:starts_at)
   select_time @reservation.final_time.to_s, :from=> Reservation.human_attribute_name(:final_time)
   fill_in Reservation.human_attribute_name(:max_participants), with: @reservation.max_participants
   #select 'default', from: Reservation.human_attribute_name(:calendar_id)

@@ -11,7 +11,7 @@ RSpec.describe Reservation, :type => :model do
   end
   describe 'attributes' do
     subject { FactoryGirl.build(:reservation) }
-    it { should respond_to :start_at }
+    it { should respond_to :starts_at }
     it { should respond_to :final_time }
     it { should respond_to :max_participants }
     it { should respond_to :all_day }

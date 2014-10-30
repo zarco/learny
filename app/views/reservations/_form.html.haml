@@ -5,11 +5,15 @@
       %ul
         - @reservation.errors.full_messages.each do |msg|
           %li= msg
-  
+  .form-group
+    = f.label :calendar_id, class: 'control-label'
+    .controls.form-inline
+      = collection_select :reservation, :calendar_id, current_venue.calendars, :id, :title, {}, {:class=>'form-control'}
+            
   .form-group.datetime-select
-    = f.label :start_at
+    = f.label :starts_at
     .form-inline
-      = f.datetime_select :start_at
+      = f.datetime_select :starts_at
   .form-group.datetime-select
     = f.label :final_time
     .form-inline
@@ -18,10 +22,6 @@
     = f.label :max_participants
     .form-inline
       = f.text_field :max_participants,  :class => 'form-control' 
-  .form-group
-    = f.label :calendar_id, class: 'control-label'
-    .controls.form-inline
-      = collection_select :reservation, :calendar_id, current_venue.calendars, :id, :title, {}, {:class=>'form-control'}
 
   .actions
     = f.submit t('views.actions.make_reservation', default: 'Make reservation'), :class=>'btn btn-primary btn-lg'

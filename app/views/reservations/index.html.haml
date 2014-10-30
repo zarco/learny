@@ -3,7 +3,7 @@
 .table-responsive
   %table.table.table-striped
     %tr
-      %th= Reservation.human_attribute_name(:start_at)
+      %th= Reservation.human_attribute_name(:starts_at)
       %th= Reservation.human_attribute_name(:final_time)
       %th= Reservation.human_attribute_name(:max_participants)
       %th
@@ -12,7 +12,7 @@
   
     - @reservations.each do |reservation|
       %tr
-        %td= reservation.start_at
+        %td= reservation.starts_at
         %td= reservation.final_time
         %td= reservation.max_participants
         %td= link_to 'Show', reservation
