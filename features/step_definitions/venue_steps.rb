@@ -50,16 +50,17 @@ end
 
 When(/^afterwards, I sumbit the required information for the reservation$/) do
   visit new_reservation_path
-  @reservation=FactoryGirl.build(:reservation)
+  @reservation=FactoryGirl.build(:reservation, :starts_at => DateTime.now)
   select_datetime @reservation.starts_at.to_s, :from=> Reservation.human_attribute_name(:starts_at)
   select_time @reservation.final_time.to_s, :from=> Reservation.human_attribute_name(:final_time)
   fill_in Reservation.human_attribute_name(:max_participants), with: @reservation.max_participants
-  #select 'default', from: Reservation.human_attribute_name(:calendar_id)
+  select @venue.calendars.first.title, from: Reservation.human_attribute_name(:calendar_id)
   click_button I18n.t('views.actions.make_reservation')
 end
 
-Then(/^I can see the new reservation on the "(.*?)" calendar$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^I can see the new reservation on the "(.*?)" calendar$/) do |calendar|
+  expect(page).to have_content(@venue.calendars.first.title)
+  expect(page).to have_content(@reservation.starts_at.strftime("%H:%M"))
 end
 
 When(/^I click on the 'New Calendar' button$/) do
