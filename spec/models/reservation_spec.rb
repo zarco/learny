@@ -16,4 +16,10 @@ RSpec.describe Reservation, :type => :model do
     it { should respond_to :max_participants }
     it { should respond_to :all_day }
   end
+  
+  describe 'associations' do
+    subject {FactoryGirl.build(:reservation)}
+    it { should belong_to(:calendar)}
+    it { should belong_to(:workshop)}
+  end
 end

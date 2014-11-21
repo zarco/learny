@@ -1,4 +1,3 @@
-
 When(/^select the Sign up as venue option$/) do
   within(:css, '#mdl_signin') do
     click_link I18n.t('views.legends.venue',default: 'Venue')
@@ -25,8 +24,6 @@ When(/^I send my data for the registration as venue$/) do
   click_button I18n.t('devise.sessions.sign_up')
 end
 
-
-
 Given(/^I am logged in as venue$/) do
   @venue = FactoryGirl.create(:venue)
   @venue.confirm!
@@ -45,7 +42,9 @@ Given(/^the "(.*?)" calendar is selected$/) do |arg1|
 end
 
 When(/^I click on the 'Create reservation' button$/) do
-  click_link I18n.t('views.actions.make_reservation')
+  within(:css,'.new-reservation') do
+    click_link I18n.t('views.actions.make_reservation')
+  end
 end
 
 When(/^afterwards, I sumbit the required information for the reservation$/) do

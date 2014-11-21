@@ -28,9 +28,12 @@
   .form-group
     %label{:for => "establecimiento"} Establecimiento
     .input-group
-      %input#establecimiento.form-control{:placeholder => "Buscar establecimiento", :readonly => "readonly"}/
+      %input#establecimiento.form-control{:placeholder => "Buscar establecimiento", :readonly => "readonly"}
+      /%input{:type=>"hidden"}
+      = f.fields_for :reservation do |builder| 
+        = builder.hidden_field :id
       %span.input-group-btn
-        %button.btn.btn-default{:type => "button"}
+        %button.btn_find_venue.btn.btn-default{:type => "button", 'data-toggle'=>'modal', 'data-target'=>'.dlg_find_venue'}
           %span.glyphicon.glyphicon-search
   .form-group
     = f.label :target_public
@@ -44,3 +47,41 @@
             
   .actions 
     = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg'
+
+
+.dlg_find_venue.modal.fade{:role=>'dialog', :tabindex=>'-1', 'aria-hidden'=>'true'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{:type=>'button', 'data-dismiss'=>'modal'}
+          &times;
+          %span.sr-only{'aria-hidden'=>'true'}
+            Close
+        %h4 
+          Find venue 
+      .modal-body
+      
+        .search-controls
+          =form_tag('/reservations.json', remote: true, method: "get", id: 'frmSearchReservations', role: 'form') do
+            .form-group
+              =date_field_tag('starts_at')
+            %button#btn_find_reservations.btn.btn-default{:type => "submit"} Search
+            / %span.glyphicon.glyphicon-search           
+        .search-results
+          %table.table.table-hover.table-responsive#tblReservationsResults
+            %thead
+              %th
+              %th 
+                =Venue.model_name.human
+              %th 
+                =Reservation.human_attribute_name(:starts_at)
+              %th Address
+            %tbody
+      
+      .modal-footer
+        %button.btn.btn-default{:type=>'button', 'data-dismiss'=>'modal'}
+          Close
+        %button.btn.btn-primary{:tyṕe=>'button', 'data-dismiss'=>'modal'}
+          Accept
+
+

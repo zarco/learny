@@ -14,5 +14,10 @@ describe Expert do
     it { should respond_to :first_name }
     it { should respond_to :last_name }
   end
+  
+  describe 'associations' do
+    subject {FactoryGirl.build(:expert)}
+    it { should have_many(:workshops)}
+  end
 
 end

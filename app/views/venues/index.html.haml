@@ -1,4 +1,4 @@
-.container
+.container.main
   .row
     .col-md-8
       .jumbotron.next-courses
@@ -30,8 +30,9 @@
             %a.pull-right{:href => "#"}
               %span.badge.alert-danger 4
               Asistentes
-        =link_to new_reservation_path, {:class=>'btn btn-primary'} do
-          =t('views.actions.make_reservation', default: 'Make a reservation')
+        .new-reservation
+          =link_to new_reservation_path, {:class=>'btn btn-primary'} do
+            =t('views.actions.make_reservation', default: 'Make a reservation')
     / Reconocimientos
     .col-md-4
       #pnl-badges.panel.panel-primary

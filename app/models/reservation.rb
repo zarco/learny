@@ -8,5 +8,6 @@ class Reservation < ActiveRecord::Base
   has_calendar
   
   belongs_to :calendar
+  belongs_to :workshop
 
 end

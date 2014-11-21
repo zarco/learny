@@ -1,17 +1,15 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
-  before_filter :authenticate_venue!
+  before_filter {:authenticate_venue! || :authenticate_expert!}
   # GET /reservations
   # GET /reservations.json
   def index
-    calendar_id=params[:calendar_id]
-    if calendar_id
-      @calendar=current_venue.calendars.where(:calendar_id => calendar_id).first
-    else
-      @calendar=current_venue.calendars.where(:is_default => true).first
+    if venue_signed_in?
+      index_for_venues  
+    elsif expert_signed_in?
+      index_for_experts
     end
-    @reservations = @calendar.reservations
   end
 
   # GET /reservations/1
@@ -65,6 +63,21 @@ class ReservationsController < ApplicationController
       format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+  def index_for_venues
+    calendar_id=params[:calendar_id]
+    if calendar_id
+      @calendar=current_venue.calendars.where(:calendar_id => calendar_id).first
+    else
+      @calendar=current_venue.calendars.where(:is_default => true).first
+    end
+    @reservations = @calendar.reservations
+  end
+  
+  def index_for_experts
+    @reservations=Reservation.where({:workshop=>nil})
   end
 
   private

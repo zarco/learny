@@ -9,5 +9,6 @@ class Workshop < ActiveRecord::Base
   enum state: [:proposed, :scheduled, :stand_by, :cancelled, :given]
   
   belongs_to :expert
+  has_one :reservation
   
 end

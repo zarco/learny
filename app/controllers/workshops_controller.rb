@@ -19,6 +19,7 @@ class WorkshopsController < ApplicationController
   # GET /workshops/new
   def new
     @workshop = Workshop.new
+    @workshop.reservation=Reservation.new
   end
 
   # GET /workshops/1/edit
@@ -28,15 +29,17 @@ class WorkshopsController < ApplicationController
   # POST /workshops
   # POST /workshops.json
   def create
-    @workshop = Workshop.new(workshop_params)
+    @reservation=Reservation.find(workshop_params[:reservation][:id])
+    
+    @workshop = Workshop.new(workshop_params.except(:reservation), :reservation =>@reservation )
     @workshop.expert=current_expert
     
     respond_to do |format|
       if @workshop.save
-        format.html { redirect_to @workshop, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
+        format.html { redirect_to root_path, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
         format.json { render :show, status: :created, location: @workshop }
       else
-        format.html { render root_path }
+        format.html { render :new}
         format.json { render json: @workshop.errors, status: :unprocessable_entity }
       end
     end
@@ -75,6 +78,6 @@ class WorkshopsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def workshop_params
-    params.require(:workshop).permit(:name, :target_public, :agenda, :previous_skills, :price, :length, :max_number_participants, :description)
+    params.require(:workshop).permit(:name, :target_public, :agenda, :previous_skills, :price, :length, :max_number_participants, :description, reservation: [:id])
   end
 end

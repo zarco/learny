@@ -80,6 +80,7 @@ es-MX:
       propose: 'Proponer'  
       my_workshops: 'Mis talleres'
       make_reservation: 'Hacer reservacion'
+      calendars: 'Calendarios'
             
     legends:
       'yes': 'Si'
