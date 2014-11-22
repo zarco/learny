@@ -16,7 +16,7 @@
         .row.well
           .row
             .col-xs-6
-              %p Inicio: 22-Julio-2014, 16:00 hrs
+              %p Inicio: #{@workshop.reservation.starts_at}
             .col-xs-6
               %p Costo: #{@workshop.price / @workshop.max_number_participants} MXN
           .row
@@ -41,7 +41,7 @@
           .col-md-7
             %blockquote
               %h5
-                %a{:href => "../expertos/conoce_experto.html"} Stephan Gary Wozniak
+                %a{:href => "../expertos/conoce_experto.html"} #{@workshop.expert.first_name} #{@workshop.expert.last_name}
               %h6
                 Ingeniero, Inventor
           .row
@@ -70,13 +70,13 @@
   .row
     .col-ms-12.panel.panel-primary
       .panel-heading
-        %h3.panel-title Establecimiento
+        %h3.panel-title #{Venue.model_name.human}
       .panel-body
         .col-md-4.panel
           .col-md-12
             %blockquote
               %h4
-                %a{:href => "../cursos/1.html"} El depósito
+                %a{:href => "../cursos/1.html"} #{@workshop.venue.name}
             %p
               Es un lugar donde podrás pasar un buen rato con tus colegas y disfrutar de aquellas conversaciones amenas disfrutando de una gran variedad de cervezas donde nuestra filosofía es “Que el cliente decida que tomar” debido a nuestra gran variedad con la que contamos.
         .col-md-4.panel

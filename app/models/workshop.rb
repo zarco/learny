@@ -11,4 +11,9 @@ class Workshop < ActiveRecord::Base
   belongs_to :expert
   has_one :reservation
   
+  has_one :calendar, through: :reservation
+  
+  
+  has_one :venue, through: :calendar
+  
 end

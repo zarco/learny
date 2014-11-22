@@ -59,7 +59,8 @@ When(/^I submit the required information for proposing a workshop called "(.*?)"
     fill_in Workshop.human_attribute_name(:agenda), with: @workshop.agenda
     find('.btn_find_venue').click
   end
-  
+ 
+ pending 
   #within('.dlg_find_venue') do
       #print page.html
       #click_link venue

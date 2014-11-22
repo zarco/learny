@@ -31,11 +31,12 @@ class WorkshopsController < ApplicationController
   def create
     @reservation=Reservation.find(workshop_params[:reservation][:id])
     
-    @workshop = Workshop.new(workshop_params.except(:reservation), :reservation =>@reservation )
+    @workshop = Workshop.new(workshop_params.except(:reservation) )
     @workshop.expert=current_expert
+    @reservation.workshop=@workshop
     
     respond_to do |format|
-      if @workshop.save
+      if @workshop.save && @reservation.save
         format.html { redirect_to root_path, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
         format.json { render :show, status: :created, location: @workshop }
       else
@@ -49,7 +50,22 @@ class WorkshopsController < ApplicationController
   # PATCH/PUT /workshops/1.json
   def update
     respond_to do |format|
-      if @workshop.update(workshop_params)
+      
+      reservation_id=workshop_params[:reservation][:id]
+      
+      if reservation_id.empty?
+        updated=@workshop.update(workshop_params.except(:reservation))
+      else
+        @reservation=Reservation.find(reservation_id)
+        @released_reservation=Reservation.where({:workshop_id=>workshop_params[:id]}).first
+      
+        @released_reservation.workshop = nil
+        @reservation.workshop=@workshop
+      
+        updated=@workshop.update(workshop_params.except(:reservation)) && @reservation.save && @released_reservation.save
+      end
+      
+      if updated 
         format.html { redirect_to @workshop, notice: 'Workshop was successfully updated.' }
         format.json { render :show, status: :ok, location: @workshop }
       else

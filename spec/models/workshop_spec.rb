@@ -25,6 +25,8 @@ describe Workshop do
     subject {FactoryGirl.build(:workshop)}
     it { should belong_to(:expert)}
     it { should have_one(:reservation)}
+    it { should have_one(:calendar)}
+    it { should have_one(:venue)}
   end
 
   describe 'validations' do

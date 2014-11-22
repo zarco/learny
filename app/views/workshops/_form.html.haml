@@ -28,7 +28,8 @@
   .form-group
     %label{:for => "establecimiento"} Establecimiento
     .input-group
-      %input#establecimiento.form-control{:placeholder => "Buscar establecimiento", :readonly => "readonly"}
+      - venue=@workshop.venue.name if !@workshop.venue.nil?
+      %input.form-control#establecimiento{:placeholder => "Buscar establecimiento", :readonly => "readonly", :value => venue }
       /%input{:type=>"hidden"}
       = f.fields_for :reservation do |builder| 
         = builder.hidden_field :id
