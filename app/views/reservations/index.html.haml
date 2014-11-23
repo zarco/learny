@@ -1,26 +1,28 @@
-%h1 Listing reservations
-
-.table-responsive
-  %table.table.table-striped
-    %tr
-      %th= Reservation.human_attribute_name(:starts_at)
-      %th= Reservation.human_attribute_name(:final_time)
-      %th= Reservation.human_attribute_name(:max_participants)
-      %th= Workshop.model_name.human
-      %th
-      %th
-      %th
+.container
+  %h1 Listing reservations
   
-    - @reservations.each do |reservation|
+  .table-responsive
+    %table.table.table-striped
       %tr
-        %td= reservation.starts_at
-        %td= reservation.final_time
-        %td= reservation.max_participants
-        %td= reservation.workshop.name if !reservation.workshop.nil?
-        %td= link_to 'Show', reservation
-        %td= link_to 'Edit', edit_reservation_path(reservation)
-        %td= link_to 'Destroy', reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Reservation', new_reservation_path
+        %th= Reservation.human_attribute_name(:starts_at)
+        %th= Reservation.human_attribute_name(:final_time)
+        %th= Reservation.human_attribute_name(:max_participants)
+        %th= Workshop.model_name.human
+        %th= Expert.model_name.human
+        %th
+    
+      - @reservations.each do |reservation|
+        %tr
+          %td= reservation.starts_at
+          %td= reservation.final_time
+          %td= reservation.max_participants
+          %td= (link_to reservation.workshop.name, reservation.workshop) if !reservation.workshop.nil?
+          %td= reservation.workshop.expert.full_name if !reservation.workshop.nil?
+          %td
+            = link_to 'Show', reservation
+            = link_to 'Edit', edit_reservation_path(reservation)
+            = link_to 'Destroy', reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  
+  %br
+  
+  = link_to 'New Reservation', new_reservation_path

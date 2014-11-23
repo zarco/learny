@@ -4,6 +4,7 @@
 
 ready =->
   $("#frmSearchReservations").on("ajax:success",(e, data, status, xhr)->
+    $('.search-results table tbody').html('')
     $(data).each((index,item) ->
       
       html='<tr data-venue="'+item.venue.name+'" data-reservation-id="'+item.id+'" >'
