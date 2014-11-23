@@ -29,14 +29,20 @@ class WorkshopsController < ApplicationController
   # POST /workshops
   # POST /workshops.json
   def create
-    @reservation=Reservation.find(workshop_params[:reservation][:id])
+    reservation_id=workshop_params[:reservation][:id]
+    @reservation=Reservation.find(reservation_id) if !reservation_id.empty?
     
     @workshop = Workshop.new(workshop_params.except(:reservation) )
     @workshop.expert=current_expert
-    @reservation.workshop=@workshop
+    
+    reservation_saved = true
+    if !@reservation.nil?
+      @reservation.workshop=@workshop
+      reservation_=@reservation.save
+    end  
     
     respond_to do |format|
-      if @workshop.save && @reservation.save
+      if @workshop.save && reservation_saved
         format.html { redirect_to root_path, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
         format.json { render :show, status: :created, location: @workshop }
       else
