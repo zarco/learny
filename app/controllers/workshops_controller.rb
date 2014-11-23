@@ -19,6 +19,7 @@ class WorkshopsController < ApplicationController
   # GET /workshops/new
   def new
     @workshop = Workshop.new
+    @workshop.reservation=Reservation.new
   end
 
   # GET /workshops/1/edit
@@ -28,15 +29,24 @@ class WorkshopsController < ApplicationController
   # POST /workshops
   # POST /workshops.json
   def create
-    @workshop = Workshop.new(workshop_params)
+    reservation_id=workshop_params[:reservation][:id]
+    @reservation=Reservation.find(reservation_id) if !reservation_id.empty?
+    
+    @workshop = Workshop.new(workshop_params.except(:reservation) )
     @workshop.expert=current_expert
     
+    reservation_saved = true
+    if !@reservation.nil?
+      @reservation.workshop=@workshop
+      reservation_=@reservation.save
+    end  
+    
     respond_to do |format|
-      if @workshop.save
-        format.html { redirect_to @workshop, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
+      if @workshop.save && reservation_saved
+        format.html { redirect_to root_path, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
         format.json { render :show, status: :created, location: @workshop }
       else
-        format.html { render root_path }
+        format.html { render :new}
         format.json { render json: @workshop.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +56,22 @@ class WorkshopsController < ApplicationController
   # PATCH/PUT /workshops/1.json
   def update
     respond_to do |format|
-      if @workshop.update(workshop_params)
+      
+      reservation_id=workshop_params[:reservation][:id]
+      if reservation_id.empty?
+        updated=@workshop.update(workshop_params.except(:reservation))
+      else
+        @released_reservation=Reservation.where(:workshop_id => params[:id]).first
+        @released_reservation.workshop_id = nil if !@released_reservation.nil?
+       
+        @reservation=Reservation.find(reservation_id)
+        @reservation.workshop=@workshop
+          
+        @released_reservation.save if !@released_reservation.nil?
+        updated=@workshop.update(workshop_params.except(:reservation)) && @reservation.save 
+      end
+      
+      if updated 
         format.html { redirect_to @workshop, notice: 'Workshop was successfully updated.' }
         format.json { render :show, status: :ok, location: @workshop }
       else
@@ -75,6 +100,6 @@ class WorkshopsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def workshop_params
-    params.require(:workshop).permit(:name, :target_public, :agenda, :previous_skills, :price, :length, :max_number_participants, :description)
+    params.require(:workshop).permit(:name, :target_public, :agenda, :previous_skills, :price, :length, :max_number_participants, :description, reservation: [:id])
   end
 end

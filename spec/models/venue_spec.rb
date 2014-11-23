@@ -14,6 +14,11 @@ describe Venue do
     it { should respond_to :name }
   end
 
+  describe 'associations' do
+    subject {FactoryGirl.build(:venue)}
+    it { should have_many(:calendars)}
+  end
+  
   describe 'validations' do
     subject { FactoryGirl.build(:venue) }
     it { should validate_presence_of :name }

@@ -14,5 +14,17 @@ describe Expert do
     it { should respond_to :first_name }
     it { should respond_to :last_name }
   end
+  
+  describe 'associations' do
+    subject {FactoryGirl.build(:expert)}
+    it { should have_many(:workshops)}
+  end
+  
+  describe 'methods' do
+    it 'last name' do
+      full_name=FactoryGirl.build(:expert, :first_name => 'Juan', :last_name => 'Perez').full_name
+      expect(full_name).to eq("Juan Perez")
+    end
+  end
 
 end

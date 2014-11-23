@@ -8,4 +8,9 @@ class Expert < ActiveRecord::Base
   validates :email, uniqueness: true
   
   has_many :workshops
+
+  def full_name
+    first_name + ' ' + last_name
+  end
+
 end

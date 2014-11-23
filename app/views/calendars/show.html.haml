@@ -1,0 +1,19 @@
+%p#notice= notice
+.container
+  %h1
+    = @calendar.title
+  .simple-calendar.panel.panel-primary
+    = month_calendar events: @calendar.reservations, header: {class: 'calendar-header panel-header'} ,
+        title: ->(start_date) { content_tag :span, "#{I18n.t("date.month_names")[start_date.month]} #{start_date.year}", class: "calendar-title" },
+        table: {class: "table table-bordered"}, tr: {class: "calendar-row"}, td: {class: "day"}  do |date, reservations| 
+      = date.strftime("%d-%m")
+      - reservations.each do |reservation|
+        .event-cell
+          =reservation.starts_at.strftime("%H:%M")
+          \-
+          =reservation.final_time.strftime("%H:%M")
+          = (link_to reservation.workshop.name, reservation.workshop) if !reservation.workshop.nil?
+  
+  = link_to 'Edit', edit_calendar_path(@calendar)
+  \|
+  = link_to 'Back', calendars_path

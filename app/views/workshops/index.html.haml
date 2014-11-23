@@ -1,19 +1,24 @@
-%h1 Listing workshops
 
 .container
+  %h1 Listing workshops
+
   %table.table
     %tr
       %th= Workshop.human_attribute_name(:name)
       %th= Workshop.human_attribute_name(:state)
+      %th= Venue.model_name.human
+      %th
       %th
       
   
     - @workshops.each do |workshop|
+      - venue=workshop.venue
       %tr
-        %td= workshop.name
+        %td= link_to workshop.name, workshop
         %td= t('views.states.'+workshop.state, default: workshop.state)
+        %td= (link_to venue.name , 'workshop.reservation.calendar.venue') if !venue.nil? 
+        %td= workshop.reservation.starts_at if !workshop.reservation.nil?
         %td
-          = link_to 'Show', workshop
           = link_to 'Edit', edit_workshop_path(workshop)
           = link_to 'Destroy', workshop, :method => :delete, :data => { :confirm => 'Are you sure?' }
   

@@ -9,7 +9,7 @@ describe Workshop do
       expect(FactoryGirl.build(:invalid_workshop)).to_not be_valid
     end
   end
-  
+
   describe 'attributes' do
     subject { FactoryGirl.build(:workshop) }
     it { should respond_to :name }
@@ -19,7 +19,16 @@ describe Workshop do
     it { should respond_to :description}
     it { should respond_to :max_number_participants}
   end
-  
+
+
+  describe 'associations' do
+    subject {FactoryGirl.build(:workshop)}
+    it { should belong_to(:expert)}
+    it { should have_one(:reservation)}
+    it { should have_one(:calendar)}
+    it { should have_one(:venue)}
+  end
+
   describe 'validations' do
     subject { FactoryGirl.build(:workshop) }
     it { should validate_presence_of :name }
@@ -28,4 +37,5 @@ describe Workshop do
     it { should validate_presence_of :price }
     it { should respond_to :description}
   end
+  
 end
