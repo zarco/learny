@@ -6,6 +6,7 @@
       %th= Reservation.human_attribute_name(:starts_at)
       %th= Reservation.human_attribute_name(:final_time)
       %th= Reservation.human_attribute_name(:max_participants)
+      %th= Workshop.model_name.human
       %th
       %th
       %th
@@ -15,6 +16,7 @@
         %td= reservation.starts_at
         %td= reservation.final_time
         %td= reservation.max_participants
+        %td= reservation.workshop.name if !reservation.workshop.nil?
         %td= link_to 'Show', reservation
         %td= link_to 'Edit', edit_reservation_path(reservation)
         %td= link_to 'Destroy', reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
