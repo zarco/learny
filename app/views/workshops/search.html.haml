@@ -1,0 +1,21 @@
+
+.container
+  %h1 Listing workshops
+
+  %table.table
+    %tr
+      %th= Workshop.human_attribute_name(:name)
+      %th= Venue.model_name.human
+      %th= Expert.model_name.human
+      %th
+      
+  
+    - @workshops.each do |workshop|
+      - venue=workshop.venue
+      %tr
+        %td= link_to workshop.name, workshop
+        %td= (link_to venue.name , 'workshop.reservation.calendar.venue') if !venue.nil? 
+        %td= link_to workshop.expert.full_name , 'workshop.reservation.calendar.venue' 
+        %td= workshop.reservation.starts_at if !workshop.reservation.nil?
+  
+  %br
