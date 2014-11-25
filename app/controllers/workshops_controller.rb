@@ -1,14 +1,22 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_expert!, only: [:index, :create, :update, :destroy]
-  
+  before_filter :authenticate_expert!, only: [:create, :update, :destroy]
   
   # GET /workshops
   # GET /workshops.json
   def index
-    if expert_signed_in? 
+    w=params[:w]
+    if !w.nil?
+      @workshops = Workshop.search_workshop(w)
+      render 'search'  
+    elsif expert_signed_in? 
       @workshops = current_expert.workshops
-    end
+    elsif student_signed_in?
+      
+    else
+      
+    end 
+       
   end
 
   # GET /workshops/1

@@ -35,7 +35,9 @@ describe Workshop do
     it { should validate_presence_of :agenda }
     it { should validate_presence_of :length }
     it { should validate_presence_of :price }
-    it { should respond_to :description}
+    it { should validate_presence_of :price }
+    it { should validate_presence_of :expert }
+    it { should validate_presence_of :description }
   end
   
 end

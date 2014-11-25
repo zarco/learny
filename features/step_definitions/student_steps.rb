@@ -34,8 +34,41 @@ When(/^I send my data for the registration as student$/) do
   click_button I18n.t('devise.sessions.sign_up')
 end
 
-
 Then(/^I can see a confirmation message$/) do
 #expect(page).to have_content(Student.human_attribute_name(:email))
   expect(page).to have_content(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
+end
+
+Given(/^I am logged in as student$/) do
+  @student = FactoryGirl.create(:student)
+  @student.confirm!
+  visit new_student_session_path
+  fill_in Student.human_attribute_name(:email), with: @student.email
+  fill_in Student.human_attribute_name(:password), with: @student.password
+  click_button I18n.t('devise.sessions.sign_in')
+end
+
+Given(/^there is a workshop called "(.*?)"$/) do |name|
+  @workshop = FactoryGirl.create(:workshop, :name => name)
+end
+
+Given(/^I am at my home page as student$/) do
+  visit student_root_path
+end
+
+When(/^I fill in the search workshop field with "(.*?)"$/) do |name|
+  within(:css, ".workshop-search-form") do
+    fill_in 'w', :with => name
+  end
+end
+
+When(/^I click in the search button$/) do
+  within(:css, ".workshop-search-form") do
+    click_button "Search"
+  end
+end
+
+Then(/^I see the workshop titled "(.*?)"$/) do |name|
+    #save_and_open_page 
+    expect(page).to have_content(name)
 end

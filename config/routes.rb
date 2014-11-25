@@ -1,7 +1,8 @@
 LearnyApp::Application.routes.draw do
   
-  resources :calendars
+  get 'students/index'
 
+  resources :calendars
   resources :reservations
 
   get 'venues/index'
@@ -29,6 +30,10 @@ LearnyApp::Application.routes.draw do
   authenticated :expert do
     root to: 'experts#index', as: :expert_root
   end
+
+  authenticated :student do
+    root to: 'students#index', as: :student_root
+  end
   
   unauthenticated do
     root :to => 'high_voltage/pages#show', id: 'home'
@@ -39,6 +44,7 @@ LearnyApp::Application.routes.draw do
 end
 
 # Rails.application.routes.draw do
+
 
 #  devise_for :students
 # root 'welcome#index'	

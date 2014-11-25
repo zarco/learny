@@ -10,6 +10,7 @@ FactoryGirl.define do
     description { Faker::HipsterIpsum.paragraphs.join}
     max_number_participants {5}
     state :proposed
+    expert {FactoryGirl.build(:expert)}
 
     factory :invalid_workshop do
       name nil
@@ -19,6 +20,7 @@ FactoryGirl.define do
       description nil
       max_number_participants 2*-1
       state nil
+      expert nil
     end
   end
 end
