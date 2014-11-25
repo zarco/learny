@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready =->
-  $("#frmSearchReservations").on("ajax:success",(e, data, status, xhr)->
+  $("#workshops-_form-frmSearchReservations").on("ajax:success",(e, data, status, xhr)->
     $('.search-results table tbody').html('')
     $(data).each((index,item) ->
       

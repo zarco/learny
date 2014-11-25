@@ -63,7 +63,7 @@
       .modal-body
       
         .search-controls
-          =form_tag('/reservations.json', remote: true, method: "get", id: 'frmSearchReservations', role: 'form') do
+          =form_tag('/reservations.json', remote: true, method: "get", id: 'workshops-_form-frmSearchReservations', role: 'form') do
             .form-group
               =date_field_tag('starts_at')
             %button#btn_find_reservations.btn.btn-default{:type => "submit"} Search
