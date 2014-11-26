@@ -24,4 +24,9 @@ RSpec.describe Calendar, :type => :model do
     it { should belong_to(:venue) }
     it { should have_many(:reservations) }
   end
+  
+  describe 'validations' do
+    subject { FactoryGirl.build(:default_calendar) }
+    it { should validate_presence_of :title }
+  end
 end

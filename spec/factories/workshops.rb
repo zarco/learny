@@ -12,6 +12,10 @@ FactoryGirl.define do
     state :proposed
     expert {FactoryGirl.build(:expert)}
 
+    factory :workshop_with_reservation do
+      reservation {FactoryGirl.build(:reservation)}
+    end
+
     factory :invalid_workshop do
       name nil
       price 10.00*-1

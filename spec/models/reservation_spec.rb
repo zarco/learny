@@ -22,4 +22,10 @@ RSpec.describe Reservation, :type => :model do
     it { should belong_to(:calendar)}
     it { should belong_to(:workshop)}
   end
+  
+  describe 'validations' do
+    subject { FactoryGirl.build(:reservation) }
+    it { should validate_presence_of :starts_at }
+    it { should validate_presence_of :final_time }
+  end
 end

@@ -49,7 +49,16 @@ Given(/^I am logged in as student$/) do
 end
 
 Given(/^there is a workshop called "(.*?)"$/) do |name|
+  venue=FactoryGirl.create(:venue)
   @workshop = FactoryGirl.create(:workshop, :name => name)
+  @reservation=FactoryGirl.create(:reservation, :workshop => @workshop, :calendar => venue.calendars.first)
+  
+  
+  puts "<<<<<<<<<<<<<<<<I saw the sign"
+  puts @reservation.calendar.venue.name
+  puts @workshop.venue.name
+  
+  
 end
 
 Given(/^I am at my home page as student$/) do
@@ -72,3 +81,16 @@ Then(/^I see the workshop titled "(.*?)"$/) do |name|
     #save_and_open_page 
     expect(page).to have_content(name)
 end
+
+Given(/^I am at the "(.*?)" workshop page$/) do |arg1|
+  visit workshop_path @workshop 
+end
+
+When(/^I click the enroll button$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I see a confirmation message of the successful enrollment$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
