@@ -1,5 +1,7 @@
 LearnyApp::Application.routes.draw do
   
+  resources :enrollments
+
   get 'students/index'
 
   resources :calendars
@@ -44,6 +46,7 @@ LearnyApp::Application.routes.draw do
 end
 
 # Rails.application.routes.draw do
+
 
 
 #  devise_for :students

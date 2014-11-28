@@ -52,13 +52,6 @@ Given(/^there is a workshop called "(.*?)"$/) do |name|
   venue=FactoryGirl.create(:venue)
   @workshop = FactoryGirl.create(:workshop, :name => name)
   @reservation=FactoryGirl.create(:reservation, :workshop => @workshop, :calendar => venue.calendars.first)
-  
-  
-  puts "<<<<<<<<<<<<<<<<I saw the sign"
-  puts @reservation.calendar.venue.name
-  puts @workshop.venue.name
-  
-  
 end
 
 Given(/^I am at my home page as student$/) do
@@ -87,10 +80,14 @@ Given(/^I am at the "(.*?)" workshop page$/) do |arg1|
 end
 
 When(/^I click the enroll button$/) do
-  pending # express the regexp above with the code you wish you had
+  within('#workshops-show-frmEnrollment') do
+   
+    #click_button "Asistir"
+    find_button("Asistir").click
+  end
 end
 
 Then(/^I see a confirmation message of the successful enrollment$/) do
-  pending # express the regexp above with the code you wish you had
+    expect(page).to have_content('Student successfully enrolled')
 end
 

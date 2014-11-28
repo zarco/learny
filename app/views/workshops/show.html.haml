@@ -25,10 +25,13 @@
                 %span.glyphicon.glyphicon-list-alt
                 Temario
             .col-xs-6.text-center
-              %button.btn.btn-lg.btn-primary{:type => "button"}
-                %span.glyphicon.glyphicon-log-in
-                
-                Asistir
+              .form
+                = form_for @enrollment, html: {id: 'workshops-show-frmEnrollment'} do |f|
+                  = f.hidden_field :workshop_id
+                  = f.hidden_field :student_id
+                  %button.btn.btn-lg.btn-primary{:type => "submbit", :value => 'Enroll'}
+                    %span.glyphicon.glyphicon-log-in  
+                    Asistir
         %button.btn.btn-lg.btn-danger{:type => "button"}
           %span.glyphicon.glyphicon-fire
           Reportar tema

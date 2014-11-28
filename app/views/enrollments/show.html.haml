@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Workshop:
+  = @enrollment.workshop_id
+%p
+  %b Student:
+  = @enrollment.student_id
+
+= link_to 'Edit', edit_enrollment_path(@enrollment)
+\|
+= link_to 'Back', enrollments_path

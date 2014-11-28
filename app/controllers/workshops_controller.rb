@@ -22,6 +22,7 @@ class WorkshopsController < ApplicationController
   # GET /workshops/1
   # GET /workshops/1.json
   def show
+    @enrollment = Enrollment.new(:student => current_student, :workshop => @workshop)
   end
 
   # GET /workshops/new
