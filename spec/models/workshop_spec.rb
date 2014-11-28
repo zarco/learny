@@ -30,6 +30,9 @@ describe Workshop do
     it { should have_one(:reservation)}
     it { should have_one(:calendar)}
     it { should have_one(:venue)}
+    it { should have_many(:enrollments)}
+    it { should have_many(:students)}
+
   end
 
   describe 'validations' do

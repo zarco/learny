@@ -16,9 +16,10 @@
         .row.well
           .row
             .col-xs-6
-              %p Inicio: #{@workshop.reservation.starts_at}
-            .col-xs-6
               %p Costo: #{@workshop.price / @workshop.max_number_participants} MXN
+            .col-xs-6
+              %p Inicio: #{@workshop.reservation.starts_at if !@workshop.reservation.nil? }
+            
           .row
             .col-xs-6.text-center
               %button.btn.btn-lg.btn-warning{"data-target" => "#temario", "data-toggle" => "modal", :type => "button"}
@@ -66,75 +67,76 @@
                 %span.glyphicon.glyphicon-star
                 %span.glyphicon.glyphicon-star
                 %span.glyphicon.glyphicon-star
-  .row
-    .col-ms-12.panel.panel-primary
-      .panel-heading
-        %h3.panel-title #{Venue.model_name.human}
-      .panel-body
-        .col-md-4.panel
-          .col-md-12
-            %blockquote
-              %h4
-                %a{:href => "../cursos/1.html"} #{@workshop.venue.name}
-            %p
-              Es un lugar donde podrás pasar un buen rato con tus colegas y disfrutar de aquellas conversaciones amenas disfrutando de una gran variedad de cervezas donde nuestra filosofía es “Que el cliente decida que tomar” debido a nuestra gran variedad con la que contamos.
-        .col-md-4.panel
-          .col-md-12
-            %img.featurette-image.img-responsive{:alt => "Profile", :src => "../images/ubicacion.png"}/
-        .col-md-4.panel
-          .col-md-12
-            #myCarousel.carousel.slide{"data-ride" => "carousel"}
-              / Indicators
-              %ol.carousel-indicators
-                %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
-                %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
-                %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
-              .carousel-inner
-                .item.active
-                  %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_entrada.jpg"}/
-                .item
-                  %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_ambiente.jpg"}/
-                .item
-                  %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_lugar.jpg"}/
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
-                %span.glyphicon.glyphicon-chevron-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
-                %span.glyphicon.glyphicon-chevron-right
-            / /.carousel
-        .row
-          .col-md-4
-            .col-xs-4
-              %a{:href => "#"}
-                %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_estudiantes/carlos.jpg"}/
-            .col-xs-8
+  - if !@workshop.reservation.nil?
+    .row
+      .col-ms-12.panel.panel-primary
+        .panel-heading
+          %h3.panel-title #{Venue.model_name.human}
+        .panel-body
+          .col-md-4.panel
+            .col-md-12
               %blockquote
-                %h5
-                  %a{:href => "#"}
-                    Carlos Zarco
-            %p
-              "Uno de mis lugares favoritos para unos buenos tragos y cerrar negocios."
-          .col-md-4
-            .col-xs-4
-              %a{:href => "#"}
-                %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/larry.jpg"}/
-            .col-xs-8
-              %blockquote
-                %h5
-                  %a{:href => "#"}
-                    Larry Page
-            %p
-              "Mmmm, mucha gente me gusta mas ir en horario godinez, asi no hay tanta gente."
-          .col-md-4
-            .col-xs-4
-              %a{:href => "#"}
-                %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_estudiantes/rihanna.jpg"}/
-            .col-xs-8
-              %blockquote
-                %h5
-                  %a{:href => "#"}
-                    Robyn Rihanna Fenty
-            %p
-              Siempre asisto a este lugar ya que hay buen ambiente y es agradable disfrutar una conversación.
+                %h4
+                  %a{:href => "../cursos/1.html"} #{@workshop.venue.name}
+              %p
+                Es un lugar donde podrás pasar un buen rato con tus colegas y disfrutar de aquellas conversaciones amenas disfrutando de una gran variedad de cervezas donde nuestra filosofía es “Que el cliente decida que tomar” debido a nuestra gran variedad con la que contamos.
+          .col-md-4.panel
+            .col-md-12
+              %img.featurette-image.img-responsive{:alt => "Profile", :src => "../images/ubicacion.png"}/
+          .col-md-4.panel
+            .col-md-12
+              #myCarousel.carousel.slide{"data-ride" => "carousel"}
+                / Indicators
+                %ol.carousel-indicators
+                  %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+                  %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+                  %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+                .carousel-inner
+                  .item.active
+                    %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_entrada.jpg"}/
+                  .item
+                    %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_ambiente.jpg"}/
+                  .item
+                    %img.featurette-image.img-responsive{:alt => "First slide", :src => "../images/perfil_establecimientos/deposito_lugar.jpg"}/
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+                  %span.glyphicon.glyphicon-chevron-left
+                %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+                  %span.glyphicon.glyphicon-chevron-right
+              / /.carousel
+          .row
+            .col-md-4
+              .col-xs-4
+                %a{:href => "#"}
+                  %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_estudiantes/carlos.jpg"}/
+              .col-xs-8
+                %blockquote
+                  %h5
+                    %a{:href => "#"}
+                      Carlos Zarco
+              %p
+                "Uno de mis lugares favoritos para unos buenos tragos y cerrar negocios."
+            .col-md-4
+              .col-xs-4
+                %a{:href => "#"}
+                  %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/larry.jpg"}/
+              .col-xs-8
+                %blockquote
+                  %h5
+                    %a{:href => "#"}
+                      Larry Page
+              %p
+                "Mmmm, mucha gente me gusta mas ir en horario godinez, asi no hay tanta gente."
+            .col-md-4
+              .col-xs-4
+                %a{:href => "#"}
+                  %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_estudiantes/rihanna.jpg"}/
+              .col-xs-8
+                %blockquote
+                  %h5
+                    %a{:href => "#"}
+                      Robyn Rihanna Fenty
+              %p
+                Siempre asisto a este lugar ya que hay buen ambiente y es agradable disfrutar una conversación.
   .row
     .col-ms-12.panel.panel-primary
       .panel-heading
@@ -159,30 +161,16 @@
               .panel-heading
                 %h3.panel-title Asistentes
               .panel-body
-                .row.panel
-                  .col-xs-4
-                    %a{:href => "#"}
-                      %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/megan.jpg"}/
-                  .col-xs-7
-                    %blockquote
-                      %h5
-                        %a{:href => "../cursos/1.html"} Megan Fox
-                .row.panel
-                  .col-xs-4
-                    %a{:href => "#"}
-                      %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/expert.png"}/
-                  .col-xs-7
-                    %blockquote
-                      %h5
-                        %a{:href => "../cursos/1.html"} Ricardo Castañeda
-                .row.panel
-                  .col-xs-4
-                    %a{:href => "#"}
-                      %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/student.png"}/
-                  .col-xs-7
-                    %blockquote
-                      %h5
-                        %a{:href => "../cursos/1.html"} Jonathan Delgado
+                - @workshop.students.each do |student|
+                  .row.panel
+                    .col-xs-4
+                      %a{:href => "#"}
+                        %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/megan.jpg"}/
+                    .col-xs-7
+                      %blockquote
+                        %h5
+                          = link_to student.full_name, student.full_name
+                
           .col-xs-12
             .panel.panel-primary
               .panel-heading
@@ -210,16 +198,7 @@
                         Calificación:
                         %span.glyphicon.glyphicon-star
                         %span.glyphicon.glyphicon-star
-  %footer
-    %p.pull-right
-      %a{:href => "#"}
-        %button.btn.btn-default.btn-lg{:type => "button"}
-          %span.glyphicon.glyphicon-chevron-up
-    %p
-      © 2014 Learny, Inc. ·
-      = succeed "\u{b7}" do
-        %a{:href => "#"} Privacy
-      %a{:href => "#"} Terms
+
   / Modal
   #temario.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-dialog
@@ -235,8 +214,3 @@
           =@workshop.agenda
         .modal-footer
           %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-  
-  
-  = link_to 'Edit', edit_workshop_path(@workshop)
-  \|
-  = link_to 'Back', expert_root_path
