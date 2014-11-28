@@ -25,7 +25,8 @@
                 %span.glyphicon.glyphicon-list-alt
                 Temario
             .col-xs-6.text-center
-              =render 'enrollments/form', object: @enrollment
+              - if student_signed_in? && @enrollment.is_new
+                =render 'enrollments/form', object: @enrollment
         %button.btn.btn-lg.btn-danger{:type => "button"}
           %span.glyphicon.glyphicon-fire
           Reportar tema

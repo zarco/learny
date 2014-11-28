@@ -22,7 +22,8 @@ class WorkshopsController < ApplicationController
   # GET /workshops/1
   # GET /workshops/1.json
   def show
-    @enrollment = Enrollment.new(:student => current_student, :workshop => @workshop)
+    @enrollment = Enrollment.where(:student => current_student, :workshop => @workshop).first 
+    @enrollment = Enrollment.new(:student => current_student, :workshop => @workshop) if @enrollment.nil?
   end
 
   # GET /workshops/new

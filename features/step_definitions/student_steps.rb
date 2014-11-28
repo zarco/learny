@@ -98,7 +98,7 @@ When(/^I am at the "(.*?)" workshop's page$/) do |arg1|
 end
 
 Then(/^I do not see the enroll button$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(page).to_not have_button('Enroll')
 end
 
 When(/^I go to 'My workshops" page$/) do

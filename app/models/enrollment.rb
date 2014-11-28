@@ -5,5 +5,9 @@ class Enrollment < ActiveRecord::Base
   
   validates :workshop, :student, presence: true
  
+  def is_new
+    self.id.nil?  
+  end
+  
   
 end
