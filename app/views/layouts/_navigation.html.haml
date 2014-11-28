@@ -24,6 +24,10 @@
                   = t('views.actions.history',default:'History')
               %li.divider
               %li
+                = link_to enrollments_path do
+                  = t('views.actions.my_workshops', default: 'My workshops')
+              %li.divider
+              %li
                 = link_to destroy_student_session_path, data: { method: :delete } do
                   = t('devise.sessions.sign_out',default: 'Sign out')
       -elsif expert_signed_in?
@@ -36,16 +40,17 @@
                 = link_to edit_expert_registration_path do
                   = t('devise.sessions.your_account',default:'Your Account')
               %li
-                = link_to workshops_path do
-                  = t('views.actions.my_workshops',default:'My Workshops')
-              %li
                 = link_to '#' do
                   = t('views.actions.history',default:'History')
               %li.divider
               %li
+                = link_to workshops_path do
+                  = t('views.actions.my_workshops',default:'My Workshops')
+              %li.divider
+              %li
                 = link_to destroy_expert_session_path, data: { method: :delete } do
                   = t('devise.sessions.sign_out',default: 'Sign out')
-      
+
       -elsif venue_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top

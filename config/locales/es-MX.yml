@@ -1,4 +1,7 @@
 es-MX:
+  controllers:
+    enrollments:
+      create: 'Inscripción exitosa'
   devise:
     sessions:
       sign_in: 'Ingresar'
@@ -27,6 +30,9 @@ es-MX:
       expert: 'Experto'
       venue: 'Establecimiento'
       workshop: 'Workshop'
+      enrollment: 'Inscripción'
+      reservation: 'Reservación'
+      calendar: 'Calendario'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -61,6 +67,12 @@ es-MX:
         description: 'Descripción'
         max_number_participants: 'Número máximo de participantes'
         state: 'Estado'
+      reservation:
+        starts_at: 'Inicia'
+        final_time: 'Termina'
+        max_participants: 'Participantes máximos'
+      calendar:
+        title: 'Título'
                 
   "true": "Si"
   "false": "No"
@@ -79,9 +91,9 @@ es-MX:
       history: 'Historial'
       propose: 'Proponer'  
       my_workshops: 'Mis talleres'
-      make_reservation: 'Hacer reservacion'
+      make_reservation: 'Hacer reservación'
       calendars: 'Calendarios'
-            
+      reservations: 'Reservaciones'
     legends:
       'yes': 'Si'
       'no': 'No'

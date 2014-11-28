@@ -1,21 +1,25 @@
-%h1 Listing enrollments
-
-%table
-  %tr
-    %th Workshop
-    %th Student
-    %th
-    %th
-    %th
-
-  - @enrollments.each do |enrollment|
-    %tr
-      %td= enrollment.workshop_id
-      %td= enrollment.student_id
-      %td= link_to 'Show', enrollment
-      %td= link_to 'Edit', edit_enrollment_path(enrollment)
-      %td= link_to 'Destroy', enrollment, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Enrollment', new_enrollment_path
+.container
+  %h1 
+    = t('views.actions.my_workshops',default:'My Workshops')
+  
+  .table-responsive
+    %table.table.table-striped
+      %tr
+        %th 
+          = Workshop.model_name.human
+        %th 
+          = Expert.model_name.human
+        %th
+          = Venue.model_name.human
+        %th
+          = Venue.human_attribute_name(:starts_at) 
+        %th
+        
+    
+      - @enrollments.each do |enrollment|
+        %tr
+          %td= link_to enrollment.workshop.name, workshop_path(enrollment.workshop)
+          %td= enrollment.workshop.expert.full_name
+          %td= link_to enrollment.workshop.venue.name, enrollment.workshop.venue.name
+          %td= enrollment.workshop.reservation.starts_at
+          %td= link_to 'Unenroll', enrollment, :method => :delete, :data => { :confirm => 'Are you sure?' }

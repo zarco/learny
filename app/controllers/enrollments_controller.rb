@@ -4,8 +4,9 @@ class EnrollmentsController < ApplicationController
   respond_to :html
 
   def index
-    @enrollments = Enrollment.all
-    respond_with(@enrollments)
+    if student_signed_in?
+      @enrollments = Enrollment.where(:student => current_student)
+    end
   end
 
   def show
@@ -24,7 +25,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new(enrollment_params)
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to workshop_path( @enrollment.workshop), :notice => 'Student successfully enrolled' }
+        format.html { redirect_to workshop_path( @enrollment.workshop), :notice => I18n.t('controllers.enrollments.create', default: 'Student successfully enrolled') }
         #format.html { redirect_to root_path, :notice => 'Student successfully enrolled' }
         format.json { render :show, status: :created, location: @workshop }
       else
