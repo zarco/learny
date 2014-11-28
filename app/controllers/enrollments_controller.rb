@@ -21,12 +21,11 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
-          puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<fuck"
     @enrollment = Enrollment.new(enrollment_params)
     respond_to do |format|
       if @enrollment.save
-        #format.html { redirect_to workshop_path( @enrollment.workshop), :notice => 'Student successfully enrolled' }
-        format.html { redirect_to root_path, :notice => 'Student successfully enrolled' }
+        format.html { redirect_to workshop_path( @enrollment.workshop), :notice => 'Student successfully enrolled' }
+        #format.html { redirect_to root_path, :notice => 'Student successfully enrolled' }
         format.json { render :show, status: :created, location: @workshop }
       else
         format.html { render :new}

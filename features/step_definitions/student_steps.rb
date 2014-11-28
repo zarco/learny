@@ -80,10 +80,9 @@ Given(/^I am at the "(.*?)" workshop page$/) do |arg1|
 end
 
 When(/^I click the enroll button$/) do
-  within('#workshops-show-frmEnrollment') do
-   
-    #click_button "Asistir"
-    find_button("Asistir").click
+  within(:css ,".form-enrollment") do
+    click_button "Enroll"
+    #find_button("Enroll").click
   end
 end
 
