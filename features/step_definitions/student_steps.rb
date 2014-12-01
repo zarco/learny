@@ -49,7 +49,9 @@ Given(/^I am logged in as student$/) do
 end
 
 Given(/^there is a workshop called "(.*?)"$/) do |name|
+  venue=FactoryGirl.create(:venue)
   @workshop = FactoryGirl.create(:workshop, :name => name)
+  @reservation=FactoryGirl.create(:reservation, :workshop => @workshop, :calendar => venue.calendars.first)
 end
 
 Given(/^I am at my home page as student$/) do
@@ -72,3 +74,50 @@ Then(/^I see the workshop titled "(.*?)"$/) do |name|
     #save_and_open_page 
     expect(page).to have_content(name)
 end
+
+Given(/^I am at the "(.*?)" workshop page$/) do |arg1|
+  visit workshop_path @workshop 
+end
+
+When(/^I click the enroll button$/) do
+  within(:css ,".form-enrollment") do
+    click_button "Enroll"
+  end
+end
+
+Then(/^I see a confirmation message of the successful enrollment$/) do
+  expect(page).to have_content(I18n.t('controllers.enrollments.create',default: 'Student successfully enrolled'))
+end
+
+Given(/^I have already enrolled in the "(.*?)" workshop$/) do |arg1|
+  @enrollment=FactoryGirl.create(:enrollment, :student => @student, :workshop => @workshop)
+end
+
+When(/^I am at the "(.*?)" workshop's page$/) do |arg1|
+  visit workshop_path @workshop
+end
+
+Then(/^I do not see the enroll button$/) do
+  expect(page).to_not have_button('Enroll')
+end
+
+When(/^I go to 'My workshops" page$/) do
+  visit enrollments_path
+end
+
+Then(/^I can see the "(.*?)" workshop in the list$/) do |workshop|
+  expect(page).to have_content(workshop)
+end
+
+Given(/^the "(.*?)" workshop is full$/) do |workshop|
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I go to "(.*?)" workshop$/) do |workshop|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I see the message 'The workshop is full'$/) do 
+  pending # express the regexp above with the code you wish you had
+end
+

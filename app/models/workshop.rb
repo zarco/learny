@@ -1,13 +1,7 @@
 class Workshop < ActiveRecord::Base
   include PgSearch
     
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :length, presence: true
-  validates :agenda, presence: true
-  validates :description, presence: true
-  validates :state, presence: true
-  validates :expert, presence: true
+  validates :name,:price,:length,:agenda,:description,:state,:expert, presence: true
   
   enum state: [:proposed, :scheduled, :stand_by, :cancelled, :given]
   
@@ -22,5 +16,8 @@ class Workshop < ActiveRecord::Base
   has_one :reservation
   has_one :calendar, through: :reservation 
   has_one :venue, through: :calendar
+  
+  has_many :enrollments
+  has_many :students, through: :enrollments
   
 end

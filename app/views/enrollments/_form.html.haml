@@ -1,0 +1,16 @@
+= form_for @enrollment, html: {class: "form-enrollment center",role:'form'}  do |f|
+  - if @enrollment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@enrollment.errors.count, "error")} prohibited this enrollment from being saved:"
+      %ul
+        - @enrollment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .hidden_field
+    / /= f.label :workshop_id
+    = f.hidden_field :workshop_id
+  .hidden_field
+    / /= f.label :student_id
+    = f.hidden_field :student_id
+  .actions
+    = f.submit t('views.actions.enroll',default: 'Enroll'), :class => 'btn btn-primary btn-lg', :value => 'Enroll'

@@ -5,6 +5,9 @@ describe Workshop do
     it 'has a valid factory' do
       expect(FactoryGirl.build(:workshop)).to be_valid
     end
+    it 'has a valid factory with reservation' do
+      expect(FactoryGirl.build(:workshop_with_reservation)).to be_valid
+    end
     it 'has an invalid factory' do
       expect(FactoryGirl.build(:invalid_workshop)).to_not be_valid
     end
@@ -27,6 +30,9 @@ describe Workshop do
     it { should have_one(:reservation)}
     it { should have_one(:calendar)}
     it { should have_one(:venue)}
+    it { should have_many(:enrollments)}
+    it { should have_many(:students)}
+
   end
 
   describe 'validations' do
