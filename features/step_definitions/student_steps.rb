@@ -135,7 +135,7 @@ When(/^I fill in the student fields$/) do
 end
 
 When(/^I click on 'Update'$/) do
-  click_button 'Update'
+  click_button I18n.t('devise.registrations.edit.update',default: 'Update')
 end
 
 Then(/^I see the message 'Update has been sucessfull'$/) do
