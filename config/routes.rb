@@ -1,19 +1,17 @@
 LearnyApp::Application.routes.draw do
   
-  resources :enrollments
-
-  get 'students/index'
-
-  resources :calendars
-  resources :reservations
-
-  get 'venues/index'
-
-  resources :workshops
   devise_for :students
   devise_for :experts
   devise_for :venues, :controllers => { :registrations => "venues/registrations" }
-  
+
+  resources :enrollments
+
+  resources :students, only: [:index, :show]
+  resources :calendars
+  resources :reservations
+  resources :workshops
+
+  get 'venues/index'
   
   get '/about'    => 'high_voltage/pages#show', id: 'about'
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
@@ -41,13 +39,9 @@ LearnyApp::Application.routes.draw do
     root :to => 'high_voltage/pages#show', id: 'home'
   end
 
-
-
 end
 
 # Rails.application.routes.draw do
-
-
 
 #  devise_for :students
 # root 'welcome#index'	

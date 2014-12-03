@@ -109,6 +109,51 @@ Then(/^I can see the "(.*?)" workshop in the list$/) do |workshop|
   expect(page).to have_content(workshop)
 end
 
+
+
+Given(/^I am at my profile page as student$/) do
+  visit student_path @student
+end
+
+When(/^I click on 'Edit' button$/) do
+  click_link "Edit"
+end
+
+Then(/^I at the profile update page$/) do
+  expect(page.current_path).to eq(edit_student_registration_path)
+end
+
+Given(/^I am at my profile update page as student$/) do
+  visit edit_student_registration_path
+end
+
+When(/^I fill in the student fields$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I click on 'Update'$/) do
+  click_button 'Update'
+end
+
+Then(/^I see the message 'Update has been sucessfull'$/) do
+  expect(page).to have_content(I18n.t('controllers.enrollments.create',default: 'Update has been sucessfull'))
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Given(/^the "(.*?)" workshop is full$/) do |workshop|
   pending # express the regexp above with the code you wish you had
 end
@@ -120,4 +165,8 @@ end
 Then(/^I see the message 'The workshop is full'$/) do 
   pending # express the regexp above with the code you wish you had
 end
+
+
+
+
 
