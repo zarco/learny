@@ -5,7 +5,7 @@
         .col-md-4
           .panel.panel-danger
             .panel-body
-              %img.featurette-image.img-responsive{:alt => "Profile", :src => "../images/perfil_expertos/steve_wozniak.jpg"}/
+              %img.featurette-image.img-responsive{:alt => "Profile", :src => @student.avatar_url}
           -if current_student == @student
             =link_to edit_student_registration_path, class: 'btn btn-warning btn-lg btn-block' do
               =t('edit', default: 'Edit')
@@ -14,9 +14,9 @@
             %h2
               = @student.full_name
             %h3
-              Ingeniero, Inventor
+              = @student.occupation
         %p
-          Cofundador de la compañia de Apple, mis inventos han sido reconocidos como grandes contribuciones a la revolución de las computadoras, desarrollé el Apple I y el Apple II, siempre he amado todo lo que requiere pensar mucho.
+          = @student.profile
     .panel.panel-primary
       .panel-heading
         %h3.panel-title Proximos talleres

@@ -128,7 +128,9 @@ Given(/^I am at my profile update page as student$/) do
 end
 
 When(/^I fill in the student fields$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in Student.human_attribute_name(:occupation), with: @student.occupation
+  fill_in Student.human_attribute_name(:profile), with: @student.profile
+  attach_file Student.human_attribute_name(:avatar), File.join(Rails.root,'spec','fixtures','megan.jpg')
 end
 
 When(/^I click on 'Update'$/) do

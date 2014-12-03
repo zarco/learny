@@ -1,6 +1,6 @@
 LearnyApp::Application.routes.draw do
   
-  devise_for :students
+  devise_for :students, :controllers => { :registrations => "students/registrations" }
   devise_for :experts
   devise_for :venues, :controllers => { :registrations => "venues/registrations" }
 
