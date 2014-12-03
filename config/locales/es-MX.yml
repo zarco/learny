@@ -9,7 +9,7 @@ es-MX:
       sign_up: 'Subscribirse'
       sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia?'
       sign_in_welcome: '¡Bienvenido!, proporciona tus datos para ingresar'
-      your_account: 'Tu Cuenta'
+      
     passwords:
       forgot_password: '¿Olvidaste tu contraseña?'
       send_reset_instructions: "Enviarme un correo electrónico con instrucciones sobre cómo reestablecer mi contraseña"
@@ -113,6 +113,9 @@ es-MX:
         propose_new_workshop: 'Proponer nuevo taller'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
+      account:
+        edit: 'Editar mi perfil'
+      my_profile: 'Mi perfil'
       
     status:
       active: 'Activo'
