@@ -130,6 +130,7 @@ end
 When(/^I fill in the student fields$/) do
   fill_in Student.human_attribute_name(:occupation), with: @student.occupation
   fill_in Student.human_attribute_name(:profile), with: @student.profile
+  fill_in Student.human_attribute_name(:current_password), with: @student.password
   attach_file Student.human_attribute_name(:avatar), File.join(Rails.root,'spec','fixtures','megan.jpg')
 end
 
@@ -138,7 +139,7 @@ When(/^I click on 'Update'$/) do
 end
 
 Then(/^I see the message 'Update has been sucessfull'$/) do
-  expect(page).to have_content(I18n.t('controllers.enrollments.create',default: 'Update has been sucessfull'))
+  expect(page).to have_content(I18n.t('devise.registrations.updated',default: 'Update has been sucessfull'))
 end
 
 
