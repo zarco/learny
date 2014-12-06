@@ -7,4 +7,12 @@ class Venues::RegistrationsController < Devise::RegistrationsController
       resource.calendars.create(:title => "default", :is_default => true) if resource.persisted?
     end
   end
+  
+  
+  private
+  
+  def sign_up_params
+    params.require(:venue).permit(:name, :email, :password, :password_confirmation)
+  end
+  
 end

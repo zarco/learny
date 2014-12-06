@@ -1,0 +1,130 @@
+.container
+  .col-md-8
+    .jumbotron
+      .row.well
+        .col-md-4
+          .panel.panel-danger
+            .panel-body
+              %img.featurette-image.img-responsive{:alt => "Profile", :src => @student.avatar_url}
+          -if current_student == @student
+            =link_to edit_student_registration_path, class: 'btn btn-warning btn-lg btn-block' do
+              =t('edit', default: 'Edit')
+        .col-md-8
+          %blockquote
+            %h2
+              = @student.full_name
+            %h3
+              = @student.occupation
+        %p
+          = @student.profile
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title Proximos talleres
+      .panel-body
+        .col-md-5.panel
+          .col-md-12
+            %blockquote
+              %h4
+                %a{:href => "../cursos/1.html"} Arduino
+              %h5
+                %a{:href => "../establecimientos/1.html"} Telmex Hub
+              %p
+                6 asistentes
+        .col-md-5.col-md-offset-1.panel
+          .col-md-12
+            %blockquote
+              %h4
+                %a{:href => "../cursos/1.html"} Inteligencia Artificial
+              %h5
+                %a{:href => "../establecimientos/1.html"} Ceentral
+              %p
+                11 asistentes
+        .col-md-5.panel
+          .col-md-12
+            %blockquote
+              %h4
+                %a{:href => "../cursos/1.html"} Cloud Computing
+              %h5
+                %a{:href => "../establecimientos/1.html"} Centro Banamex
+              %p
+                7 asistentes
+        .col-md-5.col-md-offset-1.panel
+          .col-md-12
+            %blockquote
+              %h4
+                %a{:href => "../cursos/1.html"} Data Mining
+              %h5
+                %a{:href => "../establecimientos/1.html"} World Trade Center
+              %p
+                15 asistentes
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title Historia de talleres
+      .panel-body
+        .jumbotron
+          .row.well
+            .col-md-4
+              .panel.panel-danger
+                .panel-heading
+                  %h3.panel-title.text-center 2014
+                .panel-body
+                  %h1.text-center
+                    20
+                .panel-footer
+                  %h4.text-center
+                    Julio
+            .col-md-8
+              %blockquote
+                %h2
+                  %a{:href => "../cursos/1.html"} Iniciar una Start Up
+                %h3
+                  %a{:href => "../establecimientos/1.html"} El deposito
+                %p
+                  %a{:href => "#"} 2 asistentes
+        .jumbotron
+          .row.well
+            .col-md-4
+              .panel.panel-danger
+                .panel-heading
+                  %h3.panel-title.text-center 2014
+                .panel-body
+                  %h1.text-center
+                    14
+                .panel-footer
+                  %h4.text-center
+                    Septiembre
+            .col-md-8
+              %blockquote
+                %h2
+                  %a{:href => "../cursos/1.html"} Estructura de redes de computadoras
+                %h3
+                  %a{:href => "../establecimientos/1.html"} Kofta
+                %p
+                  %a{:href => "#"} 12 asistentes
+                  
+  .col-md-4
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title Reconocimientos
+      .panel-body
+        .panel-body.badges-content
+          .scroll-panel
+            .row-fluid
+              %img.my-badge{:alt => "badge", :src => "../images/badges/badges001.jpg"}/
+              %img.my-badge{:alt => "badge", :src => "../images/badges/badges002.jpg"}/
+              %img.my-badge{:alt => "badge", :src => "../images/badges/badges003.jpg"}/
+              %img.my-badge{:alt => "badge", :src => "../images/badges/badges008.jpg"}/
+              %img.my-badge{:alt => "badge", :src => "../images/badges/badges007.jpg"}/
+              %img.my-badge{:alt => "badge", :src => "../images/badges/badges010.jpg"}/
+        .col-xs-12
+          %p
+            Calificación:
+            %span.glyphicon.glyphicon-star
+            %span.glyphicon.glyphicon-star
+            %span.glyphicon.glyphicon-star
+            %span.glyphicon.glyphicon-star
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title Contacto
+      .panel-body
+        

@@ -13,6 +13,9 @@ describe Student do
     subject { FactoryGirl.build(:student) }
     it { should respond_to :first_name }
     it { should respond_to :last_name }
+    it { should respond_to :occupation }
+    it { should respond_to :profile }
+    it { should respond_to :avatar }
   end
 
 end
