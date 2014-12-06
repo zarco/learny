@@ -18,6 +18,6 @@ When(/^I go to the venues page$/) do
   visit admin_venues_path
 end
 
-Then(/^I can see "(.*?)" listed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^I can see "(.*?)" listed$/) do |venue|
+  expect(page).to have_content(venue)
 end

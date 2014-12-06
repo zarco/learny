@@ -27,6 +27,10 @@ LearnyApp::Application.routes.draw do
   get 'experts/index'
 
 
+  namespace :admin do
+    resources :venues
+  end
+
   authenticated :venue do
     root to: 'venues#index', as: :venue_root
   end
