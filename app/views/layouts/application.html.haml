@@ -34,4 +34,8 @@
           \#{link_to "Privacy", privacy_path}
           \•
           \#{link_to "Terms", terms_path}
+          
+        -if !(expert_signed_in? or venue_signed_in? or student_signed_in? or administrator_signed_in?)
+          %p
+            #{link_to "Administration", new_administrator_session_path}
         
