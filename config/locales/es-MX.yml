@@ -33,6 +33,7 @@ es-MX:
       enrollment: 'Inscripción'
       reservation: 'Reservación'
       calendar: 'Calendario'
+      administrator: 'Administrador'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -73,6 +74,10 @@ es-MX:
         max_participants: 'Participantes máximos'
       calendar:
         title: 'Título'
+      administrator:
+        email: 'Correo electrónico'
+        password: 'Constraseña'
+        name: 'Nombre'
                 
   "true": "Si"
   "false": "No"

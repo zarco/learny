@@ -1,5 +1,7 @@
 LearnyApp::Application.routes.draw do
   
+  get 'administrators/index'
+
   resources :enrollments
 
   get 'students/index'
@@ -35,6 +37,10 @@ LearnyApp::Application.routes.draw do
 
   authenticated :student do
     root to: 'students#index', as: :student_root
+  end
+  
+  authenticated :administrator do
+    root to: 'administrators#index', as: :administrator_root
   end
   
   unauthenticated do
