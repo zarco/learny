@@ -109,6 +109,54 @@ Then(/^I can see the "(.*?)" workshop in the list$/) do |workshop|
   expect(page).to have_content(workshop)
 end
 
+
+
+Given(/^I am at my profile page as student$/) do
+  visit student_path @student
+end
+
+When(/^I click on 'Edit' button$/) do
+  click_link "Edit"
+end
+
+Then(/^I at the profile update page$/) do
+  expect(page.current_path).to eq(edit_student_registration_path)
+end
+
+Given(/^I am at my profile update page as student$/) do
+  visit edit_student_registration_path
+end
+
+When(/^I fill in the student fields$/) do
+  fill_in Student.human_attribute_name(:occupation), with: @student.occupation
+  fill_in Student.human_attribute_name(:profile), with: @student.profile
+  fill_in Student.human_attribute_name(:current_password), with: @student.password
+  attach_file Student.human_attribute_name(:avatar), File.join(Rails.root,'spec','fixtures','megan.jpg')
+end
+
+When(/^I click on 'Update'$/) do
+  click_button I18n.t('devise.registrations.edit.update',default: 'Update')
+end
+
+Then(/^I see the message 'Update has been sucessfull'$/) do
+  expect(page).to have_content(I18n.t('devise.registrations.updated',default: 'Update has been sucessfull'))
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Given(/^the "(.*?)" workshop is full$/) do |workshop|
   pending # express the regexp above with the code you wish you had
 end
@@ -120,4 +168,8 @@ end
 Then(/^I see the message 'The workshop is full'$/) do 
   pending # express the regexp above with the code you wish you had
 end
+
+
+
+
 
