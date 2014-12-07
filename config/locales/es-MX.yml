@@ -20,9 +20,9 @@ es-MX:
        edit:
         are_you_sure: "¿Estás seguro?"
         cancel_my_account: "Cancelar mi cuenta"
-        leave_blank_if_you_don_t_want_to_change_it: "Dejarla en blanco si no deseas cambiarlo"
+        leave_blank_if_you_don_t_want_to_change_it: "(Dejarla en blanco si no deseas cambiarlo)"
         title: "Actualiza tus datos"
-        current_password_hint: "Necesitamos tu contraseña actual para realizar los cambios"
+        current_password_hint: "(Necesitamos tu contraseña actual para realizar los cambios)"
         update: "Actualizar"
         unhappy: "Unhappy"
     confirmations:
@@ -47,6 +47,9 @@ es-MX:
         current_password: 'Constraseña actual'
         first_name: 'Nombre'
         last_name: 'Apellido'
+        occupation: 'Ocupación'
+        profile: 'Perfil'
+        avatar: 'Avatar'
       expert:
         email: 'Correo electrónico'
         password: 'Contraseña'
@@ -133,6 +136,11 @@ es-MX:
         propose_new_workshop: 'Proponer nuevo taller'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
+      account:
+        edit: 'Editar mi perfil'
+      my_profile: 'Mi perfil'
+      account: 'Cuenta'
+      profile: 'Perfil'
       
     status:
       active: 'Activo'

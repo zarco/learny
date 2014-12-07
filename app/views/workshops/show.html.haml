@@ -164,12 +164,14 @@
                 - @workshop.students.each do |student|
                   .row.panel
                     .col-xs-4
-                      %a{:href => "#"}
-                        %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/megan.jpg"}/
+                      =link_to student_path student do 
+                        - if !student.avatar_url.nil?
+                          %img.featurette-image.img-responsive.img-circle{:width=>'60px', :alt => "Profile", :src => student.avatar.icon.url}
+              
                     .col-xs-7
                       %blockquote
                         %h5
-                          = link_to student.full_name, student.full_name
+                          = link_to student.full_name, student_path(student)
                 
           .col-xs-12
             .panel.panel-primary
