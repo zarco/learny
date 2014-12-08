@@ -92,3 +92,21 @@ end
 Given(/^I am at the form for proposing a new workshop$/) do
   visit new_workshop_path
 end
+
+
+Given(/^I am at my profile page as expert$/) do
+  visit expert_path @expert  
+end
+
+Then(/^I go to the profile update page$/) do
+  
+end
+
+Given(/^I am at my profile update page as expert$/) do
+
+end
+
+When(/^I fill in the expert fields$/) do
+
+end
+

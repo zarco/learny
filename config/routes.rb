@@ -6,6 +6,7 @@ LearnyApp::Application.routes.draw do
 
   resources :enrollments
 
+  resources :experts, only: [:show]
   resources :students, only: [:index, :show]
   resources :calendars
   resources :reservations
