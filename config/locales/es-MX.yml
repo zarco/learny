@@ -153,8 +153,8 @@ es-MX:
         propose_new_workshop: 'Proponer nuevo taller'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
-      account:
-        edit: 'Editar mi perfil'
+      
+      edit_my_profile: 'Editar mi perfil'
       my_profile: 'Mi perfil'
       account: 'Cuenta'
       profile: 'Perfil'
