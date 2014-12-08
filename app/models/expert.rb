@@ -8,6 +8,8 @@ class Expert < ActiveRecord::Base
   validates :email, uniqueness: true
   
   has_many :workshops
+  
+  mount_uploader :avatar, AvatarUploader
 
   def full_name
     first_name + ' ' + last_name

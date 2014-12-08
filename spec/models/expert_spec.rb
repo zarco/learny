@@ -13,6 +13,14 @@ describe Expert do
     subject { FactoryGirl.build(:expert) }
     it { should respond_to :first_name }
     it { should respond_to :last_name }
+    it { should respond_to :occupation }
+    it { should respond_to :profile }
+    it { should respond_to :facebook_link }
+    it { should respond_to :twitter_link }
+    it { should respond_to :linkedin_link }
+    #it { should respond_to :website }
+    it { should respond_to :avatar }
+    
   end
   
   describe 'associations' do

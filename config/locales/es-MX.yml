@@ -58,6 +58,9 @@ es-MX:
         current_password: 'Constraseña actual'
         first_name: 'Nombre'
         last_name: 'Apellido'
+        occupation: 'Ocupación'
+        profile: 'Perfil'
+        avatar: 'Avatar'
       venue:
         email: 'Correo electrónico'
         password: 'Contraseña'
