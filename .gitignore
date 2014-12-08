@@ -15,4 +15,5 @@
 /log/*.log
 /tmp
 env_setup.sh
-public/uploads/student/*
+public/uploads
+public/uploads/expert

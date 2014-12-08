@@ -65,5 +65,16 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
+  
+  #def filename
+  #    puts original_filename.ends_with?(".jpg")
+  #    puts original_filename
+  #   if original_filename.ends_with?(".jpg")
+  #    "avatar.jpg" 
+  #   elsif original_filename.ends_with?(".png")
+  #    "avatar.png" 
+  #   elsif original_filename.ends_with?(".jpeg")
+  #    "avatar.jpeg"
+  #   end      
+  #end
 end

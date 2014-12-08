@@ -98,6 +98,8 @@ es-MX:
               blank: ' es requerido'
             last_name:
               blank: ' es requerido'  
+            current_password:
+              blank: ' es requerida'
             password_confirmation:
               confirmation: '. La contraseña y su confirmación son diferentes'    
         expert:
@@ -110,7 +112,9 @@ es-MX:
             first_name:
               blank: ' es requerido'
             last_name:
-              blank: ' es requerido'  
+              blank: ' es requerido' 
+            current_password:
+              blank: ' es requerida' 
             password_confirmation:
               confirmation: '. La contraseña y su confirmación son diferentes'       
 
