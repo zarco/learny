@@ -99,7 +99,7 @@ Given(/^I am at my profile page as expert$/) do
 end
 
 Then(/^I go to the profile update page$/) do
-  
+  expect(page.current_path).to eq(edit_expert_registration_path)
 end
 
 Given(/^I am at my profile update page as expert$/) do

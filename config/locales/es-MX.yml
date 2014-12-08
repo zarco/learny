@@ -100,6 +100,20 @@ es-MX:
               blank: ' es requerido'  
             password_confirmation:
               confirmation: '. La contraseña y su confirmación son diferentes'    
+        expert:
+          attributes:
+            email:
+              blank: ' es requerido'
+            password:
+              blank: ' es requerida'
+              too_short: ' es muy pequeña'
+            first_name:
+              blank: ' es requerido'
+            last_name:
+              blank: ' es requerido'  
+            password_confirmation:
+              confirmation: '. La contraseña y su confirmación son diferentes'       
+
   "true": "Si"
   "false": "No"
 
