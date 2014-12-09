@@ -6,18 +6,19 @@
       = devise_error_messages!
 
     .row    
-      .col-md-6
+      .col-md-6.fill
         .panel.panel-primary
           .panel-heading
             .panel-title 
               = t('views.legends.profile',default: 'Profile')
           .panel-body
-            .form-group
-              = f.label :first_name
-              = f.text_field :first_name, autofocus: true, class: 'form-control'
-            .form-group
-              = f.label :last_name
-              = f.text_field :last_name, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                = f.label :first_name
+                = f.text_field :first_name, autofocus: true, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :last_name
+                = f.text_field :last_name, autofocus: true, class: 'form-control'
             .form-group
               = f.label :occupation
               = f.text_field :occupation, autofocus: true, class: 'form-control'
@@ -25,8 +26,31 @@
               = f.label :profile
               = f.text_area :profile, autofocus: true, class: 'form-control'
             .form-group
+              = f.label :areas_of_expertise
+              = f.text_field :areas_of_expertise, autofocus: true, class: 'form-control'
+            .form-group
               = f.label :avatar
               = f.file_field :avatar, autofocus: true, class: 'form-control'
+      .col-md-6
+        .panel.panel-primary
+          .panel-heading
+            .panel-title
+              = t('views.legends.contact', default: 'Contact')
+          .panel-body
+            .form-group
+              = f.label :website
+              = f.url_field :website, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                = f.label :facebook_link
+                = f.url_field :facebook_link, autofocus: true, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :twitter_link
+                = f.url_field :twitter_link, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                = f.label :linkedin_link
+                = f.url_field :linkedin_link, autofocus: true, class: 'form-control'
       .col-md-6
         .panel.panel-primary
           .panel-heading
@@ -47,7 +71,7 @@
             .form-group
               = f.label :password_confirmation
               = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
-
+            
     .row
       .col-md-12
         .panel.panel-primary

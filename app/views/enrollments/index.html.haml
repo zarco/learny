@@ -19,7 +19,7 @@
       - @enrollments.each do |enrollment|
         %tr
           %td= link_to enrollment.workshop.name, workshop_path(enrollment.workshop)
-          %td= enrollment.workshop.expert.full_name
+          %td= link_to enrollment.workshop.expert.full_name, enrollment.workshop.expert
           %td= (link_to enrollment.workshop.venue.name, enrollment.workshop.venue.name) if !enrollment.workshop.venue.nil?
           %td= enrollment.workshop.reservation.starts_at if !enrollment.workshop.venue.nil?
           %td= link_to 'Unenroll', enrollment, :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -61,6 +61,12 @@ es-MX:
         occupation: 'Ocupación'
         profile: 'Perfil'
         avatar: 'Avatar'
+        areas_of_expertise: 'Áreas de experiencia'
+        website: 'Sitio Web'
+        facebook_link: 'Facebook'
+        twitter_link: 'Twitter'
+        linkedin_link: 'Linked In'
+        google_plus_link: 'Google+'
       venue:
         email: 'Correo electrónico'
         password: 'Contraseña'

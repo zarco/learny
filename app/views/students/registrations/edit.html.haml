@@ -1,6 +1,7 @@
 .container
-  %h2
-    #{t('views.legends.edit', default: 'Edit')} #{Student.model_name.human}
+  .page-header.text-center
+    %h2
+      #{t('views.legends.edit', default: 'Edit')} #{Student.model_name.human}
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, role: 'form', :multipart => true }) do |f|
     .alert-danger
       = devise_error_messages!
@@ -12,12 +13,13 @@
             .panel-title 
               = t('views.legends.profile',default: 'Profile')
           .panel-body
-            .form-group
-              = f.label :first_name
-              = f.text_field :first_name, autofocus: true, class: 'form-control'
-            .form-group
-              = f.label :last_name
-              = f.text_field :last_name, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                = f.label :first_name
+                = f.text_field :first_name, autofocus: true, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :last_name
+                = f.text_field :last_name, autofocus: true, class: 'form-control'
             .form-group
               = f.label :occupation
               = f.text_field :occupation, autofocus: true, class: 'form-control'

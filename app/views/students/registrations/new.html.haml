@@ -1,33 +1,36 @@
 .container
-  .panel.text-center
+  .page-header.text-center
     %h4
       = t('devise.sessions.sign_up_welcome',default:'Sign up as %{resource}', resource: Student.model_name.human)
-  .col-md-6.jumbotron
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html:{class:"form-horizontal", role:'form'} ) do |f|
-      .form-group
-        = f.label :first_name
-        = f.text_field :first_name, autofocus: true, :class => 'form-control' 
-      
-      .form-group
-        = f.label :last_name
-        = f.text_field :last_name, autofocus: true, :class => 'form-control' 
-      
-      .form-group
-        = f.label :email
-        = f.email_field :email, autofocus: true, :class => 'form-control' 
-      .form-group
-        = f.label :password
-        - if @validatable
-          %i
-            (#{@minimum_password_length} characters minimum)
-        = f.password_field :password, autocomplete: "off", :class => 'form-control' 
-      .form-group
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, autocomplete: "off" , :class => 'form-control' 
-      .form-group
-        = f.submit t('devise.sessions.sign_up',default:'Sign Up') , :class=>'btn btn-primary btn-lg btn-block' 
-  	  	
-      = render "students/shared/links"
-  .col-md-6.fill
+  .col-md-6.col-md-offset-3
+        
     .alert-danger
       = devise_error_messages!
+  
+    .jumbotron
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html:{class:"form", role:'form'} ) do |f|
+        .row
+          .form-group.col-md-6
+            = f.label :first_name
+            = f.text_field :first_name, autofocus: true, :class => 'form-control' 
+          
+          .form-group.col-md-6
+            = f.label :last_name
+            = f.text_field :last_name, autofocus: true, :class => 'form-control' 
+        
+        .form-group
+          = f.label :email
+          = f.email_field :email, autofocus: true, :class => 'form-control' 
+        .form-group
+          = f.label :password
+          - if @validatable
+            %i
+              (#{@minimum_password_length} characters minimum)
+          = f.password_field :password, autocomplete: "off", :class => 'form-control' 
+        .form-group
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, autocomplete: "off" , :class => 'form-control' 
+        .form-group
+          = f.submit t('devise.sessions.sign_up',default:'Sign Up') , :class=>'btn btn-primary btn-lg btn-block' 
+    	  	
+        = render "students/shared/links"

@@ -2,21 +2,23 @@
   .col-md-8
     .jumbotron
       .row.well
-        .col-md-4
-          .panel.panel-danger
-            .panel-body
-              %img.featurette-image.img-responsive{:alt => "Profile", :src => @expert.avatar_url}
-          -if current_expert == @expert
-            =link_to edit_expert_registration_path, class: 'btn btn-warning btn-lg btn-block' do
-              =t('edit', default: 'Edit')
-        .col-md-8
-          %blockquote
-            %h2
-              = @expert.full_name
-            %h3
-              = @expert.occupation
-        %p
-          = @expert.profile
+        .row
+          .col-md-4
+            .panel.panel-danger
+              .panel-body
+                %img.featurette-image.img-responsive{:alt => "Profile", :src => @expert.avatar_url}
+            -if current_expert == @expert
+              =link_to edit_expert_registration_path, class: 'btn btn-warning btn-lg btn-block' do
+                =t('edit', default: 'Edit')
+          .col-md-8
+            %blockquote
+              %h2
+                = @expert.full_name
+              %h3
+                = @expert.occupation
+        .row.container
+          %p
+            = @expert.profile
     .panel.panel-primary
       .panel-heading
         %h3.panel-title Proximos talleres
@@ -127,4 +129,10 @@
       .panel-heading
         %h3.panel-title Contacto
       .panel-body
+        =link_to 'Website', @expert.website, :target => 'blank'
         
+        =link_to 'Facebook', @expert.facebook_link, :target => 'blank'
+
+        =link_to 'Twitter', @expert.twitter_link, :target => 'blank'
+
+        =link_to 'Linked In', @expert.linkedin_link, :target => 'blank'
