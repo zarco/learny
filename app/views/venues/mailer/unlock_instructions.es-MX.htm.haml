@@ -1,0 +1,8 @@
+%h1
+  Learny
+.container
+  %h2
+    ¡Hola #{@resource.name}!
+  %p Tu cuenta ha sido bloqueada debido a un número exesivo de intento de ingresos fallidos
+  %p Ingresa al siguiente vínculo para desbloquear tu cuenta:
+  %p= link_to 'Desbloquear tu cuenta', unlock_url(@resource, unlock_token: @token)
