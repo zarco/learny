@@ -59,6 +59,23 @@
                 = link_to destroy_expert_session_path, data: { method: :delete } do
                   = t('devise.sessions.sign_out',default: 'Sign out')
 
+      -elsif administrator_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to "Estudiantes", "#"
+          %li
+            = link_to "Expertos", "#"
+          %li
+            = link_to "Establecimientos", admin_venues_path
+          %li.navbarb-margin-top
+            %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              = current_administrator.name
+            %ul.dropdown-menu
+              %li.divider
+              %li
+                = link_to destroy_administrator_session_path, data: { method: :delete } do
+                  = t('devise.sessions.sign_out',default: 'Sign out')
+
       -elsif venue_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
