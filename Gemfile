@@ -49,7 +49,7 @@ gem 'rails_12factor', group: :production
 
 
 group :test do
-  gem 'ffaker'
+  gem 'ffaker', '~> 1.25.0'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers'

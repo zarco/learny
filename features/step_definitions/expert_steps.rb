@@ -110,6 +110,8 @@ When(/^I fill in the expert fields$/) do
   fill_in Expert.human_attribute_name(:occupation), with: @expert.occupation
   fill_in Expert.human_attribute_name(:profile), with: @expert.profile
   fill_in Expert.human_attribute_name(:current_password), with: @expert.password
-  attach_file Expert.human_attribute_name(:avatar), File.join(Rails.root,'spec','fixtures','megan.jpg')
+  attach_file Expert.human_attribute_name(:avatar), 
+  #  Rack::Test::UploadedFile.new(File.open(File.join(Rails.root,'spec','fixtures','megan.jpg'))) 
+  File.join(Rails.root,'spec','fixtures','megan.jpg')
 end
 

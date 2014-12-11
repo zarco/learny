@@ -107,32 +107,23 @@
   .col-md-4
     .panel.panel-primary
       .panel-heading
-        %h3.panel-title Reconocimientos
-      .panel-body
-        .panel-body.badges-content
-          .scroll-panel
-            .row-fluid
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges001.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges002.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges003.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges008.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges007.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges010.jpg"}/
-        .col-xs-12
-          %p
-            Calificación:
-            %span.glyphicon.glyphicon-star
-            %span.glyphicon.glyphicon-star
-            %span.glyphicon.glyphicon-star
-            %span.glyphicon.glyphicon-star
-    .panel.panel-primary
-      .panel-heading
         %h3.panel-title Contacto
       .panel-body
-        =link_to 'Website', @expert.website, :target => 'blank'
-        
-        =link_to 'Facebook', @expert.facebook_link, :target => 'blank'
+        .container
+          .row
+            =link_to @expert.website, @expert.website, :target => 'blank' if !@expert.website.empty?
+          .row
+            =link_to 'Facebook', @expert.facebook_link, :target => 'blank' if !@expert.facebook_link.empty?
+    
+            =link_to 'Twitter', @expert.twitter_link, :target => 'blank' if !@expert.twitter_link.empty?
+    
+            =link_to 'Linked In', @expert.linkedin_link, :target => 'blank' if !@expert.linkedin_link.empty?
 
-        =link_to 'Twitter', @expert.twitter_link, :target => 'blank'
+            =link_to 'Google+', @expert.google_plus_link, :target => 'blank' if !@expert.google_plus_link.empty?
 
-        =link_to 'Linked In', @expert.linkedin_link, :target => 'blank'
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title 
+          = Expert.human_attribute_name(:areas_of_expertise)
+      .panel-body
+        =@expert.areas_of_expertise

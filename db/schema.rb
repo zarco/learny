@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208064055) do
+ActiveRecord::Schema.define(version: 20141211052645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(version: 20141208064055) do
     t.string   "linkedin_link"
     t.string   "website"
     t.text     "areas_of_expertise"
+    t.date     "birthday"
+    t.string   "genre"
+    t.string   "google_plus_link"
   end
 
   add_index "experts", ["confirmation_token"], name: "index_experts_on_confirmation_token", unique: true, using: :btree
@@ -116,6 +119,8 @@ ActiveRecord::Schema.define(version: 20141208064055) do
     t.string   "avatar"
     t.string   "occupation"
     t.text     "profile"
+    t.date     "birthday"
+    t.string   "genre"
   end
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree

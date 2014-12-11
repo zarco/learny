@@ -67,6 +67,8 @@ es-MX:
         twitter_link: 'Twitter'
         linkedin_link: 'Linked In'
         google_plus_link: 'Google+'
+        birthday: 'Fecha de Nacimiento'
+        genre: 'Género'
       venue:
         email: 'Correo electrónico'
         password: 'Contraseña'

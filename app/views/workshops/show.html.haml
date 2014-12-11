@@ -18,7 +18,7 @@
             .col-xs-6
               %p Costo: #{@workshop.price / @workshop.max_number_participants} MXN
             .col-xs-6
-              %p Inicio: #{@workshop.reservation.starts_at if !@workshop.reservation.nil? }
+              %p Inicio: #{@workshop.reservation.fmt_starts_at if !@workshop.reservation.nil? }
             
           .row
             .col-xs-6.text-center
@@ -37,17 +37,18 @@
           %h3.panel-title Tu experto
         .panel-body
           .col-md-5
-            %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => "../images/perfil_expertos/steve_wozniak.jpg"}/
+            - if !@workshop.expert.avatar.nil?
+              %img.featurette-image.img-responsive.img-circle{:alt => "Profile", :src => @workshop.expert.avatar_url}/
           .col-md-7
             %blockquote
               %h5
-                %a{:href => "../expertos/conoce_experto.html"} #{@workshop.expert.full_name}
+                =link_to @workshop.expert.full_name, @workshop.expert 
               %h6
-                Ingeniero, Inventor
+                =@workshop.expert.occupation
           .row
             .col-md-12
               %p
-                Cofundador de la compañia de Apple, mis inventos han sido reconocidos como grandes contribuciones a la revolución de las computadoras, desarrollé el Apple I y el Apple II, siempre he amado todo lo que requiere pensar mucho.
+                =@workshop.expert.profile
             .col-xs-12
               %blockquote
                 %p Reconocimientos

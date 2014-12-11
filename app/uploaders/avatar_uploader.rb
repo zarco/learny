@@ -65,8 +65,17 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  #def filename
+  #  "avatar.#{file.extension}"
+  #end
+  
+  
   def filename
-    "avatar.#{file.extension}"
+    if Rails.env.develompent? || Rails.env.production?
+      "avatar.#{file.extension}"
+    else
+      "avatar.jpg"
+    end
   end
 
 end

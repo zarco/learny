@@ -9,5 +9,9 @@ class Reservation < ActiveRecord::Base
   
   belongs_to :calendar
   belongs_to :workshop
+  
+  def fmt_starts_at
+    starts_at.strftime('%d-%B-%Y, %H:%M') if !starts_at.nil?
+  end
 
 end
