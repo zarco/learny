@@ -7,12 +7,15 @@ es-MX:
       sign_in: 'Ingresar'
       sign_out: 'Salir'
       sign_up: 'Subscribirse'
-      sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia?'
-      sign_in_welcome: '¡Bienvenido!, proporciona tus datos para ingresar'
-      
+      sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia como %{resource}?'
+      sign_in_welcome: '¡Bienvenido %{resource}!, proporciona tus datos para ingresar '
+      your_account: 'Tu Cuenta'
     passwords:
       forgot_password: '¿Olvidaste tu contraseña?'
-      send_reset_instructions: "Enviarme un correo electrónico con instrucciones sobre cómo reestablecer mi contraseña"
+      send_reset_instructions: "Enviarme un correo electrónico con instrucciones"
+      change: "Cambia tu contraseña"
+      change_my: "Cambiar mi contraseña"
+      
     registrations:
        edit:
         are_you_sure: "¿Estás seguro?"
@@ -24,6 +27,8 @@ es-MX:
         unhappy: "Unhappy"
     confirmations:
         did_not_received: "¿No recibiste el correo de confirmacion?"
+        send_confirmation: "Enviarme el correo electrónico de confirmación"
+      
   activerecord:
     models:
       student: 'Estudiante'
@@ -82,6 +87,23 @@ es-MX:
         password: 'Constraseña'
         name: 'Nombre'
                 
+        
+    errors:
+      models:
+        student:
+          attributes:
+            email:
+              blank: ' es requerido'
+            password:
+              blank: ' es requerida'
+              too_short: ' es muy pequeña'
+            first_name:
+              blank: ' es requerido'
+            last_name:
+              blank: ' es requerido'  
+            password_confirmation:
+              confirmation: '. La contraseña y su confirmación son diferentes'    
+  
   "true": "Si"
   "false": "No"
 
