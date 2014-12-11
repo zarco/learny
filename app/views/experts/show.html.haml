@@ -113,13 +113,18 @@
           .row
             =link_to @expert.website, @expert.website, :target => 'blank' if !@expert.website.empty?
           .row
-            =link_to 'Facebook', @expert.facebook_link, :target => 'blank' if !@expert.facebook_link.empty?
-    
-            =link_to 'Twitter', @expert.twitter_link, :target => 'blank' if !@expert.twitter_link.empty?
-    
-            =link_to 'Linked In', @expert.linkedin_link, :target => 'blank' if !@expert.linkedin_link.empty?
-
-            =link_to 'Google+', @expert.google_plus_link, :target => 'blank' if !@expert.google_plus_link.empty?
+            -if !@expert.facebook_link.empty?
+              =link_to @expert.facebook_link, :class=>'btn btn-social-icon btn-facebook', :target => 'blank' do
+                %i.fa.fa-facebook
+            -if !@expert.twitter_link.empty?
+              =link_to @expert.twitter_link, :class=>'btn btn-social-icon btn-twitter', :target => 'blank' do
+                %i.fa.fa-twitter
+            -if !@expert.linkedin_link.empty?
+              =link_to @expert.linkedin_link, :class=>'btn btn-social-icon btn-linkedin',:target => 'blank' do
+                %i.fa.fa-linkedin
+            -if !@expert.google_plus_link.empty?
+              =link_to @expert.google_plus_link,  :class=>'btn btn-social-icon btn-google-plus',:target => 'blank' do
+                %i.fa.fa-google-plus
 
     .panel.panel-primary
       .panel-heading

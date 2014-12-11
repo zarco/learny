@@ -76,3 +76,5 @@ gem "letter_opener", :group => :development
 
 gem "simple_calendar", "~> 1.1.0"
 gem 'bootstrap-datepicker-rails'
+
+gem 'font-awesome-rails'

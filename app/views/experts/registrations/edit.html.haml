@@ -52,17 +52,29 @@
             .row
               .form-group.col-md-6
                 = f.label :facebook_link
-                = f.url_field :facebook_link, autofocus: true, class: 'form-control'
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-facebook
+                  = f.url_field :facebook_link, autofocus: true, class: 'form-control'
               .form-group.col-md-6
                 = f.label :twitter_link
-                = f.url_field :twitter_link, autofocus: true, class: 'form-control'
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-twitter
+                  = f.url_field :twitter_link, autofocus: true, class: 'form-control'
             .row
               .form-group.col-md-6
                 = f.label :linkedin_link
-                = f.url_field :linkedin_link, autofocus: true, class: 'form-control'
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-linkedin
+                  = f.url_field :linkedin_link, autofocus: true, class: 'form-control'
               .form-group.col-md-6
                 = f.label :google_plus_link
-                = f.url_field :google_plus_link, autofocus: true, class: 'form-control'
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-google-plus
+                  = f.url_field :google_plus_link, autofocus: true, class: 'form-control'
       .col-md-6
         .panel.panel-primary
           .panel-heading
