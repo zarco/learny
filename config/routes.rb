@@ -3,16 +3,15 @@ LearnyApp::Application.routes.draw do
   devise_for :students, :controllers => { :registrations => "students/registrations" }
   devise_for :experts, :controllers => { :registrations => "experts/registrations" }
   devise_for :venues, :controllers => { :registrations => "venues/registrations" }
-
-  resources :enrollments
+  devise_for :administrators
 
   resources :experts, only: [:show]
   resources :students, only: [:index, :show]
   resources :calendars
   resources :reservations
   resources :workshops
-
-  get 'venues/index'
+  resources :enrollments
+  
   
   get '/about'    => 'high_voltage/pages#show', id: 'about'
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
@@ -20,9 +19,15 @@ LearnyApp::Application.routes.draw do
   get '/terms'    => 'high_voltage/pages#show', id: 'terms'
 
   get '/home', to: redirect('/')
-
+  get 'students/index'
   get 'experts/index'
+  get 'venues/index'
+  get 'administrators/index'
+  
 
+  namespace :admin do
+    resources :venues
+  end
 
   authenticated :venue do
     root to: 'venues#index', as: :venue_root
@@ -36,13 +41,15 @@ LearnyApp::Application.routes.draw do
     root to: 'students#index', as: :student_root
   end
   
+  authenticated :administrator do
+    root to: 'administrators#index', as: :administrator_root
+  end
+  
   unauthenticated do
     root :to => 'high_voltage/pages#show', id: 'home'
   end
 
 end
-
-# Rails.application.routes.draw do
 
 #  devise_for :students
 # root 'welcome#index'	
