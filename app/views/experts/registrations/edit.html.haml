@@ -36,7 +36,9 @@
               = f.text_area :profile, autofocus: true, class: 'form-control'
             .form-group
               = f.label :areas_of_expertise
-              = f.text_field :areas_of_expertise, autofocus: true, class: 'form-control'
+              = f.text_field :areas_of_expertise, autofocus: true, class: 'form-control', hint: 'Enseñanza de elfico, viajes, literatura clásica'
+              %span
+                %i (Separadas por comas. Ej: Enseñanza de elfico, viajes, literatura clásica)
             .form-group
               = f.label :avatar
               = f.file_field :avatar, autofocus: true, class: 'form-control'

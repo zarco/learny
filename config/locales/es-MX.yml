@@ -50,7 +50,7 @@ es-MX:
         last_name: 'Apellido'
         occupation: 'Ocupación'
         profile: 'Perfil'
-        avatar: 'Avatar'
+        avatar: 'Ávatar'
       expert:
         email: 'Correo electrónico'
         password: 'Contraseña'
@@ -61,7 +61,7 @@ es-MX:
         last_name: 'Apellido'
         occupation: 'Ocupación'
         profile: 'Perfil'
-        avatar: 'Avatar'
+        avatar: 'Ávatar'
         areas_of_expertise: 'Áreas de experiencia'
         website: 'Sitio Web'
         facebook_link: 'Facebook'

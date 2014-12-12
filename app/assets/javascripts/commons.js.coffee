@@ -1,3 +1,5 @@
+//=require workshops
+
 ready =->
   $('[data-behaviour~=datepicker]').datepicker();
   $('.datepicker').datepicker({
