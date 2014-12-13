@@ -22,7 +22,7 @@ es-MX:
         cancel_my_account: "Cancelar mi cuenta"
         leave_blank_if_you_don_t_want_to_change_it: "(Dejarla en blanco si no deseas cambiarlo)"
         title: "Actualiza tus datos"
-        current_password_hint: "(Necesitamos tu contraseña actual para realizar los cambios)"
+        current_password_hint: "(Escribe tu contraseña actual para realizar los cambios)"
         update: "Actualizar"
         unhappy: "Unhappy"
     confirmations:
@@ -177,6 +177,8 @@ es-MX:
       my_profile: 'Mi perfil'
       account: 'Cuenta'
       profile: 'Perfil'
+      general: 'General'
+      contact: 'Contacto'
       
     status:
       active: 'Activo'
