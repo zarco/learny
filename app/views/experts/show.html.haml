@@ -68,16 +68,16 @@
       .panel-body
         .container
           .row
-            -if !@expert.facebook_link.empty?
+            -if !@expert.facebook_link.nil? && !@expert.facebook_link.empty?
               =link_to @expert.facebook_link, :class=>'btn btn-social-icon btn-facebook', :target => 'blank' do
                 %i.fa.fa-facebook
-            -if !@expert.twitter_link.empty?
+            -if !@expert.twitter_link.nil? && !@expert.twitter_link.empty?
               =link_to @expert.twitter_link, :class=>'btn btn-social-icon btn-twitter', :target => 'blank' do
                 %i.fa.fa-twitter
-            -if !@expert.linkedin_link.empty?
+            -if !@expert.linkedin_link.nil? && !@expert.linkedin_link.empty?
               =link_to @expert.linkedin_link, :class=>'btn btn-social-icon btn-linkedin',:target => 'blank' do
                 %i.fa.fa-linkedin
-            -if !@expert.google_plus_link.empty?
+            -if !@expert.google_plus_link.nil? && !@expert.google_plus_link.empty?
               =link_to @expert.google_plus_link,  :class=>'btn btn-social-icon btn-google-plus',:target => 'blank' do
                 %i.fa.fa-google-plus
 
