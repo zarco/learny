@@ -5,7 +5,7 @@ class Reservation < ActiveRecord::Base
   validates :max_participants, presence: true
 
   scope :availables, lambda {where(:workshop => nil).where('starts_at >= ?', Date.today) }
-  scope :find_by_starts_at, lambda {|value| (where('starts_at >= (?)',  Date.parse(value))) unless value.nil? || value.empty? }
+  scope :find_by_starts_at, lambda {|value| (where('starts_at >= (?)',  Date.parse(value))) unless value.blank? }
  
 
   extend SimpleCalendar
