@@ -77,7 +77,12 @@ class ReservationsController < ApplicationController
   end
   
   def index_for_experts
-    @reservations=Reservation.where("starts_at >= :starts_at and workshop_id IS NULL", {starts_at: Date.parse(params[:starts_at])})
+    if params[:starts_at].blank?
+			starts_at = Time.now
+		else
+		   starts_at = Date.parse(params[:starts_at])
+		end
+    @reservations=Reservation.where("starts_at >= :starts_at and workshop_id IS NULL", {starts_at: starts_at})
   end
 
   private
