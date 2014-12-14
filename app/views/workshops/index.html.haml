@@ -25,5 +25,6 @@
             = link_to 'Destroy', workshop, :method => :delete, :data => { :confirm => 'Are you sure?' }
   
   %br
-
-= link_to 'New Workshop', new_workshop_path
+  = paginate @workshops
+  %br
+  = link_to 'New Workshop', new_workshop_path

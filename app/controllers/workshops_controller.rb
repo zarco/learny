@@ -10,7 +10,7 @@ class WorkshopsController < ApplicationController
       @workshops = Workshop.search_workshop(w)
       render 'search'  
     elsif expert_signed_in? 
-      @workshops = current_expert.workshops
+      @workshops = current_expert.workshops.page params[:page]
     elsif student_signed_in?
       
     else

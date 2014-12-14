@@ -5,12 +5,16 @@ LearnyApp::Application.routes.draw do
   devise_for :venues, :controllers => { :registrations => "venues/registrations" }
   devise_for :administrators
 
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
+
   resources :experts, only: [:show]
   resources :students, only: [:index, :show]
   resources :calendars
   resources :reservations
-  resources :workshops
-  resources :enrollments
+  resources :workshops, :concerns => :paginatable
+  resources :enrollments, :concerns => :paginatable
   
   
   get '/about'    => 'high_voltage/pages#show', id: 'about'
