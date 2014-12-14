@@ -48,7 +48,9 @@ class WorkshopsController < ApplicationController
     reservation_saved = true
     if !@reservation.nil?
       @reservation.workshop=@workshop
-      reservation_=@reservation.save
+      @workshop.state=:scheduled
+      reservation_saved=@reservation.save
+      #TODO Enviar notifiacion a establecimiento de que un curso ha sido calendarizado 
     end  
     
     respond_to do |format|

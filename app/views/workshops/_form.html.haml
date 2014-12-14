@@ -8,7 +8,7 @@
 
   .form-group
     = f.label :name
-    = f.text_field :name, autofocus: true, :class => 'form-control' ,:placeholder => "Nombre del curso, taller o plática" 
+    = f.text_field :name,  :class => 'form-control' ,:placeholder => "Nombre del curso, taller o plática" 
   .form-group
     = f.label :description
     = f.text_area :description, :class => 'form-control', :rows=>4
@@ -19,13 +19,13 @@
     .form-group.col-md-3
       = f.label :length
       .input-group
-        = f.text_field :length, autofocus: true, :class => 'form-control', :type => "number"
+        = f.text_field :length,  :class => 'form-control', :type => "number"
         %span.input-group-addon horas
     .form-group.col-md-3
       = f.label :price
       .input-group
         %span.input-group-addon $
-        = f.text_field :price, autofocus: true, :class => 'form-control', :type => "money"
+        = f.text_field :price,  :class => 'form-control', :type => "money"
   .form-group
     %label{:for => "establecimiento"} Establecimiento
     .input-group
