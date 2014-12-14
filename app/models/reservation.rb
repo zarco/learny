@@ -13,5 +13,9 @@ class Reservation < ActiveRecord::Base
   def fmt_starts_at
     starts_at.strftime('%d-%B-%Y, %H:%M') if !starts_at.nil?
   end
+    
+  def fmt_duration
+    starts_at.strftime('%d-%b-%Y, %H:%M -> ') + final_time.strftime('%H:%M') if !starts_at.nil?
+  end
 
 end
