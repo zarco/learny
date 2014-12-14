@@ -16,6 +16,7 @@
         .row.container
           %p
             = @expert.profile
+    
     .panel.panel-primary
       .panel-heading
         %h3.panel-title Proximos talleres
@@ -29,8 +30,6 @@
                 =link_to workshop.venue.name, '#'
               %p
                 =workshop.reservation.fmt_starts_at
-    
-          
       
     .panel.panel-primary
       .panel-heading
@@ -48,7 +47,6 @@
     
                         
   .col-md-4
-  
     -if current_expert == @expert
       .panel.panel-warning
         .panel-body
@@ -70,23 +68,28 @@
       .panel-body
         .container
           .row
-            -if !@expert.facebook_link.empty?
+            -unless @expert.facebook_link.nil? && @expert.facebook_link.empty?
               =link_to @expert.facebook_link, :class=>'btn btn-social-icon btn-facebook', :target => 'blank' do
                 %i.fa.fa-facebook
-            -if !@expert.twitter_link.empty?
+            -unless @expert.twitter_link.nil? && @expert.twitter_link.empty?
               =link_to @expert.twitter_link, :class=>'btn btn-social-icon btn-twitter', :target => 'blank' do
                 %i.fa.fa-twitter
-            -if !@expert.linkedin_link.empty?
+            -unless @expert.linkedin_link.nil? && @expert.linkedin_link.empty?
               =link_to @expert.linkedin_link, :class=>'btn btn-social-icon btn-linkedin',:target => 'blank' do
                 %i.fa.fa-linkedin
-            -if !@expert.google_plus_link.empty?
+            -unless @expert.google_plus_link.nil? && @expert.google_plus_link.empty?
               =link_to @expert.google_plus_link,  :class=>'btn btn-social-icon btn-google-plus',:target => 'blank' do
                 %i.fa.fa-google-plus
 
     .panel.panel-primary
       .panel-heading
-        / /TODO Generar nube de palabras
         %h3.panel-title 
           = Expert.human_attribute_name(:areas_of_expertise)
       .panel-body
-        =@expert.areas_of_expertise
+        =render partial: 'shared/words2tags', locals: {comma_separated_words:@expert.areas_of_expertise}
+    
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title 
+          Comentarios
+      .panel-body
