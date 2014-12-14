@@ -22,7 +22,7 @@ es-MX:
         cancel_my_account: "Cancelar mi cuenta"
         leave_blank_if_you_don_t_want_to_change_it: "(Dejarla en blanco si no deseas cambiarlo)"
         title: "Actualiza tus datos"
-        current_password_hint: "(Necesitamos tu contraseña actual para realizar los cambios)"
+        current_password_hint: "(Escribe tu contraseña actual para realizar los cambios)"
         update: "Actualizar"
         unhappy: "Unhappy"
     confirmations:
@@ -50,7 +50,7 @@ es-MX:
         last_name: 'Apellido'
         occupation: 'Ocupación'
         profile: 'Perfil'
-        avatar: 'Avatar'
+        avatar: 'Ávatar'
       expert:
         email: 'Correo electrónico'
         password: 'Contraseña'
@@ -59,6 +59,17 @@ es-MX:
         current_password: 'Constraseña actual'
         first_name: 'Nombre'
         last_name: 'Apellido'
+        occupation: 'Ocupación'
+        profile: 'Perfil'
+        avatar: 'Ávatar'
+        areas_of_expertise: 'Áreas de experiencia'
+        website: 'Sitio Web'
+        facebook_link: 'Facebook'
+        twitter_link: 'Twitter'
+        linkedin_link: 'Linked In'
+        google_plus_link: 'Google+'
+        birthday: 'Fecha de Nacimiento'
+        genre: 'Género'
       venue:
         email: 'Correo electrónico'
         password: 'Contraseña'
@@ -101,8 +112,26 @@ es-MX:
               blank: ' es requerido'
             last_name:
               blank: ' es requerido'  
+            current_password:
+              blank: ' es requerida'
             password_confirmation:
               confirmation: '. La contraseña y su confirmación son diferentes'    
+        expert:
+          attributes:
+            email:
+              blank: ' es requerido'
+            password:
+              blank: ' es requerida'
+              too_short: ' es muy pequeña'
+            first_name:
+              blank: ' es requerido'
+            last_name:
+              blank: ' es requerido' 
+            current_password:
+              blank: ' es requerida' 
+            password_confirmation:
+              confirmation: '. La contraseña y su confirmación son diferentes'       
+
   
   "true": "Si"
   "false": "No"
@@ -143,11 +172,13 @@ es-MX:
         propose_new_workshop: 'Proponer nuevo taller'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
-      account:
-        edit: 'Editar mi perfil'
+      
+      edit_my_profile: 'Editar mi perfil'
       my_profile: 'Mi perfil'
       account: 'Cuenta'
       profile: 'Perfil'
+      general: 'General'
+      contact: 'Contacto'
       
     status:
       active: 'Activo'

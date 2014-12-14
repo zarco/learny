@@ -7,6 +7,12 @@ FactoryGirl.define do
     email {Faker::Internet.free_email}
     password 'fckpasswd'
     password_confirmation 'fckpasswd'
+    website { Faker::InternetSE.http_url }
+    facebook_link { Faker::InternetSE.http_url }
+    twitter_link { Faker::InternetSE.http_url }
+    linkedin_link { Faker::InternetSE.http_url }
+    google_plus_link { Faker::InternetSE.http_url }
+    
     
     factory :invalid_expert do
       email nil

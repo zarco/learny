@@ -1,0 +1,128 @@
+.container
+  .tabs
+    %h3
+      .tabpanel{:role=>'tabpanel'}
+        %ul.nav.nav-tabs{:role=>'tabpanel'}
+          %li.active{:role=>'presentation'}
+            =link_to t('views.legends.general',default: 'General'),'#general', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
+            =link_to t('views.legends.profile', default: 'Profile'),'#profile', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
+            =link_to t('views.legends.contact', default: 'Contact'),'#contact', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
+            =link_to t('views.legends.account', default: 'Account'),'#account', 'data-toggle' => 'tab'
+      
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, role: 'form', :multipart => true }) do |f|
+    .alert-danger
+      = devise_error_messages!
+
+    .tab-content
+      .tab-pane.fade.in.active#general
+        .panel.panel
+          .panel-body.jumbotron
+            .row
+              .form-group.col-md-6
+                = f.label :first_name
+                = f.text_field :first_name, autofocus: true, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :last_name
+                = f.text_field :last_name, autofocus: true, class: 'form-control'
+            .row
+              .form-group.datetime-select.col-md-7
+                = f.label :birthday
+                .form-inline
+                  = f.date_select :birthday, :start_year => 1900
+              .form-group.col-md-5
+                =f.label :genre
+                =select_tag(:genre, options_for_select([[],['M', 'M'], ['F', 'F']]), :class=>'form-control') 
+          
+            .form-group
+              = f.label :avatar
+              = f.file_field :avatar, autofocus: true, class: 'form-control'
+    
+      .tab-pane.fade#profile
+        .panel.panel
+          .panel-body.jumbotron
+            .col-md-6
+              .form-group
+                = f.label :occupation
+                = f.text_field :occupation, autofocus: true, class: 'form-control'
+            
+              .form-group
+                = f.label :areas_of_expertise
+                = f.text_field :areas_of_expertise, autofocus: true, class: 'form-control', hint: 'Enseñanza de elfico, viajes, literatura clásica'
+                %span
+                  %i (Separadas por comas. Ej: Enseñanza de elfico, viajes, literatura clásica)
+            .col-md-6
+              .form-group
+                = f.label :profile
+                = f.text_area :profile, autofocus: true, class: 'form-control', rows: 6
+              
+      .tab-pane.fade#contact
+        .panel.panel
+          .panel-body.jumbotron
+            .form-group
+              = f.label :website
+              = f.url_field :website, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                = f.label :facebook_link
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-facebook
+                  = f.url_field :facebook_link, autofocus: true, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :twitter_link
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-twitter
+                  = f.url_field :twitter_link, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                = f.label :linkedin_link
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-linkedin
+                  = f.url_field :linkedin_link, autofocus: true, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :google_plus_link
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-google-plus
+                  = f.url_field :google_plus_link, autofocus: true, class: 'form-control'
+      
+      .tab-pane.fade#account
+        .panel.panel
+          .panel-body.jumbotron
+            .col-md-6
+              .form-group
+                = f.label :email
+                = f.email_field :email, autofocus: true, class: 'form-control'
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                %div
+                  Currently waiting confirmation for: #{resource.unconfirmed_email}
+              .form-group
+                = f.label :password
+                %i
+                  = t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it', default: "(leave blank if you do not want to change it)")              
+                = f.password_field :password, autocomplete: "off", class: 'form-control'
+              .form-group
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+                  
+    .row
+      .col-md-12
+        .panel.panel
+          .panel-body.jumbotron
+            .form-group.col-md-6  
+              = f.label :current_password
+              %i 
+                = t('devise.registrations.edit.current_password_hint', default: '(Write your password to confirm your changes)')
+              = f.password_field :current_password, autocomplete: "off", class: 'form-control'
+            .form-group.col-md-6
+              = f.submit t('devise.registrations.edit.update',default: 'Update'), :class=>'btn btn-primary btn-lg btn-block' 
+    
+
+/ /      %h3 Cancel my account
+/ /      %p
+/ /        Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}

@@ -8,23 +8,24 @@
 
   .form-group
     = f.label :name
-    = f.text_field :name, autofocus: true, :class => 'form-control' ,:placeholder => "Nombre del curso, taller o plática" 
+    = f.text_field :name,  :class => 'form-control' ,:placeholder => "Nombre del curso, taller o plática" 
   .form-group
     = f.label :description
     = f.text_area :description, :class => 'form-control', :rows=>4
-  .form-group.col-md-6
-    = f.label :max_number_participants
-    = f.text_field :max_number_participants, :class => 'form-control', :type => "number"
-  .form-group.col-md-3
-    = f.label :length
-    .input-group
-      = f.text_field :length, autofocus: true, :class => 'form-control', :type => "number"
-      %span.input-group-addon horas
-  .form-group.col-md-3
-    = f.label :price
-    .input-group
-      %span.input-group-addon $
-      = f.text_field :price, autofocus: true, :class => 'form-control', :type => "money"
+  .row
+    .form-group.col-md-6
+      = f.label :max_number_participants
+      = f.text_field :max_number_participants, :class => 'form-control', :type => "number"
+    .form-group.col-md-3
+      = f.label :length
+      .input-group
+        = f.text_field :length,  :class => 'form-control', :type => "number"
+        %span.input-group-addon horas
+    .form-group.col-md-3
+      = f.label :price
+      .input-group
+        %span.input-group-addon $
+        = f.text_field :price,  :class => 'form-control', :type => "money"
   .form-group
     %label{:for => "establecimiento"} Establecimiento
     .input-group
@@ -47,7 +48,7 @@
     = f.text_area :agenda, :class => 'form-control', :rows=>4
             
   .actions 
-    = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg'
+    = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg btn-block'
 
 
 .dlg_find_venue.modal.fade{:role=>'dialog', :tabindex=>'-1', 'aria-hidden'=>'true'}
@@ -65,7 +66,7 @@
         .search-controls
           =form_tag('/reservations.json', remote: true, method: "get", id: 'workshops-_form-frmSearchReservations', role: 'form') do
             .form-group
-              =date_field_tag('starts_at')
+              = date_field_tag 'starts_at', Time.zone.today
             %button#btn_find_reservations.btn.btn-default{:type => "submit"} Search
             / %span.glyphicon.glyphicon-search           
         .search-results

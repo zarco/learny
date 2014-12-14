@@ -32,7 +32,7 @@
                   = t('views.legends.my_profile',default:'Your Account')
               %li
                 = link_to edit_student_registration_path do
-                  = t('views.legends.account.edit',default:'Edit my profile')
+                  = t('views.legends.edit_my_profile',default:'Edit my profile')
               %li.divider
               %li
                 = link_to enrollments_path do
@@ -45,11 +45,18 @@
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              - if !current_expert.avatar_url.nil?
+                %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'25px', :alt => "Profile", :src => current_expert.avatar.icon.url}
+                &nbsp;
               = current_expert.first_name
+              %b.caret
             %ul.dropdown-menu
               %li
+                = link_to expert_path current_expert do
+                  = t('views.legends.my_profile',default:'Your Account')
+              %li
                 = link_to edit_expert_registration_path do
-                  = t('devise.sessions.your_account',default:'Your Account')
+                  = t('views.legends.edit_my_profile',default:'Edit my profile')
               %li.divider
               %li
                 = link_to workshops_path do
@@ -117,17 +124,3 @@
               %li
                 = link_to new_venue_session_path do
                   = t('activerecord.models.venue',default:'Venue')
-        
-      %ul.nav.navbar-nav.pull-right
-        %li{:class => 'active'} 
-          - if current_page?(root_path) 
-            = link_to "Home", root_path
-        %li{:class => 'active'} 
-          - if current_page?(about_path) 
-            = link_to "About", about_path
-        %li{:class => 'active'} 
-          - if current_page?(contact_path) 
-            = link_to "Contact", contact_path
-      
-      
-      

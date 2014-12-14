@@ -3,91 +3,16 @@
   .col-md-8
     .jumbotron.next-courses
       .row.well
-        .col-md-4
-          .panel.panel-danger
-            .panel-heading
-              %h3.panel-title
-            .panel-body
-              %h1.text-center
-                14
-            .panel-footer
-              %h4.text-center
-                Septiembre
-        .col-md-8
-          %blockquote
-            %h2
-              %a{:href => "#"} Taller de canto gutural
-            %h3
-              %a{:href => "#"} Circo Volador
-            %p
-              %a{:href => "#"}
-                %span.badge.alert-info 5 asistentes
-          %ul.pager
-            %li
-              %a{:href => "#"} ← Previo
-            %li
-              %a{:href => "#"} Siguiente →
+        =render partial: 'shared/carousel_next_workshops', locals: {next_workshops: current_expert.next_workshops}
     .panel.panel-primary
       .panel-heading
         %h3.panel-title Proponer Nuevo Curso
       .panel-body
         =render 'workshops/form', object: @workshop
   .col-md-4
-    #pnl-badges.panel.panel-primary
-      .panel-heading
-        %h3.panel-title Mis Reconocimientos
-      .panel-body.badges-content
-        .scroll-panel
-          .row-fluid
             
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title Ranking
-      .panel-body
-        %table.table
-          %thead
-            %tr
-              %th #
-              %th{:colspan => "2"} Experto
-              %th Puntos
-          %tbody
-            %tr
-              %td 1
-              %td Mark
-              %td Otto
-              %td 10500
-            %tr.info
-              %td 2
-              %td Engel
-              %td Blut
-              %td 8900
-            %tr
-              %td 3
-              %td Larry
-              %td the Bird
-              %td 8500
     .panel.panel-primary.pnl-comentarios
       .panel-heading
         %h3.panel-title Comentarios Recientes
       .panel-body
         .scroll-panel
-          .row
-            .col-xs-4
-              %a{:href => "#"}
-                %img.img-circle.img-responsive{:alt => "Larry Page", :src => ""}/
-            .col-xs-8
-              %blockquote
-                %p
-                  "Una clase increible!, espero que se organicen más!"
-                %p
-                  %small Megan Fox
-        .row
-          .col-xs-4
-            %a{:href => "#"}
-              %img.img-circle.img-responsive{:alt => "Megan Fox", :src => "#"}/
-          .col-xs-8
-            %blockquote
-              %p
-                "Muy buena técnica del profesor"
-              %p
-                %small Larry Page
