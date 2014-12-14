@@ -69,13 +69,13 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #  "avatar.#{file.extension}"
   #end
   
-  
-  def filename
-    if Rails.env.develompent? || Rails.env.production?
-      "avatar.#{file.extension}"
-    else
-      "avatar.jpg"
-    end
-  end
+# Falla en heroku  
+#  def filename
+#    if Rails.env.develompent? || Rails.env.production?
+#      "avatar.#{file.extension}"
+#    else
+#      "avatar.jpg"
+#    end
+#  end
 
 end
