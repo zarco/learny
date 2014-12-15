@@ -9,15 +9,16 @@
       = link_to image_tag( 'L.png', size: "25x30", alt: "L") + 'earny', root_path, :class => "navbar-brand"
     .collapse.navbar-collapse
       
-      
-      -if student_signed_in?
+      -unless administrator_signed_in? || venue_signed_in? || expert_signed_in?
         = form_tag '/workshops', method: :get, :class => 'navbar-form navbar-left', :role => 'search' do
           .form-group
             %input.form-control{:placeholder => "Clases de surf...", :type => "text", :name => "w"}/
           %button.btn.btn-primary{:type => "submit", :value=> "Search"}
             %span.glyphicon.glyphicon-search
-            
       
+      
+      
+      -if student_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")

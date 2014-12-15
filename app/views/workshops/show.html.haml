@@ -14,13 +14,13 @@
             -unless @workshop.reservation.nil?
               %p Fecha: #{@workshop.reservation.fmt_duration}
             %p Costo: #{@workshop.price / @workshop.max_number_participants} MXN
-            %p Conocimientos Previos: #{@workshop.previous_skills}
-            %p Dirigido a: #{@workshop.target_public}
           .col-xs-4
             %button.btn.btn-lg.btn-warning.btn-block{"data-target" => "#temario", "data-toggle" => "modal", :type => "button"}
               %span.glyphicon.glyphicon-list-alt
               = Workshop.human_attribute_name(:agenda)
-          
+          .col-xs-12
+            %p Conocimientos Previos: #{@workshop.previous_skills}
+            %p Dirigido a: #{@workshop.target_public}
             
       
     - unless @workshop.reservation.nil?
@@ -36,7 +36,7 @@
                 /  Es un lugar donde podrás pasar un buen rato con tus colegas y disfrutar de aquellas conversaciones amenas disfrutando de una gran variedad de cervezas donde nuestra filosofía es “Que el cliente decida que tomar” debido a nuestra gran variedad con la que contamos.
       
                 
-    .col-ms-12.panel.panel-primary.pull-right
+    .col-ms-12.panel.panel-primary
       .panel-heading
         %h3.panel-title Más detalles
       .panel-body
@@ -102,12 +102,14 @@
                 %h5
                   = link_to student.full_name, student_path(student)
 
-  .col-md-4
-    .panel.panel-danger
-      .panel-body
-        %button.btn.btn-lg.btn-danger.btn-block{:type => "button"}
-          %span.glyphicon.glyphicon-fire
-          Reportar tema
+  
+  - if student_signed_in?
+    .col-md-4
+      .panel.panel-danger
+        .panel-body
+          %button.btn.btn-lg.btn-danger.btn-block{:type => "button"}
+            %span.glyphicon.glyphicon-fire
+            Reportar tema
 
 
   / Modal
