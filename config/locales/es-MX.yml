@@ -153,6 +153,8 @@ es-MX:
       make_reservation: 'Hacer reservación'
       calendars: 'Calendarios'
       reservations: 'Reservaciones'
+      enroll: '¡Quiero Asistir!'
+      
     legends:
       'yes': 'Si'
       'no': 'No'

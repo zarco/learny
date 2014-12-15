@@ -81,7 +81,7 @@ end
 
 When(/^I click the enroll button$/) do
   within(:css ,".form-enrollment") do
-    click_button "Enroll"
+    click_button I18n.t('views.actions.enroll',default: 'Enroll')
   end
 end
 
