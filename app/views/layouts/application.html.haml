@@ -27,7 +27,27 @@
         = render 'layouts/messages'
         = yield
       
-      
+        #mdl_signin.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                .bootstrap-dialog-header
+                  %button.close{:type=>'button',  'data-dismiss' => 'modal', 'aria-hidden'=> 'true'} x
+                  %h4.modal-title
+                    = t('devise.sessions.sign_up', default: 'Sign up') 
+              .modal-body
+                .row.text-center
+                  = link_to new_student_registration_path, {:class => 'btn btn-success btn-lg'} do
+                    %i.glyphicon.glyphicon-user
+                    = t('views.legends.student',default: 'Student')
+                  = link_to new_expert_registration_path, {:class => 'btn btn-success btn-lg'} do
+                    %i.glyphicon.glyphicon-briefcase
+                    = t('views.legends.expert',default: 'Expert')
+                  = link_to new_venue_registration_path, {:class => 'btn btn-success btn-lg'} do
+                    %i.glyphicon.glyphicon-home
+                    = t('views.legends.venue',default: 'Venue')
+              .modal-footer      
+              
       %footer
         %hr/
         %p.pull-right
@@ -42,4 +62,6 @@
         -if !(expert_signed_in? or venue_signed_in? or student_signed_in? or administrator_signed_in?)
           %p
             #{link_to "Administration", new_administrator_session_path}
+  
+
         

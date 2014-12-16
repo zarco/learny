@@ -3,7 +3,9 @@ Given(/^I am browsing the site$/) do
 end
 
 When(/^I click on the sign up button$/) do
-  click_button I18n.t('devise.sessions.sign_up', default: 'Sign up')
+  within(:css,'.main') do
+    click_button I18n.t('devise.sessions.sign_up', default: 'Sign up')
+  end
 end
 
 When(/^select the Sign up as student option$/) do
@@ -26,12 +28,14 @@ end
 
 When(/^I send my data for the registration as student$/) do
   @student = FactoryGirl.build(:student)
-  fill_in Student.human_attribute_name(:email), with: @student.email
-  fill_in Student.human_attribute_name(:password), with: @student.password
-  fill_in Student.human_attribute_name(:password_confirmation), with: @student.password_confirmation
-  fill_in Student.human_attribute_name(:first_name), with: @student.first_name
-  fill_in Student.human_attribute_name(:last_name), with: @student.last_name
-  click_button I18n.t('devise.sessions.sign_up')
+  within(:css,'.main') do
+    fill_in Student.human_attribute_name(:email), with: @student.email
+    fill_in Student.human_attribute_name(:password), with: @student.password
+    fill_in Student.human_attribute_name(:password_confirmation), with: @student.password_confirmation
+    fill_in Student.human_attribute_name(:first_name), with: @student.first_name
+    fill_in Student.human_attribute_name(:last_name), with: @student.last_name
+    click_button I18n.t('devise.sessions.sign_up')
+  end
 end
 
 Then(/^I can see a confirmation message$/) do
@@ -71,12 +75,12 @@ When(/^I click in the search button$/) do
 end
 
 Then(/^I see the workshop titled "(.*?)"$/) do |name|
-    #save_and_open_page 
-    expect(page).to have_content(name)
+#save_and_open_page
+  expect(page).to have_content(name)
 end
 
 Given(/^I am at the "(.*?)" workshop page$/) do |arg1|
-  visit workshop_path @workshop 
+  visit workshop_path @workshop
 end
 
 When(/^I click the enroll button$/) do
@@ -109,8 +113,6 @@ Then(/^I can see the "(.*?)" workshop in the list$/) do |workshop|
   expect(page).to have_content(workshop)
 end
 
-
-
 Given(/^I am at my profile page as student$/) do
   visit student_path @student
 end
@@ -142,21 +144,6 @@ Then(/^I see the message 'Update has been sucessfull'$/) do
   expect(page).to have_content(I18n.t('devise.registrations.updated',default: 'Update has been sucessfull'))
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Given(/^the "(.*?)" workshop is full$/) do |workshop|
   pending # express the regexp above with the code you wish you had
 end
@@ -165,11 +152,7 @@ When(/^I go to "(.*?)" workshop$/) do |workshop|
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I see the message 'The workshop is full'$/) do 
+Then(/^I see the message 'The workshop is full'$/) do
   pending # express the regexp above with the code you wish you had
 end
-
-
-
-
 
