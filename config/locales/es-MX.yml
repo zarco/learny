@@ -186,6 +186,10 @@ es-MX:
       active: 'Activo'
       inactive: 'Inactivo'
 
+    genres:
+      M: 'Masculino'
+      F: 'Femenino'
+  
     states:
       proposed: 'Propuesto'
       stand_by: 'En espera'
