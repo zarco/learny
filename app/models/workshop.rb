@@ -20,4 +20,8 @@ class Workshop < ActiveRecord::Base
   has_many :enrollments
   has_many :students, through: :enrollments
   
+  def small_description(total_words=250)
+    description.truncate(total_words, separator: " ")
+  end
+  
 end
