@@ -17,11 +17,13 @@ end
 
 When(/^I send my data for the registration as venue$/) do
   @venue = FactoryGirl.build(:venue)
-  fill_in Venue.human_attribute_name(:email), with: @venue.email
-  fill_in Venue.human_attribute_name(:password), with: @venue.password
-  fill_in Venue.human_attribute_name(:password_confirmation), with: @venue.password_confirmation
-  fill_in Venue.human_attribute_name(:name), with: @venue.name
-  click_button I18n.t('devise.sessions.sign_up')
+  within(:css,'.main') do
+    fill_in Venue.human_attribute_name(:email), with: @venue.email
+    fill_in Venue.human_attribute_name(:password), with: @venue.password
+    fill_in Venue.human_attribute_name(:password_confirmation), with: @venue.password_confirmation
+    fill_in Venue.human_attribute_name(:name), with: @venue.name
+    click_button I18n.t('devise.sessions.sign_up')
+  end
 end
 
 Given(/^I am logged in as venue$/) do
