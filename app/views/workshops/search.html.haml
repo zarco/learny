@@ -1,21 +1,48 @@
 
 .container
-  %h1 Listing workshops
+  .page-header.text-center
+    %h3 Búsqueda de talleres
 
-  %table.table
-    %tr
-      %th= Workshop.human_attribute_name(:name)
-      %th= Venue.model_name.human
-      %th= Expert.model_name.human
-      %th
-      
+  %ul.list-group
   
-    - @workshops.each do |workshop|
-      - venue=workshop.venue
-      %tr
-        %td= link_to workshop.name, workshop
-        %td= (link_to venue.name , 'workshop.reservation.calendar.venue') if !venue.nil? 
-        %td= link_to workshop.expert.full_name , workshop.expert 
-        %td= workshop.reservation.fmt_starts_at if !workshop.reservation.nil?
-  
+  - @workshops.each do |workshop|
+    
+    /.panel.panel-default
+    /  .panel-body
+    %li.list-group-item
+      .test
+        .row
+          .col-md-12
+            %h2
+              = link_to workshop.name, workshop, class: 'color:white'
+              %small
+                = workshop.small_description 100    
+        .row
+          .col-md-4
+            %blockquote
+              %h4
+                - unless workshop.expert.avatar_url.nil?
+                  %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => workshop.expert.avatar.icon.url}
+                  &nbsp;
+              
+                = link_to workshop.expert.full_name , workshop.expert
+              %h5
+                = workshop.expert.occupation
+          .col-md-8
+            - unless workshop.reservation.nil?
+              %blockquote
+                %h4
+                  = link_to workshop.venue.name, 'workshop.venue'
+                %h5
+                  %span.badge
+                    = workshop.reservation.fmt_duration unless workshop.reservation.nil?
+          
+              
+          
+    /%tr
+    /%td= link_to workshop.name, workshop
+    /%td= (link_to venue.name , 'workshop.reservation.calendar.venue') if !venue.nil? 
+    /%td= link_to workshop.expert.full_name , workshop.expert 
+    /%td= workshop.reservation.fmt_starts_at if !workshop.reservation.nil?
+
   %br
