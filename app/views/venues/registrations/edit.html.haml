@@ -16,6 +16,20 @@
             .form-group
               = f.label :name
               = f.text_field :name, autofocus: true, class: 'form-control'
+            .form-group
+              = f.label :map_link
+              = f.text_field :map_link, autofocus: true, class: 'form-control'
+            .form-group
+              = f.label :facilities
+              = f.text_field :facilities, autofocus: true, class: 'form-control', hint: ' wifi, proyector, pantalla'
+              %span
+                %i (Separadas por comas. Ej: wifi, proyector, pantalla)
+            .form-group   
+              
+            .form-group
+              = f.fields_for :venue_picture do |p|  
+                = p.label :avatar
+                = p.file_field :avatar, :multiple => true, name: "venue_pictures[avatar][]"
       .col-md-6
         .panel.panel-primary
           .panel-heading

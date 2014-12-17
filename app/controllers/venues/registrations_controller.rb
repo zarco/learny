@@ -15,4 +15,8 @@ class Venues::RegistrationsController < Devise::RegistrationsController
     params.require(:venue).permit(:name, :email, :password, :password_confirmation)
   end
   
+  def account_update_params
+    params.require(:venue).permit(:name, :email, :password, :password_confirmation, 
+      :current_password, :map_link, :facilities)
+  end
 end

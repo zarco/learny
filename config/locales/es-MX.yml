@@ -34,6 +34,7 @@ es-MX:
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      venue_picture: 'FotoEstablecimiento'
       workshop: 'Workshop'
       enrollment: 'Inscripción'
       reservation: 'Reservación'
@@ -77,6 +78,10 @@ es-MX:
         remember_me: 'Recordar sesión'
         current_password: 'Constraseña actual'
         name: 'Nombre'
+        map_link: 'Mapa'
+        facilities: 'Amenidades'
+      venue_picture:
+        avatar: 'Foto'  
       workshop:
         name: 'Nombre'
         agenda: 'Agenda'
@@ -143,7 +148,11 @@ es-MX:
             current_password:
               blank: ' es requerida' 
             password_confirmation:
-              confirmation: '. La contraseña y su confirmación son diferentes'       
+              confirmation: '. La contraseña y su confirmación son diferentes'    
+        venue_picture:
+          attributes:
+            avatar:
+              blank: ' es requerida'   
   
   "true": "Si"
   "false": "No"
