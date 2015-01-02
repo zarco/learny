@@ -1,4 +1,4 @@
-%p#notice= notice
+%p#notice
 .container
   .col-md-1
   .col-md-10
@@ -18,7 +18,14 @@
               %span.badge.reservation{"data-placement" => "top", "data-toggle" => "tooltip", :title => "#{reservation.starts_at.strftime('%H:%M')} - #{reservation.final_time.strftime('%H:%M')}"}
                 %span.glyphicon.glyphicon-bell
 
-    = link_to 'Edit', edit_calendar_path(@calendar) 
-    \|
-    = link_to 'Back', calendars_path
+    %p.text-right      
+      %span.badge.booked      
+        %span.glyphicon.glyphicon-book
+        = t('activerecord.attributes.calendar.explain_book', default: 'Reserved for event')
+      %span.badge.reservation
+        %span.glyphicon.glyphicon-bell        
+        = t('activerecord.attributes.calendar.explain_reservation', default:'Reservation available')
+    /= link_to 'Edit', edit_calendar_path(@calendar) 
+    /\|
+    /= link_to 'Back', calendars_path
   .col-md-1

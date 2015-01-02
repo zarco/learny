@@ -22,6 +22,10 @@ table tbody{
 	background:#B0FCFC;
 }
 
+table thead{
+	border-bottom: 2px blue solid;
+}
+
 table tbody tr td:last-child{
 	background: #94CFCF;
 }
