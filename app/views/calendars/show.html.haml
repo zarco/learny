@@ -13,7 +13,9 @@
         - reservations.each do |reservation|
           .event-cell
             - if !reservation.workshop.nil?
-              = link_to "<span class='badge booked' data-placement='top' data-toggle='tooltip' title='#{reservation.workshop.name}\n#{reservation.starts_at.strftime('%H:%M')} - #{reservation.final_time.strftime('%H:%M')}\n#{reservation.workshop.expert.full_name}'><span class='glyphicon glyphicon-book'</span></span>".html_safe, reservation.workshop
+              = link_to reservation.workshop do
+                %span.badge.booked{"data-placement" => "top", "data-toggle" => "tooltip", :title => "#{reservation.workshop.name}\n#{reservation.starts_at.strftime('%H:%M')} - #{reservation.final_time.strftime('%H:%M')}\n#{reservation.workshop.expert.full_name}"}
+                  %span.glyphicon.glyphicon-book
             - else
               %span.badge.reservation{"data-placement" => "top", "data-toggle" => "tooltip", :title => "#{reservation.starts_at.strftime('%H:%M')} - #{reservation.final_time.strftime('%H:%M')}"}
                 %span.glyphicon.glyphicon-bell
