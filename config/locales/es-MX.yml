@@ -80,6 +80,7 @@ es-MX:
         name: 'Nombre'
         map_link: 'Mapa'
         facilities: 'Amenidades'
+        avatar: "Avatar"
         pictures: 'Fotos del Establecimiento' 
       venue_picture:
         avatar: 'Foto' 

@@ -11,9 +11,11 @@ class Venues::RegistrationsController < Devise::RegistrationsController
   def update
     respond_to do |format|
       if @venue.update(account_update_params)
-        params[:venue_pictures].each { |image|
-          @venue.venue_pictures.create!(avatar: image, :venue_id => @venue.id)
-        }
+        if params[:venue_pictures].present?
+          params[:venue_pictures].each { |image|
+            @venue.venue_pictures.create!(avatar: image, :venue_id => @venue.id)
+          }
+        end
         format.html { redirect_to @venue, notice: 'Venue was successfully updated.' }
         format.json { render :show, status: :ok, location: @venue }
       else
@@ -31,6 +33,6 @@ class Venues::RegistrationsController < Devise::RegistrationsController
   end
   
   def account_update_params
-    params.require(:venue).permit(:name, :email, :map_link, :facilities, :venue_pictures)
+    params.require(:venue).permit(:name, :email, :map_link, :facilities, :avatar, :venue_pictures)
   end
 end

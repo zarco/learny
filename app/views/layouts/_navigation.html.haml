@@ -88,6 +88,9 @@
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              - if !current_venue.avatar_url.nil?
+                %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'25px', :alt => "Profile", :src => current_venue.avatar.icon.url}
+                &nbsp;
               = current_venue.name
             %ul.dropdown-menu
               %li

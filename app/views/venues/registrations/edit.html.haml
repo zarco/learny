@@ -25,6 +25,10 @@
               %span
                 %i (Separadas por comas. Ej: wifi, proyector, pantalla)  
             .form-group
+              = f.label :avatar
+              %img{:alt => "Profile", :src => @venue.avatar_url(:thumb)}
+              = f.file_field :avatar, autofocus: true, class: 'form-control'
+            .form-group
               = f.label :pictures
               = file_field_tag "venue_pictures[]", type: :file, multiple: true 
             .form-group
