@@ -20,10 +20,15 @@ class VenuePicturesController < ApplicationController
   def edit
   end
 
+  def delete
+  end
+
   def create
     @venue_picture = VenuePicture.new(venue_picture_params)
     @venue_picture.save
-    respond_with(@venue_picture)
+    respond_to do |format|
+      format.json { render :json => @venue_picture }
+    end
   end
 
   def update

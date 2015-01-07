@@ -23,13 +23,14 @@
               = f.label :facilities
               = f.text_field :facilities, autofocus: true, class: 'form-control', hint: ' wifi, proyector, pantalla'
               %span
-                %i (Separadas por comas. Ej: wifi, proyector, pantalla)
-            .form-group   
-              
+                %i (Separadas por comas. Ej: wifi, proyector, pantalla)  
             .form-group
-              = f.fields_for :venue_picture do |p|  
-                = p.label :avatar
-                = p.file_field :avatar, :multiple => true, name: "venue_pictures[avatar][]"
+              = f.label :pictures
+              = file_field_tag "venue_pictures[]", type: :file, multiple: true 
+            .form-group
+              .span Fotos agregadas:
+              - @venue.venue_pictures.each do |picture|
+                %img{:alt => "Profile", :src => picture.avatar_url(:thumb)}
       .col-md-6
         .panel.panel-primary
           .panel-heading
@@ -67,4 +68,3 @@
 / /      %h3 Cancel my account
 / /      %p
 / /        Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-
