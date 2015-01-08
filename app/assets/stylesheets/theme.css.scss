@@ -442,6 +442,18 @@ footer .footer-below {
 }
 
 @media(max-width:400px) {
+    h1{
+        font-size: 2em;
+    }
+
+    section h2{
+        font-size: 2em;   
+    }
+
+    h3{
+        font-size: 1.5em;   
+    }
+
     header img.img-landing {        
         width: 100%;
     }
