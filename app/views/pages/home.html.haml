@@ -1,36 +1,110 @@
 - provide(:title, '')
-
-
-.jumbotron
+%header
   .container
-    %h1
-      = t 'views.legends.welcome_to_learny', default: 'Welcome to Learny!'
-    %p
-      The best place to find the best teachers for those things you always wanted to learn!
-    %p
-      %button.btn.btn-primary.btn-lg{'data-toggle'=>"modal", 'data-target'=>'#mdl_signin'}
-        = t('devise.sessions.sign_up', default: 'Sign up') 
-    
-      
-.container
-  / Example row of columns
-  .row
-    .col-md-4
-      %h2 Heading
-      %p= t('views.legends.welcome_to_learny')
-      %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      %p
-        %a.btn.btn-default{:href => "#", :role => "button"} View details »
-    .col-md-4
-      %h2 Heading
-      %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      %p
-        %a.btn.btn-default{:href => "#", :role => "button"} View details »
-    .col-md-4
-      %h2 Heading
-      %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-      %p
-        %a.btn.btn-default{:href => "#", :role => "button"} View details »
-        
-
-          
+    .row
+      .col-lg-12            
+        = image_tag('landing.png',alt: "Learny.me", :class => "img img-responsive img-landing")
+        .intro-text.text-center
+          %span.name
+            .row              
+              .col-md-6.col-md-offset-3
+                = form_tag '/workshops', method: :get, :role => 'search' do
+                  .form-group
+                    .input-group.input-group-lg
+                      %input.form-control{:name => "w", :placeholder => "Clases de surf...", :type => "text"}/
+                      %span.input-group-btn
+                        %button.btn.btn-primary{:type => "submit", :value => "Search"}
+                          %span.glyphicon.glyphicon-search              
+          %hr.star-light/
+          %span.skills 
+            = t('views.legends.welcome_to_learny',default:'The best place to find the best teachers for those things you always wanted to learn!')      
+/ Student Grid Section
+%section#student
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2 
+          = t('activerecord.models.student',default:'Student')
+        %hr.star-primary/
+    .row
+      .col-sm-2.col-sm-offset-1
+        = image_tag("student_1.png",:class => "img img-responsive")        
+      .col-sm-2
+        = image_tag("student_2.png",:class => "img img-responsive")
+      .col-sm-2
+        = image_tag("student_3.png",:class => "img img-responsive")
+      .col-sm-2
+        /= image_tag("student_4.png",:class => "img img-responsive")
+      .col-sm-2
+        = image_tag("student_5.png",:class => "img img-responsive")
+    .row
+      .col-sm-2.col-sm-offset-1
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+/ Expert Section
+%section#expert.success
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2 
+          = t('activerecord.models.expert',default:'Expert')
+        %hr.star-light/
+    .row
+      .col-sm-2.col-sm-offset-1
+        = image_tag("expert_1.png",:class => "img img-responsive")
+      .col-sm-2
+        = image_tag("expert_2.png",:class => "img img-responsive")
+      .col-sm-2
+        = image_tag("expert_3.png",:class => "img img-responsive")
+      .col-sm-2
+        /= image_tag("expert_4.png",:class => "img img-responsive")
+      .col-sm-2
+        = image_tag("expert_5.png",:class => "img img-responsive")
+    .row
+      .col-sm-2.col-sm-offset-1
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+/ Venue Grid Section
+%section#venue
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2 
+          = t('activerecord.models.venue',default:'Venue')
+        %hr.star-primary/
+    .row
+      .col-sm-2.col-sm-offset-1
+        /= image_tag("venue_1.png",:class => "img img-responsive")
+      .col-sm-2
+        /= image_tag("venue_2.png",:class => "img img-responsive")
+      .col-sm-2
+        /= image_tag("venue_3.png",:class => "img img-responsive")
+      .col-sm-2
+        /= image_tag("venue_4.png",:class => "img img-responsive")
+      .col-sm-2
+        /= image_tag("venue_5.png",:class => "img img-responsive")
+    .row
+      .col-sm-2.col-sm-offset-1
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p
+      .col-sm-2
+        %p

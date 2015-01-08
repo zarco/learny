@@ -3,7 +3,7 @@ Given(/^I am browsing the site$/) do
 end
 
 When(/^I click on the sign up button$/) do
-  within(:css,'.main') do
+  within(:css,'.navbar') do
     click_button I18n.t('devise.sessions.sign_up', default: 'Sign up')
   end
 end
