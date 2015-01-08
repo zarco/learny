@@ -1,156 +1,88 @@
 .container.main
   .row
     .col-md-8
-      .jumbotron.next-courses
-        .row.well
-          .col-md-4
-            .panel.panel-danger
-              .panel-heading
-                %h3.panel-title
-              .panel-body
-                %h1.text-center
-                  14
-              .panel-footer
-                %h4.text-center
-                  Septiembre
-          .col-md-8
-            %blockquote
-              %h2
-                %a{:href => "../cursos/detalle_curso.html"} Taller de canto gutural
-              %h3
-                %a{:href => "../establecimientos/conoce_establecimiento.html"} Circo Volador
-              %p
-                %a{:href => "#"}
-                  %strong 9:00am
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = @venue.name
+        .panel-body
+          .carousel.slide#carousel_venue_pictures{"data-ride" => "carousel"}
+            %ol.carousel-indicators
+              -@venue.venue_pictures.count.times do |counter|
+                %li{'data-slide-to' => counter, 'data-target' => '#carousel_venue_pictures'}
+            .carousel-inner
+              -@venue.venue_pictures.each_with_index do |picture,index| 
+                .item{:class => ("active" if index == 0)}
+                  .panel-body
+                    %img{:alt => "Picture", :src => picture.avatar_url, :class => "thumbnail"}
             %ul.pager
               %li
-                %a{:href => "#"} ← Previo
+                %a.left{:href => "#carousel_venue_pictures", 'data-slide' => 'prev' } 
+                  %span.glyphicon.glyphicon-chevron-left
+                  Previo
               %li
-                %a{:href => "#"} Siguiente →
-            %a.pull-right{:href => "#"}
-              %span.badge.alert-danger 4
-              Asistentes
-        .new-reservation
-          =link_to new_reservation_path, {:class=>'btn btn-primary'} do
-            =t('views.actions.make_reservation', default: 'Make a reservation')
-    / Reconocimientos
+                %a.right{:href => "#carousel_venue_pictures", 'data-slide' => 'next' } 
+                  Siguiente
+                  %span.glyphicon.glyphicon-chevron-right
+        .venue-desc
+          %h4
+            = @venue.description
+
+    / Address
     .col-md-4
       #pnl-badges.panel.panel-primary
         .panel-heading
-          %h3.panel-title Mis Reconocimientos
-        .panel-body.badges-content
-          .scroll-panel
-            .row-fluid
-              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges001.jpg"}/
-              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges002.jpg"}/
-              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges003.jpg"}/
-              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges008.jpg"}/
-              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges007.jpg"}/
-              / %img.my-badge{:alt => "badge", :src => "../images/badges/badges010.jpg"}/
-      / Ranking
-      .panel.panel-primary
-        .panel-heading
-          %h3.panel-title Ranking
+          %h3.panel-title
+            = Venue.human_attribute_name(:address)
         .panel-body
-          %table.table
-            %thead
-              %tr
-                %th #
-                %th Establecimiento
-                %th Giro
-                %th Puntos
-            %tbody
-              %tr.info
-                %td 1
-                %td Cafe 7
-                %td Cafeteria
-                %td 10500
-              %tr
-                %td 2
-                %td El Deposito
-                %td Bar
-                %td 8900
-              %tr
-                %td 3
-                %td Starbucks
-                %td Cafeteria
-                %td 8500
+          = @venue.address
+
+
+    / Address
+    .col-md-4
+      #pnl-badges.panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = Venue.human_attribute_name(:business_hours)
+        .panel-body
+          = @venue.business_hours
+
+
+    / Facilities
+    .col-md-4
+      #pnl-badges.panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = Venue.human_attribute_name(:facilities)
+        .panel-body
+          =render partial: 'shared/words2iconlist', locals: {comma_separated_words:@venue.facilities}
+
   / Solicitudes
   .row
     .col-md-8
       .panel.panel-primary
         .panel-heading
-          %h3.panel-title Solicitudes
+          %h3.panel-title Mapa
         .panel-body
-          %table.table
-            %thead
-              %tr
-                %th # Asistentes
-                %th Tema
-                %th Instructor
-                %th Fecha
-            %tbody
-              %tr
-                %td 5
-                %td Ingles II
-                %td Barak Obama
-                %td 06/06/2014
-              %tr
-                %td 2
-                %td Historia de Rusia
-                %td Vladimir Putin
-                %td 12/09/2014
-              %tr
-                %td 3
-                %td Post-Produccion Fotografica
-                %td Roger Waters
-                %td 16/08/2014
+          %img{:src =>"https://maps.googleapis.com/maps/api/staticmap?center=19.400513,-99.136810&markers=color:red%7Clabel:L%7C19.400513,-99.136810&zoom=15&size=800x400"}
     / Referencias
     .col-md-4
       .panel.panel-primary.comentarios
         .panel-heading
           %h3.panel-title Comentarios Recientes
         .panel-body
-          .row
-            .col-xs-4
-              %a{:href => "#"}
-                %img.img-circle{:alt => "Larry Page", :src => "#"}/
-            .col-xs-8
-              %blockquote
-                %p
-                  "Sus crepas de nutella son lo mejor!"
-                %p
-                  %small Larry Page
-          .row
-            .col-xs-4
-              %a{:href => "#"}
-                %img.img-circle{:alt => "Megan Fox", :src => "#"}/
-            .col-xs-8
-              %blockquote
-                %p
-                  "El mejor café de la zona!"
-                %p
-                  %small Megan Fox
-    .col-md-8
-      .panel.panel-primary
-        .panel-heading
-          %h3.panel-title Cursos en busca de lugar
-        .panel-body
-          %table.table
-            %thead
-              %tr
-                %th # Asistentes
-                %th Tema
-                %th Instructor
-                %th Fecha
-            %tbody
-              %tr
-                %td 5
-                %td Ingles II
-                %td Barak Obama
-                %td 06/06/2014
-              %tr
-                %td 2
-                %td Historia de Rusia
-                %td Vladimir Putin
-                %td 12/09/2014
+
+
+/ Pictures Modal
+#myModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h3.modal-title 
+          = @venue.name
+      .modal-body
+        %img{:src => "#", :id => "picture_modal"}
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal"} Close
+        

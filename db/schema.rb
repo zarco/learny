@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107212038) do
+ActiveRecord::Schema.define(version: 20150108030259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,9 @@ ActiveRecord::Schema.define(version: 20150107212038) do
     t.text     "facilities"
     t.string   "map_link"
     t.string   "avatar"
+    t.string   "description"
+    t.string   "address"
+    t.string   "business_hours"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree

@@ -78,9 +78,12 @@ es-MX:
         remember_me: 'Recordar sesión'
         current_password: 'Constraseña actual'
         name: 'Nombre'
+        description: 'Descripción'
+        address: 'Dirección'
+        business_hours: 'Horario de apertura'
         map_link: 'Mapa'
         facilities: 'Amenidades'
-        avatar: "Avatar"
+        avatar: "Ávatar"
         pictures: 'Fotos del Establecimiento' 
       venue_picture:
         avatar: 'Foto' 

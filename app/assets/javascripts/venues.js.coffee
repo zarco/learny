@@ -2,3 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
+$(document).on "click", ".thumbnail", ->
+  	$('#picture_modal').attr('src', $(this).attr('src'));
+  	$('#myModal').modal({show:true});
