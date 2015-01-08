@@ -16,7 +16,7 @@ class Venues::RegistrationsController < Devise::RegistrationsController
             @venue.venue_pictures.create!(avatar: image, :venue_id => @venue.id)
           }
         end
-        format.html { redirect_to @venue, notice: 'Venue was successfully updated.' }
+        format.html { redirect_to @venue, :notice => I18n.t('devise.registrations.updated', default: 'Update has been sucessfull.') }
         format.json { render :show, status: :ok, location: @venue }
       else
         format.html { render :edit }
