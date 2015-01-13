@@ -88,7 +88,7 @@
                 \-
                 #{link_to t('views.legends.terms',default: 'Terms'), terms_path}
                 \-
-                /\#{link_to t('views.legends.faq',default: 'FAQ'), faq_path}
+                \#{link_to t('views.legends.faq',default: 'FAQ'), faq_path}
                 -if !(expert_signed_in? or venue_signed_in? or student_signed_in? or administrator_signed_in?)
                   \#{link_to t('views.legends.administration',default: 'Administration'), new_administrator_session_path}
     / Scroll to Top Button (Only visible on small and extra-small screen sizes)
