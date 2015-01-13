@@ -21,7 +21,7 @@ LearnyApp::Application.routes.draw do
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
   get '/privacy'  => 'high_voltage/pages#show', id: 'privacy'
   get '/terms'    => 'high_voltage/pages#show', id: 'terms'
-  get '/faq'    => 'high_voltage/pages#show', id: 'faq'
+  get '/faq'      => 'high_voltage/pages#show', id: 'faq'
 
   get '/home', to: redirect('/')
   get 'students/index'
