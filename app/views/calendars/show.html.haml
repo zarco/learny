@@ -1,9 +1,7 @@
 %p#notice
 .container
   .col-md-1
-  .col-md-10
-    %h1
-      = @calendar.title
+  .col-md-10    
     .simple-calendar.panel.panel-primary.text-center
       = month_calendar events: @calendar.reservations, header: {class: 'calendar-header panel-header'} ,
           title: ->(start_date) { content_tag :span, "#{I18n.t("date.month_names")[start_date.month]} #{start_date.year}", class: "calendar-title" },
