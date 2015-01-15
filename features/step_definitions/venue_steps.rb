@@ -79,3 +79,23 @@ end
 When(/^afterwards, I sumbit the required information$/) do
   pending # express the regexp above with the code you wish you had
 end
+
+# Update profile
+Given(/^I am at my profile update page as venue$/) do
+  visit edit_venue_registration_path @venue
+end
+
+When(/^I fill in the venue fields$/) do
+  fill_in Venue.human_attribute_name(:name), with: @venue.name
+  fill_in Venue.human_attribute_name(:map_link), with: @venue.map_link
+  fill_in Venue.human_attribute_name(:facilities), with: @venue.facilities
+  fill_in Venue.human_attribute_name(:current_password), with: @venue.password
+  # TODO: add  venue pictures
+end
+
+Then(/^I am at the profile update page$/) do
+  expect(page.current_path).to eq(edit_venue_registration_path)
+end
+
+
+

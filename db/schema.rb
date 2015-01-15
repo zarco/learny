@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211052645) do
+ActiveRecord::Schema.define(version: 20150108030259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,13 @@ ActiveRecord::Schema.define(version: 20141211052645) do
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
+  create_table "venue_pictures", force: true do |t|
+    t.integer  "venue_id"
+    t.string   "avatar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "venues", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -144,6 +151,12 @@ ActiveRecord::Schema.define(version: 20141211052645) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.text     "facilities"
+    t.string   "map_link"
+    t.string   "avatar"
+    t.string   "description"
+    t.string   "address"
+    t.string   "business_hours"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
