@@ -13,7 +13,7 @@
     = f.label :description
     = f.text_area :description, :class => 'form-control', :rows=>4
   .row
-    .form-group.col-md-6
+    .form-group.col-md-5
       = f.label :max_number_participants
       = f.text_field :max_number_participants, :class => 'form-control', :type => "number"
     .form-group.col-md-3
@@ -21,11 +21,13 @@
       .input-group
         = f.text_field :length,  :class => 'form-control', :type => "number"
         %span.input-group-addon horas
-    .form-group.col-md-3
+    .form-group.col-md-4
       = f.label :price
       .input-group
         %span.input-group-addon $
         = f.text_field :price,  :class => 'form-control', :type => "money"
+        %span.input-group-addon 
+          = t('views.legends.workshop.price_per_student',:default => 'per student')
   .form-group
     %label{:for => "establecimiento"} Establecimiento
     .input-group
