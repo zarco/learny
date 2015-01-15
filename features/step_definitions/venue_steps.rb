@@ -59,9 +59,8 @@ When(/^afterwards, I sumbit the required information for the reservation$/) do
   click_button I18n.t('views.actions.make_reservation')
 end
 
-Then(/^I can see the new reservation on the "(.*?)" calendar$/) do |calendar|
-  expect(page).to have_content(@venue.calendars.first.title)
-  expect(page).to have_content(@reservation.starts_at.strftime("%H:%M"))
+Then(/^I can see the new reservation on the calendar$/) do  
+  have_tag(:span,{:title => "#{@reservation.starts_at.strftime("%H:%M")}"})
 end
 
 When(/^I click on the 'New Calendar' button$/) do

@@ -102,6 +102,8 @@ es-MX:
         final_time: 'Termina'
         max_participants: 'Participantes máximos'
       calendar:
+        explain_reservation: 'Reservación disponible'
+        explain_book: 'Reservado para evento'
         title: 'Título'
       administrator:
         email: 'Correo electrónico'

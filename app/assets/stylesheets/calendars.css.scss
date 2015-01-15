@@ -1,3 +1,56 @@
 // Place all the styles related to the calendars controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+header.calendar-header.panel-header{
+	background: red;
+	color: white; 
+	font-size: 30px;
+}
+
+header.calendar-header.panel-header a{
+	color: white;
+	text-decoration: none;
+	padding: 0 0.5em;
+}
+
+header.calendar-header.panel-header a:hover{
+	color: #AEAEAE;
+}
+
+table tbody{
+	background:#B0FCFC;
+}
+
+table thead{
+	border-bottom: 2px blue solid;
+}
+
+table tbody tr td:last-child{
+	background: #94CFCF;
+}
+
+table tbody tr td:hover{
+	background:#8ED7D7;
+}
+
+table tbody p{
+	font-size: 20px;
+}
+
+.booked{
+	background: #515DD7;
+}
+
+.day{
+	width: 14%;
+}
+
+.event-cell{
+	display: inline-block;
+}
+
+.reservation{
+	background: #1FBA39;
+}
+
