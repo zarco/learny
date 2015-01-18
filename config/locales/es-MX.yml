@@ -100,7 +100,8 @@ es-MX:
       reservation:
         starts_at: 'Inicia'
         final_time: 'Termina'
-        max_participants: 'Participantes máximos'
+        max_participants: '# Participantes'
+        available: 'Disponible'
       calendar:
         explain_reservation: 'Reservación disponible'
         explain_book: 'Reservado para evento'
