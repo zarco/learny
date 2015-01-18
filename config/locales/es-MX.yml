@@ -191,7 +191,7 @@ es-MX:
       edit: 'Actualizar'
       view_course: 'Ver curso'
       glossary: 'Glosario'
-      faq: 'FAQ'
+      faq: 'Preguntas frecuentes'
       references: 'Referencias'
       email_missing: 'El correo electrónico no puede ir en blanco.'
       confirmed: '¿Confirmado?'
@@ -220,7 +220,8 @@ es-MX:
       profile: 'Perfil'
       general: 'General'
       contact: 'Contacto'
-      
+      no_next_workshops: 'No tienes talleres próximos'
+            
     status:
       active: 'Activo'
       inactive: 'Inactivo'

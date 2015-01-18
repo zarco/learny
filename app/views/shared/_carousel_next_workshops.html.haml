@@ -3,35 +3,42 @@
     -next_workshops.count.times do |counter|
       %li{'data-slide-to' => counter, 'data-target' => '#carousel_next_workshops'}
   .carousel-inner
-    -next_workshops.each_with_index do |workshop,index| 
-      .item{:class => ("active" if index == 0)}
-        .col-md-4
-          .panel.panel-danger
-            .panel-heading
-              %h3.panel-title
-            .panel-body
-              %h1.text-center
-                =workshop.reservation.starts_at.strftime('%d')
-            .panel-footer
-              %h4.text-center
-                =workshop.reservation.starts_at.strftime('%B')
-        .col-md-8
-          %blockquote
-            %h2
-              =link_to workshop.name, workshop
-            %h3
-              =link_to workshop.venue.name, '#'
-            %p
-              %a{:href => "#"}
-                %span.badge.alert-info  
-                  #{ workshop.reservation.starts_at.strftime('%H:%M')} - 
-                  #{workshop.reservation.final_time.strftime('%H:%M')} h
-  %ul.pager
-    %li
-      %a.left{:href => "#carousel_next_workshops", 'data-slide' => 'prev' } 
-        %span.glyphicon.glyphicon-chevron-left
-        Previo
-    %li
-      %a.right{:href => "#carousel_next_workshops", 'data-slide' => 'next' } 
-        Siguiente
-        %span.glyphicon.glyphicon-chevron-right
+    -if next_workshops.empty?
+      %h3.text-center
+        =t('views.legends.no_next_workshops',default:'No next workshops')
+    -else
+      -next_workshops.each_with_index do |workshop,index| 
+        .item{:class => ("active" if index == 0)}
+          .col-md-4
+            .panel.panel-danger
+              .panel-heading
+                %h3.panel-title
+              .panel-body
+                %h1.text-center
+                  =workshop.reservation.starts_at.strftime('%d')
+              .panel-footer
+                %h4.text-center
+                  =workshop.reservation.starts_at.strftime('%B')
+          .col-md-8
+            %blockquote
+              %h2
+                =link_to workshop.name, workshop
+              %h3
+                =link_to workshop.venue.name, '#'
+              %p
+                %a{:href => "#"}
+                  %span.badge.alert-info  
+                    #{ workshop.reservation.starts_at.strftime('%H:%M')} - 
+                    #{workshop.reservation.final_time.strftime('%H:%M')} h
+  
+  -unless next_workshops.empty?
+  
+    %ul.pager
+      %li
+        %a.left{:href => "#carousel_next_workshops", 'data-slide' => 'prev' } 
+          %span.glyphicon.glyphicon-chevron-left
+          Previo
+      %li
+        %a.right{:href => "#carousel_next_workshops", 'data-slide' => 'next' } 
+          Siguiente
+          %span.glyphicon.glyphicon-chevron-right
