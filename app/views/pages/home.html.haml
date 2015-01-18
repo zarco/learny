@@ -16,8 +16,11 @@
                         %button.btn.btn-primary{:type => "submit", :value => "Search"}
                           %span.glyphicon.glyphicon-search              
           %hr.star-light/
-          %span.skills 
-            = t('views.legends.welcome_to_learny',default:'The best place to find the best teachers for those things you always wanted to learn!')      
+          %span.skills
+            %h3#slogan-part1 
+              = t('views.legends.welcome_to_learny_part1',default:'The place and perfect teacher to everything you always wanted to learn')      
+            %h4#slogan-part2 
+              = t('views.legends.welcome_to_learny_part2',default:'(And until the things you did not know that you wanted to learn)')      
 / Student Grid Section
 %section#student
   .container
