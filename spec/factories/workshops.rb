@@ -20,6 +20,7 @@ FactoryGirl.define do
     
     factory :free_workshop do
       free true
+      price nil
     end
 
     factory :invalid_workshop do

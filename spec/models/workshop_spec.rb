@@ -46,7 +46,6 @@ describe Workshop do
     it { should validate_presence_of :agenda }
     it { should validate_presence_of :length }
     it { should validate_presence_of :price }
-    it { should validate_presence_of :price }
     it { should validate_presence_of :expert }
     it { should validate_presence_of :description }
     it { should validate_presence_of :max_number_participants }
@@ -80,6 +79,10 @@ describe Workshop do
   describe 'validations_for_free_workshop' do
     subject { FactoryGirl.build(:free_workshop) }
     it { should allow_value(0).for(:price) }
+    it { should allow_value(1).for(:price) }
+    it { should allow_value(1.1).for(:price) }
+    it { should_not allow_value(-1).for(:price) }
+    it { should allow_value(nil).for(:price) }
   end
   
 end
