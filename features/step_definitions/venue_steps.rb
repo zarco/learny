@@ -85,10 +85,9 @@ Given(/^I am at my profile update page as venue$/) do
 end
 
 When(/^I fill in the venue fields$/) do
-  fill_in Venue.human_attribute_name(:name), with: @venue.name
+  # fill_in Venue.human_attribute_name(:name), with: @venue.name # collides with contact.name
   fill_in Venue.human_attribute_name(:map_link), with: @venue.map_link
   fill_in Venue.human_attribute_name(:facilities), with: @venue.facilities
-  fill_in Venue.human_attribute_name(:current_password), with: @venue.password
   # TODO: add  venue pictures
 end
 
