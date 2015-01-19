@@ -7,5 +7,5 @@ When(/^I am on the homepage$/) do
 end
 
 Then(/^I should see the welcome message$/) do 
-  expect(page).to have_content(I18n.t('views.legends.welcome_to_learny',default: 'Welcome to Learny!'))
+  expect(page).to have_content(I18n.t('views.legends.welcome_to_learny_part1',default: 'The place and perfect teacher to everything you always wanted to learn'))
 end
