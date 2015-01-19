@@ -4,6 +4,11 @@
     %h3 Búsqueda de talleres
 
   %ul.list-group
+  %h1
+  - if @workshops.none?
+    .jumbotron.text-center
+      %h3
+        =t('views.legends.search.no_results',default: 'There is not results for your search')
   
   - @workshops.each do |workshop|
     

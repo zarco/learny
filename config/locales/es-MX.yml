@@ -249,7 +249,8 @@ es-MX:
       general: 'General'
       contact: 'Contacto'
       no_next_workshops: 'No tienes talleres próximos'
-            
+      search:
+        no_results: 'La búsqueda no obtuvo resultados'            
     status:
       active: 'Activo'
       inactive: 'Inactivo'
