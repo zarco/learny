@@ -89,11 +89,12 @@
                 #{link_to t('views.legends.terms',default: 'Terms'), terms_path}
                 \-
                 #{link_to t('views.legends.faq',default: 'FAQ'), faq_path}
-                \-
-                -if !(expert_signed_in? or venue_signed_in? or student_signed_in? or administrator_signed_in?)
-                  \#{link_to t('views.legends.administration',default: 'Administration'), new_administrator_session_path}
     / Scroll to Top Button (Only visible on small and extra-small screen sizes)
-    .scroll-top.page-scroll
+    .scroll-top.page-scroll.text-right.visible-xs     
+      -unless student_signed_in? || venue_signed_in? || expert_signed_in? || administrator_signed_in?
+        = form_tag '#', :role => 'subscribe' do
+          %button.btn.btn-success{'data-toggle'=>"modal", 'type'=>'button', 'data-target'=>'#mdl_signin', :value => t('devise.sessions.sign_up', default: 'Sign up')}
+            = t('devise.sessions.sign_up', default: 'Sign up')
       %a.btn.btn-primary.index{:href => "#page-top"}
         %i.fa.fa-chevron-up
     %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"}

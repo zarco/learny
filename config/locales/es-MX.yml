@@ -40,6 +40,7 @@ es-MX:
       reservation: 'Reservación'
       calendar: 'Calendario'
       administrator: 'Administrador'
+      contact: 'Contacto'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -85,6 +86,7 @@ es-MX:
         facilities: 'Amenidades'
         avatar: "Ávatar"
         pictures: 'Fotos del Establecimiento' 
+        contact: 'Contacto'
       venue_picture:
         avatar: 'Foto' 
       workshop:
@@ -112,6 +114,10 @@ es-MX:
         email: 'Correo electrónico'
         password: 'Constraseña'
         name: 'Nombre'
+      contact:
+        name: 'Nombre'
+        mail: 'Correo'
+        phone: 'Telefono'
                 
         
     errors:
@@ -251,6 +257,8 @@ es-MX:
       no_next_workshops: 'No tienes talleres próximos'
       search:
         no_results: 'La búsqueda no obtuvo resultados'            
+      close: 'Cerrar'
+      
     status:
       active: 'Activo'
       inactive: 'Inactivo'

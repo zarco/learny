@@ -13,6 +13,7 @@ class VenuesController < ApplicationController
   def new
   	@venue = Venue.new
   	@venue_pictures = @venue.venue_pictures.build
+    @contact = @venue.contact.build
   end
   
   def create
