@@ -15,6 +15,10 @@ $(document).ready(function(){
 	});
 
 	$('.navbar-collapse ul li a.item-menu,.index').click(function() {
-	    $('.navbar-toggle:visible').click();
+	    if($(document).width()>768){
+	    	$('.navbar-toggle:visible').click();
+	    }else{
+	    	$('.navbar').click();
+	    }
 	});
 });
