@@ -163,6 +163,8 @@ es-MX:
               blank: ' es requerida' 
             password_confirmation:
               confirmation: '. La contraseña y su confirmación son diferentes'    
+            confirmation_token:
+              invalid: 'El Token de confirmación no es válido'
         venue_picture:
           attributes:
             avatar:
@@ -226,6 +228,8 @@ es-MX:
       profile: 'Perfil'
       general: 'General'
       contact: 'Contacto'
+      pictures: 'Fotos'
+      address: 'Dirección'
       
     status:
       active: 'Activo'
