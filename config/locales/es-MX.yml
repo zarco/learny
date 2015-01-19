@@ -229,7 +229,8 @@ es-MX:
       references: 'Referencias'
       email_missing: 'El correo electrónico no puede ir en blanco.'
       confirmed: '¿Confirmado?'
-      welcome_to_learny: '¡Learny es el mejor lugar para encontrar a los mejores profesores para aquellos temas que siempre quisiste aprender!'
+      welcome_to_learny_part1: 'El lugar y el instructor perfecto para todo lo que siempre quisiste aprender'
+      welcome_to_learny_part2: '(Y hasta lo que no sabías que querías aprender…)'
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
@@ -273,6 +274,26 @@ es-MX:
       scheduled: 'Calendarizado'
       cancelled: 'Cancelado'
       given: 'Impartido'
+    sections:
+      student:
+        img_one: 'Busca un curso'
+        img_two: 'Registrate'
+        img_three: 'Revisa el perfil del experto'
+        img_four: 'Asiste, diviertete y aprende'
+        img_five: 'Describe tu experiencia'
+      expert:
+        img_one: 'Asombra con tu perfil'
+        img_two: 'Propón un curso'
+        img_three: 'Reserva un establecimiento'
+        img_four: 'Asiste, convive y diviertete'
+        img_five: 'Gana popularidad'
+      venue:
+        img_one: 'Ofrece tu espacio'
+        img_two: 'Destaca tus instalaciones'
+        img_three: 'Acepta las solicitudes para usar tu espacio'
+        img_four: 'Atrae más consumidores'
+        img_five: 'Promueve tu negocio'
+
 # kaminari
     pagination:
       first: '&laquo;'
