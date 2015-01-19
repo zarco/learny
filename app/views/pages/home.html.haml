@@ -24,63 +24,61 @@
 / Student Grid Section
 %section#student
   .container
-    .row
+    .row.text-center
       .col-lg-12.text-center
         %h2 
           = t('activerecord.models.student',default:'Student')
         %hr.star-primary/
-    .row
-      .col-sm-2.col-sm-offset-1
+    .row.text-center
+      .col-sm-2.col-xs-6.col-sm-offset-1
         = image_tag("student_1.png",:class => "img img-responsive")        
-      .col-sm-2
+        %h6
+          = t('views.sections.student.img_one',:default => 'Search a course')
+      .col-sm-2.col-xs-6
         = image_tag("student_2.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6
+          = t('views.sections.student.img_two',:default => 'Enroll')
+      .col-sm-2.col-xs-6
         = image_tag("student_3.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6
+          = t('views.sections.student.img_three',:default => "Check expert's profile")
+      .col-sm-2.col-xs-6
         = image_tag("student_4.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6
+          = t('views.sections.student.img_four',:default => 'Attend, have fun and learn')
+      .col-sm-2.col-xs-6
         = image_tag("student_5.png",:class => "img img-responsive")
-    .row
-      .col-sm-2.col-sm-offset-1
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
+        %h6
+          = t('views.sections.student.img_five',:default => 'Describe your experience')
 / Expert Section
 %section#expert.success
   .container
-    .row
-      .col-lg-12.text-center
+    .row.text-center
+      .col-lg-12
         %h2 
           = t('activerecord.models.expert',default:'Expert')
         %hr.star-light/
-    .row
-      .col-sm-2.col-sm-offset-1
+    .row.text-center
+      .col-sm-2.col-xs-6.col-sm-offset-1
         = image_tag("expert_1.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6          
+          = t('views.sections.expert.img_one',:default => 'Amaze with your profile')
+      .col-sm-2.col-xs-6
         = image_tag("expert_2.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6          
+          = t('views.sections.expert.img_two',:default => 'Propose a course')
+      .col-sm-2.col-xs-6
         = image_tag("expert_3.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6          
+          = t('views.sections.expert.img_three',:default => 'Book a venue')
+      .col-sm-2.col-xs-6
         = image_tag("expert_4.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6          
+          = t('views.sections.expert.img_four',:default => 'Attend, enjoy and have fun')
+      .col-sm-2.col-xs-6
         = image_tag("expert_5.png",:class => "img img-responsive")
-    .row
-      .col-sm-2.col-sm-offset-1
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
+        %h6          
+          = t('views.sections.expert.img_five',:default => 'Obtain popularity')
 / Venue Grid Section
 %section#venue
   .container
@@ -89,25 +87,24 @@
         %h2 
           = t('activerecord.models.venue',default:'Venue')
         %hr.star-primary/
-    .row
-      .col-sm-2.col-sm-offset-1
+    .row.text-center
+      .col-sm-2.col-xs-6.col-sm-offset-1
         = image_tag("venue_1.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6
+          = t('views.sections.venue.img_one',:default => 'Offer your space')
+      .col-sm-2.col-xs-6
         = image_tag("venue_2.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6
+          = t('views.sections.venue.img_two',:default => 'Distinguish your facilities')
+      .col-sm-2.col-xs-6
         = image_tag("venue_3.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6
+          = t('views.sections.venue.img_three',:default => 'Accept the applications to use your space')
+      .col-sm-2.col-xs-6
         = image_tag("venue_4.png",:class => "img img-responsive")
-      .col-sm-2
+        %h6
+          = t('views.sections.venue.img_four',:default => 'Obtain more clients')
+      .col-sm-2.col-xs-6
         = image_tag("venue_5.png",:class => "img img-responsive")
-    .row
-      .col-sm-2.col-sm-offset-1
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
-      .col-sm-2
-        %p
+        %h6
+          = t('views.sections.venue.img_five',:default => 'Promote your venue')         
