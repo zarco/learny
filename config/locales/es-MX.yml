@@ -97,8 +97,10 @@ es-MX:
         previous_skills: 'Conocimientos previos'
         target_public: 'Público Objetivo'
         description: 'Descripción'
+        min_number_participants: 'Número mínimo de participantes'
         max_number_participants: 'Número máximo de participantes'
         state: 'Estado'
+        free: 'Sin costo'
       reservation:
         starts_at: 'Inicia'
         final_time: 'Termina'
@@ -166,7 +168,33 @@ es-MX:
         venue_picture:
           attributes:
             avatar:
-              blank: ' es requerida'   
+              blank: ' es requerida'
+        workshop:
+          attributes:
+            name:
+              blank: 'es requerido'
+            price:
+              blank: 'es requerido'
+              greater_than_or_equal_to: 'no es válido'
+              greater_than: 'no es valido'
+            length:
+              blank: 'es requerido'
+              not_a_number: 'no es un número entero'
+              greater_than: 'no es válida'
+            agenda:
+              blank: 'es requerida'
+            description:
+              blank: 'es requerida'
+            max_number_participants:
+              blank: 'es requerido'
+              not_a_number: 'no es un número entero'
+              greater_than: 'no es válido'
+            min_number_participants: 
+              blank: 'es requerido'
+              not_a_number: 'no es un número entero'
+              greater_than: 'no es válida'
+            
+               
   
   "true": "Si"
   "false": "No"
@@ -197,7 +225,7 @@ es-MX:
       edit: 'Actualizar'
       view_course: 'Ver curso'
       glossary: 'Glosario'
-      faq: 'FAQ'
+      faq: 'Preguntas frecuentes'
       references: 'Referencias'
       email_missing: 'El correo electrónico no puede ir en blanco.'
       confirmed: '¿Confirmado?'
@@ -226,6 +254,9 @@ es-MX:
       profile: 'Perfil'
       general: 'General'
       contact: 'Contacto'
+      no_next_workshops: 'No tienes talleres próximos'
+      search:
+        no_results: 'La búsqueda no obtuvo resultados'            
       close: 'Cerrar'
       
     status:
