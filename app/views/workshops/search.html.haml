@@ -18,7 +18,7 @@
               %small
                 = workshop.small_description 100    
         .row
-          .col-md-4
+          .col-md-5
             %blockquote
               %h4
                 - unless workshop.expert.avatar_url.nil?
@@ -28,14 +28,23 @@
                 = link_to workshop.expert.full_name , workshop.expert
               %h5
                 = workshop.expert.occupation
-          .col-md-8
+          .col-md-7
             - unless workshop.reservation.nil?
+              - venue=workshop.venue
+              
               %blockquote
                 %h4
-                  = link_to workshop.venue.name, 'workshop.venue'
+                  - unless venue.avatar_url.nil?
+                    %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => venue.avatar.icon.url}
+                    &nbsp;
+                  = link_to venue.name, venue                  
                 %h5
                   %span.badge
                     = workshop.reservation.fmt_duration unless workshop.reservation.nil?
+                
+                %h4
+                  %span.small
+                    =venue.address  
           
               
           
