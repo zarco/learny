@@ -226,6 +226,7 @@ es-MX:
       profile: 'Perfil'
       general: 'General'
       contact: 'Contacto'
+      close: 'Cerrar'
       
     status:
       active: 'Activo'
