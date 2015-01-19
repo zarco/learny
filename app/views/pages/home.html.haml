@@ -2,7 +2,31 @@
 %header
   .container
     .row
-      .col-lg-12            
+      .col-lg-12
+        .panel-group.visible-xs{:role => "tablist"}
+          .panel.panel-primary
+            #collapseListGroupHeading.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseListGroup", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseListGroup"}
+                  = t('devise.sessions.sign_in', default: 'Sign up')
+            #collapseListGroup.panel-collapse.collapse{"aria-expanded" => "false", "aria-labelledby" => "collapseListGroupHeading", :role => "tabpanel", :style => "height: 0px;"}
+              %ul.list-group
+                %li.list-group-item 
+                  %h5
+                    = link_to new_student_session_path do
+                      = t('activerecord.models.student',default:'Student')
+                %li.list-group-item 
+                  %h5
+                    = link_to new_expert_session_path do
+                      = t('activerecord.models.expert',default:'Expert')
+                %li.list-group-item 
+                  %h5
+                    = link_to new_venue_session_path do
+                      = t('activerecord.models.venue',default:'Venue')
+                %li.list-group-item 
+                  %h6
+                    %a.collapsed{"aria-controls" => "collapseListGroup", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseListGroup"}                    
+                      = t('views.legends.close',default:'Close')
         = image_tag('landing.png',alt: "Learny.me", :class => "img img-responsive img-landing")
         .intro-text.text-center
           %span.name
