@@ -27,6 +27,27 @@ RSpec.describe Reservation, :type => :model do
     subject { FactoryGirl.build(:reservation) }
     it { should validate_presence_of :starts_at }
     it { should validate_presence_of :final_time }
+    it { should allow_value(1).for(:max_participants) }
+    it { should allow_value(10).for(:max_participants) }
+    it { should allow_value(999999).for(:max_participants) }
+    it { should_not allow_value(0).for(:max_participants) }
+    it { should_not allow_value(-1).for(:max_participants) }
+    it { should_not allow_value(1.1).for(:max_participants) }
+    it { should_not allow_value(0.00001).for(:max_participants) }
+  end
+  
+  describe 'availability in hours' do
+    it 'difference' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2014,01,01,13,30))
+      expect(reservation.availability_in_hours).to eql(3.5)
+    end
+    
+    it 'difference' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2018,10,31,13,30))
+      reservation.valid?
+      expect(reservation.availability_in_hours).to eql(3.5)
+    end
+    
   end
 
   describe 'methods' do
