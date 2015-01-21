@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :reservation do
-    starts_at {Time.new(2014,9,8,19,02)}
-    final_time {Time.new(2014,9,8,21,02)}
-    max_participants 1
+    starts_at { (Time.now+1.day).change({:hour=>10}) }#{Time.new(2014,9,8,19,02)}
+    final_time { (Time.now.+1.day).change({:hour=>14}) }#{Time.new(2014,9,8,21,02)}
+    max_participants 12
     all_day false
     
     factory :invalid_reservation do

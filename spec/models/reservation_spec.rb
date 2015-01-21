@@ -36,6 +36,45 @@ RSpec.describe Reservation, :type => :model do
     it { should_not allow_value(0.00001).for(:max_participants) }
   end
   
+  describe 'validate workshop' do
+    before(:each) do
+       @reservation=FactoryGirl.create(:reservation, :max_participants => 25)
+    end
+    
+    it 'valid workshop' do
+      workshop=FactoryGirl.create(:workshop)
+      expect(@reservation.valid?).to be_truthy
+    end
+    
+    it 'invalid participants number' do
+      workshop=FactoryGirl.create(:workshop, :max_number_participants => 100) 
+      @reservation.workshop=workshop
+      expect(@reservation.valid?).to be_falsey
+      #expect(@reservation.errors).to eq.error_on(:workshop)
+    end
+    
+    it 'invalid duration' do
+      workshop=FactoryGirl.create(:workshop, :length=> 10)
+      @reservation.workshop=workshop
+      #puts ">>>>>>>>>>>>> #{@reservation.availability_in_hours}"
+      expect(@reservation.valid?).to be_falsey
+      #expect(@reservation.errors).to eq(1).error_on(:workshop)
+    end
+  end
+  
+  describe 'validate start in the past' do
+    it 'one day' do
+      @reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.day)
+      expect(@reservation.valid?).to be_falsey
+    end
+    
+    it 'one hour' do
+      @reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.hour)
+      expect(@reservation.valid?).to be_falsey
+    end
+
+  end
+  
   describe 'availability in hours' do
     it 'difference' do
       reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2014,01,01,13,30))

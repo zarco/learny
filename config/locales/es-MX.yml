@@ -121,6 +121,8 @@ es-MX:
                 
         
     errors:
+      messages:
+        record_invalid: 'Registro invalido'
       models:
         student:
           attributes:
@@ -169,6 +171,13 @@ es-MX:
           attributes:
             avatar:
               blank: ' es requerida'
+        reservation:
+          attributes:
+            starts_at:
+              date_in_the_past: 'no puede ser una fecha pasada'
+            workshop:
+              too_many_participants: 'La reservación no es suficiente para %{participants} participantes'
+              too_much_time: 'El tiempo de la reservación no es suficiente para el taller'
         workshop:
           attributes:
             name:

@@ -6,7 +6,7 @@ class Reservation < ActiveRecord::Base
   
   validates :max_participants, numericality: { only_integer: true, greater_than: 0  }
 
-  #validates :workshop_does_not_fit
+  validate :workshop_does_not_fit, :invalid_starts_at
 
   scope :availables, lambda {where(:workshop => nil).where('starts_at >= ?', Date.today) }
   scope :find_by_starts_at, lambda {|value| (where('starts_at >= (?)',  Date.parse(value))) unless value.blank? }
@@ -32,22 +32,47 @@ class Reservation < ActiveRecord::Base
   end
 
   def availability_in_hours
+    normalize_final_time
     TimeDifference.between(self.starts_at,self.final_time).in_hours  
   end
   
 
   private
-  def workshop_does_not_fit
-    if !self.workshop.nil?   
-      
-    end
-  end
-
+  
   def normalize_final_time
     unless self.starts_at.nil? || self.final_time.nil?
       self.final_time=self.final_time.change({year: self.starts_at.year, month: self.starts_at.month, day: self.starts_at.day})
     end
   end
 
+  def invalid_starts_at 
+    if starts_at.present? && starts_at < Time.now 
+        message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.date_in_the_past')
+        #puts message
+        errors.add(:max_participants, message)
+    end
+  end
 
+  def workshop_does_not_fit
+    if !workshop.nil?   
+      #puts "workshop #{self.workshop.max_number_participants} >  reservation #{self.max_participants}"
+      if workshop.max_number_participants > max_participants 
+        #message="There is not enough places for #{self.workshop.max_number_participants} participants"
+        message=I18n.t('activerecord.errors.models.reservation.attributes.workshop.too_many_participants', 
+          :participants => workshop.max_number_participants)
+        #puts message
+        errors.add(:max_participants, message)
+      end
+      
+      #puts "workshop #{self.workshop.length} >  reservation #{availability_in_hours}"
+       
+      if workshop.length > availability_in_hours
+        #message="There is not enough time the workshop"
+        message=I18n.t('activerecord.errors.models.reservation.attributes.workshop.too_much_time')
+        #puts message 
+        errors.add(:final_time, message)
+      end 
+            
+    end
+  end
 end

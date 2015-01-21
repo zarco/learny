@@ -50,8 +50,9 @@ describe Expert do
       expert=FactoryGirl.create(:expert)
       workshop=FactoryGirl.create(:workshop, :expert => expert)
       venue=FactoryGirl.create(:venue)
-      reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first,
+      reservation=FactoryGirl.build(:reservation, :calendar => venue.calendars.first,
          :workshop => workshop, :starts_at => Date.new(2011,11,11))
+      reservation.save(:validate => false)
       prev_workshops=expert.previous_workshops
       
       #puts prev_workshops
