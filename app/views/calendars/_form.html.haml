@@ -1,10 +1,14 @@
-= form_for @calendar do |f|
+= form_for @calendar, html: { class: "form form-horizontal light_tower" } do |f|
   - if @calendar.errors.any?
     #error_explanation
       %h2= "#{pluralize(@calendar.errors.count, "error")} prohibited this calendar from being saved:"
       %ul
         - @calendar.errors.full_messages.each do |msg|
           %li= msg
-
+  .form-group
+    = f.label :title, class: 'control-label'
+    .controls
+      = f.text_field :title, class: 'form-control', required: true
+      /= error_span(@calendar[:title])
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class=>'btn btn-primary btn-lg'

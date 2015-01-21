@@ -26,7 +26,7 @@ class CalendarsController < ApplicationController
   # POST /calendars.json
   def create
     @calendar = Calendar.new(calendar_params)
-
+    @calendar.venue=current_venue
     respond_to do |format|
       if @calendar.save
         format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }

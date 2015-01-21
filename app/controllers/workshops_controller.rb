@@ -64,20 +64,6 @@ class WorkshopsController < ApplicationController
   # PATCH/PUT /workshops/1.json
   def update
     respond_to do |format|
-      
-      #reservation_id=workshop_params[:reservation][:id]
-      #if reservation_id.empty?
-      #  updated=@workshop.update(workshop_params.except(:reservation))
-      #else
-       # @released_reservation=Reservation.where(:workshop_id => params[:id]).first
-       # @released_reservation.workshop_id = nil if !@released_reservation.nil?
-       
-       # @reservation=Reservation.find(reservation_id)
-       # @reservation.workshop=@workshop
-          
-       # @released_reservation.save if !@released_reservation.nil?
-       # updated=  @workshop.update(workshop_params.except(:reservation)) && @reservation.save 
-      #end
       updated=false
       Workshop.transaction do
         unless workshop_params[:reservation_attributes].nil?
