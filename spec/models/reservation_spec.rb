@@ -61,16 +61,23 @@ RSpec.describe Reservation, :type => :model do
       #expect(@reservation.errors).to eq(1).error_on(:workshop)
     end
   end
+
+  describe 'invalid final time' do
+    it 'one hour' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now+1.hour , :final_time => Time.now-1)
+      expect(reservation.valid?).to be_falsey
+    end
+  end
   
   describe 'validate start in the past' do
     it 'one day' do
-      @reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.day)
-      expect(@reservation.valid?).to be_falsey
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.day)
+      expect(reservation.valid?).to be_falsey
     end
     
     it 'one hour' do
-      @reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.hour)
-      expect(@reservation.valid?).to be_falsey
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.hour)
+      expect(reservation.valid?).to be_falsey
     end
 
   end

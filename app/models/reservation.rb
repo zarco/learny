@@ -6,7 +6,7 @@ class Reservation < ActiveRecord::Base
   
   validates :max_participants, numericality: { only_integer: true, greater_than: 0  }
 
-  validate :workshop_does_not_fit, :invalid_starts_at
+  validate :workshop_does_not_fit, :invalid_starts_at, :invalid_final_time
 
   scope :availables, lambda {where(:workshop => nil).where('starts_at >= ?', Date.today) }
   scope :find_by_starts_at, lambda {|value| (where('starts_at >= (?)',  Date.parse(value))) unless value.blank? }
@@ -45,11 +45,20 @@ class Reservation < ActiveRecord::Base
     end
   end
 
+
+  def invalid_final_time 
+    if starts_at.present? && final_time.present? && final_time < starts_at 
+        message=I18n.t('activerecord.errors.models.reservation.attributes.final_time.date_in_the_past')
+        #puts message
+        errors.add(:final_time, message)
+    end
+  end
+
   def invalid_starts_at 
     if starts_at.present? && starts_at < Time.now 
         message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.date_in_the_past')
         #puts message
-        errors.add(:max_participants, message)
+        errors.add(:starts_at, message)
     end
   end
 
