@@ -44,9 +44,11 @@ class WorkshopsController < ApplicationController
       unless workshop_params[:reservation_attributes].nil?
         reservation_id=workshop_params[:reservation_attributes][:id] 
         @workshop.update_reservation(reservation_id) if @workshop.persisted? && reservation_id
-      end  
-   
-      respond_to do |format|
+        #puts @workshop.errors.full_messages unless @workshop.valid?
+        raise ActiveRecord::Rollback if @workshop.invalid?
+      end        
+    end
+    respond_to do |format|
         if @workshop.persisted?
           #TODO Enviar notifiacion a establecimiento de que un curso ha sido calendarizado
           format.html { redirect_to root_path, notice: I18n.t('views.legends.workshop.proposed_successfully',default: 'Workshop successfully proposed.') }
@@ -55,8 +57,7 @@ class WorkshopsController < ApplicationController
           format.html { render :new}
           format.json { render json: @workshop.errors, status: :unprocessable_entity }
         end
-      end      
-    end
+     end
   end
 
   # PATCH/PUT /workshops/1
@@ -79,9 +80,16 @@ class WorkshopsController < ApplicationController
       #end
       
       Workshop.transaction do
+        
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<"
+        puts workshop_params[:reservation_attributes]
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<"
+        
+        
         unless workshop_params[:reservation_attributes].nil?
           reservation_id=workshop_params[:reservation_attributes][:id] 
           @workshop.update_reservation(reservation_id) if reservation_id
+          puts @workshop
         end  
         
       
