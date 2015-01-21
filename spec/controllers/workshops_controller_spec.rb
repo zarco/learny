@@ -82,8 +82,7 @@ RSpec.describe WorkshopsController, :type => :controller do
           post :create, {:workshop => valid_attributes}, valid_session
         }.to change(Workshop, :count).by(1)
       end
-      
-      
+
       it "creates a new Workshop with an existing Reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
@@ -96,8 +95,8 @@ RSpec.describe WorkshopsController, :type => :controller do
         expect(p_workshop.reservation.id).to eql(reservation.id)
         expect(p_workshop.state).to eql('scheduled')
       end
-      
-      it "creates a new Workshop with an blank reservation" do
+
+      it "creates a new Workshop with a blank reservation" do
         workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => {:id => ''})
         expect {
           post :create, {:workshop => workshop}, valid_session
@@ -107,8 +106,6 @@ RSpec.describe WorkshopsController, :type => :controller do
         expect(p_workshop.state).to eql('proposed')
       end
 
-
-      
     end
 
     describe "with invalid params" do
@@ -121,6 +118,15 @@ RSpec.describe WorkshopsController, :type => :controller do
         post :create, {:workshop => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
+
+      it "with not suitable reservation" do
+        venue=FactoryGirl.create(:venue)
+        reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
+        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => reservation.attributes)
+        expect {
+          post :create, {:workshop => workshop.merge({:max_number_participants => 1000})}, valid_session
+        }.to_not change(Workshop, :count)
+      end
     end
   end
 
@@ -130,32 +136,30 @@ RSpec.describe WorkshopsController, :type => :controller do
         FactoryGirl.attributes_for(:workshop, :name => 'Basic Dutch')
       }
 
-      it "updates the requested workshop" do
+      it "updates only the requested workshop" do
         workshop = Workshop.create! valid_attributes
-        put :update, {:id => workshop.to_param, :workshop => new_attributes}, valid_session
-        workshop.reload
+        put :update, {:id => workshop.id, :workshop => new_attributes}, valid_session
+        workshop=Workshop.find(workshop.id)
         expect(workshop.name).to eql(new_attributes[:name])
       end
 
-
-        
       it "updates the requested workshop with reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
         new_reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        
+
         workshop=FactoryGirl.create(:workshop)
         workshop.update(:reservation => reservation)
-        
+
         put :update, {:id => workshop.id, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
         workshop.reload
+        
         expect(workshop.name).to eql(new_attributes[:name])
         expect(workshop.reservation).to_not be_nil
         expect(workshop.reservation.id).to eql(new_reservation.id)
         expect(workshop.reservation.id).to_not eql(reservation.id)
-        
-      end  
-        
+
+      end
 
       it "assigns the requested workshop as @workshop" do
         workshop = Workshop.create! valid_attributes
@@ -171,6 +175,10 @@ RSpec.describe WorkshopsController, :type => :controller do
     end
 
     describe "with invalid params" do
+      let(:new_attributes) {
+        FactoryGirl.attributes_for(:workshop, :name => 'Basic Dutch')
+      }
+
       it "assigns the workshop as @workshop" do
         workshop = Workshop.create! valid_attributes
         put :update, {:id => workshop.to_param, :workshop => invalid_attributes}, valid_session
@@ -182,6 +190,26 @@ RSpec.describe WorkshopsController, :type => :controller do
         put :update, {:id => workshop.to_param, :workshop => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
+
+      it "updates the requested workshop with not suitable reservation" do
+        venue=FactoryGirl.create(:venue)
+        reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
+        new_reservation=FactoryGirl.create(:reservation, :max_participants=>1,:calendar => venue.calendars.first)
+
+        workshop=FactoryGirl.create(:workshop, valid_attributes)
+        workshop.update(:reservation => reservation)
+
+        put :update, {:id => workshop.id, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
+        workshop.reload
+
+        expect(workshop.reservation).to_not be_nil
+        expect(workshop.reservation.id).to eql(reservation.id)
+        expect(workshop.reservation.id).to_not eql(new_reservation.id)
+        
+        expect(workshop.name).to eql(valid_attributes[:name])
+        expect(workshop.name).to_not eql(new_attributes[:name])
+      end
+
     end
   end
 

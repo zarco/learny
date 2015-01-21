@@ -32,7 +32,9 @@ class Reservation < ActiveRecord::Base
   end
 
   def availability_in_hours
+    #puts "#{self.starts_at}<<<,>>>#{self.final_time}"
     normalize_final_time
+    #puts "#{self.starts_at}<<<,>>>#{self.final_time}"
     TimeDifference.between(self.starts_at,self.final_time).in_hours  
   end
   
@@ -47,7 +49,7 @@ class Reservation < ActiveRecord::Base
 
 
   def invalid_final_time 
-    if starts_at.present? && final_time.present? && final_time < starts_at 
+    if starts_at.present? && final_time.present? && final_time <= starts_at 
         message=I18n.t('activerecord.errors.models.reservation.attributes.final_time.date_in_the_past')
         #puts message
         errors.add(:final_time, message)
