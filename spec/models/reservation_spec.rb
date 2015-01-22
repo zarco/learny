@@ -88,7 +88,7 @@ RSpec.describe Reservation, :type => :model do
       expect(reservation.availability_in_hours).to eql(3.5)
     end
     
-    it 'difference' do
+    it 'other difference' do
       reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2018,10,31,13,30))
       reservation.valid?
       expect(reservation.availability_in_hours).to eql(3.5)

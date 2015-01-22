@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(version: 20150118214811) do
 
   create_table "reservations", force: true do |t|
     t.datetime "starts_at",                        null: false
-    t.time     "final_time",                       null: false
-    t.integer  "max_participants",                 null: false
+    t.datetime "final_time",                       null: false
+    t.integer  "max_participants", default: 12,    null: false
     t.boolean  "all_day",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"

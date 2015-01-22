@@ -43,7 +43,9 @@ class Reservation < ActiveRecord::Base
   
   def normalize_final_time
     unless self.starts_at.nil? || self.final_time.nil?
-      self.final_time=self.final_time.change({year: self.starts_at.year, month: self.starts_at.month, day: self.starts_at.day})
+      #puts "Before #{self.starts_at}<<<,>>>#{self.final_time}"
+      self.final_time=starts_at.change({:hour => final_time.hour, :min => final_time.min})
+      #puts "After #{self.starts_at}<<<,>>>#{self.final_time}"
     end
   end
 
