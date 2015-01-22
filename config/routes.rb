@@ -1,5 +1,8 @@
 LearnyApp::Application.routes.draw do
   
+
+  resources :contacts
+
   devise_for :students, :controllers => { :registrations => "students/registrations" }
   devise_for :experts, :controllers => { :registrations => "experts/registrations" }
   devise_for :venues, :controllers => { :registrations => "venues/registrations" }
@@ -11,16 +14,20 @@ LearnyApp::Application.routes.draw do
 
   resources :experts, only: [:show]
   resources :students, only: [:index, :show]
+  resources :venues
+  resources :venue_pictures
   resources :calendars
   resources :reservations
   resources :workshops, :concerns => :paginatable
   resources :enrollments, :concerns => :paginatable
   
   
+  
   get '/about'    => 'high_voltage/pages#show', id: 'about'
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
   get '/privacy'  => 'high_voltage/pages#show', id: 'privacy'
   get '/terms'    => 'high_voltage/pages#show', id: 'terms'
+  get '/faq'      => 'high_voltage/pages#show', id: 'faq'
 
   get '/home', to: redirect('/')
   get 'students/index'

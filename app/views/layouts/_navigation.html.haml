@@ -1,23 +1,32 @@
-%nav.navbar.navbar-fixed-top.navbar-inverse{:role => "navigation"}
-  .container
-    .navbar-header
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container    
+    .navbar-header.page-scroll
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to image_tag( 'L.png', size: "25x30", alt: "L") + 'earny', root_path, :class => "navbar-brand"
+      = link_to image_tag( 'L.png', size: "40x40", alt: "L",:class => "logo img-logo") + 'earny', root_path, :class => "navbar-brand", :style => "display: inline-flex"
     .collapse.navbar-collapse
-      
-      -unless administrator_signed_in? || venue_signed_in? || expert_signed_in?
+      -if !student_signed_in? && !expert_signed_in? && !venue_signed_in? && !administrator_signed_in? && current_page?(root_path)
+        %ul.nav.navbar-nav.navbar-left
+          %li.hidden
+            %a{:href => "#page-top", :class =>"item-menu"}
+          %li.page-scroll
+            %a{:href => "#student", :class =>"item-menu"}
+              = t('views.legends.student',default: 'Student')
+          %li.page-scroll
+            %a{:href => "#expert", :class =>"item-menu"}
+              = t('views.legends.expert',default: 'Expert')
+          %li.page-scroll
+            %a{:href => "#venue", :class =>"item-menu"}
+              = t('views.legends.venue',default: 'Venue')
+      -unless administrator_signed_in? || venue_signed_in? || expert_signed_in? || current_page?(root_path)
         = form_tag '/workshops', method: :get, :class => 'navbar-form navbar-left', :role => 'search' do
           .form-group
             %input.form-control{:placeholder => "Clases de surf...", :type => "text", :name => "w"}/
           %button.btn.btn-primary{:type => "submit", :value=> "Search"}
             %span.glyphicon.glyphicon-search
-      
-      
-      
       -if student_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
@@ -88,11 +97,17 @@
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              - if !current_venue.avatar_url.nil?
+                %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'25px', :alt => "Profile", :src => current_venue.avatar.icon.url}
+                &nbsp;
               = current_venue.name
             %ul.dropdown-menu
               %li
+                = link_to venue_path current_venue do
+                  = t('views.legends.my_profile',default:'Your Account')
+              %li
                 = link_to edit_venue_registration_path do
-                  = t('devise.sessions.your_account',default:'Your Account')
+                  = t('views.legends.edit_my_profile',default:'Edit my profile')
               %li.divider
               %li
                 = link_to calendars_path do

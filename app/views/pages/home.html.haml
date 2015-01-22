@@ -1,36 +1,134 @@
 - provide(:title, '')
-
-
-.jumbotron
+%header
   .container
-    %h1
-      = t 'views.legends.welcome_to_learny', default: 'Welcome to Learny!'
-    %p
-      The best place to find the best teachers for those things you always wanted to learn!
-    %p
-      %button.btn.btn-primary.btn-lg{'data-toggle'=>"modal", 'data-target'=>'#mdl_signin'}
-        = t('devise.sessions.sign_up', default: 'Sign up') 
-    
-      
-.container
-  / Example row of columns
-  .row
-    .col-md-4
-      %h2 Heading
-      %p= t('views.legends.welcome_to_learny')
-      %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      %p
-        %a.btn.btn-default{:href => "#", :role => "button"} View details »
-    .col-md-4
-      %h2 Heading
-      %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      %p
-        %a.btn.btn-default{:href => "#", :role => "button"} View details »
-    .col-md-4
-      %h2 Heading
-      %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-      %p
-        %a.btn.btn-default{:href => "#", :role => "button"} View details »
-        
-
-          
+    .row
+      .col-lg-12
+        .panel-group.visible-xs{:role => "tablist"}
+          .panel.panel-primary
+            #collapseListGroupHeading.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseListGroup", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseListGroup"}
+                  = t('devise.sessions.sign_in', default: 'Sign up')
+            #collapseListGroup.panel-collapse.collapse{"aria-expanded" => "false", "aria-labelledby" => "collapseListGroupHeading", :role => "tabpanel", :style => "height: 0px;"}
+              %ul.list-group
+                %li.list-group-item 
+                  %h5
+                    = link_to new_student_session_path do
+                      = t('activerecord.models.student',default:'Student')
+                %li.list-group-item 
+                  %h5
+                    = link_to new_expert_session_path do
+                      = t('activerecord.models.expert',default:'Expert')
+                %li.list-group-item 
+                  %h5
+                    = link_to new_venue_session_path do
+                      = t('activerecord.models.venue',default:'Venue')
+                %li.list-group-item 
+                  %h6
+                    %a.collapsed{"aria-controls" => "collapseListGroup", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseListGroup"}                    
+                      = t('views.legends.close',default:'Close')
+        = image_tag('landing.png',alt: "Learny.me", :class => "img img-responsive img-landing")
+        .intro-text.text-center
+          %span.name
+            .row              
+              .col-md-6.col-md-offset-3
+                = form_tag '/workshops', method: :get, :role => 'search' do
+                  .form-group
+                    .input-group.input-group-lg
+                      %input.form-control{:name => "w", :placeholder => "Clases de surf...", :type => "text"}/
+                      %span.input-group-btn
+                        %button.btn.btn-primary{:type => "submit", :value => "Search"}
+                          %span.glyphicon.glyphicon-search              
+          %hr.star-light/
+          %span.skills
+            %h3#slogan-part1 
+              = t('views.legends.welcome_to_learny_part1',default:'The place and perfect teacher to everything you always wanted to learn')      
+            %h4#slogan-part2 
+              = t('views.legends.welcome_to_learny_part2',default:'(And until the things you did not know that you wanted to learn)')      
+/ Student Grid Section
+%section#student
+  .container
+    .row.text-center
+      .col-lg-12.text-center
+        %h2 
+          = t('activerecord.models.student',default:'Student')
+        %hr.star-primary/
+    .row.text-center
+      .col-sm-2.col-xs-6.col-sm-offset-1
+        = image_tag("student_1.png",:class => "img img-responsive")        
+        %h6
+          = t('views.sections.student.img_one',:default => 'Search a course')
+      .col-sm-2.col-xs-6
+        = image_tag("student_2.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.student.img_two',:default => 'Enroll')
+      .col-sm-2.col-xs-6
+        = image_tag("student_3.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.student.img_three',:default => "Check expert's profile")
+      .col-sm-2.col-xs-6
+        = image_tag("student_4.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.student.img_four',:default => 'Attend, have fun and learn')
+      .col-sm-2.col-xs-6
+        = image_tag("student_5.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.student.img_five',:default => 'Describe your experience')
+/ Expert Section
+%section#expert.success
+  .container
+    .row.text-center
+      .col-lg-12
+        %h2 
+          = t('activerecord.models.expert',default:'Expert')
+        %hr.star-light/
+    .row.text-center
+      .col-sm-2.col-xs-6.col-sm-offset-1
+        = image_tag("expert_1.png",:class => "img img-responsive")
+        %h6          
+          = t('views.sections.expert.img_one',:default => 'Amaze with your profile')
+      .col-sm-2.col-xs-6
+        = image_tag("expert_2.png",:class => "img img-responsive")
+        %h6          
+          = t('views.sections.expert.img_two',:default => 'Propose a course')
+      .col-sm-2.col-xs-6
+        = image_tag("expert_3.png",:class => "img img-responsive")
+        %h6          
+          = t('views.sections.expert.img_three',:default => 'Book a venue')
+      .col-sm-2.col-xs-6
+        = image_tag("expert_4.png",:class => "img img-responsive")
+        %h6          
+          = t('views.sections.expert.img_four',:default => 'Attend, enjoy and have fun')
+      .col-sm-2.col-xs-6
+        = image_tag("expert_5.png",:class => "img img-responsive")
+        %h6          
+          = t('views.sections.expert.img_five',:default => 'Obtain popularity')
+/ Venue Grid Section
+%section#venue
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2 
+          = t('activerecord.models.venue',default:'Venue')
+        %hr.star-primary/
+    .row.text-center
+      .col-sm-2.col-xs-6.col-sm-offset-1
+        = image_tag("venue_1.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.venue.img_one',:default => 'Offer your space')
+      .col-sm-2.col-xs-6
+        = image_tag("venue_2.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.venue.img_two',:default => 'Distinguish your facilities')
+      .col-sm-2.col-xs-6
+        = image_tag("venue_3.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.venue.img_three',:default => 'Accept the applications to use your space')
+      .col-sm-2.col-xs-6
+        = image_tag("venue_4.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.venue.img_four',:default => 'Obtain more clients')
+      .col-sm-2.col-xs-6
+        = image_tag("venue_5.png",:class => "img img-responsive")
+        %h6
+          = t('views.sections.venue.img_five',:default => 'Promote your venue')         

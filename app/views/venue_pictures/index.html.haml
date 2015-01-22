@@ -1,0 +1,23 @@
+%h1 Listing venue_pictures
+
+%table
+  %thead
+    %tr
+      %th Venue
+      %th Avatar
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @venue_pictures.each do |venue_picture|
+      %tr
+        %td= venue_picture.venue_id
+        %td= venue_picture.avatar
+        %td= link_to 'Show', venue_picture
+        %td= link_to 'Edit', edit_venue_picture_path(venue_picture)
+        %td= link_to 'Destroy', venue_picture, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Venue picture', new_venue_picture_path

@@ -14,18 +14,36 @@
     = f.text_area :description, :class => 'form-control', :rows=>4
   .row
     .form-group.col-md-6
+      = f.label :min_number_participants
+      = f.text_field :min_number_participants, :class => 'form-control', :type => "number"
+    .form-group.col-md-6
       = f.label :max_number_participants
       = f.text_field :max_number_participants, :class => 'form-control', :type => "number"
-    .form-group.col-md-3
+  .row
+    .form-group.col-md-5
       = f.label :length
       .input-group
         = f.text_field :length,  :class => 'form-control', :type => "number"
         %span.input-group-addon horas
-    .form-group.col-md-3
+    .form-group.col-md-5
       = f.label :price
       .input-group
         %span.input-group-addon $
         = f.text_field :price,  :class => 'form-control', :type => "money"
+        %span.input-group-addon 
+          = t('views.legends.workshop.price_per_student',:default => 'per student')
+    .form-group.col-md-2
+      = f.label :free
+      = f.check_box :free, :class => 'checkbox'
+  .form-group
+    = f.label :target_public
+    = f.text_field :target_public, :class=>'form-control'
+  .form-group
+    = f.label :previous_skills
+    = f.text_field :previous_skills, :class => 'form-control'
+  .form-group
+    = f.label :agenda
+    = f.text_area :agenda, :class => 'form-control', :rows=>4
   .form-group
     %label{:for => "establecimiento"} Establecimiento
     .input-group
@@ -37,15 +55,6 @@
       %span.input-group-btn
         %button.btn_find_venue.btn.btn-default{:type => "button", 'data-toggle'=>'modal', 'data-target'=>'.dlg_find_venue'}
           %span.glyphicon.glyphicon-search
-  .form-group
-    = f.label :target_public
-    = f.text_field :target_public, :class=>'form-control'
-  .form-group
-    = f.label :previous_skills
-    = f.text_field :previous_skills, :class => 'form-control'
-  .form-group
-    = f.label :agenda
-    = f.text_area :agenda, :class => 'form-control', :rows=>4
             
   .actions 
     = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg btn-block'
