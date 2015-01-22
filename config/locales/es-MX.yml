@@ -247,10 +247,10 @@ es-MX:
         propose_new_workshop: 'Proponer nuevo taller'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
+        price_per_student: 'por estudiante'
       calendar:
         more_information: 'Más información'
-        close: 'Cerrar'
-      price_per_student: 'por estudiante'
+        close: 'Cerrar'      
       edit_my_profile: 'Editar mi perfil'
       my_profile: 'Mi perfil'
       account: 'Cuenta'
