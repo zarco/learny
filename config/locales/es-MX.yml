@@ -176,7 +176,9 @@ es-MX:
         propose_new_workshop: 'Proponer nuevo taller'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
-      
+      calendar:
+        more_information: 'Más información'
+        close: 'Cerrar'
       edit_my_profile: 'Editar mi perfil'
       my_profile: 'Mi perfil'
       account: 'Cuenta'
