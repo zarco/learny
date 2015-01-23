@@ -86,7 +86,7 @@ end
 
 When(/^I fill in the venue fields$/) do
   # fill_in Venue.human_attribute_name(:name), with: @venue.name # collides with contact.name
-  fill_in Venue.human_attribute_name(:map_link), with: @venue.map_link
+  fill_in Venue.human_attribute_name(:description), with: @venue.description
   fill_in Venue.human_attribute_name(:facilities), with: @venue.facilities
   # TODO: add  venue pictures
 end

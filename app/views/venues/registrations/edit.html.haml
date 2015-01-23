@@ -67,11 +67,14 @@
               = f.text_area :address, autofocus: true, class: 'form-control'
             .row
               .form-group.col-md-6
-                = f.label :map_link
-                .input-group
-                  .input-group-addon
-                    %i.fa.fa-map-marker
-                  = f.url_field :map_link, autofocus: true, class: 'form-control'
+                =link_to 'Change Location', '#', class: 'btn btn-warning', id: 'map_button'
+                #map-container
+                  %script{:src => "https://maps.googleapis.com/maps/api/js"}
+                  #map_data
+                    = f.text_field :latitude, readonly: true
+                    %br
+                    = f.text_field :longitude, readonly: true
+                  #map_canvas
 
       .tab-pane.fade#pictures
         .panel.panel
