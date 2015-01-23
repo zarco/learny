@@ -366,13 +366,17 @@ footer .footer-below {
     position: fixed;
     right: 2%;
     bottom: 2%;
-    width: 50px;
+    width: 170px;
     height: 50px;
 }
 
-.scroll-top .btn {
-    width: 50px;
-    height: 50px;
+.scroll-top > form{
+    display: inline;
+}
+
+.scroll-top > .btn {
+    width: 45px;
+    height: 45px;
     border-radius: 100%;
     font-size: 20px;
     line-height: 28px;
@@ -453,5 +457,11 @@ footer .footer-below {
     }    
     header img.img-landing {        
         width: 100%;
+    }
+    #slogan-part1 {
+        font-size: 0.9em;   
+    }    
+    #slogan-part2 {
+        font-size: 0.7em;   
     }
 }

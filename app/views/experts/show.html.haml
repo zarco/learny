@@ -27,8 +27,8 @@
               %h4
                 =link_to workshop.name, workshop
               %h5
-                =link_to workshop.venue.name, '#'
-              %p
+                =link_to workshop.venue.name, workshop.venue
+              %h6
                 =workshop.reservation.fmt_starts_at
       
     .panel.panel-primary
@@ -41,10 +41,10 @@
               %h4
                 =link_to workshop.name, workshop
               %h5
-                =link_to workshop.venue.name, '#'
-              %p
+                =link_to workshop.venue.name, workshop.venue
+              %h6
                 =workshop.reservation.fmt_starts_at
-    
+            
                         
   .col-md-4
     -if current_expert == @expert
@@ -60,7 +60,8 @@
       .panel-body
         .row
           .container
-            =link_to @expert.website, @expert.website, :target => 'blank' if !@expert.website.empty?
+            =link_to @expert.website, @expert.website, :target => 'blank' unless @expert.website.nil? || @expert.website.empty?
+
 
     .panel.panel-primary
       .panel-heading
@@ -68,16 +69,16 @@
       .panel-body
         .container
           .row
-            -unless @expert.facebook_link.nil? && @expert.facebook_link.empty?
+            -unless @expert.facebook_link.nil? || @expert.facebook_link.empty?
               =link_to @expert.facebook_link, :class=>'btn btn-social-icon btn-facebook', :target => 'blank' do
                 %i.fa.fa-facebook
-            -unless @expert.twitter_link.nil? && @expert.twitter_link.empty?
+            -unless @expert.twitter_link.nil? || @expert.twitter_link.empty?
               =link_to @expert.twitter_link, :class=>'btn btn-social-icon btn-twitter', :target => 'blank' do
                 %i.fa.fa-twitter
-            -unless @expert.linkedin_link.nil? && @expert.linkedin_link.empty?
+            -unless @expert.linkedin_link.nil? || @expert.linkedin_link.empty?
               =link_to @expert.linkedin_link, :class=>'btn btn-social-icon btn-linkedin',:target => 'blank' do
                 %i.fa.fa-linkedin
-            -unless @expert.google_plus_link.nil? && @expert.google_plus_link.empty?
+            -unless @expert.google_plus_link.nil? || @expert.google_plus_link.empty?
               =link_to @expert.google_plus_link,  :class=>'btn btn-social-icon btn-google-plus',:target => 'blank' do
                 %i.fa.fa-google-plus
 

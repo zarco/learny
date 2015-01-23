@@ -4,7 +4,7 @@
       .row.well
         .col-md-12
           %blockquote
-            %h1
+            %h2
               = @workshop.name
         .description
           = simple_format @workshop.description
@@ -14,18 +14,27 @@
             -unless @workshop.reservation.nil?
               %p Fecha: #{@workshop.reservation.fmt_duration}
             %p 
-              Costo: #{@workshop.price} MXN 
-              = t('views.legends.workshop.price_per_student',:default => 'per student')
+              = Workshop.human_attribute_name(:price)
+              - unless @workshop.free? 
+                #{@workshop.price} MXN 
+                = t('views.legends.workshop.price_per_student',:default => 'per student')
+              - else
+                = Workshop.human_attribute_name(:free)
           .col-xs-4
             %button.btn.btn-lg.btn-warning.btn-block{"data-target" => "#temario", "data-toggle" => "modal", :type => "button"}
               %span.glyphicon.glyphicon-list-alt
               = Workshop.human_attribute_name(:agenda)
           .col-xs-12
-            %p Conocimientos Previos: #{@workshop.previous_skills}
-            %p Dirigido a: #{@workshop.target_public}
+            %p 
+              = Workshop.human_attribute_name(:previous_skills)
+              = @workshop.previous_skills
+            %p 
+              = Workshop.human_attribute_name(:target_public)
+              = @workshop.target_public
             
       
     - unless @workshop.reservation.nil?
+      -venue=@workshop.venue
       .panel.panel-primary.col-ms-12
         .panel-heading
           %h3.panel-title #{Venue.model_name.human}
@@ -33,7 +42,13 @@
           .col-md-12
             %blockquote
               %h4
-                %a{:href => "../cursos/1.html"} #{@workshop.venue.name}
+                - unless venue.avatar_url.nil?
+                  %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => venue.avatar.icon.url}
+                  &nbsp;
+                =link_to venue.name, venue
+              %h4
+                %span.small
+                  =venue.address
                 /%p
                 /  Es un lugar donde podrás pasar un buen rato con tus colegas y disfrutar de aquellas conversaciones amenas disfrutando de una gran variedad de cervezas donde nuestra filosofía es “Que el cliente decida que tomar” debido a nuestra gran variedad con la que contamos.
       

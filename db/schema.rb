@@ -187,6 +187,8 @@ ActiveRecord::Schema.define(version: 20150120000113) do
     t.integer  "max_number_participants"
     t.integer  "state",                   default: 0
     t.integer  "expert_id"
+    t.boolean  "free",                    default: false
+    t.integer  "min_number_participants", default: 1
   end
 
 end
