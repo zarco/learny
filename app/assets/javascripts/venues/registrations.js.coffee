@@ -1,5 +1,7 @@
 $ ->
 	$("#map_button").click ->
+		$('#map_button').hide();
+		$('.map_info').css('visibility', 'visible');
 		window.markerDefined = false;
 		currentLat = $('#venue_latitude').val();
 		currentLng = $('#venue_longitude').val();
@@ -28,7 +30,7 @@ $ ->
 				);
 
 				updateLocation newLatLng;
-				$('#map_button').hide();
+
 				window.markerDefined = true;
 		);
 

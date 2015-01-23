@@ -67,13 +67,14 @@
               = f.text_area :address, autofocus: true, class: 'form-control'
             .row
               .form-group.col-md-6
+                .map_info Click derecho para definir. Arrastra el marcador para modificar
                 =link_to 'Change Location', '#', class: 'btn btn-warning', id: 'map_button'
                 #map-container
                   %script{:src => "https://maps.googleapis.com/maps/api/js"}
                   #map_data
-                    = f.text_field :latitude, readonly: true
+                    = f.hidden_field  :latitude 
                     %br
-                    = f.text_field :longitude, readonly: true
+                    = f.hidden_field  :longitude
                   #map_canvas
 
       .tab-pane.fade#pictures
