@@ -166,6 +166,8 @@ ActiveRecord::Schema.define(version: 20150123003821) do
     t.string   "description"
     t.string   "address"
     t.string   "business_hours"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
