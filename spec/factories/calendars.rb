@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :calendar do
     title {Faker::Name.name}
+    venue {FactoryGirl.create(:no_calendar_venue)}
         
     factory :invalid_calendar do
       title nil

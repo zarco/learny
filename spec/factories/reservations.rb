@@ -6,6 +6,7 @@ FactoryGirl.define do
     final_time { (Time.now.+1.day).change({:hour=>14}) }#{Time.new(2014,9,8,21,02)}
     max_participants 12
     all_day false
+    calendar {FactoryGirl.build(:default_calendar)}
     
     factory :invalid_reservation do
       starts_at nil

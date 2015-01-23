@@ -23,7 +23,7 @@ RSpec.describe ReservationsController, :type => :controller do
   include Devise::TestHelpers
 
   before(:each) do
-    @venue=FactoryGirl.create(:venue)
+    @venue=FactoryGirl.create(:no_calendar_venue)
     @venue.confirm!
     sign_in @venue
   end
@@ -38,7 +38,7 @@ RSpec.describe ReservationsController, :type => :controller do
   
   
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:reservation, :calendar_id => default_calendar)
+    FactoryGirl.attributes_for(:reservation, :calendar_id => default_calendar[:id])
   }
 
   let(:invalid_attributes) {

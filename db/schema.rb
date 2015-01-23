@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118214811) do
+ActiveRecord::Schema.define(version: 20150123003821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "administrators", force: true do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20150118214811) do
   add_index "administrators", ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true, using: :btree
 
   create_table "calendars", force: true do |t|
-    t.string   "title"
+    t.string   "title",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "venue_id"
+    t.integer  "venue_id",                   null: false
     t.boolean  "is_default", default: false, null: false
   end
 
@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(version: 20150118214811) do
   end
 
   create_table "enrollments", force: true do |t|
-    t.integer  "workshop_id"
-    t.integer  "student_id"
+    t.integer  "workshop_id", null: false
+    t.integer  "student_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "experts", force: true do |t|
-    t.string   "first_name"
+    t.string   "first_name",                          null: false
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -102,12 +102,12 @@ ActiveRecord::Schema.define(version: 20150118214811) do
     t.boolean  "all_day",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "calendar_id"
+    t.integer  "calendar_id",                      null: false
     t.integer  "workshop_id"
   end
 
   create_table "students", force: true do |t|
-    t.string   "first_name"
+    t.string   "first_name",                          null: false
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20150118214811) do
   end
 
   create_table "venues", force: true do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -173,20 +173,30 @@ ActiveRecord::Schema.define(version: 20150118214811) do
   add_index "venues", ["reset_password_token"], name: "index_venues_on_reset_password_token", unique: true, using: :btree
 
   create_table "workshops", force: true do |t|
-    t.string   "name"
+    t.string   "name",                                    null: false
     t.integer  "price"
-    t.integer  "length"
+    t.integer  "length",                  default: 2,     null: false
     t.string   "previous_skills"
     t.text     "agenda"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "target_public"
     t.text     "description"
-    t.integer  "max_number_participants"
-    t.integer  "state",                   default: 0
+    t.integer  "max_number_participants", default: 12,    null: false
+    t.integer  "state",                   default: 0,     null: false
     t.integer  "expert_id"
-    t.boolean  "free",                    default: false
-    t.integer  "min_number_participants", default: 1
+    t.boolean  "free",                    default: false, null: false
+    t.integer  "min_number_participants", default: 1,     null: false
   end
+
+  add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"
+
+  add_foreign_key "enrollments", "students", name: "enrollments_student_id_fk"
+  add_foreign_key "enrollments", "workshops", name: "enrollments_workshop_id_fk"
+
+  add_foreign_key "reservations", "calendars", name: "reservations_calendar_id_fk"
+  add_foreign_key "reservations", "workshops", name: "reservations_workshop_id_fk"
+
+  add_foreign_key "workshops", "experts", name: "workshops_expert_id_fk"
 
 end
