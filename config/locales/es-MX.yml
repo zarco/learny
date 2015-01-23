@@ -165,6 +165,8 @@ es-MX:
               blank: ' es requerida' 
             password_confirmation:
               confirmation: '. La contraseña y su confirmación son diferentes'    
+            confirmation_token:
+              invalid: 'El Token de confirmación no es válido'
         venue_picture:
           attributes:
             avatar:
@@ -255,6 +257,8 @@ es-MX:
       profile: 'Perfil'
       general: 'General'
       contact: 'Contacto'
+      pictures: 'Fotos'
+      address: 'Dirección'
       no_next_workshops: 'No tienes talleres próximos'
       search:
         no_results: 'La búsqueda no obtuvo resultados'            

@@ -1,48 +1,61 @@
 .container.main
-  .row
-    .col-md-8
-      .panel.panel-primary
-        .panel-heading
-          %h3.panel-title
-            = @venue.name
-        .panel-body
-          .carousel.slide#carousel_venue_pictures{"data-ride" => "carousel"}
-            %ol.carousel-indicators
-              -@venue.venue_pictures.count.times do |counter|
-                %li{'data-slide-to' => counter, 'data-target' => '#carousel_venue_pictures'}
-            .carousel-inner
-              -@venue.venue_pictures.each_with_index do |picture,index| 
-                .item{:class => ("active" if index == 0)}
-                  .panel-body
-                    %img{:alt => "Picture", :src => picture.avatar_url, :class => "thumbnail"}
-            %ul.pager
-              %li
-                %a.left{:href => "#carousel_venue_pictures", 'data-slide' => 'prev' } 
-                  %span.glyphicon.glyphicon-chevron-left
-                  Previo
-              %li
-                %a.right{:href => "#carousel_venue_pictures", 'data-slide' => 'next' } 
-                  Siguiente
-                  %span.glyphicon.glyphicon-chevron-right
-        .venue-desc
-          %h4
-            = @venue.description
+  .col-md-9
+    / Pictures and Desc
+    .row
+      .col-md-12
+        .panel.panel-primary
+          .panel-heading
+            %h3.panel-title
+              = @venue.name
+          .panel-body
+            .carousel.slide#carousel_venue_pictures{"data-ride" => "carousel"}
+              %ol.carousel-indicators
+                -@venue.venue_pictures.count.times do |counter|
+                  %li{'data-slide-to' => counter, 'data-target' => '#carousel_venue_pictures'}
+              .carousel-inner
+                -@venue.venue_pictures.each_with_index do |picture,index| 
+                  .item{:class => ("active" if index == 0)}
+                    .panel-body
+                      %img{:alt => "Picture", :src => picture.avatar_url, :class => "thumbnail"}
+              %ul.pager
+                %li
+                  %a.left{:href => "#carousel_venue_pictures", 'data-slide' => 'prev' } 
+                    %span.glyphicon.glyphicon-chevron-left
+                    Previo
+                %li
+                  %a.right{:href => "#carousel_venue_pictures", 'data-slide' => 'next' } 
+                    Siguiente
+                    %span.glyphicon.glyphicon-chevron-right
+          .venue-desc
+            %h4
+              = @venue.description
+    / Mapa
+    .row
+      .col-md-12
+        .panel.panel-primary
+          .panel-heading
+            %h3.panel-title Mapa
+          .panel-body
+            %img{:src =>"https://maps.googleapis.com/maps/api/staticmap?center=#{@venue.latitude},#{@venue.longitude}&markers=color:red%7Clabel:L%7C#{@venue.latitude},#{@venue.longitude}&zoom=16&size=800x400"}
 
-    / Contact
-    .col-md-4
+
+  .col-md-3
+    .row
+      / Contact
       #pnl-badges.panel.panel-primary
         .panel-heading
           %h3.panel-title
             = Venue.human_attribute_name(:contact)
-        .panel-body
-          = @venue.contact.name
-          %br
-          = @venue.contact.mail
-          %br
-          = @venue.contact.phone
+        .panel-body    
+          -unless @venue.contact.nil?
+            = @venue.contact.name
+            %br
+            = @venue.contact.mail
+            %br
+            = @venue.contact.phone
 
     / Address
-    .col-md-4
+    .row
       #pnl-badges.panel.panel-primary
         .panel-heading
           %h3.panel-title
@@ -50,9 +63,19 @@
         .panel-body
           = @venue.address
 
+          
+    / Facilities
+    .row
+      #pnl-badges.panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = Venue.human_attribute_name(:facilities)
+        .panel-body
+          =render partial: 'shared/words2iconlist', locals: {comma_separated_words:@venue.facilities}
+
 
     / Horario
-    .col-md-4
+    .row
       #pnl-badges.panel.panel-primary
         .panel-heading
           %h3.panel-title
@@ -61,25 +84,8 @@
           = @venue.business_hours
 
 
-    / Facilities
-    .col-md-4
-      #pnl-badges.panel.panel-primary
-        .panel-heading
-          %h3.panel-title
-            = Venue.human_attribute_name(:facilities)
-        .panel-body
-          =render partial: 'shared/words2iconlist', locals: {comma_separated_words:@venue.facilities}
-
-  / Solicitudes
-  .row
-    .col-md-8
-      .panel.panel-primary
-        .panel-heading
-          %h3.panel-title Mapa
-        .panel-body
-          %img{:src =>"https://maps.googleapis.com/maps/api/staticmap?center=19.400513,-99.136810&markers=color:red%7Clabel:L%7C19.400513,-99.136810&zoom=15&size=800x400"}
     / Referencias
-    .col-md-4
+    .row
       .panel.panel-primary.comentarios
         .panel-heading
           %h3.panel-title Comentarios Recientes
