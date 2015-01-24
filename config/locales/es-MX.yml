@@ -121,6 +121,8 @@ es-MX:
                 
         
     errors:
+      messages:
+        record_invalid: 'Registro invalido'
       models:
         student:
           attributes:
@@ -171,6 +173,18 @@ es-MX:
           attributes:
             avatar:
               blank: ' es requerida'
+        reservation:
+          attributes:
+            max_participants:
+              blank: 'es requerido'
+              not_a_number: 'debe ser un número entero'
+            final_time:
+              date_in_the_past: 'no puede ser antes de la hora de inicio'
+            starts_at:
+              date_in_the_past: 'no puede ser una fecha pasada'
+            workshop:
+              too_many_participants: 'La reservación no es suficiente para %{participants} participantes'
+              too_much_time: 'El tiempo de la reservación no es suficiente para el taller'
         workshop:
           attributes:
             name:
@@ -181,7 +195,7 @@ es-MX:
               greater_than: 'no es valido'
             length:
               blank: 'es requerido'
-              not_a_number: 'no es un número entero'
+              not_a_number: 'debe ser un número entero'
               greater_than: 'no es válida'
             agenda:
               blank: 'es requerida'
@@ -189,7 +203,7 @@ es-MX:
               blank: 'es requerida'
             max_number_participants:
               blank: 'es requerido'
-              not_a_number: 'no es un número entero'
+              not_a_number: 'debe ser un número entero'
               greater_than: 'no es válido'
             min_number_participants: 
               blank: 'es requerido'

@@ -15,7 +15,7 @@ RSpec.describe Venues::RegistrationsController, :type => :controller do
     context 'With valid data' do
       it 'Creates a new venue in db' do
         expect {
-          post :create, :venue => FactoryGirl.attributes_for(:venue, :email => 'foo@bar.com' )
+          post :create, :venue => FactoryGirl.attributes_for(:no_calendar_venue, :email => 'foo@bar.com' )
           expect(response).to redirect_to(root_path)
         }.to change(Venue, :count).by(1)
         

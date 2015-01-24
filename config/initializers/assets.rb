@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 #Rails.application.config.assets.precompile += [ 'email.css', 'students.js','students.css', 'enrollments.css', 'enrollments.js', 'workshops.js', 'workshops.css' ]
 
 Rails.application.config.assets.precompile << Proc.new do |path|
-  if path =~ /\.(css|js)\z/
+  if path =~ /\.(css|js|eot|svg|ttf|woff)\z/
     full_path = Rails.application.assets.resolve(path).to_path
     app_assets_path = Rails.root.join('app', 'assets').to_path
     if full_path.starts_with? app_assets_path

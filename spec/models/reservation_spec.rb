@@ -27,6 +27,73 @@ RSpec.describe Reservation, :type => :model do
     subject { FactoryGirl.build(:reservation) }
     it { should validate_presence_of :starts_at }
     it { should validate_presence_of :final_time }
+    it { should allow_value(1).for(:max_participants) }
+    it { should allow_value(10).for(:max_participants) }
+    it { should allow_value(999999).for(:max_participants) }
+    it { should_not allow_value(0).for(:max_participants) }
+    it { should_not allow_value(-1).for(:max_participants) }
+    it { should_not allow_value(1.1).for(:max_participants) }
+    it { should_not allow_value(0.00001).for(:max_participants) }
+  end
+  
+  describe 'validate workshop' do
+    before(:each) do
+       @reservation=FactoryGirl.create(:reservation, :max_participants => 25)
+    end
+    
+    it 'valid workshop' do
+      workshop=FactoryGirl.create(:workshop)
+      expect(@reservation.valid?).to be_truthy
+    end
+    
+    it 'invalid participants number' do
+      workshop=FactoryGirl.create(:workshop, :max_number_participants => 100) 
+      @reservation.workshop=workshop
+      expect(@reservation.valid?).to be_falsey
+      #expect(@reservation.errors).to eq.error_on(:workshop)
+    end
+    
+    it 'invalid duration' do
+      workshop=FactoryGirl.create(:workshop, :length=> 10)
+      @reservation.workshop=workshop
+      #puts ">>>>>>>>>>>>> #{@reservation.availability_in_hours}"
+      expect(@reservation.valid?).to be_falsey
+      #expect(@reservation.errors).to eq(1).error_on(:workshop)
+    end
+  end
+
+  describe 'invalid final time' do
+    it 'one hour' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now+1.hour , :final_time => Time.now-1)
+      expect(reservation.valid?).to be_falsey
+    end
+  end
+  
+  describe 'validate start in the past' do
+    it 'one day' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.day)
+      expect(reservation.valid?).to be_falsey
+    end
+    
+    it 'one hour' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.hour)
+      expect(reservation.valid?).to be_falsey
+    end
+
+  end
+  
+  describe 'availability in hours' do
+    it 'difference' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2014,01,01,13,30))
+      expect(reservation.availability_in_hours).to eql(3.5)
+    end
+    
+    it 'other difference' do
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2018,10,31,13,30))
+      reservation.valid?
+      expect(reservation.availability_in_hours).to eql(3.5)
+    end
+    
   end
 
   describe 'methods' do

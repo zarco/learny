@@ -80,3 +80,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-rails'
 
 gem 'kaminari'
+gem 'time_difference', '~> 0.3.2'
+
+gem 'foreigner'

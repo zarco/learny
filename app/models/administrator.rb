@@ -3,4 +3,7 @@ class Administrator < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable  :registerable and :omniauthable 
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
+         
+  validates :name, presence: true
+
 end
