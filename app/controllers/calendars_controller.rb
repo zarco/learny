@@ -11,6 +11,7 @@ class CalendarsController < ApplicationController
   # GET /calendars/1
   # GET /calendars/1.json
   def show
+    @calendars = current_venue.calendars
   end
 
   # GET /calendars/new
