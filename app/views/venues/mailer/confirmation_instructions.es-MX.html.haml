@@ -1,7 +1,7 @@
 %h1
-  Learny
+  Learny | Establecimientos
 .container
   %h2
-    ¡Bienvenido #{@resource.name}!
+    ¡Bienvenido #{@resource.name || @email}!
   %p Puedes confirmar tu cuenta de correo mediante el vínculo siguiente:
   %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)

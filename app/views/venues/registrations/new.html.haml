@@ -1,12 +1,15 @@
 .container
-  .panel.text-center
+  .page-header.text-center
     %h4
       = t('devise.sessions.sign_up_welcome',default:'Sign up as %{resource}', resource: Venue.model_name.human)
-  .col-md-6.jumbotron
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html:{class:"form-horizontal", role:'form'} ) do |f|
+  .alert-danger
+    = devise_error_messages!
+  
+  .col-md-6.col-md-offset-3.jumbotron
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html:{class:"form", role:'form'} ) do |f|
       .form-group
         = f.label :name
-        = f.text_field :name, autofocus: true, :class => 'form-control'       
+        = f.text_field :name, autofocus: true, :class => 'form-control'   
       .form-group
         = f.label :email
         = f.email_field :email, autofocus: true, :class => 'form-control' 
@@ -20,9 +23,5 @@
         = f.label :password_confirmation
         = f.password_field :password_confirmation, autocomplete: "off" , :class => 'form-control' 
       .form-group
-        = f.submit t('devise.sessions.sign_up',default:'Sign Up') , :class=>'btn btn-primary btn-lg btn-block' 
-        
-      = render "venues/shared/links"
-  .col-md-6.fill
-    .alert-danger
-      = devise_error_messages!
+        = f.submit t('devise.sessions.sign_up',default:'Sign Up') , :class=>'btn btn-primary btn-lg'
+    = render "venues/shared/links"

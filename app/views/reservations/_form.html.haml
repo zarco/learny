@@ -18,6 +18,7 @@
     = f.label :final_time
     .form-inline
       = f.time_select :final_time
+      /= f.datetime_select :final_time
   .form-group
     = f.label :max_participants
     .form-inline
@@ -25,17 +26,3 @@
 
   .actions
     = f.submit t('views.actions.make_reservation', default: 'Make reservation'), :class=>'btn btn-primary btn-lg'
-    
-:javascript
-  $(document).ready(function(){
-    $('[data-behaviour~=datepicker]').datepicker();
-    $('.datepicker').datepicker({
-      language: "es",
-      format: "dd/mm/yyyy",
-      autoclose: true
-    });
-    
-    $('.datetime-select select').each(function(index,item){
-      $(item).addClass('form-control')
-    })
-  })

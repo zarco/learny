@@ -1,23 +1,33 @@
-%nav.navbar.navbar-fixed-top.navbar-inverse{:role => "navigation"}
-  .container
-    .navbar-header
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container    
+    .navbar-header.page-scroll
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to image_tag( 'L.png', size: "25x30", alt: "L") + 'earny', root_path, :class => "navbar-brand"
+      = link_to image_tag( 'L.png', size: "40x40", alt: "L",:class => "logo img-logo") + 'earny', root_path, :class => "navbar-brand", :style => "display: inline-flex"
     .collapse.navbar-collapse
-      
-      
-      -if student_signed_in?
+      -if !student_signed_in? && !expert_signed_in? && !venue_signed_in? && !administrator_signed_in? && current_page?(root_path)
+        %ul.nav.navbar-nav.navbar-left
+          %li.hidden
+            %a{:href => "#page-top", :class =>"item-menu"}
+          %li.page-scroll
+            %a{:href => "#student", :class =>"item-menu"}
+              = t('views.legends.student',default: 'Student')
+          %li.page-scroll
+            %a{:href => "#expert", :class =>"item-menu"}
+              = t('views.legends.expert',default: 'Expert')
+          %li.page-scroll
+            %a{:href => "#venue", :class =>"item-menu"}
+              = t('views.legends.venue',default: 'Venue')
+      -unless administrator_signed_in? || venue_signed_in? || expert_signed_in? || current_page?(root_path)
         = form_tag '/workshops', method: :get, :class => 'navbar-form navbar-left', :role => 'search' do
           .form-group
             %input.form-control{:placeholder => "Clases de surf...", :type => "text", :name => "w"}/
           %button.btn.btn-primary{:type => "submit", :value=> "Search"}
             %span.glyphicon.glyphicon-search
-            
-      
+      -if student_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
@@ -32,7 +42,7 @@
                   = t('views.legends.my_profile',default:'Your Account')
               %li
                 = link_to edit_student_registration_path do
-                  = t('views.legends.account.edit',default:'Edit my profile')
+                  = t('views.legends.edit_my_profile',default:'Edit my profile')
               %li.divider
               %li
                 = link_to enrollments_path do
@@ -45,11 +55,18 @@
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              - if !current_expert.avatar_url.nil?
+                %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'25px', :alt => "Profile", :src => current_expert.avatar.icon.url}
+                &nbsp;
               = current_expert.first_name
+              %b.caret
             %ul.dropdown-menu
               %li
+                = link_to expert_path current_expert do
+                  = t('views.legends.my_profile',default:'Your Account')
+              %li
                 = link_to edit_expert_registration_path do
-                  = t('devise.sessions.your_account',default:'Your Account')
+                  = t('views.legends.edit_my_profile',default:'Edit my profile')
               %li.divider
               %li
                 = link_to workshops_path do
@@ -59,15 +76,38 @@
                 = link_to destroy_expert_session_path, data: { method: :delete } do
                   = t('devise.sessions.sign_out',default: 'Sign out')
 
+      -elsif administrator_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to "Estudiantes", "#"
+          %li
+            = link_to "Expertos", "#"
+          %li
+            = link_to "Establecimientos", admin_venues_path
+          %li.navbarb-margin-top
+            %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              = current_administrator.name
+            %ul.dropdown-menu
+              %li.divider
+              %li
+                = link_to destroy_administrator_session_path, data: { method: :delete } do
+                  = t('devise.sessions.sign_out',default: 'Sign out')
+
       -elsif venue_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              - if !current_venue.avatar_url.nil?
+                %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'25px', :alt => "Profile", :src => current_venue.avatar.icon.url}
+                &nbsp;
               = current_venue.name
             %ul.dropdown-menu
               %li
+                = link_to venue_path current_venue do
+                  = t('views.legends.my_profile',default:'Your Account')
+              %li
                 = link_to edit_venue_registration_path do
-                  = t('devise.sessions.your_account',default:'Your Account')
+                  = t('views.legends.edit_my_profile',default:'Edit my profile')
               %li.divider
               %li
                 = link_to calendars_path do
@@ -87,6 +127,10 @@
       
       -else
         %ul.nav.navbar-nav.navbar-right
+          %li
+            = form_tag '#', :class => 'navbar-form navbar-right', :role => 'subscribe' do
+              %button.btn.btn-primary{'data-toggle'=>"modal", 'type'=>'button', 'data-target'=>'#mdl_signin', :value => t('devise.sessions.sign_up', default: 'Sign up')}
+                = t('devise.sessions.sign_up', default: 'Sign up')
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
               = t('devise.sessions.sign_in')
@@ -100,17 +144,3 @@
               %li
                 = link_to new_venue_session_path do
                   = t('activerecord.models.venue',default:'Venue')
-        
-      %ul.nav.navbar-nav.pull-right
-        %li{:class => 'active'} 
-          - if current_page?(root_path) 
-            = link_to "Home", root_path
-        %li{:class => 'active'} 
-          - if current_page?(about_path) 
-            = link_to "About", about_path
-        %li{:class => 'active'} 
-          - if current_page?(contact_path) 
-            = link_to "Contact", contact_path
-      
-      
-      

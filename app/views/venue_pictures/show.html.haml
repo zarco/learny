@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Venue:
+  = @venue_picture.venue_id
+%p
+  %b Avatar:
+  = @venue_picture.avatar
+
+= link_to 'Edit', edit_venue_picture_path(@venue_picture)
+\|
+= link_to 'Back', venue_pictures_path

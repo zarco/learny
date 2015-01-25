@@ -1,27 +1,44 @@
 LearnyApp::Application.routes.draw do
   
+
+  resources :contacts
+
   devise_for :students, :controllers => { :registrations => "students/registrations" }
   devise_for :experts, :controllers => { :registrations => "experts/registrations" }
   devise_for :venues, :controllers => { :registrations => "venues/registrations" }
+  devise_for :administrators
 
-  resources :enrollments
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
 
+  resources :experts, only: [:show]
   resources :students, only: [:index, :show]
+  resources :venues
+  resources :venue_pictures
   resources :calendars
   resources :reservations
-  resources :workshops
-
-  get 'venues/index'
+  resources :workshops, :concerns => :paginatable
+  resources :enrollments, :concerns => :paginatable
+  
+  
   
   get '/about'    => 'high_voltage/pages#show', id: 'about'
   get '/contact'  => 'high_voltage/pages#show', id: 'contact'
   get '/privacy'  => 'high_voltage/pages#show', id: 'privacy'
   get '/terms'    => 'high_voltage/pages#show', id: 'terms'
+  get '/faq'      => 'high_voltage/pages#show', id: 'faq'
 
   get '/home', to: redirect('/')
-
+  get 'students/index'
   get 'experts/index'
+  get 'venues/index'
+  get 'administrators/index'
+  
 
+  namespace :admin do
+    resources :venues
+  end
 
   authenticated :venue do
     root to: 'venues#index', as: :venue_root
@@ -35,13 +52,15 @@ LearnyApp::Application.routes.draw do
     root to: 'students#index', as: :student_root
   end
   
+  authenticated :administrator do
+    root to: 'administrators#index', as: :administrator_root
+  end
+  
   unauthenticated do
     root :to => 'high_voltage/pages#show', id: 'home'
   end
 
 end
-
-# Rails.application.routes.draw do
 
 #  devise_for :students
 # root 'welcome#index'	

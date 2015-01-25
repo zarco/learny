@@ -1,8 +1,10 @@
 .container
-  %h2
-    #{t('views.legends.edit', default: 'Edit')} #{Student.model_name.human}
+  .page-header.text-center
+    %h2
+      #{t('views.legends.edit', default: 'Edit')} #{Student.model_name.human}
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, role: 'form', :multipart => true }) do |f|
-    = devise_error_messages!
+    .alert-danger
+      = devise_error_messages!
 
     .row    
       .col-md-6
@@ -11,12 +13,22 @@
             .panel-title 
               = t('views.legends.profile',default: 'Profile')
           .panel-body
-            .form-group
-              = f.label :first_name
-              = f.text_field :first_name, autofocus: true, class: 'form-control'
-            .form-group
-              = f.label :last_name
-              = f.text_field :last_name, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                = f.label :first_name
+                = f.text_field :first_name, autofocus: true, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :last_name
+                = f.text_field :last_name, autofocus: true, class: 'form-control'
+            .row
+              .form-group.datetime-select.col-md-7
+                = f.label :birthday
+                .form-inline
+                  = f.date_select :birthday, :start_year => 1900
+              .form-group.col-md-5
+                =f.label :genre
+                =select_tag(:genre, options_for_select([[],['M', 'M'], ['F', 'F']]), :class=>'form-control') 
+                  
             .form-group
               = f.label :occupation
               = f.text_field :occupation, autofocus: true, class: 'form-control'

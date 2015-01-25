@@ -8,6 +8,9 @@ describe Workshop do
     it 'has a valid factory with reservation' do
       expect(FactoryGirl.build(:workshop_with_reservation)).to be_valid
     end
+    it 'has a valid factory for free workshop' do
+      expect(FactoryGirl.build(:free_workshop)).to be_valid
+    end
     it 'has an invalid factory' do
       expect(FactoryGirl.build(:invalid_workshop)).to_not be_valid
     end
@@ -21,6 +24,8 @@ describe Workshop do
     it { should respond_to :price }
     it { should respond_to :description}
     it { should respond_to :max_number_participants}
+    it { should respond_to :min_number_participants}
+    it { should respond_to :free}
   end
 
 
@@ -35,15 +40,49 @@ describe Workshop do
 
   end
 
-  describe 'validations' do
+  describe 'validations_for_not_free_workshop' do
     subject { FactoryGirl.build(:workshop) }
     it { should validate_presence_of :name }
     it { should validate_presence_of :agenda }
     it { should validate_presence_of :length }
     it { should validate_presence_of :price }
-    it { should validate_presence_of :price }
     it { should validate_presence_of :expert }
     it { should validate_presence_of :description }
+    it { should validate_presence_of :max_number_participants }
+    it { should validate_presence_of :min_number_participants }
+    it { should validate_numericality_of(:length) }
+    it { should validate_numericality_of(:max_number_participants) }
+    it { should validate_numericality_of(:min_number_participants) }
+    it { should validate_numericality_of(:price) }
+    it { should_not allow_value(-1).for(:length) }
+    it { should_not allow_value(-1).for(:max_number_participants) }
+    it { should_not allow_value(-1).for(:min_number_participants) }
+    it { should_not allow_value(-1).for(:price) }
+    it { should_not allow_value(0).for(:length) }
+    it { should_not allow_value(0).for(:max_number_participants) }
+    it { should_not allow_value(0).for(:min_number_participants) }
+    it { should_not allow_value(0).for(:price) }
+    it { should_not allow_value('Z').for(:length) }
+    it { should_not allow_value('Z').for(:price) }
+    it { should_not allow_value('Z').for(:max_number_participants) }
+    it { should_not allow_value('Z').for(:min_number_participants) }
+    it { should allow_value(1).for(:length) }
+    it { should allow_value(1).for(:max_number_participants) }
+    it { should allow_value(1).for(:min_number_participants) }
+    it { should allow_value(1).for(:price) }
+    it { should_not allow_value(1.1).for(:length) }
+    it { should_not allow_value(1.1).for(:max_number_participants) }
+    it { should_not allow_value(1.1).for(:min_number_participants) }
+    it { should allow_value(1.1).for(:price) }
+  end
+  
+  describe 'validations_for_free_workshop' do
+    subject { FactoryGirl.build(:free_workshop) }
+    it { should allow_value(0).for(:price) }
+    it { should allow_value(1).for(:price) }
+    it { should allow_value(1.1).for(:price) }
+    it { should_not allow_value(-1).for(:price) }
+    it { should allow_value(nil).for(:price) }
   end
   
 end

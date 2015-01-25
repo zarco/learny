@@ -22,7 +22,7 @@ es-MX:
         cancel_my_account: "Cancelar mi cuenta"
         leave_blank_if_you_don_t_want_to_change_it: "(Dejarla en blanco si no deseas cambiarlo)"
         title: "Actualiza tus datos"
-        current_password_hint: "(Necesitamos tu contraseña actual para realizar los cambios)"
+        current_password_hint: "(Escribe tu contraseña actual para realizar los cambios)"
         update: "Actualizar"
         unhappy: "Unhappy"
     confirmations:
@@ -34,10 +34,13 @@ es-MX:
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      venue_picture: 'FotoEstablecimiento'
       workshop: 'Workshop'
       enrollment: 'Inscripción'
       reservation: 'Reservación'
       calendar: 'Calendario'
+      administrator: 'Administrador'
+      contact: 'Contacto'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -49,7 +52,7 @@ es-MX:
         last_name: 'Apellido'
         occupation: 'Ocupación'
         profile: 'Perfil'
-        avatar: 'Avatar'
+        avatar: 'Ávatar'
       expert:
         email: 'Correo electrónico'
         password: 'Contraseña'
@@ -58,6 +61,17 @@ es-MX:
         current_password: 'Constraseña actual'
         first_name: 'Nombre'
         last_name: 'Apellido'
+        occupation: 'Ocupación'
+        profile: 'Perfil'
+        avatar: 'Ávatar'
+        areas_of_expertise: 'Áreas de experiencia'
+        website: 'Sitio Web'
+        facebook_link: 'Facebook'
+        twitter_link: 'Twitter'
+        linkedin_link: 'Linked In'
+        google_plus_link: 'Google+'
+        birthday: 'Fecha de Nacimiento'
+        genre: 'Género'
       venue:
         email: 'Correo electrónico'
         password: 'Contraseña'
@@ -65,6 +79,16 @@ es-MX:
         remember_me: 'Recordar sesión'
         current_password: 'Constraseña actual'
         name: 'Nombre'
+        description: 'Descripción'
+        address: 'Dirección'
+        business_hours: 'Horario de apertura'
+        map_link: 'Mapa'
+        facilities: 'Amenidades'
+        avatar: "Ávatar"
+        pictures: 'Fotos del Establecimiento' 
+        contact: 'Contacto'
+      venue_picture:
+        avatar: 'Foto' 
       workshop:
         name: 'Nombre'
         agenda: 'Agenda'
@@ -73,16 +97,32 @@ es-MX:
         previous_skills: 'Conocimientos previos'
         target_public: 'Público Objetivo'
         description: 'Descripción'
+        min_number_participants: 'Número mínimo de participantes'
         max_number_participants: 'Número máximo de participantes'
         state: 'Estado'
+        free: 'Sin costo'
       reservation:
         starts_at: 'Inicia'
         final_time: 'Termina'
-        max_participants: 'Participantes máximos'
+        max_participants: '# Participantes'
+        available: 'Disponible'
       calendar:
+        explain_reservation: 'Reservación disponible'
+        explain_book: 'Reservado para evento'
         title: 'Título'
+      administrator:
+        email: 'Correo electrónico'
+        password: 'Constraseña'
+        name: 'Nombre'
+      contact:
+        name: 'Nombre'
+        mail: 'Correo'
+        phone: 'Telefono'
+                
         
     errors:
+      messages:
+        record_invalid: 'Registro invalido'
       models:
         student:
           attributes:
@@ -95,19 +135,83 @@ es-MX:
               blank: ' es requerido'
             last_name:
               blank: ' es requerido'  
+            current_password:
+              blank: ' es requerida'
             password_confirmation:
-              confirmation: '. La contraseña y su confirmación son diferentes' 
-        venue:
+              confirmation: '. La contraseña y su confirmación son diferentes'    
+        expert:
           attributes:
-            name:
-              blank: ' es requerido'             
             email:
               blank: ' es requerido'
             password:
               blank: ' es requerida'
-              too_short: ' es muy pequeña'            
+              too_short: ' es muy pequeña'
+            first_name:
+              blank: ' es requerido'
+            last_name:
+              blank: ' es requerido' 
+            current_password:
+              blank: ' es requerida' 
+            password_confirmation:
+              confirmation: '. La contraseña y su confirmación son diferentes'       
+        venue:
+          attributes:
+            email:
+              blank: ' es requerido'
+            password:
+              blank: ' es requerida'
+              too_short: ' es muy pequeña'
+            name:
+              blank: ' es requerido'
+            current_password:
+              blank: ' es requerida' 
             password_confirmation:
               confirmation: '. La contraseña y su confirmación son diferentes'    
+            confirmation_token:
+              invalid: 'El Token de confirmación no es válido'
+        venue_picture:
+          attributes:
+            avatar:
+              blank: ' es requerida'
+        reservation:
+          attributes:
+            max_participants:
+              blank: 'es requerido'
+              not_a_number: 'debe ser un número entero'
+            final_time:
+              date_in_the_past: 'no puede ser antes de la hora de inicio'
+            starts_at:
+              date_in_the_past: 'no puede ser una fecha pasada'
+            workshop:
+              too_many_participants: 'La reservación no es suficiente para %{participants} participantes'
+              too_much_time: 'El tiempo de la reservación no es suficiente para el taller'
+        workshop:
+          attributes:
+            name:
+              blank: 'es requerido'
+            price:
+              blank: 'es requerido'
+              greater_than_or_equal_to: 'no es válido'
+              greater_than: 'no es valido'
+            length:
+              blank: 'es requerido'
+              not_a_number: 'debe ser un número entero'
+              greater_than: 'no es válida'
+            agenda:
+              blank: 'es requerida'
+            description:
+              blank: 'es requerida'
+            max_number_participants:
+              blank: 'es requerido'
+              not_a_number: 'debe ser un número entero'
+              greater_than: 'no es válido'
+            min_number_participants: 
+              blank: 'es requerido'
+              not_a_number: 'no es un número entero'
+              greater_than: 'no es válida'
+            
+               
+  
   "true": "Si"
   "false": "No"
 
@@ -128,6 +232,8 @@ es-MX:
       make_reservation: 'Hacer reservación'
       calendars: 'Calendarios'
       reservations: 'Reservaciones'
+      enroll: '¡Quiero Asistir!'
+      
     legends:
       'yes': 'Si'
       'no': 'No'
@@ -135,34 +241,79 @@ es-MX:
       edit: 'Actualizar'
       view_course: 'Ver curso'
       glossary: 'Glosario'
-      faq: 'P+F'
+      faq: 'Preguntas frecuentes'
       references: 'Referencias'
       email_missing: 'El correo electrónico no puede ir en blanco.'
       confirmed: '¿Confirmado?'
-      welcome_to_learny: '¡Bienvenido a Learny!'
+      welcome_to_learny_part1: 'El lugar y el instructor perfecto para todo lo que siempre quisiste aprender'
+      welcome_to_learny_part2: '(Y hasta lo que no sabías que querías aprender…)'
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      administrator: 'Administración'
+      contact: 'Contacto'
+      email_contact: 'cursos@learny.me'
+      phone_contact: '5512345678'
+      other_sites: 'Otros sitios'
+      meet_us: 'Conócenos'
+      about_learny: 'Learny es un espacio de encuentro para el aprendizaje, creemos que todos tenemos un tema que nos apasiona y que nos encantaría compartir.'
+      terms: 'Terminos del servicio'
+      privacy: 'Política de privacidad '
       experts:
         propose_new_workshop: 'Proponer nuevo taller'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
-      account:
-        edit: 'Editar mi perfil'
+        price_per_student: 'por estudiante'
+      calendar:
+        more_information: 'Más información'
+        close: 'Cerrar'      
+      edit_my_profile: 'Editar mi perfil'
       my_profile: 'Mi perfil'
       account: 'Cuenta'
       profile: 'Perfil'
+      general: 'General'
+      contact: 'Contacto'
+      pictures: 'Fotos'
+      address: 'Dirección'
+      no_next_workshops: 'No tienes talleres próximos'
+      search:
+        no_results: 'La búsqueda no obtuvo resultados'            
+      close: 'Cerrar'
       
     status:
       active: 'Activo'
       inactive: 'Inactivo'
 
+    genres:
+      M: 'Masculino'
+      F: 'Femenino'
+  
     states:
       proposed: 'Propuesto'
       stand_by: 'En espera'
       scheduled: 'Calendarizado'
       cancelled: 'Cancelado'
       given: 'Impartido'
+    sections:
+      student:
+        img_one: 'Busca un curso'
+        img_two: 'Registrate'
+        img_three: 'Revisa el perfil del experto'
+        img_four: 'Asiste, diviertete y aprende'
+        img_five: 'Describe tu experiencia'
+      expert:
+        img_one: 'Asombra con tu perfil'
+        img_two: 'Propón un curso'
+        img_three: 'Reserva un establecimiento'
+        img_four: 'Asiste, convive y diviertete'
+        img_five: 'Gana popularidad'
+      venue:
+        img_one: 'Ofrece tu espacio'
+        img_two: 'Destaca tus instalaciones'
+        img_three: 'Acepta las solicitudes para usar tu espacio'
+        img_four: 'Atrae más consumidores'
+        img_five: 'Promueve tu negocio'
+
 # kaminari
     pagination:
       first: '&laquo;'

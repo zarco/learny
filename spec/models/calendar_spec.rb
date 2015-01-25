@@ -9,7 +9,7 @@ RSpec.describe Calendar, :type => :model do
       expect(FactoryGirl.build(:invalid_calendar)).to_not be_valid
     end
 
-    it 'has an default factory' do
+    it 'has a default factory' do
       calendar=FactoryGirl.build(:default_calendar)
       expect(calendar).to be_valid
       expect(calendar.is_default).to be_truthy

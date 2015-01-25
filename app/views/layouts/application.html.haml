@@ -8,18 +8,17 @@
     %meta{:content => meta_author, :name => "author"}/
     %meta{:content => meta_keywords, :name => "Keywords"}/
     %title= full_title(yield(:title))
+    = csrf_meta_tags
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = stylesheet_link_tag params[:controller], media: "all", "data-turbolinks-track" => true
     
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_include_tag params[:controller] , "data-turbolinks-track" => true
     
-    = csrf_meta_tags
+    %link{:href => "http://fonts.googleapis.com/css?family=Montserrat:400,700", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic", :rel => "stylesheet", :type => "text/css"}    
     
-    / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-    /[if lt IE 9]
-    %a{:href => "#Top"}
-  %body
+  %body#page-top
     %header
       =render 'layouts/navigation'
     %main{:role => 'main'}
@@ -27,15 +26,78 @@
         = render 'layouts/messages'
         = yield
       
-      
-      %footer
-        %hr/
-        %p.pull-right
-          = link_to '<span class="glyphicon-class glyphicon glyphicon-chevron-up"></span> Back to top'.html_safe, '#Top'
-        %p
-          \© #{Time.now.year}#{site_name}
-          \•
-          \#{link_to "Privacy", privacy_path}
-          \•
-          \#{link_to "Terms", terms_path}
-        
+        #mdl_signin.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                .bootstrap-dialog-header
+                  %button.close{:type=>'button',  'data-dismiss' => 'modal', 'aria-hidden'=> 'true'} x
+                  %h4.modal-title
+                    = t('devise.sessions.sign_up', default: 'Sign up') 
+              .modal-body
+                .row.text-center
+                  = link_to new_student_registration_path, {:class => 'btn btn-success btn-lg'} do
+                    %i.glyphicon.glyphicon-user
+                    = t('views.legends.student',default: 'Student')
+                  = link_to new_expert_registration_path, {:class => 'btn btn-success btn-lg'} do
+                    %i.glyphicon.glyphicon-briefcase
+                    = t('views.legends.expert',default: 'Expert')
+                  = link_to new_venue_registration_path, {:class => 'btn btn-success btn-lg'} do
+                    %i.glyphicon.glyphicon-home
+                    = t('views.legends.venue',default: 'Venue')
+              .modal-footer      
+              
+    %footer.text-center
+      .footer-above
+        .container
+          .row
+            .footer-col.col-md-4
+              %h4 
+                = t('views.legends.contact',default: 'Contact')
+              %p
+                %span.glyphicon.glyphicon-envelope
+                = t('views.legends.email_contact',default: 'cursos@learny.me')
+                %br/
+                %span.glyphicon.glyphicon-earphone
+                = t('views.legends.phone_contact',default: '5512345678')
+            .footer-col.col-md-4
+              %h4
+                = t('views.legends.other_sites',default: 'Other sites')
+              %ul.list-inline
+                %li
+                  %a.btn-social.btn-outline{:href => "http://facebook.com/learny.me",:target => 'blank'}
+                    %i.fa.fa-fw.fa-facebook
+                %li
+                  %a.btn-social.btn-outline{:href => "http://google.com/+LearnyMe",:target => 'blank'}
+                    %i.fa.fa-fw.fa-google-plus
+                %li
+                  %a.btn-social.btn-outline{:href => "http://twitter.com/learnyme",:target => 'blank'}
+                    %i.fa.fa-fw.fa-twitter
+                %li
+                  %a.btn-social.btn-outline{:href => "#",:target => 'blank'}
+                    %i.fa.fa-fw.fa-instagram
+            .footer-col.col-md-4
+              %h4
+                = t('views.legends.meet_us',default: 'Meet us')
+              %p.text-justify
+                = t('views.legends.about_learny',default: 'Learny')
+      .footer-below
+        .container
+          .row
+            .col-lg-12
+              %p © #{Time.now.year} #{site_name}
+              %p
+                \#{link_to t('views.legends.privacy',default: 'Privacy'), privacy_path}                
+                \-
+                #{link_to t('views.legends.terms',default: 'Terms'), terms_path}
+                \-
+                #{link_to t('views.legends.faq',default: 'FAQ'), faq_path}
+    / Scroll to Top Button (Only visible on small and extra-small screen sizes)
+    .scroll-top.page-scroll.text-right.visible-xs     
+      -unless student_signed_in? || venue_signed_in? || expert_signed_in? || administrator_signed_in?
+        = form_tag '#', :role => 'subscribe' do
+          %button.btn.btn-success{'data-toggle'=>"modal", 'type'=>'button', 'data-target'=>'#mdl_signin', :value => t('devise.sessions.sign_up', default: 'Sign up')}
+            = t('devise.sessions.sign_up', default: 'Sign up')
+      %a.btn.btn-primary.index{:href => "#page-top"}
+        %i.fa.fa-chevron-up
+    %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"}

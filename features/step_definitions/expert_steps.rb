@@ -17,13 +17,15 @@ Given(/^I am at the expert's sign up page$/) do
 end
 
 When(/^I send my data for the registration as expert$/) do
-  @expert = FactoryGirl.build(:expert)
-  fill_in Expert.human_attribute_name(:email), with: @expert.email
-  fill_in Expert.human_attribute_name(:password), with: @expert.password
-  fill_in Expert.human_attribute_name(:password_confirmation), with: @expert.password_confirmation
-  fill_in Expert.human_attribute_name(:first_name), with: @expert.first_name
-  fill_in Expert.human_attribute_name(:last_name), with: @expert.last_name
-  click_button I18n.t('devise.sessions.sign_up')
+  within(:css,'.main') do
+    @expert = FactoryGirl.build(:expert)
+    fill_in Expert.human_attribute_name(:email), with: @expert.email
+    fill_in Expert.human_attribute_name(:password), with: @expert.password
+    fill_in Expert.human_attribute_name(:password_confirmation), with: @expert.password_confirmation
+    fill_in Expert.human_attribute_name(:first_name), with: @expert.first_name
+    fill_in Expert.human_attribute_name(:last_name), with: @expert.last_name
+    click_button I18n.t('devise.sessions.sign_up')
+  end
 end
 
 Given(/^I am logged in as expert$/) do
@@ -42,10 +44,9 @@ end
 Given(/^"(.*?)" has made a reservation for next friday$/) do |venue|
   @venue=FactoryGirl.create(:venue, :name => venue)
   @venue.confirm!
-  reservation=FactoryGirl.create(:reservation)  
+  reservation=FactoryGirl.create(:reservation)
   @venue.calendars.first.reservations.create(FactoryGirl.attributes_for(:reservation))
 end
-
 
 When(/^I submit the required information for proposing a workshop called "(.*?)" in "(.*?)" next friday$/) do |name, venue|
   @workshop = FactoryGirl.build(:workshop, {:name => name})
@@ -57,19 +58,19 @@ When(/^I submit the required information for proposing a workshop called "(.*?)"
     fill_in Workshop.human_attribute_name(:length), with: @workshop.length
     fill_in Workshop.human_attribute_name(:previous_skills), with: @workshop.previous_skills
     fill_in Workshop.human_attribute_name(:agenda), with: @workshop.agenda
-    #find('.btn_find_venue').click
+  #find('.btn_find_venue').click
   end
- 
- #pending 
+
+  #pending
   #within('.dlg_find_venue') do
-    #  print page.html
-   #   click_link venue
+  #  print page.html
+  #   click_link venue
   #end
 
   within('#new_workshop') do
     click_button I18n.t('views.actions.propose')
   end
-  #pending
+#pending
 end
 
 Then(/^I can see the "(.*?)" workshop listed in the "(.*?)" state in 'My workshops' page$/) do |title, state|
@@ -82,13 +83,35 @@ end
 Then(/^I can see a confirmation message and the details of the "(.*?)" workshop$/) do |arg1|
   expect(page).to have_content(I18n.t('views.legends.workshop.proposed_successfully',
     default: 'Workshop successfully proposed.'))
-  #TODO Enable and fix
-  #expect(page).to have_content(@workshop.name)
-  #expect(page).to have_content(@workshop.description)
-  #expect(page).to have_content(@workshop.agenda)
+#TODO Enable and fix
+#expect(page).to have_content(@workshop.name)
+#expect(page).to have_content(@workshop.description)
+#expect(page).to have_content(@workshop.agenda)
 
 end
 
 Given(/^I am at the form for proposing a new workshop$/) do
   visit new_workshop_path
 end
+
+Given(/^I am at my profile page as expert$/) do
+  visit expert_path @expert
+end
+
+Then(/^I go to the profile update page$/) do
+  expect(page.current_path).to eq(edit_expert_registration_path)
+end
+
+Given(/^I am at my profile update page as expert$/) do
+  visit edit_expert_registration_path
+end
+
+When(/^I fill in the expert fields$/) do
+  fill_in Expert.human_attribute_name(:occupation), with: @expert.occupation
+  fill_in Expert.human_attribute_name(:profile), with: @expert.profile
+  fill_in Expert.human_attribute_name(:current_password), with: @expert.password
+  attach_file Expert.human_attribute_name(:avatar),
+  #  Rack::Test::UploadedFile.new(File.open(File.join(Rails.root,'spec','fixtures','megan.jpg')))
+  File.join(Rails.root,'spec','fixtures','megan.jpg')
+end
+

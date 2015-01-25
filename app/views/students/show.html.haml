@@ -2,21 +2,23 @@
   .col-md-8
     .jumbotron
       .row.well
-        .col-md-4
-          .panel.panel-danger
-            .panel-body
-              %img.featurette-image.img-responsive{:alt => "Profile", :src => @student.avatar_url}
-          -if current_student == @student
-            =link_to edit_student_registration_path, class: 'btn btn-warning btn-lg btn-block' do
-              =t('edit', default: 'Edit')
-        .col-md-8
-          %blockquote
-            %h2
-              = @student.full_name
-            %h3
-              = @student.occupation
-        %p
-          = @student.profile
+        .row
+          .col-md-4
+            .panel.panel-danger
+              .panel-body
+                %img.featurette-image.img-responsive{:alt => "Profile", :src => @student.avatar_url}
+          .col-md-8
+            %blockquote
+              %h2
+                = @student.full_name
+              %h3
+                = @student.occupation
+              -if current_student == @student
+                =link_to edit_student_registration_path, class: 'btn btn-warning btn-lg btn-block' do
+                  =t('edit', default: 'Edit')
+        .row.container
+          %p
+            = @student.profile
     .panel.panel-primary
       .panel-heading
         %h3.panel-title Proximos talleres

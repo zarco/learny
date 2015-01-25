@@ -11,29 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203063302) do
+ActiveRecord::Schema.define(version: 20150123003821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "calendars", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "venue_id"
-    t.boolean  "is_default", default: false, null: false
-  end
-
-  create_table "enrollments", force: true do |t|
-    t.integer  "workshop_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "experts", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+  create_table "administrators", force: true do |t|
+    t.string   "name",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -46,29 +30,37 @@ ActiveRecord::Schema.define(version: 20141203063302) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
   end
 
-  add_index "experts", ["confirmation_token"], name: "index_experts_on_confirmation_token", unique: true, using: :btree
-  add_index "experts", ["email"], name: "index_experts_on_email", unique: true, using: :btree
-  add_index "experts", ["reset_password_token"], name: "index_experts_on_reset_password_token", unique: true, using: :btree
+  add_index "administrators", ["email"], name: "index_administrators_on_email", unique: true, using: :btree
+  add_index "administrators", ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true, using: :btree
 
-  create_table "reservations", force: true do |t|
-    t.datetime "starts_at",                        null: false
-    t.time     "final_time",                       null: false
-    t.integer  "max_participants",                 null: false
-    t.boolean  "all_day",          default: false, null: false
+  create_table "calendars", force: true do |t|
+    t.string   "title",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "calendar_id"
-    t.integer  "workshop_id"
+    t.integer  "venue_id",                   null: false
+    t.boolean  "is_default", default: false, null: false
   end
 
-  create_table "students", force: true do |t|
-    t.string   "first_name"
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "mail"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "venue_id"
+  end
+
+  create_table "enrollments", force: true do |t|
+    t.integer  "workshop_id", null: false
+    t.integer  "student_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experts", force: true do |t|
+    t.string   "first_name",                          null: false
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -89,13 +81,34 @@ ActiveRecord::Schema.define(version: 20141203063302) do
     t.string   "avatar"
     t.string   "occupation"
     t.text     "profile"
+    t.string   "facebook_link"
+    t.string   "twitter_link"
+    t.string   "linkedin_link"
+    t.string   "website"
+    t.text     "areas_of_expertise"
+    t.date     "birthday"
+    t.string   "genre"
+    t.string   "google_plus_link"
   end
 
-  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
-  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
+  add_index "experts", ["confirmation_token"], name: "index_experts_on_confirmation_token", unique: true, using: :btree
+  add_index "experts", ["email"], name: "index_experts_on_email", unique: true, using: :btree
+  add_index "experts", ["reset_password_token"], name: "index_experts_on_reset_password_token", unique: true, using: :btree
 
-  create_table "venues", force: true do |t|
-    t.string   "name"
+  create_table "reservations", force: true do |t|
+    t.datetime "starts_at",                        null: false
+    t.datetime "final_time",                       null: false
+    t.integer  "max_participants", default: 12,    null: false
+    t.boolean  "all_day",          default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "calendar_id",                      null: false
+    t.integer  "workshop_id"
+  end
+
+  create_table "students", force: true do |t|
+    t.string   "first_name",                          null: false
+    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -112,6 +125,49 @@ ActiveRecord::Schema.define(version: 20141203063302) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "avatar"
+    t.string   "occupation"
+    t.text     "profile"
+    t.date     "birthday"
+    t.string   "genre"
+  end
+
+  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
+  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
+
+  create_table "venue_pictures", force: true do |t|
+    t.integer  "venue_id"
+    t.string   "avatar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "venues", force: true do |t|
+    t.string   "name",                                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.text     "facilities"
+    t.string   "map_link"
+    t.string   "avatar"
+    t.string   "description"
+    t.string   "address"
+    t.string   "business_hours"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
@@ -119,18 +175,30 @@ ActiveRecord::Schema.define(version: 20141203063302) do
   add_index "venues", ["reset_password_token"], name: "index_venues_on_reset_password_token", unique: true, using: :btree
 
   create_table "workshops", force: true do |t|
-    t.string   "name"
+    t.string   "name",                                    null: false
     t.integer  "price"
-    t.integer  "length"
+    t.integer  "length",                  default: 2,     null: false
     t.string   "previous_skills"
     t.text     "agenda"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "target_public"
     t.text     "description"
-    t.integer  "max_number_participants"
-    t.integer  "state",                   default: 0
+    t.integer  "max_number_participants", default: 12,    null: false
+    t.integer  "state",                   default: 0,     null: false
     t.integer  "expert_id"
+    t.boolean  "free",                    default: false, null: false
+    t.integer  "min_number_participants", default: 1,     null: false
   end
+
+  add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"
+
+  add_foreign_key "enrollments", "students", name: "enrollments_student_id_fk"
+  add_foreign_key "enrollments", "workshops", name: "enrollments_workshop_id_fk"
+
+  add_foreign_key "reservations", "calendars", name: "reservations_calendar_id_fk"
+  add_foreign_key "reservations", "workshops", name: "reservations_workshop_id_fk"
+
+  add_foreign_key "workshops", "experts", name: "workshops_expert_id_fk"
 
 end

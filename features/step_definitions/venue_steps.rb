@@ -17,11 +17,13 @@ end
 
 When(/^I send my data for the registration as venue$/) do
   @venue = FactoryGirl.build(:venue)
-  fill_in Venue.human_attribute_name(:email), with: @venue.email
-  fill_in Venue.human_attribute_name(:password), with: @venue.password
-  fill_in Venue.human_attribute_name(:password_confirmation), with: @venue.password_confirmation
-  fill_in Venue.human_attribute_name(:name), with: @venue.name
-  click_button I18n.t('devise.sessions.sign_up')
+  within(:css,'.main') do
+    fill_in Venue.human_attribute_name(:email), with: @venue.email
+    fill_in Venue.human_attribute_name(:password), with: @venue.password
+    fill_in Venue.human_attribute_name(:password_confirmation), with: @venue.password_confirmation
+    fill_in Venue.human_attribute_name(:name), with: @venue.name
+    click_button I18n.t('devise.sessions.sign_up')
+  end
 end
 
 Given(/^I am logged in as venue$/) do
@@ -57,9 +59,8 @@ When(/^afterwards, I sumbit the required information for the reservation$/) do
   click_button I18n.t('views.actions.make_reservation')
 end
 
-Then(/^I can see the new reservation on the "(.*?)" calendar$/) do |calendar|
-  expect(page).to have_content(@venue.calendars.first.title)
-  expect(page).to have_content(@reservation.starts_at.strftime("%H:%M"))
+Then(/^I can see the new reservation on the calendar$/) do  
+  have_tag(:span,{:title => "#{@reservation.starts_at.strftime("%H:%M")}"})
 end
 
 When(/^I click on the 'New Calendar' button$/) do
@@ -77,3 +78,22 @@ end
 When(/^afterwards, I sumbit the required information$/) do
   pending # express the regexp above with the code you wish you had
 end
+
+# Update profile
+Given(/^I am at my profile update page as venue$/) do
+  visit edit_venue_registration_path @venue
+end
+
+When(/^I fill in the venue fields$/) do
+  # fill_in Venue.human_attribute_name(:name), with: @venue.name # collides with contact.name
+  fill_in Venue.human_attribute_name(:description), with: @venue.description
+  fill_in Venue.human_attribute_name(:facilities), with: @venue.facilities
+  # TODO: add  venue pictures
+end
+
+Then(/^I am at the profile update page$/) do
+  expect(page.current_path).to eq(edit_venue_registration_path)
+end
+
+
+

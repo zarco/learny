@@ -13,6 +13,9 @@
  *= require bootstrap.min
  *= require bootstrap_and_overrides
  *= require bootstrap-datepicker3
+ *= require font-awesome
+ *= require bootstrap-social
+ *= require theme
  */ 
 
 
@@ -25,4 +28,4 @@
        font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-body { padding-top: 70px; }
+body { padding-top: 75px; }

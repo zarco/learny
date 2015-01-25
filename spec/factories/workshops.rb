@@ -4,16 +4,23 @@ FactoryGirl.define do
   factory :workshop do
     name {Faker::Name.name}
     price 10000.00
-    length 2
+    length 1
     previous_skills "Spoken english, Musical skills"
     agenda { Faker::HipsterIpsum.paragraphs.join}
     description { Faker::HipsterIpsum.paragraphs.join}
-    max_number_participants {5}
+    max_number_participants {10}
+    min_number_participants {1}
+    free false
     state :proposed
-    expert {FactoryGirl.build(:expert)}
+    expert {FactoryGirl.create(:expert)}
 
     factory :workshop_with_reservation do
       reservation {FactoryGirl.build(:reservation)}
+    end
+    
+    factory :free_workshop do
+      free true
+      price nil
     end
 
     factory :invalid_workshop do

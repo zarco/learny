@@ -1,19 +1,103 @@
-%p#notice= notice
+%p#notice
 .container
-  %h1
-    = @calendar.title
-  .simple-calendar.panel.panel-primary
-    = month_calendar events: @calendar.reservations, header: {class: 'calendar-header panel-header'} ,
-        title: ->(start_date) { content_tag :span, "#{I18n.t("date.month_names")[start_date.month]} #{start_date.year}", class: "calendar-title" },
-        table: {class: "table table-bordered"}, tr: {class: "calendar-row"}, td: {class: "day"}  do |date, reservations| 
-      = date.strftime("%d-%m")
-      - reservations.each do |reservation|
-        .event-cell
-          =reservation.starts_at.strftime("%H:%M")
-          \-
-          =reservation.final_time.strftime("%H:%M")
-          = (link_to reservation.workshop.name, reservation.workshop) if !reservation.workshop.nil?
-  
-  = link_to 'Edit', edit_calendar_path(@calendar)
-  \|
-  = link_to 'Back', calendars_path
+  .col-md-1
+  .col-md-10
+    %h1
+      = @calendar.title
+      - if @calendars.length > 1
+        %button.btn.btn-primary.btn-sm{"data-target" => ".calendars", "data-toggle" => "modal", :type => "button"}
+          %span.glyphicon.glyphicon-plus               
+        .modal.fade{:class => "calendars","aria-hidden" => "true", "aria-labelledby" => ".calendars", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog.modal-sm                  
+            .modal-content
+              .modal-header
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+                %h3.modal-title
+                  Calendarios disponibles           
+              .modal-body
+                - @calendars.each do |calendar|             
+                  = link_to calendar do
+                    %button.btn.btn-primary.btn-sm{:type => "button"}
+                      = calendar.title
+              .modal-footer
+                %button.btn.btn-danger{"data-dismiss" => "modal", :type => "button"}
+                  = t('views.legends.calendar.close', default:'Close')                    
+    .simple-calendar.panel.panel-primary.text-center
+      = month_calendar events: @calendar.reservations, header: {class: 'calendar-header panel-header'} ,
+          title: ->(start_date) { content_tag :span, "#{I18n.t("date.month_names")[start_date.month]} #{start_date.year}", class: "calendar-title" },
+          table: {class: "table table-bordered text-left"}, tr: {class: "calendar-row"}, td: {class: "day"}  do |date, reservations| 
+        %p
+          = date.strftime("%d")
+        - reservations.each do |reservation|
+          .event-cell
+            - if !reservation.workshop.nil?              
+              %button.btn.btn-primary.btn-sm{"data-target" => ".workshop#{reservation.workshop.id}", "data-toggle" => "modal", :type => "button"}
+                %span.glyphicon.glyphicon-book
+              .modal.fade{:class => "workshop#{reservation.workshop.id}","aria-hidden" => "true", "aria-labelledby" => ".workshop#{reservation.workshop.id}", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog.modal-sm                  
+                  .modal-content
+                    .modal-header
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                        %span{"aria-hidden" => "true"} ×
+                      %h3.modal-title
+                        = reservation.workshop.name
+                    .modal-body
+                      %p
+                        - if !reservation.workshop.expert.avatar_url.nil?
+                          %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => reservation.workshop.expert.avatar.icon.url}
+                        -else
+                          %span.glyphicon.glyphicon-user
+                        = reservation.workshop.expert.full_name
+                      %p
+                        %span.glyphicon.glyphicon-calendar
+                        = date.strftime("%A - %d/%m/%Y")
+                      %p
+                        %span.glyphicon.glyphicon-time
+                        = reservation.starts_at.strftime('%H:%M')
+                        \- 
+                        = reservation.final_time.strftime('%H:%M')
+                      %p
+                        %span.glyphicon.glyphicon-list-alt
+                        = reservation.workshop.small_description 50
+                    .modal-footer
+                      %button.btn.btn-danger{"data-dismiss" => "modal", :type => "button"}
+                        = t('views.legends.calendar.close', default:'Close')
+                      = link_to reservation.workshop do       
+                        %button.btn.btn-primary.btn-md{:type => "button"}
+                          %span.glyphicon.glyphicon-plus
+                          = t('views.legends.calendar.more_information', default:'More information')
+            - else
+              %button.btn.btn-success.btn-sm{"data-target" => ".reservation#{reservation.id}", "data-toggle" => "modal", :type => "button"}
+                %span.glyphicon.glyphicon-bell
+              .modal.fade{:class => "reservation#{reservation.id}","aria-hidden" => "true", "aria-labelledby" => ".reservation#{reservation.id}", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog.modal-sm
+                  .modal-content
+                    .modal-header
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                        %span{"aria-hidden" => "true"} ×
+                      %h3.modal-title
+                        = t('activerecord.attributes.calendar.explain_reservation', default:'Reservation available')
+                    .modal-body
+                      %p
+                        %span.glyphicon.glyphicon-calendar
+                        = date.strftime("%A - %d/%m/%Y")
+                      %p
+                        %span.glyphicon.glyphicon-time
+                        = reservation.starts_at.strftime('%H:%M')
+                        \-
+                        = reservation.final_time.strftime('%H:%M')                    
+                    .modal-footer
+                      %button.btn.btn-danger{"data-dismiss" => "modal", :type => "button"}
+                        = t('views.legends.calendar.close', default:'Close')
+    %p.text-right      
+      %span.badge.reservation
+        %span.glyphicon.glyphicon-bell        
+        = t('activerecord.attributes.calendar.explain_reservation', default:'Reservation available')
+      %span.badge.booked      
+        %span.glyphicon.glyphicon-book
+        = t('activerecord.attributes.calendar.explain_book', default: 'Reserved for event')
+    /= link_to 'Edit', edit_calendar_path(@calendar) 
+    /\|
+    /= link_to 'Back', calendars_path
+  .col-md-1

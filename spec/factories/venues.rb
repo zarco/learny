@@ -14,7 +14,9 @@ FactoryGirl.define do
       calendars []
     end
     
-    
+    factory :no_calendar_venue do
+      calendars []
+    end
     
   end
 end

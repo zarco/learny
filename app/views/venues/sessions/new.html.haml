@@ -1,5 +1,5 @@
 .container.center-block
-  .panel.text-center
+  .page-header.text-center
     %h3
       = t('devise.sessions.sign_in_welcome',default:'Welcome %{resource}! ', resource: Venue.model_name.human)
 
@@ -18,3 +18,4 @@
       .form-group
         = f.submit t('devise.sessions.sign_in'), :class=>'btn btn-primary btn-lg btn-block' 
     = render "venues/shared/links"
+    

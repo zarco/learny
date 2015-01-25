@@ -1,30 +1,115 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  %div
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  %div
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  %div= f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+.container
+  .tabs
+    %h3
+      .tabpanel{:role=>'tabpanel'}
+        %ul.nav.nav-tabs{:role=>'tabpanel'}
+          %li.active{:role=>'presentation'}
+            =link_to t('views.legends.general',default: 'General'),'#general', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
+            =link_to t('views.legends.contact', default: 'Contact'),'#contact', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
+            =link_to t('views.legends.address', default: 'Address'),'#address', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
+            =link_to t('views.legends.pictures', default: 'Pictures'),'#pictures', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
+            =link_to t('views.legends.account', default: 'Account'),'#account', 'data-toggle' => 'tab'
+      
+  = form_for(setup_contact_venue(resource), as: resource_name, url: registration_path(resource_name), html: { method: :put, role: 'form', :multipart => true }) do |f|
+    .alert-danger
+      = devise_error_messages!
+
+    .tab-content
+      .tab-pane.fade.in.active#general
+        .panel.panel
+          .panel-body.jumbotron
+            .row
+              .col-md-6
+                .form-group
+                  = f.label :name
+                  = f.text_field :name, autofocus: true, class: 'form-control'
+                .form-group
+                  = f.label :description
+                  = f.text_area :description, autofocus: true, class: 'form-control'
+                .form-group
+                  = f.label :business_hours
+                  = f.text_area :business_hours, autofocus: true, class: 'form-control'
+                .form-group
+                  =f.label :facilities
+                  = f.text_field :facilities, autofocus: true, class: 'form-control', hint: ' wifi, proyector, pantalla'
+                  %span
+                    %i (Separadas por comas. Ej: wifi, proyector, pantalla) 
+              .col-md-6
+                .form-group
+                  = f.label :avatar
+                  %img{:alt => "Profile", :src => @venue.avatar_url(:thumb)}
+                  = f.file_field :avatar, autofocus: true, class: 'form-control'
+    
+      .tab-pane.fade#contact
+        .panel.panel
+          .panel-body.jumbotron
+            .row
+              .col-md-6
+                = f.fields_for :contact do |c|
+                  .form-group
+                    = c.label :name
+                    = c.text_field :name, autofocus: true, class: 'form-control'
+                  .form-group
+                    = c.label :mail
+                    = c.text_field :mail, autofocus: true, class: 'form-control'
+                  .form-group
+                    = c.label :phone
+                    = c.text_field :phone, autofocus: true, class: 'form-control'                                
+      .tab-pane.fade#address
+        .panel.panel
+          .panel-body.jumbotron
+            .form-group
+              = f.label :address
+              = f.text_area :address, autofocus: true, class: 'form-control'
+            .row
+              .form-group.col-md-6
+                .map_info Click derecho para definir. Arrastra el marcador para modificar
+                =link_to 'Change Location', '#', class: 'btn btn-warning', id: 'map_button'
+                #map-container
+                  %script{:src => "https://maps.googleapis.com/maps/api/js"}
+                  #map_data
+                    = f.hidden_field  :latitude 
+                    %br
+                    = f.hidden_field  :longitude
+                  #map_canvas
+
+      .tab-pane.fade#pictures
+        .panel.panel
+          .panel-body.jumbotron
+            .form-group
+              = f.label :pictures
+              = file_field_tag "venue_pictures[]", type: :file, multiple: true 
+            .form-group
+              .span Fotos agregadas:
+              - @venue.venue_pictures.each do |picture|
+                %img{:alt => "Profile", :src => picture.avatar_url(:thumb)}
+           
+      .tab-pane.fade#account
+        .panel.panel
+          .panel-body.jumbotron
+            .col-md-6
+              .form-group
+                = f.label :email
+                = f.email_field :email, autofocus: true, class: 'form-control'
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                %div
+                  Currently waiting confirmation for: #{resource.unconfirmed_email}
+              .form-group
+                = f.label :password
+                %i
+                  = t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it', default: "(leave blank if you do not want to change it)")              
+                = f.password_field :password, autocomplete: "off", class: 'form-control'
+              .form-group
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+                  
+    .row
+      .col-md-12
+        .panel.panel
+          .panel-body.jumbotron
+            .form-group.col-md-12
+              = f.submit t('devise.registrations.edit.update',default: 'Update'), :class=>'btn btn-primary btn-lg btn-block' 

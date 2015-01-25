@@ -3,12 +3,12 @@
   %h1
     = t('views.actions.my_workshops',default:'My workshops')
 
-  %table.table
+  %table.table.table-striped
     %tr
       %th= Workshop.human_attribute_name(:name)
       %th= Workshop.human_attribute_name(:state)
       %th= Venue.model_name.human
-      %th
+      %th= Reservation.human_attribute_name(:starts_at)
       %th
       
   
@@ -17,12 +17,14 @@
       %tr
         %td= link_to workshop.name, workshop
         %td= t('views.states.'+workshop.state, default: workshop.state)
-        %td= (link_to venue.name , 'workshop.reservation.calendar.venue') if !venue.nil? 
-        %td= workshop.reservation.starts_at if !workshop.reservation.nil?
+        %td= (link_to venue.name , venue) unless venue.nil? 
+        %td= workshop.reservation.fmt_starts_at unless workshop.reservation.nil?
         %td
           = link_to 'Edit', edit_workshop_path(workshop)
-          = link_to 'Destroy', workshop, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          - if workshop.reservation.nil?
+            = link_to 'Destroy', workshop, :method => :delete, :data => { :confirm => 'Are you sure?' }
   
   %br
-
-= link_to 'New Workshop', new_workshop_path
+  = paginate @workshops
+  %br
+  = link_to 'New Workshop', new_workshop_path
