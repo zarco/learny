@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'pg_search'
@@ -44,9 +43,10 @@ gem 'spring',        group: :development
 # Easily include static pages in your Rails app.
 gem 'high_voltage'
 
-# To load assets in Heroku.
-gem 'rails_12factor', group: :production
-
+group :production do
+  # To load assets in Heroku.
+  gem 'rails_12factor'
+end
 
 group :test do
   gem 'ffaker', '~> 1.25.0'
@@ -70,7 +70,8 @@ gem 'fog', '~> 1.3.1'
 gem 'mini_magick'
 
 
-gem 'unicorn'
+#gem 'unicorn'
+gem 'puma'
 
 gem "letter_opener", :group => :development
 
@@ -83,3 +84,4 @@ gem 'kaminari'
 gem 'time_difference', '~> 0.3.2'
 
 gem 'foreigner'
+gem 'rack-timeout'
