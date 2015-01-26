@@ -1,25 +1,51 @@
 .container
-  %h1 
-    = t('views.actions.my_workshops',default:'My Workshops')
-  
-  .table-responsive
-    %table.table.table-striped
-      %tr
-        %th 
-          = Workshop.model_name.human
-        %th 
-          = Expert.model_name.human
-        %th
-          = Venue.model_name.human
-        %th
-          = Venue.human_attribute_name(:starts_at) 
-        %th
-        
-    
+  .page-header.text-center
+    %h3 
+      = t('views.actions.my_workshops',default:'My Workshops')
+  %ul.list-group  
+    %h1
+    - if @enrollments.none?
+      .jumbotron.text-center
+        %h3
+          =t('views.legends.my_workshops.no_workshops',default: 'You are not enrolled in workshops yet')
+    -else
       - @enrollments.each do |enrollment|
-        %tr
-          %td= link_to enrollment.workshop.name, workshop_path(enrollment.workshop)
-          %td= link_to enrollment.workshop.expert.full_name, enrollment.workshop.expert
-          %td= (link_to enrollment.workshop.venue.name, enrollment.workshop.venue.name) if !enrollment.workshop.venue.nil?
-          %td= enrollment.workshop.reservation.starts_at if !enrollment.workshop.venue.nil?
-          %td= link_to 'Unenroll', enrollment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %li.list-group-item
+          .test
+            .row
+              .col-md-12
+                %h2
+                  = link_to enrollment.workshop.name, workshop_path(enrollment.workshop), class: 'color:white'
+                  %small
+                    = enrollment.workshop.small_description 100                                
+            .row
+              .col-md-5
+                %blockquote
+                  %h4
+                    - unless enrollment.workshop.expert.avatar_url.nil?
+                      %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Experto", :src => enrollment.workshop.expert.avatar.icon.url}
+                      &nbsp;                  
+                    = link_to enrollment.workshop.expert.full_name , enrollment.workshop.expert
+                  %h5
+                    = enrollment.workshop.expert.occupation
+              .col-md-7
+                - unless enrollment.workshop.reservation.nil?
+                  - venue=enrollment.workshop.venue
+                  
+                  %blockquote
+                    %h4
+                      - unless enrollment.workshop.venue.avatar_url.nil?
+                        %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Establecimiento", :src => enrollment.workshop.venue.avatar.icon.url}
+                        &nbsp;
+                      = link_to enrollment.workshop.venue.name, venue                  
+                    %h5
+                      %span.badge
+                        = enrollment.workshop.reservation.fmt_duration unless enrollment.workshop.reservation.nil?                
+                    %h4
+                      %span.small
+                        = enrollment.workshop.venue.address                    
+                    %p.text-right
+                      = link_to enrollment, :method => :delete, :data => { :confirm => '¿Estás seguro?' } do
+                        %button.btn.btn-danger.btn-xs{:type => "button"}
+                          %span.glyphicon.glyphicon-remove
+                          = t('views.legends.my_workshops.unenroll',default:'Unenroll')    
