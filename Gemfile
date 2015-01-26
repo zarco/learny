@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
@@ -46,6 +48,7 @@ gem 'high_voltage'
 group :production do
   # To load assets in Heroku.
   gem 'rails_12factor'
+  gem 'puma'
 end
 
 group :test do
@@ -59,6 +62,7 @@ end
 group :test,:development do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'unicorn'
 end
 
 gem 'devise'
@@ -70,8 +74,8 @@ gem 'fog', '~> 1.3.1'
 gem 'mini_magick'
 
 
-#gem 'unicorn'
-gem 'puma'
+#
+
 
 gem "letter_opener", :group => :development
 
