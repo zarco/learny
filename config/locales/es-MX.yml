@@ -6,7 +6,7 @@ es-MX:
     sessions:
       sign_in: 'Ingresar'
       sign_out: 'Salir'
-      sign_up: 'Subscribirse'
+      sign_up: 'Suscribirse'
       sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia como %{resource}?'
       sign_in_welcome: '¡Bienvenido %{resource}!, proporciona tus datos para ingresar '
       your_account: 'Tu Cuenta'
