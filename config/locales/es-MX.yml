@@ -278,6 +278,11 @@ es-MX:
       no_next_workshops: 'No tienes talleres próximos'
       search:
         no_results: 'La búsqueda no obtuvo resultados'            
+      reservations:
+        no_reservations: 'Aún no tienes reservaciones'
+        new_reservation: 'Nueva reservación'
+        edit: 'Editar'
+        delete: 'Borrar'
       close: 'Cerrar'
       
     status:
