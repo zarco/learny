@@ -29,12 +29,12 @@
       = f.label :price
       .input-group
         %span.input-group-addon $
-        = f.text_field :price,  :class => 'form-control', :type => "money"
+        = f.text_field :price,  :class => 'form-control', :id => 'txt-price', :type => "money"
         %span.input-group-addon 
           = t('views.legends.workshop.price_per_student',:default => 'per student')
     .form-group.col-md-2
       = f.label :free
-      = f.check_box :free, :class => 'checkbox'
+      = f.check_box :free, :class => 'checkbox',:id => 'chk-free'
   .form-group
     = f.label :target_public
     = f.text_field :target_public, :class=>'form-control'
@@ -94,5 +94,3 @@
           Close
         %button.btn.btn-primary{:tyṕe=>'button', 'data-dismiss'=>'modal'}
           Accept
-
-
