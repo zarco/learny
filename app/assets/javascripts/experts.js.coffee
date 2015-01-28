@@ -3,11 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on "ready page:load", ->
-  $("#chk-free").on "change", ->
-    is_checked = $("#chk-free").prop('checked')
+  $("#workshop_free").on "change", ->
+    is_checked = $("#workshop_free").prop('checked')
     if is_checked
-      $("#txt-price").prop "disabled", true      
+      $("#workshop_price").prop "disabled", true      
     else
-      $("#txt-price").prop "disabled", false      
+      $("#workshop_price").prop "disabled", false      
     return
   return
