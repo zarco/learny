@@ -264,6 +264,9 @@ es-MX:
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
         price_per_student: 'por estudiante'
+      my_workshops:        
+        unenroll: 'No asistiré'
+        no_workshops: 'Aún no estás inscrito en ningún taller'
       calendar:
         more_information: 'Más información'
         close: 'Cerrar'      
