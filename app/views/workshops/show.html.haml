@@ -82,8 +82,13 @@
           %button.btn.btn-lg.btn-block.btn-success{:type => "button"}
             %span.glyphicon.glyphicon-gift
             Añadir a lista de deseos
-
-    
+  - elsif !student_signed_in? && !expert_signed_in? && !venue_signed_in? && !administrator_signed_in?
+    .col-md-4
+      .panel.panel-info
+        .panel-body
+          = link_to new_student_session_path,{:style=>"text-decoration:none"} do
+            %button.btn.btn-primary.btn-lg.btn-block{:type => "button"}
+              = t('views.actions.enroll',default: 'Enroll')
   .col-md-4
     .panel.panel-primary
       .panel-heading
