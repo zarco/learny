@@ -9,7 +9,43 @@ class Workshop < ActiveRecord::Base
   validates :price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true, if: :free?
   validates :price, presence: true, numericality: { greater_than: 0 }, unless: :free?
   
-  enum state: [:proposed, :scheduled, :stand_by, :cancelled, :given]
+  #enum state: [:proposed, :scheduled, :stand_by, :cancelled, :given]
+  
+  
+  state_machine :state, :initial => :new do
+    
+    state :proposed
+    
+    state :scheduled
+    
+    state :stand_by
+    
+    state :given
+    
+    state :cancelled
+    
+    event :proposed_by_expert do
+      transition :new => :proposed
+    end
+    
+    event :proposed_with_reservation do
+      transition :new => :scheduled
+    end
+    
+    event :accepted_by_venue do
+      transition :proposed => :scheduled
+    end
+    
+    event :cancelled_by_expert do
+      transition :scheduled => :cancelled
+    end
+    
+    event :has_been_given do
+      transition :scheduled => :given
+    end
+    
+  end
+  
   
   pg_search_scope :search_workshop, 
                   :against => [:name, :description, :agenda],
