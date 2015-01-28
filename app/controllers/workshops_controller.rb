@@ -41,9 +41,11 @@ class WorkshopsController < ApplicationController
   def create
     Workshop.transaction do
       @workshop = Workshop.create(workshop_params.except(:reservation_attributes).merge({:expert => current_expert}))
+      @workshop.proposed_by_expert if expert_signed_in?
       unless workshop_params[:reservation_attributes].nil?
         reservation_id=workshop_params[:reservation_attributes][:id] 
         @workshop.update_reservation(reservation_id) if @workshop.persisted? && reservation_id
+        @workshop.proposed_with_reservation
         #puts @workshop.errors.full_messages unless @workshop.valid?
         raise ActiveRecord::Rollback if @workshop.invalid?
       end        
