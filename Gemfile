@@ -70,8 +70,8 @@ gem 'fog', '~> 1.3.1'
 gem 'mini_magick'
 
 
-#gem 'unicorn'
-gem 'puma'
+gem 'unicorn'
+#gem 'puma'
 
 gem "letter_opener", :group => :development
 
