@@ -29,7 +29,7 @@
       = f.label :price
       .input-group
         %span.input-group-addon $
-        = f.text_field :price,  :class => 'form-control', :type => "money"
+        = f.text_field :price, :class => 'form-control', :type => "money"
         %span.input-group-addon 
           = t('views.legends.workshop.price_per_student',:default => 'per student')
     .form-group.col-md-2
@@ -94,5 +94,3 @@
           Close
         %button.btn.btn-primary{:tyṕe=>'button', 'data-dismiss'=>'modal'}
           Accept
-
-
