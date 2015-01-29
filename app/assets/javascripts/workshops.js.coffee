@@ -24,6 +24,20 @@ ready =->
     )
     
   )
+  (change_url = ->
+    wbst = $("#expert_website").val().replace("http://", "")
+    fb = $("#expert_facebook_link").val().replace("https://", "")
+    twtr = $("#expert_twitter_link").val().replace("https://twitter.com/", "@")
+    gplus = $("#expert_google_plus_link").val().replace("https://plus.google.com/", "")
+    lnkd = $("#expert_linkedin_link").val().replace("https://www.linkedin.com/profile/view?", "")
+    $("#expert_website").val wbst
+    $("#expert_facebook_link").val fb
+    $("#expert_twitter_link").val twtr
+    $("#expert_google_plus_link").val gplus
+    $("#expert_linkedin_link").val lnkd
+    return
+  )()
+  
   
 $(document).ready(ready)
 $(document).on('page:load', ready)
