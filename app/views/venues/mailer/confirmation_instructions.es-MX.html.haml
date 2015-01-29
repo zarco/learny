@@ -1,7 +1,38 @@
-%h1
-  Learny | Establecimientos
+%h1 Learny | Establecimientos
+
 .container
-  %h2
-    ¡Bienvenido #{@resource.name || @email}!
-  %p Puedes confirmar tu cuenta de correo mediante el vínculo siguiente:
-  %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)
+%table
+  %tr
+    %td{:style => "padding:30px 15px 30px 15px; background-color:#EBEBEB;"}
+      %table
+        %tr
+          %td{:style => "border-left: 1px solid #A3A3A3; border-right: 1px solid #A3A3A3; border-top: 1px solid #A3A3A3; border-bottom: 1px solid #A3A3A3; background-color:#FFFFFF; border-radius:10px; padding:10px 30px 10px 20px;"}
+            %h2
+              ¡Bienvenido #{@resource.name || @email}!
+            %p Puedes confirmar tu cuenta de correo mediante el siguiente vínculo:
+            %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)
+            %p &nbsp;
+            %p
+              %h3{:style => "color:#009933"}
+                Ahora que formas parte de nuestra comunidad, queremos darte unos consejos para que tengas más éxito como Establecimiento:
+            %p
+              %strong 
+                \- Revive tus horas muertas. 
+              Ofrecer tu espacio en horarios de poca afluencia hará que ganes consumos cuando normalmente no tenías.
+              %br
+              %br
+              %strong 
+                \- Menciona tus amenidades. 
+              Las facilidades que ofrecezcas para la realización del curso pueden marcar la diferencia para que el instructor elija tu establecimiento o no.  Menciona si tienes proyector, pantalla, wifi, etc.
+              %br
+              %br
+              %strong 
+                \- Agrega fotos impactantes. 
+              Haz que tu establecimiento parezca un lugar atractivo para aprender algo nuevo.
+              %br
+              %br
+              %strong 
+                \- Hazlos regresar. 
+              Todos los asistentes a un curso son clientes potenciales para tu negocio. Si les causas una buena impresión seguro volverán y te recomendarán con sus amistades.
+%br
+%h3{:style => "color: #2d6ca2"} Afectuosamente, el equipo de Learny
