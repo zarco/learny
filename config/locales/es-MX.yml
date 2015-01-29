@@ -6,7 +6,7 @@ es-MX:
     sessions:
       sign_in: 'Ingresar'
       sign_out: 'Salir'
-      sign_up: 'Subscribirse'
+      sign_up: 'Suscribirse'
       sign_up_welcome: '¡Bienvenido!, ¿Listo para la experiencia como %{resource}?'
       sign_in_welcome: '¡Bienvenido %{resource}!, proporciona tus datos para ingresar '
       your_account: 'Tu Cuenta'
@@ -267,6 +267,9 @@ es-MX:
         price_per_student: 'por estudiante'
       reservation:
         cover_per_person: 'Por persona'  
+      my_workshops:        
+        unenroll: 'No asistiré'
+        no_workshops: 'Aún no estás inscrito en ningún taller'
       calendar:
         more_information: 'Más información'
         close: 'Cerrar'      
@@ -281,6 +284,11 @@ es-MX:
       no_next_workshops: 'No tienes talleres próximos'
       search:
         no_results: 'La búsqueda no obtuvo resultados'            
+      reservations:
+        no_reservations: 'Aún no tienes reservaciones'
+        new_reservation: 'Nueva reservación'
+        edit: 'Editar'
+        delete: 'Borrar'
       close: 'Cerrar'
       
     status:

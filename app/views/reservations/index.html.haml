@@ -3,52 +3,66 @@
     %h3
       = t('views.actions.reservations',default:'Reservations')
   %ul.list-group
-  - @reservations.each do |reservation|
-    %li.list-group-item
-      .test
-        - if !reservation.workshop.nil? 
+  %h1
+  - if @reservations.none?
+    .jumbotron.text-center
+      %h3
+        =t('views.legends.reservations.no_reservations',default: 'You don not have reservations yet')
+      %p                
+        = link_to new_reservation_path do
+          %button.btn.btn-primary{:type => "button"}
+            %span.glyphicon.glyphicon-th-list
+            =t('views.legends.reservations.new_reservation',default: 'New reservation')
+  - else
+    - @reservations.each do |reservation|
+      %li.list-group-item
+        .test
+          - if !reservation.workshop.nil? 
+            .row
+              .col-md-12
+                %h2
+                  = (link_to reservation.workshop.name, reservation.workshop, class: 'color:white') 
+                  %small           
+                    = reservation.workshop.small_description 100
           .row
-            .col-md-12
-              %h2
-                = (link_to reservation.workshop.name, reservation.workshop, class: 'color:white') 
-                %small           
-                  = reservation.workshop.small_description 100
-        .row
-          .col-md-4
-            %blockquote              
-              - if !reservation.workshop.nil?                                                  
-                - unless reservation.workshop.expert.avatar_url.nil?
-                  %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => reservation.workshop.expert.avatar.icon.url}                
-                %h4                  
-                  = link_to reservation.workshop.expert.full_name, reservation.workshop.expert
-                %h5                   
-                  = reservation.workshop.expert.occupation                 
-              - else  
-                %h4                 
-                  = t('activerecord.attributes.reservation.available',default:'Available')    
-          .col-md-4.text-center
-            %blockquote
-              %h4
-                %span.badge
-                  = reservation.fmt_duration                      
-              %h4
-                %span.label.label-danger
-                  = t('activerecord.attributes.reservation.max_participants',default:'# Participants')
-                  %span.badge
-                    = reservation.max_participants                
-          .col-md-4.text-center
-            - if reservation.workshop.nil?
+            .col-md-4
+              %blockquote              
+                - if !reservation.workshop.nil?                                                  
+                  - unless reservation.workshop.expert.avatar_url.nil?
+                    %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => reservation.workshop.expert.avatar.icon.url}                
+                  %h4                  
+                    = link_to reservation.workshop.expert.full_name, reservation.workshop.expert
+                  %h5                   
+                    = reservation.workshop.expert.occupation                 
+                - else  
+                  %h4                 
+                    = t('activerecord.attributes.reservation.available',default:'Available')    
+            .col-md-4.text-center
               %blockquote
-                %br
-                .btn-group-horizontal{"aria-label" => "...", :role => "group"}                  
-                  = link_to edit_reservation_path(reservation) do
-                    %button.btn.btn-success{:type => "button"}
-                      %span.glyphicon.glyphicon-pencil
-                      Editar                                
-                  = link_to reservation, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                    %button.btn.btn-danger{:type => "button"}
-                      %span.glyphicon.glyphicon-trash
-                      Borrar
-  %br
-  %p                
-    = link_to "<button class='btn btn-primary' type='button'><span class='glyphicon glyphicon-th-list'></span> Nueva reservación</button>".html_safe, new_reservation_path
+                %h4
+                  %span.badge
+                    = reservation.fmt_duration                      
+                %h4
+                  %span.label.label-danger
+                    = t('activerecord.attributes.reservation.max_participants',default:'# Participants')
+                    %span.badge
+                      = reservation.max_participants                
+            .col-md-4.text-center
+              - if reservation.workshop.nil?
+                %blockquote
+                  %br
+                  .btn-group-horizontal{"aria-label" => "...", :role => "group"}                  
+                    = link_to edit_reservation_path(reservation) do
+                      %button.btn.btn-success{:type => "button"}
+                        %span.glyphicon.glyphicon-pencil
+                        =t('views.legends.reservations.edit',default: 'Edit')
+                    = link_to reservation, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                      %button.btn.btn-danger{:type => "button"}
+                        %span.glyphicon.glyphicon-trash
+                        =t('views.legends.reservations.delete',default: 'Delete')
+    %br
+    %p                
+      = link_to new_reservation_path do
+        %button.btn.btn-primary{:type => "button"}
+          %span.glyphicon.glyphicon-th-list
+          =t('views.legends.reservations.new_reservation',default: 'New reservation')
