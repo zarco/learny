@@ -65,30 +65,30 @@
       .tab-pane.fade#contact
         .panel.panel
           .panel-body.jumbotron
-            .form-group
+            .form-group.website-form
               = f.label :website
               = f.text_field :website, autofocus: true, class: 'form-control', :placeholder => 'www.mywebsite.com'
             .row
-              .form-group.col-md-6
+              .form-group.col-md-6.fb-form
                 = f.label  :facebook_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-facebook
                   = f.text_field :facebook_link, autofocus: true, class: 'form-control', :placeholder => 'facebook.com/myfb'
-              .form-group.col-md-6
+              .form-group.col-md-6.twtr-form
                 = f.label :twitter_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-twitter
                   = f.text_field :twitter_link, autofocus: true, class: 'form-control', :placeholder => '@mytwitter'
             .row
-              .form-group.col-md-6
+              .form-group.col-md-6.lnkd-form
                 = f.label :linkedin_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-linkedin
                   = f.text_field :linkedin_link, autofocus: true, class: 'form-control', :placeholder => 'id=12345678'
-              .form-group.col-md-6
+              .form-group.col-md-6.gplus-form
                 = f.label :google_plus_link
                 .input-group
                   .input-group-addon
