@@ -11,7 +11,7 @@ FactoryGirl.define do
     max_number_participants {10}
     min_number_participants {1}
     free false
-    state :proposed
+    state :new
     expert {FactoryGirl.create(:expert)}
 
     factory :workshop_with_reservation do

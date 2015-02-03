@@ -42,6 +42,7 @@ class WorkshopsController < ApplicationController
     Workshop.transaction do
       @workshop = Workshop.create(workshop_params.except(:reservation_attributes)
         .merge({:expert => current_expert}))
+      @workshop.proposed_by_expert
       unless workshop_params[:reservation_attributes].nil?
         reservation_id=workshop_params[:reservation_attributes][:id] 
         @workshop.update_reservation(reservation_id) if @workshop.persisted? && reservation_id

@@ -46,8 +46,9 @@ class Workshop < ActiveRecord::Base
       transition :scheduled => :given
     end
     
-    after_transition :to => any do |workspace, transition|
-      workspace.last_event=transition.event  
+    after_transition :to => any do |workshop, transition|
+      #puts ">>>>>>>>>>>>>>>>>> #{transition}"
+      workshop.last_event=transition.event  
     end 
     
   end
@@ -91,9 +92,7 @@ class Workshop < ActiveRecord::Base
         @reservation.update(:workshop => self)
         self.proposed_with_reservation
         #self.update(:state => :scheduled)
-      else
-        self.proposed_by_expert
-      end  
+      end
     end
   end
 end 
