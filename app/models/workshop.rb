@@ -11,6 +11,8 @@ class Workshop < ActiveRecord::Base
   
   #enum state: [:proposed, :scheduled, :stand_by, :cancelled, :given]
   
+  attr_accessor :last_event
+  
   
   state_machine :state, :initial => :new do
     
@@ -29,7 +31,7 @@ class Workshop < ActiveRecord::Base
     end
     
     event :proposed_with_reservation do
-      transition :new => :scheduled
+      transition [:new,:proposed] => :scheduled
     end
     
     event :accepted_by_venue do
@@ -43,6 +45,10 @@ class Workshop < ActiveRecord::Base
     event :has_been_given do
       transition :scheduled => :given
     end
+    
+    after_transition :to => any do |workspace, transition|
+      workspace.last_event=transition.event  
+    end 
     
   end
   
@@ -72,16 +78,21 @@ class Workshop < ActiveRecord::Base
   
   def update_reservation(reservation_id)
     Workshop.transaction do
+      #puts "previous changed? #{reservation.changed?}"
       unless self.reservation.nil?
         reservation=self.reservation
-        reservation.workshop=nil
+        reservation.workshop_id=nil
         reservation.save
+        #TODO Enviar notificacion de cancelacion a venue
       end
       
       @reservation=Reservation.find(reservation_id) unless reservation_id.empty?
       unless @reservation.nil?
         @reservation.update(:workshop => self)
-        self.update(:state => :scheduled)      
+        self.proposed_with_reservation
+        #self.update(:state => :scheduled)
+      else
+        self.proposed_by_expert
       end  
     end
   end

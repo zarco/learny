@@ -19,6 +19,15 @@ class Reservation < ActiveRecord::Base
   belongs_to :calendar
   belongs_to :workshop
   
+  delegate :venue, to: :calendar
+  
+  
+  def initialize(attributes={})
+    super
+    self.starts_at ||= Time.now
+    self.final_time ||= starts_at+2.hours
+  end
+  
   def fmt_starts_at
     starts_at.strftime('%d-%B-%Y, %H:%M') unless starts_at.nil?
   end
