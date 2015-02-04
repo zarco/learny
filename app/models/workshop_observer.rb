@@ -14,7 +14,7 @@ class WorkshopObserver < ActiveRecord::Observer
   #end
     
   def after_commit(workshop)
-    puts "after_commit last_event: #{workshop.last_event}"
+    #puts "after_commit last_event: #{workshop.last_event}"
     
     #begin
       case workshop.last_event

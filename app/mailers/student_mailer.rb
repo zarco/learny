@@ -66,4 +66,14 @@ class StudentMailer < ActionMailer::Base
 
     mail to: "to@example.org"
   end
+  
+  
+  
+  def reservation_updated(student, former_workshop)
+    @student=student
+    @former_workshop=former_workshop
+    mail to: student.email
+  end
+  
+  
 end

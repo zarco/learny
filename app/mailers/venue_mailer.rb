@@ -83,9 +83,9 @@ class VenueMailer < ActionMailer::Base
   #
   #   en.venue_mailer.reservation_updated.subject
   #
-  def reservation_updated
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def reservation_updated(venue,former_workshop)
+    @venue=venue
+    @workshop=former_workshop
+    mail to: venue.email
   end
 end

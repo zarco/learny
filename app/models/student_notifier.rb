@@ -35,8 +35,11 @@ class StudentNotifier
   end
   
   def reservation_updated(former_workshop)
-    puts "reservation_updated #{former_workshop.students}"
-    #StudentMailer.reservation_updated
+    puts "---reservation_updated #{former_workshop.students.count}"
+    
+    former_workshop.students.each do |student| 
+      StudentMailer.reservation_updated(student, former_workshop).deliver
+    end
   end
   
 end
