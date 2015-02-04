@@ -6,9 +6,6 @@ class WorkshopObserver < ActiveRecord::Observer
     @expert_notifier=ExpertNotifier.new
     @venue_notifier=VenueNotifier.new
     @staff_notifier=StaffNotifier.new
-    
-    
-    
     super
   end
 

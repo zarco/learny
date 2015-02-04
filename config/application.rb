@@ -21,7 +21,7 @@ module LearnyApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = 'es-MX'
     
-    config.active_record.observers= :reservation_observer, :workshop_observer
+    config.active_record.observers= :enrollment_observer, :reservation_observer, :workshop_observer
  
     
     config.generators do |g|

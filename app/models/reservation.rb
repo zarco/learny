@@ -86,7 +86,7 @@ class Reservation < ActiveRecord::Base
         errors.add(:max_participants, message)
       end
       
-      #puts "workshop #{self.workshop.length} >  reservation #{availability_in_hours}"
+      #puts "workshop #{workshop.length} >  reservation #{availability_in_hours}: #{workshop.length > availability_in_hours}"
        
       if workshop.length > availability_in_hours
         #message="There is not enough time the workshop"

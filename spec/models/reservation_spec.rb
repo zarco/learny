@@ -48,11 +48,25 @@ RSpec.describe Reservation, :type => :model do
       expect(@reservation.valid?).to be_truthy
     end
     
+    it 'valid workshop same time' do
+      workshop=FactoryGirl.create(:workshop, :length => 4)
+      @reservation.workshop=workshop
+      expect(@reservation.valid?).to be_truthy
+      expect(@reservation.availability_in_hours).to eq(4)
+    end
+    
     it 'invalid participants number' do
       workshop=FactoryGirl.create(:workshop, :max_number_participants => 100) 
       @reservation.workshop=workshop
       expect(@reservation.valid?).to be_falsey
       #expect(@reservation.errors).to eq.error_on(:workshop)
+    end
+
+    it 'invalid workshop almost same time' do
+      workshop=FactoryGirl.create(:workshop, :length => 5)
+      @reservation.workshop=workshop
+      expect(@reservation.availability_in_hours).to eq(4)
+      expect(@reservation.valid?).to be_falsey
     end
     
     it 'invalid duration' do
