@@ -2,6 +2,7 @@ class ReservationObserver < ActiveRecord::Observer
 
   def initialize
     @student_notifier=StudentNotifier.new
+    @venue_notifier=VenueNotifier.new
     super
   end
 
@@ -13,8 +14,9 @@ class ReservationObserver < ActiveRecord::Observer
         former_workshop=Workshop.find(former_workshop_id)
 
         #TODO Enviar notificaciones por correo
-        puts "notifying #{reservation.venue} cancellation #{former_workshop}"
+        #puts "notifying #{reservation.venue} cancellation #{former_workshop}"
         #puts "notifying students #{former_workshop.students}"
+        @venue_notifier.reservation_updated(former_workshop)
         @student_notifier.reservation_updated(former_workshop)
       end
     end

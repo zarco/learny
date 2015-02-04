@@ -77,4 +77,15 @@ class VenueMailer < ActionMailer::Base
 
     mail to: "to@example.org"
   end
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.venue_mailer.reservation_updated.subject
+  #
+  def reservation_updated
+    @greeting = "Hi"
+
+    mail to: "to@example.org"
+  end
 end

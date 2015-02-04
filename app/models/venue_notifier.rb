@@ -37,7 +37,9 @@ class VenueNotifier
     VenueMailer.workshop_posposed_by_expert(workshop).deliver
   end
   
-
+  def reservation_updated(former_workshop)
+    VenueMailer.reservation_updated.deliver
+  end
   
   
 end
