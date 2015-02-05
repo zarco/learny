@@ -106,6 +106,7 @@ es-MX:
         final_time: 'Termina'
         max_participants: '# Participantes'
         available: 'Disponible'
+        cover: 'Consumo mínimo'
       calendar:
         explain_reservation: 'Reservación disponible'
         explain_book: 'Reservado para evento'
@@ -264,6 +265,8 @@ es-MX:
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
         price_per_student: 'por estudiante'
+      reservation:
+        cover_per_person: 'Por persona'  
       my_workshops:        
         unenroll: 'No asistiré'
         no_workshops: 'Aún no estás inscrito en ningún taller'

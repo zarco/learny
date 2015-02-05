@@ -5,24 +5,32 @@
       %ul
         - @reservation.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    = f.label :calendar_id, class: 'control-label'
-    .controls.form-inline
-      = collection_select :reservation, :calendar_id, current_venue.calendars, :id, :title, {}, {:class=>'form-control'}
-            
-  .form-group.datetime-select
-    = f.label :starts_at
-    .form-inline
-      = f.datetime_select :starts_at
-  .form-group.datetime-select
-    = f.label :final_time
-    .form-inline
-      = f.time_select :final_time
-      /= f.datetime_select :final_time
-  .form-group
-    = f.label :max_participants
-    .form-inline
-      = f.text_field :max_participants,  :class => 'form-control' 
+  .col-md-5            
+    .form-group
+      = f.label :calendar_id, class: 'control-label'
+      .controls.form-inline
+        = collection_select :reservation, :calendar_id, current_venue.calendars, :id, :title, {}, {:class=>'form-control'}
+         
+    .form-group.datetime-select
+      = f.label :starts_at
+      .form-inline
+        = f.datetime_select :starts_at
+    .form-group.datetime-select
+      = f.label :final_time
+      .form-inline
+        = f.time_select :final_time
+        /= f.datetime_select :final_time
+    .form-group
+      = f.label :max_participants
+      .form-inline
+        = f.text_field :max_participants,  :class => 'form-control' 
+    .form-group
+      = f.label :cover
+      .input-group
+        %span.input-group-addon $
+        =f.text_field :cover, :class => 'form-control', :size => 4, :maxlength => 4 
+        %span.input-group-addon 
+          = t('views.legends.reservation.cover_per_person',:default => 'per person')
 
-  .actions
-    = f.submit t('views.actions.make_reservation', default: 'Make reservation'), :class=>'btn btn-primary btn-lg'
+    .actions
+      = f.submit t('views.actions.make_reservation', default: 'Make reservation'), :class=>'btn btn-primary btn-lg'
