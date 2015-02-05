@@ -40,6 +40,7 @@ RSpec.describe Reservation, :type => :model do
     it { should allow_value(0.00001).for(:cover) }
     it { should_not allow_value(-1).for(:cover) }
     it { should_not allow_value('a').for(:cover) }
+    it { should allow_value(nil).for(:cover) }
 
   end
   
