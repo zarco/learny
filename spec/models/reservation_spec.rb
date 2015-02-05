@@ -15,6 +15,7 @@ RSpec.describe Reservation, :type => :model do
     it { should respond_to :final_time }
     it { should respond_to :max_participants }
     it { should respond_to :all_day }
+    it { should respond_to :cover }
   end
 
   describe 'associations' do
@@ -34,6 +35,12 @@ RSpec.describe Reservation, :type => :model do
     it { should_not allow_value(-1).for(:max_participants) }
     it { should_not allow_value(1.1).for(:max_participants) }
     it { should_not allow_value(0.00001).for(:max_participants) }
+    it { should allow_value(0).for(:cover) }
+    it { should allow_value(1.1).for(:cover) }
+    it { should allow_value(0.00001).for(:cover) }
+    it { should_not allow_value(-1).for(:cover) }
+    it { should_not allow_value('a').for(:cover) }
+
   end
   
   describe 'validate workshop' do
