@@ -87,9 +87,11 @@ class Workshop < ActiveRecord::Base
       end
       
       @reservation=Reservation.find(reservation_id) unless reservation_id.empty?
+      #puts "#{@reservation.id}"
       unless @reservation.nil?
+        @reservation.workshop = self
         self.proposed_with_reservation
-        @reservation.update(:workshop => self)
+        @reservation.save
         #self.update(:state => :scheduled)
       end
     end

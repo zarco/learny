@@ -11,7 +11,7 @@ class ReservationObserver < ActiveRecord::Observer
       
       
       former_workshop_id=reservation.previous_changes[:workshop_id].first
-      puts "former workshop_id #{former_workshop_id}"
+      #puts "former workshop_id #{former_workshop_id}"
       if former_workshop_id
         former_workshop=Workshop.find(former_workshop_id)
         #puts "notifying #{reservation.venue} cancellation #{former_workshop}"
@@ -22,10 +22,10 @@ class ReservationObserver < ActiveRecord::Observer
       
       
       current_workshop_id=reservation.previous_changes[:workshop_id].last
-      puts "current workshop #{current_workshop_id}"
+      #puts "current workshop #{current_workshop_id}"
       if current_workshop_id
         current_workshop=reservation.workshop#Workshop.find(current_workshop_id)
-        puts "current workshop last event#{current_workshop.last_event}"
+        #puts "current workshop last event#{current_workshop.last_event}"
         @venue_notifier.workshop_proposed_with_reservation(current_workshop)
       end
       
