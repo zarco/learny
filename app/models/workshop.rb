@@ -84,13 +84,12 @@ class Workshop < ActiveRecord::Base
         reservation=self.reservation
         reservation.workshop_id=nil
         reservation.save
-        #TODO Enviar notificacion de cancelacion a venue
       end
       
       @reservation=Reservation.find(reservation_id) unless reservation_id.empty?
       unless @reservation.nil?
-        @reservation.update(:workshop => self)
         self.proposed_with_reservation
+        @reservation.update(:workshop => self)
         #self.update(:state => :scheduled)
       end
     end
