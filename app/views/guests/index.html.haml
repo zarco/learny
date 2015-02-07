@@ -1,0 +1,11 @@
+.container
+  .page-header.text-center
+    %h3 Búsqueda de talleres
+  %ul.list-group
+    %h1
+      .jumbotron.text-center
+        %h3
+          =t('views.legends.search.no_results',default: 'There is not results for your search')
+        %h5
+          No te preocupes, deja tus datos y te avisaremos cuando tengamos el curso que buscas
+        = render 'form'

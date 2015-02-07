@@ -7,6 +7,7 @@ class WorkshopsController < ApplicationController
   def index
     w=params[:w]
     if !w.nil?
+      @guest = Guest.new
       @workshops = Workshop.search_workshop(w)
       render 'search'  
     elsif expert_signed_in? 
