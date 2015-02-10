@@ -1,8 +1,13 @@
 FactoryGirl.define do
   factory :guest do
-    name "MyString"
-email "MyString"
-workshop "MyString"
-  end
+		name {Faker::Name.first_name}
+		email {Faker::Internet.email}
+		workshop {Faker::Name.name}
 
+		factory :invalid_guest do
+		  name nil
+		  email nil
+		  workshop nil
+		end
+	end
 end

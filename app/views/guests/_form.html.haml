@@ -20,4 +20,4 @@
       .input-group-addon
         %span.glyphicon.glyphicon-book{"aria-hidden" => "true"}
       = f.text_field :workshop, :class => 'form-control', :placeholder => "Curso", :required => "true"
-  %button.btn.btn-default.btn-primary{:type => "submit"} Mantenme informado
+  = f.submit :class => 'button btn btn-default btn-primary',:value => t('views.legends.guest.keep_me_informed')
