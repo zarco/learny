@@ -28,7 +28,6 @@ describe Workshop do
     it { should respond_to :free}
   end
 
-
   describe 'associations' do
     subject {FactoryGirl.build(:workshop)}
     it { should belong_to(:expert)}
@@ -75,7 +74,7 @@ describe Workshop do
     it { should_not allow_value(1.1).for(:min_number_participants) }
     it { should allow_value(1.1).for(:price) }
   end
-  
+
   describe 'validations_for_free_workshop' do
     subject { FactoryGirl.build(:free_workshop) }
     it { should allow_value(0).for(:price) }
@@ -84,5 +83,43 @@ describe Workshop do
     it { should_not allow_value(-1).for(:price) }
     it { should allow_value(nil).for(:price) }
   end
-  
+
+  describe 'reservation changes' do
+
+    it 'nil to reservation' do
+      workshop=FactoryGirl.create(:workshop)
+      new_reservation=FactoryGirl.create(:reservation)
+      expect(workshop.reservation).to be_nil
+      changed=workshop.send(:reservation_changes,new_reservation.id)
+      expect(changed).to be_truthy
+    end
+
+    it 'reservation to other reservation' do
+      reservation=FactoryGirl.create(:reservation)
+      workshop=FactoryGirl.create(:workshop, reservation: reservation)
+      new_reservation=FactoryGirl.create(:reservation)
+      expect(workshop.reservation).to_not be_nil
+      expect(workshop.send(:reservation_changes,new_reservation.id)).to be_truthy
+    end
+
+    it 'reservation to nil' do
+      reservation=FactoryGirl.create(:reservation)
+      workshop=FactoryGirl.create(:workshop, reservation: reservation)
+      expect(workshop.reservation).to_not be_nil
+      expect(workshop.send(:reservation_changes,nil)).to be_truthy
+    end
+
+    it 'no changes' do
+      reservation=FactoryGirl.create(:reservation)
+      workshop=FactoryGirl.create(:workshop, reservation: reservation)
+      expect(workshop.reservation).to_not be_nil
+      expect(workshop.send(:reservation_changes,reservation.id)).to be_falsey
+    end
+
+    it 'no changes nil to nil' do
+      workshop=FactoryGirl.create(:workshop)
+      expect(workshop.reservation).to be_nil
+      expect(workshop.send(:reservation_changes,nil)).to be_falsey
+    end
+  end
 end

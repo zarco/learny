@@ -77,7 +77,12 @@ class Workshop < ActiveRecord::Base
     description.truncate(total_words, separator: " ")
   end
   
-  def update_reservation(reservation_id)
+  def update_reservation(reservation_id)    
+    unless reservation_changes(reservation_id)
+      return
+    end
+    
+    
     Workshop.transaction do
       #puts "previous changed? #{reservation.changed?}"
       unless self.reservation.nil?
@@ -86,7 +91,7 @@ class Workshop < ActiveRecord::Base
         reservation.save
       end
       
-      @reservation=Reservation.find(reservation_id) unless reservation_id.empty?
+      @reservation=Reservation.find(reservation_id) unless reservation_id.nil?||reservation_id.empty?
       #puts "#{@reservation.id}"
       unless @reservation.nil?
         @reservation.workshop = self
@@ -96,4 +101,11 @@ class Workshop < ActiveRecord::Base
       end
     end
   end
+  
+  private
+  def reservation_changes(reservation_id)
+    current_reservation_id = self.reservation.nil? ? nil : reservation.id
+    current_reservation_id.to_s != reservation_id.to_s
+  end
+  
 end 
