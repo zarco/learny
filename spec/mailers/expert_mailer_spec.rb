@@ -99,4 +99,39 @@ RSpec.describe ExpertMailer, :type => :mailer do
     end
   end
 
+  context "A student enrolle in a workshop" do
+    
+    let(:enrollment){
+      FactoryGirl.create(:enrollment)
+    }
+        
+    describe "enrollment_created" do
+      let(:mail) { ExpertMailer.enrollment_created enrollment }
+
+      it "renders the headers" do       
+        expect(mail.subject).to eq("Enrollment created")
+        expect(mail.to).to eq([enrollment.workshop.expert.email])
+        expect(mail.from).to eq(["from@example.com"])
+      end
+
+      it "renders the body" do
+        expect(mail.body.encoded).to match("Hi")
+      end
+    end
+
+    describe "enrollment_destroyed" do
+      let(:mail) { ExpertMailer.enrollment_destroyed enrollment}
+
+      it "renders the headers" do
+        expect(mail.subject).to eq("Enrollment destroyed")
+        expect(mail.to).to eq([enrollment.workshop.expert.email])
+        expect(mail.from).to eq(["from@example.com"])
+      end
+
+      it "renders the body" do
+        expect(mail.body.encoded).to match("Hi")
+      end
+    end
+  end
+
 end

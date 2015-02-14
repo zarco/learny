@@ -77,4 +77,26 @@ class ExpertMailer < ActionMailer::Base
 
     mail to: "to@example.org"
   end
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.expert_mailer.enrollment_created.subject
+  #
+  def enrollment_created(enrollment)
+    @greeting = "Hi"
+
+    mail to: enrollment.workshop.expert.email
+  end
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.expert_mailer.enrollment_destroyed.subject
+  #
+  def enrollment_destroyed(enrollment)
+    @greeting = "Hi"
+
+    mail to: enrollment.workshop.expert.email
+  end
 end

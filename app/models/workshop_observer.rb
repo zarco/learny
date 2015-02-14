@@ -61,17 +61,14 @@ class WorkshopObserver < ActiveRecord::Observer
         notifiers=[@student_notifier,@venue_notifier,@staff_notifier]
         notify(notifiers,:workshop_revoked_by_venue, workshop)
       end
-    #rescue Exception => e
-    #  puts "Is fucked #{e}"
-    #end  
     workshop.last_event=nil
   end
   
   protected
-  def notify( notifiers,method, *args)
-    #puts "#{notifiers}"
+  def notify( notifiers,method, workshop)
+    
     notifiers.each do |notifier|
-      notifier.send(method,args)
+      notifier.method(method).call(workshop)
     end
   end  
 
