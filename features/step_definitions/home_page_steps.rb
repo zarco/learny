@@ -39,9 +39,9 @@ When(/^I fill the information to be notified when a workshop is available$/) do
 	fill_in 'guest[workshop]', with: @guest.workshop
 end
 
-Then(/^I send the information to be saved with the 'keep me informed' button$/) do
+Then(/^I send the information to be saved with the send button$/) do
   within(:css, "form#new_guest") do
-    click_button I18n.t('views.legends.guest.keep_me_informed')
+    click_button I18n.t('views.legends.guest.send')
   end
 end
 
