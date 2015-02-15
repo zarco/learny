@@ -41,7 +41,7 @@ class Expert < ActiveRecord::Base
   end
 
   def fmt_google_plus_link
-    self.google_plus_link = self.google_plus_link.gsub('https://plus.google.com/','+') if self.google_plus_link?
+    self.google_plus_link = self.google_plus_link.gsub('https://plus.google.com/','') if self.google_plus_link?
   end
 
   def fmt_linkedin_link
