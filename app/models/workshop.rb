@@ -9,7 +9,7 @@ class Workshop < ActiveRecord::Base
   validates :price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true, if: :free?
   validates :price, presence: true, numericality: { greater_than: 0 }, unless: :free?
   
-  #enum state: [:proposed, :scheduled, :stand_by, :cancelled, :given]
+  validate :valid_max_participants, :valid_min_participants,:length_fits_with_reservation
   
   attr_accessor :last_event
   
@@ -106,6 +106,32 @@ class Workshop < ActiveRecord::Base
   def reservation_changes(reservation_id)
     current_reservation_id = self.reservation.nil? ? nil : reservation.id
     current_reservation_id.to_s != reservation_id.to_s
+  end
+  
+  def valid_max_participants
+    if(reservation.present? && (max_number_participants > reservation.max_participants)) 
+        message=I18n.t('activerecord.errors.models.reservation.attributes.workshop.too_many_participants', 
+          participants: max_number_participants)
+        #puts message
+        errors.add(:max_number_participants, message)
+    end
+  end
+  
+  def length_fits_with_reservation
+    if(reservation.present? && (length > reservation.availability_in_hours))
+        message=I18n.t('activerecord.errors.models.reservation.attributes.workshop.too_much_time')
+        #puts message 
+        errors.add(:lenght, message)
+    end
+  end
+  
+  def valid_min_participants 
+    if( min_number_participants.present? && max_number_participants.present? && 
+        min_number_participants > max_number_participants)
+        message=I18n.t('activerecord.errors.models.workshop.attributes.min_number_participants.greater_than_max')
+        #puts message 
+        errors.add(:min_number_participants, message)
+    end
   end
   
 end 

@@ -9,7 +9,7 @@ describe Workshop do
       expect(FactoryGirl.build(:workshop_with_reservation)).to be_valid
     end
     it 'has a valid factory for free workshop' do
-      expect(FactoryGirl.build(:free_workshop)).to be_valid
+      expect(FactoryGirl.build(:workshop,:free)).to be_valid
     end
     it 'has an invalid factory' do
       expect(FactoryGirl.build(:invalid_workshop)).to_not be_valid
@@ -72,16 +72,67 @@ describe Workshop do
     it { should_not allow_value(1.1).for(:length) }
     it { should_not allow_value(1.1).for(:max_number_participants) }
     it { should_not allow_value(1.1).for(:min_number_participants) }
-    it { should allow_value(1.1).for(:price) }
+    it { should allow_value(1.1).for(:price) }    
   end
 
   describe 'validations_for_free_workshop' do
-    subject { FactoryGirl.build(:free_workshop) }
+    subject { FactoryGirl.build(:workshop,:free) }
     it { should allow_value(0).for(:price) }
     it { should allow_value(1).for(:price) }
     it { should allow_value(1.1).for(:price) }
     it { should_not allow_value(-1).for(:price) }
     it { should allow_value(nil).for(:price) }
+  end
+  
+  describe 'validation when updating a workshop' do
+    context 'with reservation' do
+      let(:workshop){
+        FactoryGirl.create(:workshop_with_reservation)
+      }
+      
+      it "number of max participants is superior than allowed by reservation" do
+        workshop.max_number_participants=120
+        expect(workshop.valid?).to be_falsey
+        expect(workshop.save).to be_falsey
+        expect(workshop.errors).to have_key(:max_number_participants)    
+      end
+      
+      it "length in hours is superior than allowed by reservation" do
+        workshop.length=100
+        expect(workshop.valid?).to be_falsey
+        expect(workshop.save).to be_falsey
+        expect(workshop.errors).to have_key(:lenght)
+      end
+      
+      it "min number participants" do
+        workshop.min_number_participants=1000
+        expect(workshop.valid?).to be_falsey
+        expect(workshop.save).to be_falsey
+        expect(workshop.errors).to have_key(:min_number_participants)
+      end
+      
+    end
+    
+    context 'without reservation' do
+      let(:workshop){
+         FactoryGirl.create(:workshop)
+      }
+    
+      it "number of max participants is not limited" do
+        workshop.max_number_participants=120
+        expect(workshop.valid?).to be_truthy
+        expect(workshop.save).to be_truthy
+        expect(workshop.errors).to_not have_key(:max_number_participants)
+      end
+      
+      it "length in hours is not limited" do
+        workshop.length=100
+        expect(workshop.valid?).to be_truthy
+        expect(workshop.save).to be_truthy
+        expect(workshop.errors).to_not have_key(:lenght)
+      end
+    end
+    
   end
 
   describe 'reservation changes' do

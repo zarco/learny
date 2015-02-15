@@ -18,7 +18,7 @@ FactoryGirl.define do
       reservation {FactoryGirl.build(:reservation)}
     end
     
-    factory :free_workshop do
+    trait :free do
       free true
       price nil
     end
