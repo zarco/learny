@@ -82,6 +82,28 @@ describe Workshop do
     it { should allow_value(1.1).for(:price) }
     it { should_not allow_value(-1).for(:price) }
     it { should allow_value(nil).for(:price) }
+    
+    it 'price when set a workshop for free' do
+      workshop=FactoryGirl.build(:workshop)
+      expect(workshop.free?).to be_falsey
+      expect(workshop.price).to_not be_nil
+      workshop.free=true
+      expect(workshop.free?).to be_truthy 
+      expect(workshop.price).to be_nil
+    end
+    
+    it 'free value when set a price to a workshop' do
+      workshop=FactoryGirl.build(:workshop, :free)
+      expect(workshop.free?).to be_truthy
+      expect(workshop.price).to be_nil
+      workshop.price=5000
+      expect(workshop.free?).to be_truthy 
+      expect(workshop.price).to_not be_nil
+      expect(workshop.valid?).to be_truthy
+      expect(workshop.free?).to be_truthy
+      expect(workshop.price).to be_nil
+    end
+    
   end
   
   describe 'validation when updating a workshop' do

@@ -10,9 +10,12 @@ class Workshop < ActiveRecord::Base
   validates :price, presence: true, numericality: { greater_than: 0 }, unless: :free?
   
   validate :valid_max_participants, :valid_min_participants,:length_fits_with_reservation
-  
+    
   attr_accessor :last_event
   
+  before_validation
+  
+  after_validation :set_nil_to_price
   
   state_machine :state, :initial => :new do
     
@@ -72,6 +75,10 @@ class Workshop < ActiveRecord::Base
   
   accepts_nested_attributes_for :reservation
   
+  def free=(free)
+    super free
+    write_attribute(:price, nil) if free?
+  end
   
   def small_description(total_words=250)
     description.truncate(total_words, separator: " ")
@@ -132,6 +139,10 @@ class Workshop < ActiveRecord::Base
         #puts message 
         errors.add(:min_number_participants, message)
     end
+  end
+  
+  def set_nil_to_price
+    write_attribute(:price, nil) if (free? && self.errors.empty?)
   end
   
 end 
