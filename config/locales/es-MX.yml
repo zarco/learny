@@ -275,7 +275,7 @@ es-MX:
         close: 'Cerrar'  
       guest:
         suggested_successfully: 'Gracias, se te notificará cuando tengamos tu curso.'    
-        keep_me_informed: 'Mantenme informado'
+        send: 'Enviar'
       edit_my_profile: 'Editar mi perfil'
       my_profile: 'Mi perfil'
       account: 'Cuenta'
