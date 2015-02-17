@@ -9,7 +9,7 @@ class WorkshopsController < ApplicationController
     if !w.nil?
       @guest = Guest.new
       @workshop_solicited = w
-      @workshops = Workshop.search_workshop(w)
+      @workshops = Workshop.search_workshop(w).joins(:reservation).where("starts_at >= ?", Time.now)
       render 'search'  
     elsif expert_signed_in? 
       @workshops = current_expert.workshops.page params[:page]
