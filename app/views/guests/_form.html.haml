@@ -1,0 +1,23 @@
+= form_for @guest, html: {class: "form-inline",role:'form'} do |f|
+  - if @guest.errors.any?
+    #error_explanation
+      %ul
+        - @guest.errors.full_messages.each do |msg|          
+          %h5.text-danger 
+            = msg
+  .form-group
+    .input-group
+      .input-group-addon
+        %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
+      = f.text_field :name, :class => 'form-control', :placeholder => "Nombre", :required => "true"
+  .form-group
+    .input-group
+      .input-group-addon
+        %span.glyphicon.glyphicon-envelope{"aria-hidden" => "true"}
+      = f.email_field :email, :class => 'form-control', :placeholder => "Email", :required => "true"
+  .form-group
+    .input-group
+      .input-group-addon
+        %span.glyphicon.glyphicon-book{"aria-hidden" => "true"}
+      = f.text_field :workshop, :class => 'form-control', :placeholder => "Curso", :required => "true", :value =>"#{@workshop_solicited}"
+  = f.submit :class => 'button btn btn-default btn-primary',:value => t('views.legends.guest.send')
