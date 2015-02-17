@@ -1,0 +1,16 @@
+Learny | Estudiantes
+
+¡Bienvenido <%=@resource.first_name || @email%>!
+Puedes confirmar tu cuenta de correo mediante el siguiente vínculo:
+<%= confirmation_url(@resource, confirmation_token: @token)%>
+
+Ahora que formas parte de nuestra comunidad, queremos darte unos tips para mejorar tu experiencia en Learny:
+
+- Revisa el perfil del experto. 
+  Ahí podrás ver su trayectoria así como las evaluaciones y comentarios dejados por otros estudiantes.
+- Responde la encuesta. 
+  Al final de cada curso te enviaremos una encuesta de evaluación. Los comentarios que escribas ayudarán a otras personas a decidir qué cursos tomar y con quien.
+- Añade cursos a tu lista de deseos. 
+  Si te interesó un curso pero no puedes tomarlo ahora, añádelo a tu lista de deseos. Recibirás notificaciones si el curso se vuelve a impartir o si hay cambios de fechas u horario.
+
+Afectuosamente, el equipo de Learny

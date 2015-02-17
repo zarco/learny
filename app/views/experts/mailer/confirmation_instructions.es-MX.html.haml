@@ -1,7 +1,47 @@
-%h1
-  Learny | Expertos
+%h1 Learny | Expertos
+
 .container
-  %h2
-    ¡Bienvenido #{@resource.first_name || @email}!
-  %p Puedes confirmar tu cuenta de correo mediante el vínculo siguiente:
-  %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)
+%table
+  %tr
+    %td{:style => "padding:30px 15px 30px 15px; background-color:#EBEBEB;"}
+      %table
+        %tr
+          %td{:style => "border-left: 1px solid #A3A3A3; border-right: 1px solid #A3A3A3; border-top: 1px solid #A3A3A3; border-bottom: 1px solid #A3A3A3; background-color:#FFFFFF; border-radius:10px; padding:10px 30px 10px 20px;"}
+            %h2
+              ¡Bienvenido #{@resource.first_name || @email}!
+            %p Puedes confirmar tu cuenta de correo mediante el siguiente vínculo:
+            %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)
+            %p &nbsp;
+            %p
+              %h3{:style => "color:#009933"}
+                Ahora que formas parte de nuestra comunidad, queremos darte unos consejos para que tengas más éxito como Experto:
+            %p
+              %strong 
+                \- Crea un perfil sorprendente. 
+              Los alumnos podrán ver tu trayectoria y con base a tu información podrán decidir si toman un curso contigo o no.
+              %br
+              %br
+              %strong 
+                \- Ofrece cursos fuera de lo común. 
+              Nos encantan los temas inusuales, enriquece a la comunidad enseñando cosas que no se encuentran en cualquier lado.
+              %br
+              %br
+              %strong 
+                \- Encuentra el establecimiento ideal para dar tu curso.
+              Tenemos un gran catálogo de establecimientos por toda la ciudad y cada día agregamos más. Selecciona aquel que cuente con las características que mejor se adapten a tus necesidades. Ten en cuenta que algunos establecimientos requieren consumo mínimo.
+              %br
+              %br
+              %strong 
+                \- Gana reputación. 
+              Los comentarios que tus alumnos dejen en tu perfil servirán como referencia para otras personas interesadas en tus cursos. Al inicio puedes dar cursos gratuitos para obtener buenas referencias en tu perfil.
+              %br
+              %br
+              %strong 
+                \- Toma en cuenta la comisión. 
+              Recuerda que Learny cobrará una 
+              %strong
+                comisión del 20% 
+              sobre el precio público del curso, por cada alumno inscrito. Tenla en cuenta al elegir el precio de tu curso.
+              %br
+%br
+%h3{:style => "color: #2d6ca2"} Afectuosamente, el equipo de Learny
