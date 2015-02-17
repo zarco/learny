@@ -18,9 +18,35 @@ describe Expert do
     it { should respond_to :facebook_link }
     it { should respond_to :twitter_link }
     it { should respond_to :linkedin_link }
-    #it { should respond_to :website }
-    it { should respond_to :avatar }
-    
+    it { should respond_to :google_plus_link }
+    it { should respond_to :website }
+    it { should respond_to :avatar }    
+  end
+
+  describe 'validations' do
+    subject { FactoryGirl.build(:expert) }
+    it { should allow_value('www.fake.com').for(:website) }
+    it { should allow_value('www.fake.com.mx').for(:website) }
+    it { should allow_value('').for(:website) }    
+    it { should allow_value('facebook.com/fake').for(:facebook_link) }
+    it { should allow_value('').for(:facebook_link) }
+    it { should allow_value('@fake').for(:twitter_link) }
+    it { should allow_value('').for(:twitter_link) }
+    it { should allow_value('id=12345678').for(:linkedin_link) }
+    it { should allow_value('').for(:linkedin_link) }
+    it { should allow_value('+fake').for(:google_plus_link) }
+    it { should allow_value('').for(:google_plus_link) }
+    it { should_not allow_value('wwww.fake.com').for(:website) }    
+    it { should_not allow_value('wwww.fake.').for(:website) }    
+    it { should_not allow_value('http://wwww.fake.com').for(:website) }    
+    it { should_not allow_value('https://facebook.com/fake').for(:facebook_link) }    
+    it { should_not allow_value('www.facebook.com/fake').for(:facebook_link) }    
+    it { should_not allow_value('facebook.com/').for(:facebook_link) }    
+    it { should_not allow_value('@').for(:twitter_link) }        
+    it { should_not allow_value('fake@').for(:twitter_link) }
+    it { should_not allow_value('id=').for(:linkedin_link) }       
+    it { should_not allow_value('+').for(:google_plus_link) }
+    it { should_not allow_value('fake+').for(:google_plus_link) }
   end
   
   describe 'associations' do
@@ -57,6 +83,31 @@ describe Expert do
       
       #puts prev_workshops
       expect(prev_workshops.count).to eq(1)
+    end
+
+    it 'fmt_website' do
+      website=FactoryGirl.build(:expert, :website => 'http://www.fake.com').fmt_website
+      expect(website).to eq("www.fake.com")
+    end
+
+    it 'fmt_facebook_link' do
+      facebook_link=FactoryGirl.build(:expert, :facebook_link => 'https://facebook.com/fake').fmt_facebook_link
+      expect(facebook_link).to eq("facebook.com/fake")
+    end
+
+    it 'fmt_twitter_link' do
+      twitter_link=FactoryGirl.build(:expert, :twitter_link => 'https://twitter.com/fake').fmt_twitter_link
+      expect(twitter_link).to eq("@fake")
+    end
+
+    it 'fmt_google_plus_link' do
+      google_plus_link=FactoryGirl.build(:expert, :google_plus_link => 'https://plus.google.com/+fake').fmt_google_plus_link
+      expect(google_plus_link).to eq("+fake")
+    end
+
+    it 'fmt_linkedin_link' do
+      linkedin_link=FactoryGirl.build(:expert, :linkedin_link => 'https://www.linkedin.com/profile/view?id=12345678').fmt_linkedin_link
+      expect(linkedin_link).to eq("id=12345678")
     end
   end
 

@@ -11,7 +11,8 @@ ready =->
       html+='<td></td>'
       html+='<td>'+item.venue.name+'</td>'
       html+='<td>'+item.starts_at+'</td>'
-      html+='<td>'+''+'</td>'
+      html+='<td>'+item.venue.address+'</td>'
+      html+='<td>'+item.cover+'</td>'
       html+='</tr>'
       $(html).appendTo('.search-results table tbody').click(() -> 
         $('.dlg_find_venue').modal('hide')  

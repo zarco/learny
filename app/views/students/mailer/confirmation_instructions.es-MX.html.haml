@@ -1,7 +1,33 @@
-%h1
-  Learny
+%h1 Learny | Estudiantes
+
 .container
-  %h2
-    ¡Bienvenido #{@resource.first_name || @email}!
-  %p Puedes confirmar tu cuenta de correo mediante el vínculo siguiente:
-  %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)
+%table
+  %tr
+    %td{:style => "padding:30px 15px 30px 15px; background-color:#EBEBEB;"}
+      %table
+        %tr
+          %td{:style => "border-left: 1px solid #A3A3A3; border-right: 1px solid #A3A3A3; border-top: 1px solid #A3A3A3; border-bottom: 1px solid #A3A3A3; background-color:#FFFFFF; border-radius:10px; padding:10px 30px 10px 20px;"}
+            %h2
+              ¡Bienvenido #{@resource.first_name || @email}!
+            %p Puedes confirmar tu cuenta de correo mediante el siguiente vínculo:
+            %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)
+            %p &nbsp;
+            %p
+              %h3{:style => "color:#009933"}
+                Ahora que formas parte de nuestra comunidad, queremos darte unos tips para mejorar tu experiencia en Learny:
+            %p
+              %strong 
+                \- Revisa el perfil del experto. 
+              Ahí podrás ver su trayectoria así como las evaluaciones y comentarios dejados por otros estudiantes.
+              %br
+              %br
+              %strong 
+                \- Responde la encuesta. 
+              Al final de cada curso te enviaremos una encuesta de evaluación. Los comentarios que escribas ayudarán a otras personas a decidir qué cursos tomar y con quien.
+              %br
+              %br
+              %strong 
+                \- Añade cursos a tu lista de deseos. 
+              Si te interesó un curso pero no puedes tomarlo ahora, añádelo a tu lista de deseos. Recibirás notificaciones si el curso se vuelve a impartir o si hay cambios de fechas u horario.
+%br
+%h3{:style => "color: #2d6ca2"} Afectuosamente, el equipo de Learny

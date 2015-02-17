@@ -5,6 +5,8 @@ class Reservation < ActiveRecord::Base
   validates :max_participants, presence: true
   
   validates :max_participants, numericality: { only_integer: true, greater_than: 0  }
+  
+  validates :cover, numericality: { greater_than_or_equal_to: 0  }, allow_nil: true
 
   validate :workshop_does_not_fit, :invalid_starts_at, :invalid_final_time
 
