@@ -1,11 +1,13 @@
 LearnyApp::Application.routes.draw do
   
 
+  
+
   resources :contacts
 
   devise_for :students, :controllers => { :registrations => "students/registrations" }
   devise_for :experts, :controllers => { :registrations => "experts/registrations" }
-  devise_for :venues, :controllers => { :registrations => "venues/registrations" }
+  devise_for :venues, :controllers => { :registrations => "venues/registrations" }  
   devise_for :administrators
 
   concern :paginatable do
@@ -20,7 +22,7 @@ LearnyApp::Application.routes.draw do
   resources :reservations
   resources :workshops, :concerns => :paginatable
   resources :enrollments, :concerns => :paginatable
-  
+  resources :guests, only: [:create]
   
   
   get '/about'    => 'high_voltage/pages#show', id: 'about'

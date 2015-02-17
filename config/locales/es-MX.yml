@@ -213,7 +213,10 @@ es-MX:
               blank: 'es requerido'
               not_a_number: 'no es un número entero'
               greater_than: 'no es válida'
-            
+        guest:
+          attributes:
+            email:
+              taken: ' ya registrado para este curso, te mantendremos informado'      
                
   
   "true": "Si"
@@ -275,7 +278,10 @@ es-MX:
         no_workshops: 'Aún no estás inscrito en ningún taller'
       calendar:
         more_information: 'Más información'
-        close: 'Cerrar'      
+        close: 'Cerrar'  
+      guest:
+        suggested_successfully: 'Gracias, se te notificará cuando tengamos tu curso.'    
+        send: 'Enviar'
       edit_my_profile: 'Editar mi perfil'
       my_profile: 'Mi perfil'
       account: 'Cuenta'
