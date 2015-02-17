@@ -72,7 +72,7 @@ RSpec.describe Reservation, :type => :model do
 
   describe 'invalid final time' do
     it 'one hour' do
-      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now+1.hour , :final_time => Time.now-1)
+      reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.hour , :final_time => Time.now+1)
       expect(reservation.valid?).to be_falsey
     end
   end

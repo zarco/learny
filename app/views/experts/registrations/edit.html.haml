@@ -65,35 +65,35 @@
       .tab-pane.fade#contact
         .panel.panel
           .panel-body.jumbotron
-            .form-group
+            .form-group.website-form
               = f.label :website
-              = f.url_field :website, autofocus: true, class: 'form-control'
+              = f.text_field :website, autofocus: true, class: 'form-control', :placeholder => 'www.mywebsite.com', :value => "#{@expert.fmt_website}"
             .row
-              .form-group.col-md-6
-                = f.label :facebook_link
+              .form-group.col-md-6.fb-form
+                = f.label  :facebook_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-facebook
-                  = f.url_field :facebook_link, autofocus: true, class: 'form-control'
-              .form-group.col-md-6
+                  = f.text_field :facebook_link, autofocus: true, class: 'form-control', :placeholder => 'facebook.com/myfb', :value => "#{@expert.fmt_facebook_link}"
+              .form-group.col-md-6.twtr-form
                 = f.label :twitter_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-twitter
-                  = f.url_field :twitter_link, autofocus: true, class: 'form-control'
+                  = f.text_field :twitter_link, autofocus: true, class: 'form-control', :placeholder => '@mytwitter', :value => "#{@expert.fmt_twitter_link}"
             .row
-              .form-group.col-md-6
+              .form-group.col-md-6.lnkd-form
                 = f.label :linkedin_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-linkedin
-                  = f.url_field :linkedin_link, autofocus: true, class: 'form-control'
-              .form-group.col-md-6
+                  = f.text_field :linkedin_link, autofocus: true, class: 'form-control', :placeholder => 'id=12345678', :value => "#{@expert.fmt_linkedin_link}"
+              .form-group.col-md-6.gplus-form
                 = f.label :google_plus_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-google-plus
-                  = f.url_field :google_plus_link, autofocus: true, class: 'form-control'
+                  = f.text_field :google_plus_link, autofocus: true, class: 'form-control', :placeholder => '+myprofile', :value => "#{@expert.fmt_google_plus_link}"
       
       .tab-pane.fade#account
         .panel.panel
