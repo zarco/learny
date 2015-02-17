@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123003821) do
+ActiveRecord::Schema.define(version: 20150129041446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20150123003821) do
     t.datetime "updated_at"
     t.integer  "calendar_id",                      null: false
     t.integer  "workshop_id"
+    t.integer  "cover",            default: 0
   end
 
   create_table "students", force: true do |t|
@@ -185,10 +186,10 @@ ActiveRecord::Schema.define(version: 20150123003821) do
     t.string   "target_public"
     t.text     "description"
     t.integer  "max_number_participants", default: 12,    null: false
-    t.integer  "state",                   default: 0,     null: false
     t.integer  "expert_id"
     t.boolean  "free",                    default: false, null: false
     t.integer  "min_number_participants", default: 1,     null: false
+    t.string   "state",                   default: "new", null: false
   end
 
   add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"

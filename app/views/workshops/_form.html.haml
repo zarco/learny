@@ -84,13 +84,11 @@
               %th
               %th 
                 =Venue.model_name.human
-              %th 
-                =Reservation.human_attribute_name(:starts_at)
-              %th Address
+              %th Horario
+              %th Dirección
+              %th Consumo mínimo
             %tbody
       
       .modal-footer
         %button.btn.btn-default{:type=>'button', 'data-dismiss'=>'modal'}
           Close
-        %button.btn.btn-primary{:tyṕe=>'button', 'data-dismiss'=>'modal'}
-          Accept
