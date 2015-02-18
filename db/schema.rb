@@ -194,10 +194,10 @@ ActiveRecord::Schema.define(version: 20150205175330) do
     t.string   "target_public"
     t.text     "description"
     t.integer  "max_number_participants", default: 12,    null: false
+    t.integer  "state",                   default: 0,     null: false
     t.integer  "expert_id"
     t.boolean  "free",                    default: false, null: false
     t.integer  "min_number_participants", default: 1,     null: false
-    t.string   "state",                   default: "new", null: false
   end
 
   add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"
