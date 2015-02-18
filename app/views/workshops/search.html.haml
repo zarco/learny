@@ -12,10 +12,6 @@
       %h5
         No te preocupes, deja tus datos y te avisaremos cuando tengamos el curso que buscas
       = render 'guests/form'
-      -unless @old_workshops.none?      
-        %button.btn.btn-primary{"aria-controls" => "old_workshops", "aria-expanded" => "false", "data-target" => "#old_workshops", "data-toggle" => "collapse", :type => "button"}
-          Ver cursos anteriores de 
-          =@workshop_solicited
   - @workshops.each do |workshop|
     
     /.panel.panel-default
@@ -55,49 +51,50 @@
                 
                 %h4
                   %span.small
-                    =venue.address   
-  -unless @old_workshops.none? and @workshops.none?      
-    %button.btn.btn-primary{"aria-controls" => "old_workshops", "aria-expanded" => "false", "data-target" => "#old_workshops", "data-toggle" => "collapse", :type => "button"}
+                    =venue.address  
+  -unless @old_workshops.none?      
+    %button.btn.btn-success{"aria-controls" => "old_workshops", "aria-expanded" => "false", "data-target" => "#old_workshops", "data-toggle" => "collapse", :type => "button"}
       Ver cursos anteriores de 
-      =@workshop_solicited 
-  #old_workshops.collapse
-    .well
-      - @old_workshops.each do |old_workshop|    
-        .test
-          .row
-            .col-md-12
-              %h2
-                = link_to old_workshop.name, old_workshop, class: 'color:white'
-                %small
-                  = old_workshop.small_description 100    
-          .row
-            .col-md-5
-              %blockquote
-                %h4
-                  - unless old_workshop.expert.avatar_url.nil?
-                    %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => old_workshop.expert.avatar.icon.url}
-                    &nbsp;
-                
-                  = link_to old_workshop.expert.full_name , old_workshop.expert
-                %h5
-                  = old_workshop.expert.occupation
-            .col-md-7
-              - unless old_workshop.reservation.nil?
-                - venue=old_workshop.venue
-                
+      =@workshop_solicited
+  #old_workshops.collapse    
+    %ul.list-group
+      - @old_workshops.each do |old_workshop|        
+        %li.list-group-item  
+          .test
+            .row
+              .col-md-12
+                %h2
+                  = link_to old_workshop.name, old_workshop, class: 'color:white'
+                  %small
+                    = old_workshop.small_description 100    
+            .row
+              .col-md-5
                 %blockquote
                   %h4
-                    - unless venue.avatar_url.nil?
-                      %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => venue.avatar.icon.url}
+                    - unless old_workshop.expert.avatar_url.nil?
+                      %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => old_workshop.expert.avatar.icon.url}
                       &nbsp;
-                    = link_to venue.name, venue                  
-                  %h5
-                    %span.badge
-                      = old_workshop.reservation.fmt_duration unless old_workshop.reservation.nil?
                   
-                  %h4
-                    %span.small
-                      =venue.address   
+                    = link_to old_workshop.expert.full_name , old_workshop.expert
+                  %h5
+                    = old_workshop.expert.occupation
+              .col-md-7
+                - unless old_workshop.reservation.nil?
+                  - venue=old_workshop.venue
+                  
+                  %blockquote
+                    %h4
+                      - unless venue.avatar_url.nil?
+                        %img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => venue.avatar.icon.url}
+                        &nbsp;
+                      = link_to venue.name, venue                  
+                    %h5
+                      %span.badge
+                        = old_workshop.reservation.fmt_duration unless old_workshop.reservation.nil?
+                    
+                    %h4
+                      %span.small
+                        =venue.address   
   
               
 /%tr
