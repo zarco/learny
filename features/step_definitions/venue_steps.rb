@@ -44,9 +44,7 @@ Given(/^the "(.*?)" calendar is selected$/) do |arg1|
 end
 
 When(/^I click on the 'Create reservation' button$/) do
-  within(:css,'.new-reservation') do
-    click_link I18n.t('views.actions.make_reservation')
-  end
+  click_link I18n.t('views.actions.make_reservation')
 end
 
 When(/^afterwards, I sumbit the required information for the reservation$/) do

@@ -13,5 +13,11 @@ class Venue < ActiveRecord::Base
   has_many :venue_pictures
   has_one :contact
   accepts_nested_attributes_for :venue_pictures, :contact
-  
+
+  def next_workshops(number=6)
+    Workshop.joins(:reservation, :calendar)
+      .where('reservations.starts_at > ? AND venue_id = ?', DateTime.now, self.id )
+      .order('reservations.starts_at')
+      .limit(number)   
+  end  
 end
