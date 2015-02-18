@@ -12,6 +12,10 @@ describe Venue do
   describe 'attributes' do
     subject { FactoryGirl.build(:venue) }
     it { should respond_to :name }
+    it { should respond_to :facebook_link }
+    it { should respond_to :twitter_link }
+    it { should respond_to :google_plus_link }
+    it { should respond_to :website }
   end
 
   describe 'associations' do
