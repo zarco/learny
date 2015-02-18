@@ -9,7 +9,7 @@ describe Workshop do
       expect(FactoryGirl.build(:workshop_with_reservation)).to be_valid
     end
     it 'has a valid factory for free workshop' do
-      expect(FactoryGirl.build(:free_workshop)).to be_valid
+      expect(FactoryGirl.build(:workshop,:free)).to be_valid
     end
     it 'has an invalid factory' do
       expect(FactoryGirl.build(:invalid_workshop)).to_not be_valid
@@ -27,7 +27,6 @@ describe Workshop do
     it { should respond_to :min_number_participants}
     it { should respond_to :free}
   end
-
 
   describe 'associations' do
     subject {FactoryGirl.build(:workshop)}
@@ -73,16 +72,127 @@ describe Workshop do
     it { should_not allow_value(1.1).for(:length) }
     it { should_not allow_value(1.1).for(:max_number_participants) }
     it { should_not allow_value(1.1).for(:min_number_participants) }
-    it { should allow_value(1.1).for(:price) }
+    it { should allow_value(1.1).for(:price) }    
   end
-  
+
   describe 'validations_for_free_workshop' do
-    subject { FactoryGirl.build(:free_workshop) }
+    subject { FactoryGirl.build(:workshop,:free) }
     it { should allow_value(0).for(:price) }
     it { should allow_value(1).for(:price) }
     it { should allow_value(1.1).for(:price) }
     it { should_not allow_value(-1).for(:price) }
     it { should allow_value(nil).for(:price) }
+    
+    it 'price when set a workshop for free' do
+      workshop=FactoryGirl.build(:workshop)
+      expect(workshop.free?).to be_falsey
+      expect(workshop.price).to_not be_nil
+      workshop.free=true
+      expect(workshop.free?).to be_truthy 
+      expect(workshop.price).to be_nil
+    end
+    
+    it 'free value when set a price to a workshop' do
+      workshop=FactoryGirl.build(:workshop, :free)
+      expect(workshop.free?).to be_truthy
+      expect(workshop.price).to be_nil
+      workshop.price=5000
+      expect(workshop.free?).to be_truthy 
+      expect(workshop.price).to_not be_nil
+      expect(workshop.valid?).to be_truthy
+      expect(workshop.free?).to be_truthy
+      expect(workshop.price).to be_nil
+    end
+    
   end
   
+  describe 'validation when updating a workshop' do
+    context 'with reservation' do
+      let(:workshop){
+        FactoryGirl.create(:workshop_with_reservation)
+      }
+      
+      it "number of max participants is superior than allowed by reservation" do
+        workshop.max_number_participants=120
+        expect(workshop.valid?).to be_falsey
+        expect(workshop.save).to be_falsey
+        expect(workshop.errors).to have_key(:max_number_participants)    
+      end
+      
+      it "length in hours is superior than allowed by reservation" do
+        workshop.length=100
+        expect(workshop.valid?).to be_falsey
+        expect(workshop.save).to be_falsey
+        expect(workshop.errors).to have_key(:lenght)
+      end
+      
+      it "min number participants" do
+        workshop.min_number_participants=1000
+        expect(workshop.valid?).to be_falsey
+        expect(workshop.save).to be_falsey
+        expect(workshop.errors).to have_key(:min_number_participants)
+      end
+      
+    end
+    
+    context 'without reservation' do
+      let(:workshop){
+         FactoryGirl.create(:workshop)
+      }
+    
+      it "number of max participants is not limited" do
+        workshop.max_number_participants=120
+        expect(workshop.valid?).to be_truthy
+        expect(workshop.save).to be_truthy
+        expect(workshop.errors).to_not have_key(:max_number_participants)
+      end
+      
+      it "length in hours is not limited" do
+        workshop.length=100
+        expect(workshop.valid?).to be_truthy
+        expect(workshop.save).to be_truthy
+        expect(workshop.errors).to_not have_key(:lenght)
+      end
+    end
+    
+  end
+
+  describe 'reservation changes' do
+
+    it 'nil to reservation' do
+      workshop=FactoryGirl.create(:workshop)
+      new_reservation=FactoryGirl.create(:reservation)
+      expect(workshop.reservation).to be_nil
+      changed=workshop.send(:reservation_changes,new_reservation.id)
+      expect(changed).to be_truthy
+    end
+
+    it 'reservation to other reservation' do
+      reservation=FactoryGirl.create(:reservation)
+      workshop=FactoryGirl.create(:workshop, reservation: reservation)
+      new_reservation=FactoryGirl.create(:reservation)
+      expect(workshop.reservation).to_not be_nil
+      expect(workshop.send(:reservation_changes,new_reservation.id)).to be_truthy
+    end
+
+    it 'reservation to nil' do
+      reservation=FactoryGirl.create(:reservation)
+      workshop=FactoryGirl.create(:workshop, reservation: reservation)
+      expect(workshop.reservation).to_not be_nil
+      expect(workshop.send(:reservation_changes,nil)).to be_truthy
+    end
+
+    it 'no changes' do
+      reservation=FactoryGirl.create(:reservation)
+      workshop=FactoryGirl.create(:workshop, reservation: reservation)
+      expect(workshop.reservation).to_not be_nil
+      expect(workshop.send(:reservation_changes,reservation.id)).to be_falsey
+    end
+
+    it 'no changes nil to nil' do
+      workshop=FactoryGirl.create(:workshop)
+      expect(workshop.reservation).to be_nil
+      expect(workshop.send(:reservation_changes,nil)).to be_falsey
+    end
+  end
 end
