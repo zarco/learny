@@ -353,7 +353,12 @@ es-MX:
       - :day
       - :month
       - :year
-
+      
+  student_mailer:
+    enrolled_in_a_workshop:
+      subject: "Te has inscrito en un taller en Learny"
+    unenrolled_in_a_workshop:
+      subject: "Has cancelado tu inscripción"
 # Carrierwave I18n
   errors:
     messages:

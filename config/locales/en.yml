@@ -21,3 +21,9 @@
 
 en:
   learny: 'Welcome to Learny!!'
+  
+  student_mailer:
+    enrolled_in_a_workshop:
+      subject: "You have enrolled in a workshop"
+    unenrolled_in_a_workshop:
+      subject: "You have cancelled your enrollment"

@@ -88,3 +88,6 @@ gem 'time_difference', '~> 0.3.2'
 
 gem 'foreigner'
 gem 'rack-timeout'
+
+gem 'state_machine', :git => 'https://github.com/seuros/state_machine.git'
+gem 'rails-observers'
