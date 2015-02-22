@@ -4,10 +4,10 @@ module UrlHelper
   end
   
   def url_for_twitter(profile)
-  	/^http/i.match(profile) ? url : "http://twitter.com/#{profile}"
+  	/^http/i.match(profile) ? profile : "http://twitter.com/#{profile}"
   end
 
-  def ur_for_google_plus(profile)
-  	/^http/i.match(profile) ? url : "http://plus.google.com/#{profile}"
+  def url_for_google_plus(profile)
+  	/^http/i.match(profile) ? profile : "http://plus.google.com/#{profile}"
   end
 end

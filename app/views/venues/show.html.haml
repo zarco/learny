@@ -60,13 +60,12 @@
           -unless @venue.twitter_link.nil? || @venue.twitter_link.empty?
             =link_to url_for_twitter(@venue.twitter_link), :class=>'btn btn-social-icon btn-twitter', :target => 'blank' do
               %i.fa.fa-twitter
-          -unless @venue.website.nil? || @venue.website.empty?
-            =link_to url_with_protocol(@venue.website), :class=>'btn btn-social-icon btn-linkedin',:target => 'blank' do
-              %i.fa.fa-link
           -unless @venue.google_plus_link.nil? || @venue.google_plus_link.empty?
-            =link_to ur_for_google_plus(@venue.google_plus_link),  :class=>'btn btn-social-icon btn-google-plus',:target => 'blank' do
+            =link_to url_for_google_plus(@venue.google_plus_link),  :class=>'btn btn-social-icon btn-google-plus',:target => 'blank' do
               %i.fa.fa-google-plus          
-
+          %br
+          -unless @venue.website.nil? || @venue.website.empty?
+            =link_to url_with_protocol(@venue.website), @venue.website
 
 
     / Address
