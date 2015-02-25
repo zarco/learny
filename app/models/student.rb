@@ -9,8 +9,24 @@ class Student < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :enrollments
+  has_many :workshops, through: :enrollments
+
   def full_name
     first_name + ' ' + last_name
   end
 
+  def next_workshops(number=6)
+    workshops.joins(:reservation)
+      .where('reservations.starts_at > ?', DateTime.now)
+      .order('reservations.starts_at')
+      .limit(number)   
+  end
+  
+  def previous_workshops(number=6)
+    workshops.joins(:reservation)
+        .where('reservations.starts_at < ?', DateTime.now )
+        .order('reservations.starts_at desc')
+        .limit(number)   
+  end
 end

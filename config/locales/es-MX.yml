@@ -290,7 +290,7 @@ es-MX:
       contact: 'Contacto'
       pictures: 'Fotos'
       address: 'Dirección'
-      no_next_workshops: 'No tienes talleres próximos'
+      no_workshops: 'No tienes talleres registrados'
       search:
         no_results: 'La búsqueda no obtuvo resultados'            
       reservations:
