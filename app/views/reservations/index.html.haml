@@ -4,7 +4,7 @@
       = t('views.actions.reservations',default:'Reservations')
   %ul.list-group
   %h1
-  - if @reservations.none?
+  - if @calendars.first.reservations.none?
     .jumbotron.text-center
       %h3
         =t('views.legends.reservations.no_reservations',default: 'You don not have reservations yet')
@@ -14,9 +14,12 @@
             %span.glyphicon.glyphicon-th-list
             =t('views.legends.reservations.new_reservation',default: 'New reservation')
   - else
-    - @reservations.each do |reservation|
-      %li.list-group-item
+    - @calendars.each do |calendar|      
+      - calendar.reservations.each do |reservation|                
+        %li.list-group-item
         .test
+          %h2
+            = calendar.title
           - if !reservation.workshop.nil? 
             .row
               .col-md-12
@@ -65,4 +68,4 @@
       = link_to new_reservation_path do
         %button.btn.btn-primary{:type => "button"}
           %span.glyphicon.glyphicon-th-list
-          =t('views.legends.reservations.new_reservation',default: 'New reservation')
+          =t('views.legends.reservations.new_reservation',default: 'New reservation')  --

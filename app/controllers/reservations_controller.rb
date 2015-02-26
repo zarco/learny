@@ -66,14 +66,14 @@ class ReservationsController < ApplicationController
   end
 
   protected
-  def index_for_venues
-    calendar_id=params[:calendar_id]
-    if calendar_id
-      @calendar=current_venue.calendars.where(:calendar_id => calendar_id).first
-    else
-      @calendar=current_venue.calendars.where(:is_default => true).first
+  def index_for_venues       
+    calendars_ids = []    
+    current_venue.calendars.each do |c|      
+      calendars_ids.push(c.id)  
     end
-    @reservations = @calendar.reservations
+          
+    @calendars=current_venue.calendars.where(:id => calendars_ids).joins('calendars') unless calendars_ids.empty?
+
   end
   
   
