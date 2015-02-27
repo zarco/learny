@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218031928) do
+ActiveRecord::Schema.define(version: 20150205175330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,10 +177,6 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.string   "business_hours"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "facebook_link"
-    t.string   "twitter_link"
-    t.string   "website"
-    t.string   "google_plus_link"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
@@ -198,10 +194,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.string   "target_public"
     t.text     "description"
     t.integer  "max_number_participants", default: 12,    null: false
+    t.integer  "state",                   default: 0,     null: false
     t.integer  "expert_id"
     t.boolean  "free",                    default: false, null: false
     t.integer  "min_number_participants", default: 1,     null: false
-    t.string   "state",                   default: "new", null: false
   end
 
   add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"
