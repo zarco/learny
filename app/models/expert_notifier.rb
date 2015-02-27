@@ -35,11 +35,11 @@ class ExpertNotifier
   end
 
   def enrollment_created(enrollment)
-    ExpertMailer.enrollment_created(enrollment)
+    ExpertMailer.enrollment_created(enrollment).deliver
   end
 
   def enrollment_destroyed(enrollment)
-    ExpertMailer.enrollment_destroyed(enrollment)
+    ExpertMailer.enrollment_destroyed(enrollment).deliver 
   end
 
 end

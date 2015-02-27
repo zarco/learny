@@ -6,7 +6,7 @@ $(document).on "ready page:load", ->
   $("#workshop_free").on "change", ->
     is_checked = $("#workshop_free").prop('checked')
     if is_checked
-      $("#workshop_price").prop "disabled", true      
+      $('#workshop_price').prop('disabled', true).val '0'
     else
       $("#workshop_price").prop "disabled", false      
     return

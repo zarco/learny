@@ -35,6 +35,7 @@ class Venues::RegistrationsController < Devise::RegistrationsController
   def account_update_params
     params.require(:venue).permit(:name, :description, :address, :business_hours, 
       :email, :map_link, :facilities, :avatar, 
-      :venue_pictures, :latitude, :longitude, :contact_attributes  => [ :name, :mail, :phone ])
+      :venue_pictures, :latitude, :longitude, :website, :facebook_link, :twitter_link, :google_plus_link,
+      :contact_attributes  => [ :name, :mail, :phone ])
   end
 end

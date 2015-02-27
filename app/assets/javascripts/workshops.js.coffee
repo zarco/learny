@@ -25,6 +25,20 @@ ready =->
     )
     
   )
+  enable_workshop_price = ->
+    is_checked = $('#workshop_free').prop('checked')
+    if is_checked
+      $('#workshop_price').prop('disabled', true).val '0'
+    else
+      $('#workshop_price').prop 'disabled', false
+    return
+
+  $('#workshop_free').on 'change', ->
+    enable_workshop_price()
+    return
+    
+  enable_workshop_price()
+  return
   
 $(document).ready(ready)
 $(document).on('page:load', ready)
