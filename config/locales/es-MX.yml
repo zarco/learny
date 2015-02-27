@@ -294,6 +294,7 @@ es-MX:
       contact: 'Contacto'
       pictures: 'Fotos'
       address: 'Dirección'
+      no_workshops: 'No tienes talleres registrados'
       network: 'Redes'
       no_next_workshops: 'No tienes talleres próximos'
       search:

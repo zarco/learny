@@ -5,7 +5,7 @@
   .carousel-inner
     -if next_workshops.empty?
       %h3.text-center
-        =t('views.legends.no_next_workshops',default:'No next workshops')
+        =t('views.legends.no_workshops',default:'No workshop records')
     -else
       -next_workshops.each_with_index do |workshop,index| 
         .item{:class => ("active" if index == 0)}
