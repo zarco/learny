@@ -18,3 +18,4 @@ env_setup.sh
 public/uploads
 public/uploads/expert
 .settings
+spec/fixtures/expert_mailer spec/fixtures/student_mailer spec/fixtures/venue_mailer

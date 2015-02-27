@@ -87,6 +87,10 @@ es-MX:
         avatar: "Ávatar"
         pictures: 'Fotos del Establecimiento' 
         contact: 'Contacto'
+        website: 'Sitio Web'
+        facebook_link: 'Facebook'
+        twitter_link: 'Twitter'
+        google_plus_link: 'Google+'
       venue_picture:
         avatar: 'Foto' 
       workshop:
@@ -290,6 +294,8 @@ es-MX:
       contact: 'Contacto'
       pictures: 'Fotos'
       address: 'Dirección'
+      no_workshops: 'No tienes talleres registrados'
+      network: 'Redes'
       no_next_workshops: 'No tienes talleres próximos'
       search:
         no_results: 'La búsqueda no obtuvo resultados'            
@@ -353,7 +359,12 @@ es-MX:
       - :day
       - :month
       - :year
-
+      
+  student_mailer:
+    enrolled_in_a_workshop:
+      subject: "Te has inscrito en un taller en Learny"
+    unenrolled_in_a_workshop:
+      subject: "Has cancelado tu inscripción"
 # Carrierwave I18n
   errors:
     messages:

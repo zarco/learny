@@ -8,6 +8,8 @@
           %li{:role=>'presentation'}
             =link_to t('views.legends.contact', default: 'Contact'),'#contact', 'data-toggle' => 'tab'
           %li{:role=>'presentation'}
+            =link_to t('views.legends.network', default: 'Network'),'#network', 'data-toggle' => 'tab'
+          %li{:role=>'presentation'}
             =link_to t('views.legends.address', default: 'Address'),'#address', 'data-toggle' => 'tab'
           %li{:role=>'presentation'}
             =link_to t('views.legends.pictures', default: 'Pictures'),'#pictures', 'data-toggle' => 'tab'
@@ -58,7 +60,37 @@
                     = c.text_field :mail, autofocus: true, class: 'form-control'
                   .form-group
                     = c.label :phone
-                    = c.text_field :phone, autofocus: true, class: 'form-control'                                
+                    = c.text_field :phone, autofocus: true, class: 'form-control'      
+
+      .tab-pane.fade#network
+        .panel.panel
+          .panel-body.jumbotron
+            .row
+              .form-group.col-md-6.fb-form
+                = f.label  :facebook_link
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-facebook
+                  = f.text_field :facebook_link, autofocus: true, class: 'form-control', :placeholder => 'facebook.com/myfb', :value => "#{@venue.facebook_link}"
+              .form-group.col-md-6.twtr-form
+                = f.label :twitter_link
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-twitter
+                  = f.text_field :twitter_link, autofocus: true, class: 'form-control', :placeholder => '@mytwitter', :value => "#{@venue.twitter_link}"
+            .row
+              .form-group.col-md-6.website-form
+                = f.label :website
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-link
+                  = f.text_field :website, autofocus: true, class: 'form-control', :placeholder => 'www.mywebsite.com', :value => "#{@venue.website}"
+              .form-group.col-md-6.gplus-form
+                = f.label :google_plus_link
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-google-plus
+                  = f.text_field :google_plus_link, autofocus: true, class: 'form-control', :placeholder => '+myprofile', :value => "#{@venue.google_plus_link}"                                                          
       .tab-pane.fade#address
         .panel.panel
           .panel-body.jumbotron
