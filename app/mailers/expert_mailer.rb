@@ -74,7 +74,6 @@ class ExpertMailer < ActionMailer::Base
   #
   def workshop_posposed_by_expert
     @greeting = "Hi"
-
     mail to: "to@example.org"
   end
 
@@ -85,7 +84,6 @@ class ExpertMailer < ActionMailer::Base
   #
   def enrollment_created(enrollment)
     @greeting = "Hi"
-
     mail to: enrollment.workshop.expert.email
   end
 
@@ -96,7 +94,6 @@ class ExpertMailer < ActionMailer::Base
   #
   def enrollment_destroyed(enrollment)
     @greeting = "Hi"
-
     mail to: enrollment.workshop.expert.email
   end
 end

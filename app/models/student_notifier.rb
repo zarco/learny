@@ -26,12 +26,12 @@ class StudentNotifier
   
   def enrollment_created(enrollment)
     #puts "enrollment_created #{enrollment}"
-    StudentMailer.enrollment_created.deliver
+    StudentMailer.enrollment_created(enrollment).deliver
   end
   
   def enrollment_destroyed(enrollment)
     #puts "enrollment_destroyed #{enrollment}"
-    StudentMailer.enrollment_destroyed.deliver
+    StudentMailer.enrollment_destroyed(enrollment).deliver
   end
   
   def reservation_updated(former_workshop)

@@ -57,31 +57,36 @@ RSpec.describe StudentMailer, :type => :mailer do
     end
   end
 
-  describe "enrollment_created" do
-    let(:mail) { StudentMailer.enrollment_created }
+  context "Enrollment to a workshop" do
+    let(:enrollment){
+      FactoryGirl.create(:enrollment)
+    }
+    describe "enrollment_created" do
+      let(:mail) { StudentMailer.enrollment_created(enrollment) }
 
-    it "renders the headers" do
-      expect(mail.subject).to eq("Enrollment created")
-      expect(mail.to).to eq(["to@example.org"])
-      expect(mail.from).to eq(["from@example.com"])
+      it "renders the headers" do
+        expect(mail.subject).to eq("Enrollment created")
+        expect(mail.to).to eq([enrollment.student.email])
+        expect(mail.from).to eq(["from@example.com"])
+      end
+
+      it "renders the body" do
+        expect(mail.body.encoded).to match("Hi")
+      end
     end
 
-    it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
-    end
-  end
+    describe "enrollment_destroyed" do
+      let(:mail) { StudentMailer.enrollment_destroyed(enrollment) }
 
-  describe "enrollment_destroyed" do
-    let(:mail) { StudentMailer.enrollment_destroyed }
+      it "renders the headers" do
+        expect(mail.subject).to eq("Enrollment destroyed")
+        expect(mail.to).to eq([enrollment.student.email])
+        expect(mail.from).to eq(["from@example.com"])
+      end
 
-    it "renders the headers" do
-      expect(mail.subject).to eq("Enrollment destroyed")
-      expect(mail.to).to eq(["to@example.org"])
-      expect(mail.from).to eq(["from@example.com"])
-    end
-
-    it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+      it "renders the body" do
+        expect(mail.body.encoded).to match("Hi")
+      end
     end
   end
 
