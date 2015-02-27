@@ -3,187 +3,25 @@
     .col-md-8
       .jumbotron.next-courses
         .row.well
-          .col-md-4
-            .panel.panel-danger
-              .panel-heading
-                %h3.panel-title
-              .panel-body
-                %h1.text-center
-                  14
-              .panel-footer
-                %h4.text-center
-                  Septiembre
-          .col-md-8
-            %blockquote
-              %h2
-                %a{:href => "../cursos/detalle_curso.html"} Taller de canto gutural
-              %h3
-                %a{:href => "../establecimientos/conoce_establecimiento.html"} Circo Volador
-              %p
-                %a{:href => "#"}
-                  %strong 9:00am
-            %ul.pager
-              %li
-                %a{:href => "#"} ← Previo
-              %li
-                %a{:href => "#"} Siguiente →
-            %small.pull-right{:style => "color:red"} - $350.00
+          =render partial: 'shared/carousel_next_workshops', locals: {next_workshops: current_student.next_workshops}
+      .well.workshop-search-form
+        = form_tag '/workshops', method: :get do
+          .input-group.input-group-lg
+            %input.form-control{:placeholder => "#{random_workshop}", :type => "text", :name => "w"}/
+            %span.input-group-btn
+              %button.btn.btn-primary{:type => "submit", :value=> "Search"}
+                %span.glyphicon.glyphicon-search
     .col-md-4
       #pnl-badges.panel.panel-primary
         .panel-heading
-          %h3.panel-title Mis Reconocimientos
+          %h3.panel-title
         .panel-body.badges-content
           .scroll-panel
             .row-fluid
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges001.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges002.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges003.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges008.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges007.jpg"}/
-              %img.my-badge{:alt => "badge", :src => "../images/badges/badges010.jpg"}/
+              
       .panel.panel-primary
         .panel-heading
-          %h3.panel-title Mis Puntos
+          %h3.panel-title 
         .panel-body.text-center
-          %h2 2500
-  / Busqueda
-  .row.well.workshop-search-form
-    .col-md-4
-      = form_tag '/workshops', method: :get do
-        .input-group.input-group-lg
-          %input.form-control{:placeholder => "Clases de surf...", :type => "text", :name => "w"}/
-          %span.input-group-btn
-            %button.btn.btn-primary{:type => "submit", :value=> "Search"}
-              %span.glyphicon.glyphicon-search
-  / Lista de deseos
-  .row
-    .container
-      .col-md-12
-        %h1 Lista de deseos
-        %div
-          #myCarousel.carousel.slide
-            / Carousel items
-            .carousel-inner
-              .item.active
-                .row
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/beer.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} $250
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/cafe.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} 300pts
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/elfish.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} $100
-                / /row
-              / /item
-              .item
-                .row
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/cooking.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} 100pts
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/beer.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} $150
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/cafe.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} $100
-                / /row
-              / /item
-            / /carousel-inner
-            %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel"}
-              %span.glyphicon.glyphicon-chevron-left
-            %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel"}
-              %span.glyphicon.glyphicon-chevron-right
-          / /myCarousel
-        / /well
-  / Recomendados
-  .row
-    .container
-      .col-md-12
-        %h1 Recomendados
-        %div
-          #myCarousel2.carousel.slide
-            / Carousel items
-            .carousel-inner
-              .item.active
-                .row
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/cafe.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} GRATIS
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/cooking.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} $300
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/beer.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} $150
-                / /row
-              / /item
-              .item
-                .row
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/elfish.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} 100pts
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/cooking.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} $50
-                  .col-sm-4
-                    %figure{:style => "padding:0 3em;overflow:visible;"}
-                      .content-box
-                        %a#ribbon{:href => "#", :target => "_blank"}
-                          %img{:height => "250", :src => "../images/beer.jpg", :width => "250"}/
-                        #ribbon-container
-                          %a#ribbon{:href => "#", :target => "_blank"} GRATIS
-                / /row
-              / /item
-            / /carousel-inner
-            %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel2"}
-              %span.glyphicon.glyphicon-chevron-left
-            %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel2"}
-              %span.glyphicon.glyphicon-chevron-right
-          / /myCarousel
-        / /well
+
+  
