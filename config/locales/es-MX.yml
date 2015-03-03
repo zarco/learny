@@ -245,6 +245,7 @@ es-MX:
       reservations: 'Reservaciones'
       enroll: '¡Quiero Asistir!'
       
+      
     legends:
       'yes': 'Si'
       'no': 'No'
@@ -305,6 +306,8 @@ es-MX:
         edit: 'Editar'
         delete: 'Borrar'
       close: 'Cerrar'
+      news: 'Noticias'
+      recomendations: 'Recomendaciones'
       
     status:
       active: 'Activo'
