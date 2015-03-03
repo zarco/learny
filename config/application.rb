@@ -22,7 +22,7 @@ module LearnyApp
     config.i18n.default_locale = 'es-MX'
     
     config.active_record.observers= :enrollment_observer, :reservation_observer, :workshop_observer
- 
+    config.active_record.raise_in_transactional_callbacks = true
     
     config.generators do |g|
       g.test_framework :rspec, fixture: true
