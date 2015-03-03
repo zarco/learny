@@ -13,7 +13,7 @@ class Student < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  #Added due to ofuscation 
+  #Added to make carrierwave works with ofuscation
   def find_previous_model_for_avatar
     self.class.find(to_param)
   end
