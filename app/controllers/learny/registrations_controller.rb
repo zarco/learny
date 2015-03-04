@@ -1,9 +1,6 @@
 class Learny::RegistrationsController < Devise::RegistrationsController
   
   def update
-    
-    puts "Empty shell inside of me!"
-    
     self.resource = resource.class.find(  send(:"current_#{resource_name}").to_param)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
