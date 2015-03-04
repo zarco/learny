@@ -138,8 +138,8 @@ RSpec.describe WorkshopsController, :type => :controller do
 
       it "updates only the requested workshop" do
         workshop = Workshop.create! valid_attributes
-        put :update, {:id => workshop.id, :workshop => new_attributes}, valid_session
-        workshop=Workshop.find(workshop.id)
+        put :update, {:id => workshop.to_param, :workshop => new_attributes}, valid_session
+        workshop=Workshop.find(workshop.to_param)
         expect(workshop.name).to eql(new_attributes[:name])
       end
 
@@ -151,7 +151,7 @@ RSpec.describe WorkshopsController, :type => :controller do
         workshop=FactoryGirl.create(:workshop)
         workshop.update(:reservation => reservation)
 
-        put :update, {:id => workshop.id, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
+        put :update, {:id => workshop.to_param, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
         workshop.reload
         
         expect(workshop.name).to eql(new_attributes[:name])
@@ -199,7 +199,7 @@ RSpec.describe WorkshopsController, :type => :controller do
         workshop=FactoryGirl.create(:workshop, valid_attributes)
         workshop.update(:reservation => reservation)
 
-        put :update, {:id => workshop.id, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
+        put :update, {:id => workshop.to_param, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
         workshop.reload
 
         expect(workshop.reservation).to_not be_nil

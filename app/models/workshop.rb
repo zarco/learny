@@ -1,4 +1,6 @@
 class Workshop < ActiveRecord::Base
+  obfuscate_id :spin => 19889937
+
   include PgSearch
     
   validates :name,:length,:agenda,:description,:state,:expert,:max_number_participants,:min_number_participants,
