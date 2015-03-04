@@ -19,24 +19,27 @@
         .row.container
           %p
             = simple_format @student.profile
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title Proximos talleres
-      .panel-body
-        .jumbotron.next-courses
-          .row.well
-            =render partial: 'shared/carousel_next_workshops', locals: {next_workshops: current_student.next_workshops}
+
+            
+    -if current_student == @student
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title Proximos talleres
+        .panel-body
+          .jumbotron.next-courses
+            .row.well
+              =render partial: 'shared/carousel_next_workshops', locals: {next_workshops: current_student.next_workshops}
 
 
 
-
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title Historia de talleres
-      .panel-body
-        .jumbotron.next-courses
-          .row.well
-            =render partial: 'shared/carousel_next_workshops', locals: {next_workshops: current_student.previous_workshops}
+    -if current_student == @student
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title Historia de talleres
+        .panel-body
+          .jumbotron.next-courses
+            .row.well
+              =render partial: 'shared/carousel_next_workshops', locals: {next_workshops: current_student.previous_workshops}
 
                   
   .col-md-4
