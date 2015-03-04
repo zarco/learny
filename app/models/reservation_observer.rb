@@ -13,7 +13,7 @@ class ReservationObserver < ActiveRecord::Observer
       former_workshop_id=reservation.previous_changes[:workshop_id].first
       #puts "former workshop_id #{former_workshop_id}"
       if former_workshop_id
-        former_workshop=Workshop.find(former_workshop_id)
+        former_workshop=Workshop.where(id: former_workshop_id).limit(1).first
         #puts "notifying #{reservation.venue} cancellation #{former_workshop}"
         #puts "notifying students #{former_workshop.students}"
         @venue_notifier.reservation_updated(reservation.venue,former_workshop)

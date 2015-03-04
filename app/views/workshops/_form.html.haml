@@ -51,7 +51,7 @@
       %input.form-control#establecimiento{:placeholder => "Buscar establecimiento", :readonly => "readonly", :value => venue }
       /%input{:type=>"hidden"}
       = f.fields_for :reservation, @reservation do |builder| 
-        = builder.hidden_field :id
+        = builder.hidden_field :id, value: @reservation.to_param
       %span.input-group-btn
         %button.btn_find_venue.btn.btn-default{:type => "button", 'data-toggle'=>'modal', 'data-target'=>'.dlg_find_venue'}
           %span.glyphicon.glyphicon-search
