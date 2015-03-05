@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218031928) do
+ActiveRecord::Schema.define(version: 20150305010235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.datetime "updated_at"
     t.integer  "venue_id",                   null: false
     t.boolean  "is_default", default: false, null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "calendars", ["deleted_at"], name: "index_calendars_on_deleted_at", using: :btree
 
   create_table "contacts", force: true do |t|
     t.string   "name"
@@ -113,7 +116,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.integer  "calendar_id",                      null: false
     t.integer  "workshop_id"
     t.integer  "cover",            default: 0
+    t.datetime "deleted_at"
   end
+
+  add_index "reservations", ["deleted_at"], name: "index_reservations_on_deleted_at", using: :btree
 
   create_table "students", force: true do |t|
     t.string   "first_name",                          null: false
