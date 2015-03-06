@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306012842) do
+ActiveRecord::Schema.define(version: 20150306204326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,7 +217,10 @@ ActiveRecord::Schema.define(version: 20150306012842) do
     t.boolean  "free",                    default: false, null: false
     t.integer  "min_number_participants", default: 1,     null: false
     t.string   "state",                   default: "new", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "workshops", ["deleted_at"], name: "index_workshops_on_deleted_at", using: :btree
 
   add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"
 

@@ -1,4 +1,7 @@
 class Workshop < ActiveRecord::Base
+  
+  acts_as_paranoid
+  
   include PgSearch
     
   validates :name,:length,:agenda,:description,:state,:expert,:max_number_participants,:min_number_participants,

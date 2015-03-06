@@ -26,6 +26,7 @@ describe Workshop do
     it { should respond_to :max_number_participants}
     it { should respond_to :min_number_participants}
     it { should respond_to :free}
+    it { should respond_to :deleted_at }
   end
 
   describe 'associations' do
@@ -72,7 +73,7 @@ describe Workshop do
     it { should_not allow_value(1.1).for(:length) }
     it { should_not allow_value(1.1).for(:max_number_participants) }
     it { should_not allow_value(1.1).for(:min_number_participants) }
-    it { should allow_value(1.1).for(:price) }    
+    it { should allow_value(1.1).for(:price) }
   end
 
   describe 'validations_for_free_workshop' do
@@ -82,71 +83,71 @@ describe Workshop do
     it { should allow_value(1.1).for(:price) }
     it { should_not allow_value(-1).for(:price) }
     it { should allow_value(nil).for(:price) }
-    
+
     it 'price when set a workshop for free' do
       workshop=FactoryGirl.build(:workshop)
       expect(workshop.free?).to be_falsey
       expect(workshop.price).to_not be_nil
       workshop.free=true
-      expect(workshop.free?).to be_truthy 
+      expect(workshop.free?).to be_truthy
       expect(workshop.price).to be_nil
     end
-    
+
     it 'free value when set a price to a workshop' do
       workshop=FactoryGirl.build(:workshop, :free)
       expect(workshop.free?).to be_truthy
       expect(workshop.price).to be_nil
       workshop.price=5000
-      expect(workshop.free?).to be_truthy 
+      expect(workshop.free?).to be_truthy
       expect(workshop.price).to_not be_nil
       expect(workshop.valid?).to be_truthy
       expect(workshop.free?).to be_truthy
       expect(workshop.price).to be_nil
     end
-    
+
   end
-  
+
   describe 'validation when updating a workshop' do
     context 'with reservation' do
       let(:workshop){
         FactoryGirl.create(:workshop_with_reservation)
       }
-      
+
       it "number of max participants is superior than allowed by reservation" do
         workshop.max_number_participants=120
         expect(workshop.valid?).to be_falsey
         expect(workshop.save).to be_falsey
-        expect(workshop.errors).to have_key(:max_number_participants)    
+        expect(workshop.errors).to have_key(:max_number_participants)
       end
-      
+
       it "length in hours is superior than allowed by reservation" do
         workshop.length=100
         expect(workshop.valid?).to be_falsey
         expect(workshop.save).to be_falsey
         expect(workshop.errors).to have_key(:lenght)
       end
-      
+
       it "min number participants" do
         workshop.min_number_participants=1000
         expect(workshop.valid?).to be_falsey
         expect(workshop.save).to be_falsey
         expect(workshop.errors).to have_key(:min_number_participants)
       end
-      
+
     end
-    
+
     context 'without reservation' do
       let(:workshop){
-         FactoryGirl.create(:workshop)
+        FactoryGirl.create(:workshop)
       }
-    
+
       it "number of max participants is not limited" do
         workshop.max_number_participants=120
         expect(workshop.valid?).to be_truthy
         expect(workshop.save).to be_truthy
         expect(workshop.errors).to_not have_key(:max_number_participants)
       end
-      
+
       it "length in hours is not limited" do
         workshop.length=100
         expect(workshop.valid?).to be_truthy
@@ -154,7 +155,7 @@ describe Workshop do
         expect(workshop.errors).to_not have_key(:lenght)
       end
     end
-    
+
   end
 
   describe 'reservation changes' do
@@ -195,4 +196,29 @@ describe Workshop do
       expect(workshop.send(:reservation_changes,nil)).to be_falsey
     end
   end
+
+  describe 'soft delete' do
+    let(:workshop){
+      FactoryGirl.create(:workshop)
+    }
+
+    it "deleted" do
+      expect(workshop.deleted?).to be_falsey
+      expect(Workshop.all.to_a).to eql([workshop])
+      workshop.destroy
+      expect(workshop.deleted?).to be_truthy
+      expect(Workshop.all.to_a).to eql([])
+      expect(Workshop.with_deleted.to_a).to eql([workshop])
+    end
+
+    it "really deleted" do
+      expect(workshop.deleted?).to be_falsey
+      expect(Workshop.all.to_a).to eql([workshop])
+      workshop.really_destroy!
+      expect(workshop.deleted?).to be_truthy
+      expect(Workshop.all.to_a).to eql([])
+      expect(Workshop.with_deleted.to_a).to eql([])
+    end
+  end
+
 end
