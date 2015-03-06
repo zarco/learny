@@ -1,4 +1,4 @@
-class Experts::RegistrationsController < Devise::RegistrationsController
+class Experts::RegistrationsController < Learny::RegistrationsController
   # def new
   #   super
   # end
@@ -6,7 +6,7 @@ class Experts::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
-
+  
   private  
   def sign_up_params
     params.require(:expert).permit(:first_name, :last_name, :email, :password, :password_confirmation)

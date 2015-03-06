@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'pg_search'
@@ -56,6 +56,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'cucumber-rails', require: false
+  gem 'web-console', '~> 2.0'
 end
 
 group :test,:development do
@@ -69,7 +70,7 @@ gem 'devise'
 gem 'haml-rails'
 
 gem 'carrierwave'
-gem 'fog', '~> 1.3.1'
+gem 'fog'#, '~> 1.3.1'
 gem 'mini_magick'
 
 
@@ -86,8 +87,10 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'time_difference', '~> 0.3.2'
 
-gem 'foreigner'
+#gem 'foreigner'
 gem 'rack-timeout'
 
 gem 'state_machine', :git => 'https://github.com/seuros/state_machine.git'
 gem 'rails-observers'
+gem "obfuscate_id", git: "https://github.com/namick/obfuscate_id"
+#gem 'encrypted_id'

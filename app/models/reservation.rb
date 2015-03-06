@@ -1,5 +1,6 @@
 class Reservation < ActiveRecord::Base
-  
+  obfuscate_id :spin => 24889949
+
   validates :starts_at, presence: true
   validates :final_time, presence: true
   validates :max_participants, presence: true
