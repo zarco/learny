@@ -40,7 +40,7 @@ class EnrollmentsController < ApplicationController
 
   def destroy
     @enrollment.destroy
-    respond_with(@enrollment)
+    redirect_to enrollments_path
   end
 
   private
