@@ -16,6 +16,33 @@ describe Student do
     it { should respond_to :occupation }
     it { should respond_to :profile }
     it { should respond_to :avatar }
+    it { should respond_to :deleted_at }
+  end
+
+  context 'soft delete' do
+    describe 'only student' do
+      let(:student){
+        FactoryGirl.create(:student)
+      }
+
+      it "deleted" do
+        expect(student.deleted?).to be_falsey
+        expect(Student.all.to_a).to eql([student])
+        student.destroy
+        expect(student.deleted?).to be_truthy
+        expect(Student.all.to_a).to eql([])
+        expect(Student.with_deleted.to_a).to eql([student])
+      end
+
+      it "really deleted" do
+        expect(student.deleted?).to be_falsey
+        expect(Student.all.to_a).to eql([student])
+        student.really_destroy!
+        expect(student.deleted?).to be_truthy
+        expect(Student.all.to_a).to eql([])
+        expect(Student.with_deleted.to_a).to eql([])
+      end
+    end
   end
 
   describe 'find workshops where student is enrolled' do
@@ -26,24 +53,24 @@ describe Student do
 
       workshop=FactoryGirl.create(:workshop, :expert => expert)
       reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first, :workshop => workshop,
-        :starts_at => Date.new(2511,11,11))
+      :starts_at => Date.new(2511,11,11))
       enrollment=FactoryGirl.create(:enrollment, :workshop => workshop, :student => student)
-      
+
       next_workshops=student.next_workshops
       expect(next_workshops.count).to eq(1)
     end
-    
+
     it 'previous workshops' do
       expert=FactoryGirl.create(:expert)
       workshop=FactoryGirl.create(:workshop, :expert => expert)
       venue=FactoryGirl.create(:venue)
       reservation=FactoryGirl.build(:reservation, :calendar => venue.calendars.first,
-         :workshop => workshop, :starts_at => Date.new(2011,11,11))
+      :workshop => workshop, :starts_at => Date.new(2011,11,11))
       reservation.save(:validate => false)
       student=FactoryGirl.create(:student)
       enrollment=FactoryGirl.create(:enrollment, :workshop => workshop, :student => student)
       prev_workshops=student.previous_workshops
-      
+
       #puts prev_workshops
       expect(prev_workshops.count).to eq(1)
     end

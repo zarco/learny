@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305010235) do
+ActiveRecord::Schema.define(version: 20150305232122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,9 +92,11 @@ ActiveRecord::Schema.define(version: 20150305010235) do
     t.date     "birthday"
     t.string   "genre"
     t.string   "google_plus_link"
+    t.datetime "deleted_at"
   end
 
   add_index "experts", ["confirmation_token"], name: "index_experts_on_confirmation_token", unique: true, using: :btree
+  add_index "experts", ["deleted_at"], name: "index_experts_on_deleted_at", using: :btree
   add_index "experts", ["email"], name: "index_experts_on_email", unique: true, using: :btree
   add_index "experts", ["reset_password_token"], name: "index_experts_on_reset_password_token", unique: true, using: :btree
 
@@ -145,8 +147,10 @@ ActiveRecord::Schema.define(version: 20150305010235) do
     t.text     "profile"
     t.date     "birthday"
     t.string   "genre"
+    t.datetime "deleted_at"
   end
 
+  add_index "students", ["deleted_at"], name: "index_students_on_deleted_at", using: :btree
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
@@ -187,9 +191,11 @@ ActiveRecord::Schema.define(version: 20150305010235) do
     t.string   "twitter_link"
     t.string   "website"
     t.string   "google_plus_link"
+    t.datetime "deleted_at"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
+  add_index "venues", ["deleted_at"], name: "index_venues_on_deleted_at", using: :btree
   add_index "venues", ["email"], name: "index_venues_on_email", unique: true, using: :btree
   add_index "venues", ["reset_password_token"], name: "index_venues_on_reset_password_token", unique: true, using: :btree
 

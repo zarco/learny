@@ -18,6 +18,7 @@ RSpec.describe Calendar, :type => :model do
   describe 'attributes' do
     subject { FactoryGirl.build(:calendar) }
     it { should respond_to :title }
+    it { should respond_to :deleted_at }
   end
   describe 'associations' do
     subject {FactoryGirl.build(:calendar)}
