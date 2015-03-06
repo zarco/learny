@@ -1,6 +1,7 @@
 class Expert < ActiveRecord::Base
 
   acts_as_paranoid
+  obfuscate_id :spin => 17638921
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,6 +20,11 @@ class Expert < ActiveRecord::Base
   has_many :workshops
 
   mount_uploader :avatar, AvatarUploader
+
+   #Added to make carrierwave works with ofuscation
+  def find_previous_model_for_avatar
+    self.class.find(to_param)
+  end
 
   after_validation :concate_url
   def concate_url

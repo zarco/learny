@@ -86,7 +86,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "creates a new Workshop with an existing Reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => reservation.attributes)
+        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => {id: reservation.to_param})
         expect {
           post :create, {:workshop => workshop}, valid_session
         }.to change(Workshop, :count).by(1)
@@ -122,7 +122,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "with not suitable reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => reservation.attributes)
+        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => {id: reservation.to_param})
         expect {
           post :create, {:workshop => workshop.merge({:max_number_participants => 1000})}, valid_session
         }.to_not change(Workshop, :count)
@@ -138,8 +138,8 @@ RSpec.describe WorkshopsController, :type => :controller do
 
       it "updates only the requested workshop" do
         workshop = Workshop.create! valid_attributes
-        put :update, {:id => workshop.id, :workshop => new_attributes}, valid_session
-        workshop=Workshop.find(workshop.id)
+        put :update, {:id => workshop.to_param, :workshop => new_attributes}, valid_session
+        workshop=Workshop.find(workshop.to_param)
         expect(workshop.name).to eql(new_attributes[:name])
       end
 
@@ -151,7 +151,7 @@ RSpec.describe WorkshopsController, :type => :controller do
         workshop=FactoryGirl.create(:workshop)
         workshop.update(:reservation => reservation)
 
-        put :update, {:id => workshop.id, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
+        put :update, {:id => workshop.to_param, :workshop => new_attributes.merge(:reservation_attributes => {id: new_reservation.to_param})}, valid_session
         workshop.reload
         
         expect(workshop.name).to eql(new_attributes[:name])
@@ -199,7 +199,7 @@ RSpec.describe WorkshopsController, :type => :controller do
         workshop=FactoryGirl.create(:workshop, valid_attributes)
         workshop.update(:reservation => reservation)
 
-        put :update, {:id => workshop.id, :workshop => new_attributes.merge(:reservation_attributes => new_reservation.attributes)}, valid_session
+        put :update, {:id => workshop.to_param, :workshop => new_attributes.merge(:reservation_attributes => {id: new_reservation.to_param})}, valid_session
         workshop.reload
 
         expect(workshop.reservation).to_not be_nil

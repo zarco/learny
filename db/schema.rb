@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "administrators", force: true do |t|
+  create_table "administrators", force: :cascade do |t|
     t.string   "name",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
   add_index "administrators", ["email"], name: "index_administrators_on_email", unique: true, using: :btree
   add_index "administrators", ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true, using: :btree
 
-  create_table "calendars", force: true do |t|
+  create_table "calendars", force: :cascade do |t|
     t.string   "title",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
 
   add_index "calendars", ["deleted_at"], name: "index_calendars_on_deleted_at", using: :btree
 
-  create_table "contacts", force: true do |t|
+  create_table "contacts", force: :cascade do |t|
     t.string   "name"
     t.string   "mail"
     t.string   "phone"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
     t.integer  "venue_id"
   end
 
-  create_table "enrollments", force: true do |t|
+  create_table "enrollments", force: :cascade do |t|
     t.integer  "workshop_id", null: false
     t.integer  "student_id",  null: false
     t.datetime "created_at"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
 
   add_index "enrollments", ["deleted_at"], name: "index_enrollments_on_deleted_at", using: :btree
 
-  create_table "experts", force: true do |t|
+  create_table "experts", force: :cascade do |t|
     t.string   "first_name",                          null: false
     t.string   "last_name"
     t.datetime "created_at"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
   add_index "experts", ["email"], name: "index_experts_on_email", unique: true, using: :btree
   add_index "experts", ["reset_password_token"], name: "index_experts_on_reset_password_token", unique: true, using: :btree
 
-  create_table "guests", force: true do |t|
+  create_table "guests", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "workshop"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
     t.datetime "updated_at"
   end
 
-  create_table "reservations", force: true do |t|
+  create_table "reservations", force: :cascade do |t|
     t.datetime "starts_at",                        null: false
     t.datetime "final_time",                       null: false
     t.integer  "max_participants", default: 12,    null: false
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
 
   add_index "reservations", ["deleted_at"], name: "index_reservations_on_deleted_at", using: :btree
 
-  create_table "students", force: true do |t|
+  create_table "students", force: :cascade do |t|
     t.string   "first_name",                          null: false
     t.string   "last_name"
     t.datetime "created_at"
@@ -157,14 +157,14 @@ ActiveRecord::Schema.define(version: 20150306204326) do
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
-  create_table "venue_pictures", force: true do |t|
+  create_table "venue_pictures", force: :cascade do |t|
     t.integer  "venue_id"
     t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "venues", force: true do |t|
+  create_table "venues", force: :cascade do |t|
     t.string   "name",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 20150306204326) do
   add_index "venues", ["email"], name: "index_venues_on_email", unique: true, using: :btree
   add_index "venues", ["reset_password_token"], name: "index_venues_on_reset_password_token", unique: true, using: :btree
 
-  create_table "workshops", force: true do |t|
+  create_table "workshops", force: :cascade do |t|
     t.string   "name",                                    null: false
     t.integer  "price"
     t.integer  "length",                  default: 2,     null: false
@@ -222,14 +222,10 @@ ActiveRecord::Schema.define(version: 20150306204326) do
 
   add_index "workshops", ["deleted_at"], name: "index_workshops_on_deleted_at", using: :btree
 
-  add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"
-
-  add_foreign_key "enrollments", "students", name: "enrollments_student_id_fk"
-  add_foreign_key "enrollments", "workshops", name: "enrollments_workshop_id_fk"
-
-  add_foreign_key "reservations", "calendars", name: "reservations_calendar_id_fk"
-  add_foreign_key "reservations", "workshops", name: "reservations_workshop_id_fk"
-
-  add_foreign_key "workshops", "experts", name: "workshops_expert_id_fk"
-
+  add_foreign_key "calendars", "venues"
+  add_foreign_key "enrollments", "students"
+  add_foreign_key "enrollments", "workshops"
+  add_foreign_key "reservations", "calendars"
+  add_foreign_key "reservations", "workshops"
+  add_foreign_key "workshops", "experts"
 end

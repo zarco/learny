@@ -35,11 +35,6 @@
               .form-group.col-md-5
                 =f.label :genre
                 =f.select :genre, options_for_select(Genre.all, resource.genre ),{},{:class => 'form-control'}
-                
-                /=f.text_field :genre, class: 'form-control'
-                /=select_tag(:genre, options_for_select([[],['M', 'M'], ['F', 'F']]), :class=>'form-control') 
-                /=select_tag(:genre)
-                /=options_for_select( [  ['',''], ['M','M'], ['F','F']  ] )
             .form-group
               = f.label :avatar
               = f.file_field :avatar, autofocus: true, class: 'form-control'

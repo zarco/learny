@@ -1,7 +1,8 @@
 class Reservation < ActiveRecord::Base
   
   acts_as_paranoid
-  
+  obfuscate_id :spin => 24889949
+
   validates :starts_at, presence: true
   validates :final_time, presence: true
   validates :max_participants, presence: true

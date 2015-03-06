@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   
   acts_as_paranoid
+  obfuscate_id :spin => 19238931
 
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
@@ -12,24 +13,40 @@ class Student < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  #Added to make carrierwave works with ofuscation
+  def find_previous_model_for_avatar
+    self.class.find(to_param)
+  end
+
+
   has_many :enrollments
   has_many :workshops, through: :enrollments
-
   def full_name
     first_name + ' ' + last_name
   end
 
   def next_workshops(number=6)
     workshops.joins(:reservation)
-      .where('reservations.starts_at > ?', DateTime.now)
-      .order('reservations.starts_at')
-      .limit(number)   
+    .where('reservations.starts_at > ?', DateTime.now)
+    .order('reservations.starts_at')
+    .limit(number)
   end
-  
+
   def previous_workshops(number=6)
     workshops.joins(:reservation)
-        .where('reservations.starts_at < ?', DateTime.now )
-        .order('reservations.starts_at desc')
-        .limit(number)   
+    .where('reservations.starts_at < ?', DateTime.now )
+    .order('reservations.starts_at desc')
+    .limit(number)
   end
+
+  #def update(params)
+  #  if params[:password].blank?
+  #    params.delete(:password)
+  #    params.delete(:password_confirmation) if params[:password_confirmation].blank?
+  #  end
+  #  result=update_attributes(params)
+  #  clean_up_passwords
+  #  result
+  #end
+
 end
