@@ -1,8 +1,21 @@
 .container.body
   .col-md-8
-    .jumbotron.overview
+    - if @workshop.free?
+      #ad-free-course.animation
+        .reveal.circle_wrapper
+          .circle 
+            = t('views.legends.free_workshop',:default => '¡Free workshop!')
+        .sticky.animation
+          .front.circle_wrapper.animation
+            .circle.animation
+        %h4 
+          = t('views.legends.show',:default => 'Show')
+        .sticky.animation
+          .back.circle_wrapper.animation
+            .circle.animation
+    .jumbotron.overview            
       .row.well
-        .col-md-12
+        .col-md-12          
           %blockquote
             %h2
               = @workshop.name
