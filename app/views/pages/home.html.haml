@@ -35,7 +35,7 @@
                 = form_tag '/workshops', method: :get, :role => 'search' do
                   .form-group
                     .input-group.input-group-lg
-                      %input.form-control{:name => "w", :type => "text",:placeholder => "#{random_workshop}"}/
+                      %input.form-control{:name => "w", :type => "text",:placeholder => "#{random_workshop}", :required => true, :pattern => "[a-zA-Z0-9 ]+"}/
                       %span.input-group-btn
                         %button.btn.btn-primary{:type => "submit", :value => "Search"}
                           %span.glyphicon.glyphicon-search              
