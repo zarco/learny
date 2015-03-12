@@ -9,9 +9,9 @@ class WorkshopsController < ApplicationController
     if !w.nil?
       @guest = Guest.new
       @workshop_solicited = w
-      @workshops_scheduled = Workshop.search_workshop(w).joins(:reservation).where("starts_at >= ?", DateTime.now)
-      @workshops_proposed = Workshop.search_workshop(w).where("state = ? ",'proposed')
-      @workshops = @workshops_scheduled + @workshops_proposed
+      workshops_scheduled = Workshop.search_workshop(w).joins(:reservation).where("starts_at >= ?", DateTime.now)
+      workshops_proposed = Workshop.search_workshop(w).where("state = ? ",'proposed')
+      @workshops = workshops_scheduled + workshops_proposed
       @old_workshops = Workshop.search_workshop(w).joins(:reservation).where("starts_at < ?", DateTime.now)
       render 'search'  
     elsif expert_signed_in? 
