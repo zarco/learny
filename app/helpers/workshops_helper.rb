@@ -6,6 +6,6 @@ module WorkshopsHelper
 	end
 
 	def small_description_profile(description,total_words=300)
-    	description_visible = description.truncate(total_words,separator: ' ')
+    	truncate(description,length: total_words,separator: ' ')
   	end
 end
