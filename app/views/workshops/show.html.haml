@@ -105,7 +105,7 @@
               =@workshop.expert.occupation
         .row
           .col-md-12
-            %p
+            %p.text-justify
               - description = small_description_profile @workshop.expert.profile
               = description
               - unless description.length == @workshop.expert.profile.length
@@ -130,7 +130,7 @@
                                 = @workshop.expert.occupation
                           .col-md-9
                             %blockquote
-                              %p
+                              %p.text-justify
                                 = @workshop.expert.profile
                       .modal-footer                    
                         =link_to @workshop.expert do
