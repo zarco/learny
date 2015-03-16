@@ -92,7 +92,8 @@
   .col-md-4
     .panel.panel-primary
       .panel-heading
-        %h3.panel-title Tu experto
+        %h3.panel-title 
+          = t('views.legends.experts.title_your_expert',default: 'You expert') 
       .panel-body
         .col-md-5
           - unless @workshop.expert.avatar.nil?
@@ -116,7 +117,8 @@
                       .modal-header
                         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
                           %span{"aria-hidden" => "true"} ×
-                        %h4.modal-title Resumen del perfíl
+                        %h4.modal-title
+                          = t('views.legends.experts.summary_profile',default: 'Summary profile') 
                       .modal-body
                         .row
                           .col-md-3.text-center
@@ -135,11 +137,12 @@
                       .modal-footer                    
                         =link_to @workshop.expert do
                           %button.btn.btn-primary{:type => "button"}
-                            Ir al perfil completo
+                            = t('views.legends.experts.go_full_profile',default: 'Go full profile') 
   .col-md-4
     .panel.panel-primary
       .panel-heading
-        %h3.panel-title Asistentes
+        %h3.panel-title
+          = t('views.legends.experts.participants',default: 'Participants') 
       .panel-body
         - @workshop.students.each do |student|
           .row.panel
@@ -160,7 +163,7 @@
         .panel-body
           %button.btn.btn-lg.btn-danger.btn-block{:type => "button"}
             %span.glyphicon.glyphicon-fire
-            Reportar tema
+            = t('views.legends.experts.denunciate_topic',default: 'Denunciate topic') 
 
 
   / Modal
@@ -170,11 +173,13 @@
         .modal-header
           %button.close{"data-dismiss" => "modal", :type => "button"}
             %span{"aria-hidden" => "true"} ×
-            %span.sr-only Close
+            %span.sr-only
+              = t('views.legends.close',default: 'Close') 
           %h4#myModalLabel.modal-title
             %span.glyphicon.glyphicon-list-alt
             =@workshop.name
         .modal-body
           = simple_format @workshop.agenda
         .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}
+            = t('views.legends.close',default: 'Close') 
