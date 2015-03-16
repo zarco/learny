@@ -105,8 +105,37 @@
               =@workshop.expert.occupation
         .row
           .col-md-12
-            =simple_format @workshop.expert.profile
-  
+            %p
+              - description = small_description_profile @workshop.expert.profile
+              = description
+              - unless description.length == @workshop.expert.profile.length
+                %button.btn.btn-primary.btn-xs{"data-target" => ".profile-modal-lg", "data-toggle" => "modal", :type => "button"} Ver más
+                .modal.fade.profile-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "modalProfile", :role => "dialog", :tabindex => "-1"}
+                  .modal-dialog.modal-lg
+                    .modal-content
+                      .modal-header
+                        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                          %span{"aria-hidden" => "true"} ×
+                        %h4.modal-title Resumen del perfíl
+                      .modal-body
+                        .row
+                          .col-md-3.text-center
+                            .row
+                              - unless @workshop.expert.avatar.nil?
+                                %img.featurette-image.img-responsive.img-circle{:alt => "Expert", :src => @workshop.expert.avatar_url}/
+                            .row
+                              %h5
+                                = @workshop.expert.full_name
+                              %h6
+                                = @workshop.expert.occupation
+                          .col-md-9
+                            %blockquote
+                              %p
+                                = @workshop.expert.profile
+                      .modal-footer                    
+                        =link_to @workshop.expert do
+                          %button.btn.btn-primary{:type => "button"}
+                            Ir al perfil completo
   .col-md-4
     .panel.panel-primary
       .panel-heading
