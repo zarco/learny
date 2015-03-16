@@ -18,9 +18,9 @@ class VenueMailer < ActionMailer::Base
   #   en.venue_mailer.workshop_proposed_with_reservation.subject
   #
   def workshop_proposed_with_reservation(workshop)
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+    @workshop = workshop
+    @reservation = workshop.reservation
+    mail to: workshop.venue.email
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -86,6 +86,7 @@ class VenueMailer < ActionMailer::Base
   def reservation_updated(venue,former_workshop)
     @venue=venue
     @workshop=former_workshop
+    @reservation=former_workshop.reservation
     mail to: venue.email
   end
 end

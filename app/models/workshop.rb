@@ -100,7 +100,7 @@ class Workshop < ActiveRecord::Base
         reservation.save
       end
       
-      @reservation=Reservation.find(reservation_id) unless reservation_id.nil?||reservation_id.empty?
+      @reservation=Reservation.find(reservation_id) unless reservation_id.nil?||reservation_id.empty?||Reservation.deobfuscate_id(reservation_id).to_i == 0
       #puts "#{@reservation.id}"
       unless @reservation.nil?
         @reservation.workshop = self

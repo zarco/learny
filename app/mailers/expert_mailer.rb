@@ -6,10 +6,13 @@ class ExpertMailer < ActionMailer::Base
   #
   #   en.expert_mailer.workshop_proposed_by_expert.subject
   #
-  def workshop_proposed_by_expert
-    @greeting = "Hi"
+  def workshop_proposed_by_expert(workshop)
+    @workshop = workshop
 
-    mail to: "to@example.org"
+    mail(to: workshop.expert.email) do |format|
+      format.html
+      format.text
+    end
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,10 +20,11 @@ class ExpertMailer < ActionMailer::Base
   #
   #   en.expert_mailer.workshop_proposed_with_reservation.subject
   #
-  def workshop_proposed_with_reservation
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def workshop_proposed_with_reservation(workshop)
+    @workshop = workshop
+    @venue = workshop.venue
+    @reservation = workshop.reservation
+    mail to: workshop.expert.email
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -50,7 +54,7 @@ class ExpertMailer < ActionMailer::Base
   #
   #   en.expert_mailer.workshop_cancelled_by_expert.subject
   #
-  def workshop_cancelled_by_expert
+  def workshop_cancelled_by_expert(workshop)
     @greeting = "Hi"
 
     mail to: "to@example.org"

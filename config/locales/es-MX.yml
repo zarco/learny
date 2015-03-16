@@ -362,12 +362,29 @@ es-MX:
       - :day
       - :month
       - :year
-      
+
+  # Mailers
   student_mailer:
     enrolled_in_a_workshop:
       subject: "Te has inscrito en un taller en Learny"
     unenrolled_in_a_workshop:
       subject: "Has cancelado tu inscripción"
+  venue_mailer:
+    reservation_updated:
+      subject: "Se ha actualizado una reservación"
+    workshop_proposed_with_reservation:
+      subject: "Se ha confirmado un taller en tu Establecimiento"
+    workshop_cancelled_by_expert:
+      subject: "Se ha cancelado una reservación"
+  expert_mailer:
+    workshop_proposed_with_reservation:
+      subject: "Se ha confirmado tu nuevo taller"
+    workshop_proposed_by_expert:
+      subject: "Has propuesto un nuevo taller"
+    workshop_cancelled_by_expert:
+      subject: "Has cancelado un taller"
+
+
 # Carrierwave I18n
   errors:
     messages:
