@@ -45,7 +45,7 @@
         duration: false,
         delay: false,
         basePath: '',
-        template: '<div class="popover" role="tooltip" > <div class="arrow"></div> <h3 class="popover-title"></h3> <div class="popover-content text-justify"></div> <div class="popover-navigation"> <div class="btn-group"> <button class="btn btn-sm btn-info" data-role="prev"><span class="glyphicon glyphicon-chevron-left"></span></button> <button class="btn btn-sm btn-info" data-role="next"><span class="glyphicon glyphicon-chevron-right"></span></button> <button class="btn btn-sm btn-default" data-role="pause-resume" data-pause-text="Pause" data-resume-text="Resume">Pause</button> </div> <button class="btn btn-sm btn-danger" data-role="end"><span class="glyphicon glyphicon-share-alt"></span> Terminar</button> </div> </div>',
+        template: '<div class="popover" role="tooltip" > <div class="arrow"></div> <h3 class="popover-title"></h3> <div class="popover-content text-justify"></div> <div class="popover-navigation"> <div class="btn-group"> <button class="btn btn-sm btn-primary" data-role="prev"><span class="glyphicon glyphicon-chevron-left"></span></button> <button class="btn btn-sm btn-primary" data-role="next"><span class="glyphicon glyphicon-chevron-right"></span></button> <button class="btn btn-sm btn-default" data-role="pause-resume" data-pause-text="Pause" data-resume-text="Resume">Pause</button> </div> <button class="btn btn-sm btn-default" data-role="end">Salir</button> </div> </div>',
         afterSetState: function(key, value) {},
         afterGetState: function(key, value) {},
         afterRemoveState: function(key) {},

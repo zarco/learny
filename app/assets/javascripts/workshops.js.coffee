@@ -66,7 +66,7 @@ ready =->
     },
     {
       element: '#workshop_previous_skills',
-      title: 'Conocimientos previos',
+      title: 'Conocimientos requeridos del estudiante',
       content: 'Si es necesario que tus estudiantes sepan algo antes de tomar tu curso puedes comentarlo aquí.'
     },
     {

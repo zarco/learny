@@ -98,7 +98,7 @@ es-MX:
         agenda: 'Agenda'
         length: 'Duración'
         price: 'Precio'
-        previous_skills: 'Conocimientos previos'
+        previous_skills: 'Conocimientos requeridos de tus estudiantes'
         target_public: 'Público Objetivo'
         description: 'Descripción'
         min_number_participants: 'Número mínimo de participantes'
