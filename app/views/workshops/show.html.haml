@@ -1,19 +1,14 @@
 .container.body
-  .col-md-8
-    - if @workshop.free?
-      #ad-free-course.animation
-        .reveal.circle_wrapper
-          .circle 
-            = t('views.legends.free_workshop',:default => '¡Free workshop!')
-        .sticky.animation
-          .front.circle_wrapper.animation
-            .circle.animation
-        %h4 
-          = t('views.legends.show',:default => 'Show')
-        .sticky.animation
-          .back.circle_wrapper.animation
-            .circle.animation
+  .col-md-8    
     .jumbotron.overview            
+      - if @workshop.reservation.nil?
+        .not-scheduled-workshop-ribbon
+          %p.detail
+            = t('views.legends.workshop.not_scheduled', default: 'Workshop is not scheduled yet')
+      - if @workshop.free?
+        .price-workshop-ribbon
+          %p.detail
+            = t('views.legends.workshop.free_workshop', default: 'Free workshop')
       .row.well
         .col-md-12          
           %blockquote

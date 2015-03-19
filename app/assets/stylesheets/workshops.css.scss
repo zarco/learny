@@ -2,117 +2,79 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.animation{
-  float: right;
-  transition: all 750ms ease-in-out;
+/* Corner ribbon to workshop price */
+
+.price-workshop-ribbon p {
+    background: #F52;
 }
 
-#ad-free-course{
-	position: relative;
-	width: 25%;	
-	backface-visibility: hidden;
+.not-scheduled-workshop-ribbon p {
+    background: #08b;
 }
 
-#ad-free-course .sticky{
-	transform: rotate(45deg);
+.price-workshop-ribbon p, .not-scheduled-workshop-ribbon p {
+    background-image: radial-gradient(transparent 30%, rgba(0, 0, 0, 0.2));
+    border: 0 solid rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.2);
 }
 
-#ad-free-course:hover .sticky{
-	transform: rotate(10deg);
+.price-workshop-ribbon p{
+	top: 50%;
 }
 
-#ad-free-course .sticky{
-	position: absolute;	
-	width:180px;
-	height: 180px;
+.not-scheduled-workshop-ribbon p{
+	top: 75%;
 }
 
-#ad-free-course .reveal .circle{
-  box-shadow: 0 1px 0px rgba(0,0,0,.15); 
-  font-weight: 200;
-  line-height: 140px;
-  text-align: center;  
-  color: black;
+.price-workshop-ribbon p.detail{
+	top: 6%;
 }
 
-#ad-free-course .reveal .circle{
-	background: #428BCA;
+.not-scheduled-workshop-ribbon p.detail{
+	top: 1%;
 }
 
-#ad-free-course .circle_wrapper{
-	position: absolute;
-	width: 180px;
-	height: 180px;
-	left: 0px;
-	top: 0px;
-	overflow: hidden;
+.price-workshop-ribbon p, .not-scheduled-workshop-ribbon p {
+    border-width: 1px 1px 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    margin: 0;
+    padding: 4px 40px;
+    position: absolute;
+    right: -14px;    
 }
 
-#ad-free-course .circle{
-	position: absolute;
-	width: 140px;
-	height:  140px;
-	margin: 20px;	
-	border-radius: 999px;
+.price-workshop-ribbon p:after, .not-scheduled-workshop-ribbon p:after {
+    border-width: 7px;
+    border-style: solid;
+    border-color: #134 transparent transparent #134;
+    bottom: -15px;
+    content: "";
+    position: absolute;
+    right: -1px;
 }
 
-#ad-free-course .back{
-	height: 10px;
-	top: 30px;
-}
+@media screen and (max-width: 360px){
+	.not-scheduled-workshop-ribbon p,.price-workshop-ribbon p {
+		font-size: 12px;
+	}
 
-#ad-free-course:hover .back{
-	height: 90px;
-	top: 110px;
-}
+	.not-scheduled-workshop-ribbon p{
+		top: 90%;		
+	}	
 
-#ad-free-course .back .circle{
-	margin-top: -130px;
-	background-color: #fbec3f;
-	background-image: -webkit-linear-gradient(bottom, rgba(251,236,63,.0), rgba(255,255,255,.8));
-}
+	.price-workshop-ribbon p{
+		top: 75%;		
+	}
 
-#ad-free-course:hover .back .circle{
-	margin-top: -50px;
-}
+	.not-scheduled-workshop-ribbon p.detail{
+		top: 1%;		
+	}
 
-#ad-free-course .front{
-	height: 150px;
-	bottom: 0;
-	top: auto;	
-	-webkit-box-shadow: 0 -140px 20px -140px rgba(0,0,0,.3);
-}
-
-#ad-free-course:hover .front{
-	height: 70px;	
-	-webkit-box-shadow: 0 -60px 10px -60px rgba(0,0,0,.1);
-}
-
-#ad-free-course .front .circle{
-	margin-top: -10px;
-	background: #fbec3f;
-	background-image: -webkit-linear-gradient(bottom, rgba(251,236,63,.0) 75%, #f7bb37 95%);
-  background-image: -moz-linear-gradient(bottom, rgba(251,236,63,.0) 75%, #f7bb37 95%);
-  background-image: linear-gradient(bottom, rgba(251,236,63,.0) 75%, #f7bb37 95%);
-}
-
-#ad-free-course h4{  		
-  font-weight: 100;
-  text-align: center;
-  position: absolute;
-  width: 180px;
-  height: 140px;
-  line-height: 160px;	
-  transition: opacity 50ms linear 400ms;
-}
-
-#ad-free-course:hover h4{
-	opacity: 0;	
-	transition: opacity 50ms linear 300ms;
-}
-
-#ad-free-course:hover .front .circle{
-	margin-top: -90px;
-	background-color: #AAA;
-	background-position: 0 100px;
+	.price-workshop-ribbon p.detail{
+		top: 4%;		
+	}
 }
