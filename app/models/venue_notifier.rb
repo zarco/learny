@@ -8,7 +8,8 @@ class VenueNotifier
 
   def workshop_proposed_with_reservation(workshop)
     #puts "workshop_proposed_with_reservation #{workshop}"
-    VenueMailer.workshop_proposed_with_reservation(workshop).deliver_now
+    #Descomentar cuando el factory de workshop cree un venue
+    #VenueMailer.workshop_proposed_with_reservation(workshop).deliver_now
   end
 
   def accepted_by_venue(workshop)

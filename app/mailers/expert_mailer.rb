@@ -20,7 +20,7 @@ class ExpertMailer < ActionMailer::Base
   #
   #   en.expert_mailer.workshop_proposed_with_reservation.subject
   #
-  def workshop_proposed_with_reservation(workshop)
+  def workshop_proposed_with_reservation(workshop)    
     @workshop = workshop
     @venue = workshop.venue
     @reservation = workshop.reservation

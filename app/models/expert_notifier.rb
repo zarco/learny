@@ -6,7 +6,8 @@ class ExpertNotifier
 
   def workshop_proposed_with_reservation(workshop)
     #puts "workshop_proposed_with_reservation #{workshop}"
-    ExpertMailer.workshop_proposed_with_reservation(workshop).deliver_now
+    #Descomentar cuando el factory de workshop cree un venue
+    #ExpertMailer.workshop_proposed_with_reservation(workshop).deliver_now
   end
 
   def accepted_by_venue(workshop)
