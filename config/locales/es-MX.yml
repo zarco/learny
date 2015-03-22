@@ -273,9 +273,14 @@ es-MX:
       privacy: 'Política de privacidad '
       experts:
         propose_new_workshop: 'Proponer nuevo taller'
+        summary_profile: 'Resumen del perfíl'
+        go_full_profile: 'Ir al perfil completo'
+        title_your_expert: 'Tu experto'
+        participants: 'Asistentes'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
         price_per_student: 'por estudiante'
+        denunciate_topic: 'Reportar tema'
       reservation:
         cover_per_person: 'Por persona'  
       my_workshops:        
