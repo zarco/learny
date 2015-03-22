@@ -17,6 +17,7 @@ RSpec.describe Reservation, :type => :model do
     it { should respond_to :all_day }
     it { should respond_to(:venue)}
     it { should respond_to :cover }
+    it { should respond_to :deleted_at }
   end
 
   describe 'associations' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218031928) do
+ActiveRecord::Schema.define(version: 20150306204326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.datetime "updated_at"
     t.integer  "venue_id",                   null: false
     t.boolean  "is_default", default: false, null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "calendars", ["deleted_at"], name: "index_calendars_on_deleted_at", using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
@@ -57,7 +60,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.integer  "student_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
+
+  add_index "enrollments", ["deleted_at"], name: "index_enrollments_on_deleted_at", using: :btree
 
   create_table "experts", force: :cascade do |t|
     t.string   "first_name",                          null: false
@@ -89,9 +95,11 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.date     "birthday"
     t.string   "genre"
     t.string   "google_plus_link"
+    t.datetime "deleted_at"
   end
 
   add_index "experts", ["confirmation_token"], name: "index_experts_on_confirmation_token", unique: true, using: :btree
+  add_index "experts", ["deleted_at"], name: "index_experts_on_deleted_at", using: :btree
   add_index "experts", ["email"], name: "index_experts_on_email", unique: true, using: :btree
   add_index "experts", ["reset_password_token"], name: "index_experts_on_reset_password_token", unique: true, using: :btree
 
@@ -113,7 +121,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.integer  "calendar_id",                      null: false
     t.integer  "workshop_id"
     t.integer  "cover",            default: 0
+    t.datetime "deleted_at"
   end
+
+  add_index "reservations", ["deleted_at"], name: "index_reservations_on_deleted_at", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name",                          null: false
@@ -139,8 +150,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.text     "profile"
     t.date     "birthday"
     t.string   "genre"
+    t.datetime "deleted_at"
   end
 
+  add_index "students", ["deleted_at"], name: "index_students_on_deleted_at", using: :btree
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
@@ -181,9 +194,11 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.string   "twitter_link"
     t.string   "website"
     t.string   "google_plus_link"
+    t.datetime "deleted_at"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
+  add_index "venues", ["deleted_at"], name: "index_venues_on_deleted_at", using: :btree
   add_index "venues", ["email"], name: "index_venues_on_email", unique: true, using: :btree
   add_index "venues", ["reset_password_token"], name: "index_venues_on_reset_password_token", unique: true, using: :btree
 
@@ -202,7 +217,10 @@ ActiveRecord::Schema.define(version: 20150218031928) do
     t.boolean  "free",                    default: false, null: false
     t.integer  "min_number_participants", default: 1,     null: false
     t.string   "state",                   default: "new", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "workshops", ["deleted_at"], name: "index_workshops_on_deleted_at", using: :btree
 
   add_foreign_key "calendars", "venues"
   add_foreign_key "enrollments", "students"

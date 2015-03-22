@@ -1,10 +1,11 @@
 class Expert < ActiveRecord::Base
-  
+
+  acts_as_paranoid
   obfuscate_id :spin => 17638921
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   validates :first_name, presence: true
@@ -15,9 +16,9 @@ class Expert < ActiveRecord::Base
   validates :twitter_link, :allow_blank => true, format: { with: /\A@(.+)$\z/, message: "no valido" }
   validates :google_plus_link, :allow_blank => true, format: { with: /\A\+(.+)$\z/, message: "no valido" }
   validates :linkedin_link, :allow_blank => true, format: { with: /\Aid=(\d+)$\z/, message: "no valido" }
-  
+
   has_many :workshops
-  
+
   mount_uploader :avatar, AvatarUploader
 
    #Added to make carrierwave works with ofuscation
@@ -26,19 +27,17 @@ class Expert < ActiveRecord::Base
   end
 
   after_validation :concate_url
-
   def concate_url
     self.website = "http://" << self.website unless self.website.blank?
     self.facebook_link = "https://" << self.facebook_link unless self.facebook_link.blank?
     self.twitter_link = "https://twitter.com/" << self.twitter_link.gsub('@', '') unless self.twitter_link.blank?
     self.google_plus_link = "https://plus.google.com/" << self.google_plus_link unless self.google_plus_link.blank?
     self.linkedin_link = "https://www.linkedin.com/profile/view?" << self.linkedin_link unless self.linkedin_link.blank?
-  end  
-  
+  end
+
   def fmt_website
     self.website = self.website.gsub('http://','') if self.website?
   end
-
 
   def fmt_facebook_link
     self.facebook_link = self.facebook_link.gsub('https://','') if self.facebook_link?
@@ -58,16 +57,16 @@ class Expert < ActiveRecord::Base
 
   def next_workshops(number=6)
     workshops.joins(:reservation)
-      .where('reservations.starts_at > ?', DateTime.now )
-      .order('reservations.starts_at')
-      .limit(number)   
+    .where('reservations.starts_at > ?', DateTime.now )
+    .order('reservations.starts_at')
+    .limit(number)
   end
-  
+
   def previous_workshops(number=6)
     workshops.joins(:reservation)
-        .where('reservations.starts_at < ?', DateTime.now )
-        .order('reservations.starts_at desc')
-        .limit(number)   
+    .where('reservations.starts_at < ?', DateTime.now )
+    .order('reservations.starts_at desc')
+    .limit(number)
   end
 
   def full_name
