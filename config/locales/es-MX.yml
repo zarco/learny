@@ -98,7 +98,7 @@ es-MX:
         agenda: 'Agenda'
         length: 'Duración'
         price: 'Precio'
-        previous_skills: 'Conocimientos requeridos de tus estudiantes'
+        previous_skills: 'Conocimientos previos'
         target_public: 'Público Objetivo'
         description: 'Descripción'
         min_number_participants: 'Número mínimo de participantes'
@@ -244,6 +244,8 @@ es-MX:
       calendars: 'Calendarios'
       reservations: 'Reservaciones'
       enroll: '¡Quiero Asistir!'
+      show: 'Mostrar'
+      delete: 'Borrar'
       
       
     legends:
@@ -273,14 +275,9 @@ es-MX:
       privacy: 'Política de privacidad '
       experts:
         propose_new_workshop: 'Proponer nuevo taller'
-        summary_profile: 'Resumen del perfíl'
-        go_full_profile: 'Ir al perfil completo'
-        title_your_expert: 'Tu experto'
-        participants: 'Asistentes'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
         price_per_student: 'por estudiante'
-        denunciate_topic: 'Reportar tema'
       reservation:
         cover_per_person: 'Por persona'  
       my_workshops:        
@@ -288,7 +285,15 @@ es-MX:
         no_workshops: 'Aún no estás inscrito en ningún taller'
       calendar:
         more_information: 'Más información'
-        close: 'Cerrar'  
+        close: 'Cerrar'
+        reservation_created: ' reservación creada'  
+        reservations_created: ' reservaciones creadas'
+        event_scheduled: ' evento calendarizado'
+        events_scheduled: ' eventos calendarizados'
+        description: 'Los calendarios representan un lugar disponible en tu establecimiento.'
+        title_new_calendar: 'Nuevo calendario'
+        hint_new_calendar: 'Ej. Mesa 1, Sala de capacitación'
+        main_table: 'Mesa principal'
       guest:
         suggested_successfully: 'Gracias, se te notificará cuando tengamos tu curso.'    
         send: 'Enviar'
