@@ -19,18 +19,17 @@ RSpec.describe ExpertMailer, :type => :mailer do
   end
 
   describe "workshop_proposed_with_reservation" do
-    pending ('Factory de Workshop no crea un Venue')
-    #let(:mail) { ExpertMailer.workshop_proposed_with_reservation(workshop) }
+    let(:mail) { ExpertMailer.workshop_proposed_with_reservation(workshop) }
 
-    #it "renders the headers" do
-      #expect(mail.subject).to eq("Workshop proposed with reservation")
-      #expect(mail.to).to eq(["to@example.org"])
-      #expect(mail.from).to eq(["from@example.com"])
-    #end
+    it "renders the headers" do
+      expect(mail.subject).to eq("Workshop proposed with reservation")
+      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.from).to eq(["from@example.com"])
+    end
 
-    #it "renders the body" do
-      #expect(mail.body.encoded).to match("Hi")
-    #end    
+    it "renders the body" do
+      expect(mail.body.encoded).to match("Hi")
+    end    
   end
 
   describe "accepted_by_venue" do
