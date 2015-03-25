@@ -92,5 +92,7 @@ gem 'rack-timeout'
 
 gem 'state_machine', :git => 'https://github.com/seuros/state_machine.git'
 gem 'rails-observers'
+
+gem "paranoia", "~> 2.0"
 gem "obfuscate_id", git: "https://github.com/namick/obfuscate_id"
 #gem 'encrypted_id'

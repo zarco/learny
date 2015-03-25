@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+//= require bootstrap-tour
+
 $(document).on "ready page:load", ->
   $("#workshop_free").on "change", ->
     is_checked = $("#workshop_free").prop('checked')

@@ -1,4 +1,7 @@
 class Venue < ActiveRecord::Base
+    
+  acts_as_paranoid
+
   include Rails.application.routes.url_helpers
   
   obfuscate_id :spin => 13208931

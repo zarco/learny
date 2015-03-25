@@ -1,7 +1,7 @@
 class Student < ActiveRecord::Base
-
+  
+  acts_as_paranoid
   obfuscate_id :spin => 19238931
-  #encrypted_id key: '5gA6lgr9o3GOg7EOQ1caRT'
 
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true

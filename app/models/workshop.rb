@@ -1,4 +1,6 @@
 class Workshop < ActiveRecord::Base
+  
+  acts_as_paranoid
   obfuscate_id :spin => 19889937
 
   include PgSearch

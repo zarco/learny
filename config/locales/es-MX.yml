@@ -98,7 +98,7 @@ es-MX:
         agenda: 'Agenda'
         length: 'Duración'
         price: 'Precio'
-        previous_skills: 'Conocimientos previos'
+        previous_skills: 'Conocimientos requeridos de tus estudiantes'
         target_public: 'Público Objetivo'
         description: 'Descripción'
         min_number_participants: 'Número mínimo de participantes'
@@ -273,11 +273,16 @@ es-MX:
       privacy: 'Política de privacidad '
       experts:
         propose_new_workshop: 'Proponer nuevo taller'
+        summary_profile: 'Resumen del perfíl'
+        go_full_profile: 'Ir al perfil completo'
+        title_your_expert: 'Tu experto'
+        participants: 'Asistentes'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
         price_per_student: 'por estudiante'
         free_workshop: "Taller gratuito"
         not_scheduled: "Taller aún no programado"
+        denunciate_topic: 'Reportar tema'
       reservation:
         cover_per_person: 'Por persona'  
       my_workshops:        

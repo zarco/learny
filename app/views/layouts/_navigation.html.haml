@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to image_tag( 'L.png', size: "40x40", alt: "L",:class => "logo img-logo") + 'earny', root_path, :class => "navbar-brand", :style => "display: inline-flex"
+      = link_to image_tag( 'L.png', size: "40x40", alt: "L",:class => "logo img-logo") + 'earny', root_path, :class => "navbar-brand", :style => "display: inline-flex", :id => 'home'
     .collapse.navbar-collapse
       -if !student_signed_in? && !expert_signed_in? && !venue_signed_in? && !administrator_signed_in? && current_page?(root_path)
         %ul.nav.navbar-nav.navbar-left
