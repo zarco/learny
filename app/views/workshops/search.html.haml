@@ -17,7 +17,14 @@
     /.panel.panel-default
     /  .panel-body
     %li.list-group-item
-      .test
+      .test        
+        .price-workshop-ribbon
+          %p
+            = workshop.free? ? t('views.legends.workshop.free_workshop', default: 'Free workshop') : "$ " << workshop.price.to_s << " MXN"
+        - if workshop.reservation.nil?
+          .not-scheduled-workshop-ribbon
+            %p
+              = t('views.legends.workshop.not_scheduled', default: 'Workshop is not scheduled yet')
         .row
           .col-md-12
             %h2

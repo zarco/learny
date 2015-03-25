@@ -1,8 +1,16 @@
 .container.body
-  .col-md-8
-    .jumbotron.overview
+  .col-md-8    
+    .jumbotron.overview            
+      - if @workshop.reservation.nil?
+        .not-scheduled-workshop-ribbon
+          %p.detail
+            = t('views.legends.workshop.not_scheduled', default: 'Workshop is not scheduled yet')
+      - if @workshop.free?
+        .price-workshop-ribbon
+          %p.detail
+            = t('views.legends.workshop.free_workshop', default: 'Free workshop')
       .row.well
-        .col-md-12
+        .col-md-12          
           %blockquote
             %h2
               = @workshop.name
