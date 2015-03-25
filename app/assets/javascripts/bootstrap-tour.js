@@ -36,7 +36,7 @@
         container: 'body',
         autoscroll: true,
         keyboard: true,
-        storage: false,//storage,
+        storage: storage,
         debug: false,
         backdrop: false,
         backdropPadding: 0,
