@@ -8,7 +8,7 @@
   .form-group
     = f.label :title, class: 'control-label'
     .controls
-      = f.text_field :title, class: 'form-control', required: true
+      = f.text_field :title, class: 'form-control', value: '',required: true, placeholder: t('views.legends.calendar.hint_new_calendar', default: 'Ex. Table 1, Training room')
       /= error_span(@calendar[:title])
   .actions
     = f.submit 'Save', :class=>'btn btn-primary btn-lg'
