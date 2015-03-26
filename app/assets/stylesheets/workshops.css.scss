@@ -2,3 +2,79 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* Corner ribbon to workshop price */
+
+.price-workshop-ribbon p {
+    background: #F52;
+}
+
+.not-scheduled-workshop-ribbon p {
+    background: #08b;
+}
+
+.price-workshop-ribbon p, .not-scheduled-workshop-ribbon p {
+    background-image: radial-gradient(transparent 30%, rgba(0, 0, 0, 0.2));
+    border: 0 solid rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.2);
+}
+
+.price-workshop-ribbon p{
+	top: 50%;
+}
+
+.not-scheduled-workshop-ribbon p{
+	top: 75%;
+}
+
+.price-workshop-ribbon p.detail{
+	top: 6%;
+}
+
+.not-scheduled-workshop-ribbon p.detail{
+	top: 1%;
+}
+
+.price-workshop-ribbon p, .not-scheduled-workshop-ribbon p {
+    border-width: 1px 1px 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    margin: 0;
+    padding: 4px 40px;
+    position: absolute;
+    right: -14px;    
+}
+
+.price-workshop-ribbon p:after, .not-scheduled-workshop-ribbon p:after {
+    border-width: 7px;
+    border-style: solid;
+    border-color: #134 transparent transparent #134;
+    bottom: -15px;
+    content: "";
+    position: absolute;
+    right: -1px;
+}
+
+@media screen and (max-width: 360px){
+	.not-scheduled-workshop-ribbon p,.price-workshop-ribbon p {
+		font-size: 12px;
+	}
+
+	.not-scheduled-workshop-ribbon p{
+		top: 90%;		
+	}	
+
+	.price-workshop-ribbon p{
+		top: 75%;		
+	}
+
+	.not-scheduled-workshop-ribbon p.detail{
+		top: 1%;		
+	}
+
+	.price-workshop-ribbon p.detail{
+		top: 4%;		
+	}
+}

@@ -278,6 +278,9 @@ es-MX:
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
         price_per_student: 'por estudiante'
+        free_workshop: "Taller gratuito"
+        not_scheduled: "Taller aún no programado"
+        denunciate_topic: 'Reportar tema'
       reservation:
         cover_per_person: 'Por persona'  
       my_workshops:        
@@ -317,7 +320,7 @@ es-MX:
         delete: 'Borrar'
       close: 'Cerrar'
       news: 'Noticias'
-      recomendations: 'Recomendaciones'
+      recomendations: 'Recomendaciones'      
       
     status:
       active: 'Activo'
