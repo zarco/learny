@@ -1,12 +1,12 @@
 class ExpertNotifier
   def workshop_proposed_by_expert(workshop)
     #puts "workshop_proposed_by_expert #{workshop}"
-    ExpertMailer.workshop_proposed_by_expert.deliver_now
+    ExpertMailer.workshop_proposed_by_expert(workshop).deliver_now
   end
 
   def workshop_proposed_with_reservation(workshop)
     #puts "workshop_proposed_with_reservation #{workshop}"
-    ExpertMailer.workshop_proposed_with_reservation.deliver_now
+    ExpertMailer.workshop_proposed_with_reservation(workshop).deliver_now
   end
 
   def accepted_by_venue(workshop)
@@ -21,7 +21,7 @@ class ExpertNotifier
 
   def workshop_cancelled_by_expert(workshop)
     #puts "workshop_cancelled_by_expert #{workshop}"
-    ExpertMailer.workshop_cancelled_by_expert.deliver_now
+    ExpertMailer.workshop_cancelled_by_expert(workshop).deliver_now
   end
 
   def workshop_revoked_by_venue(workshop)

@@ -1,0 +1,31 @@
+%h1 Learny | Hay un nuevo Taller Confirmado en tu Establecimiento
+
+.container
+%table
+  %tr
+    %td{:style => "padding:30px 15px 30px 15px; background-color:#EBEBEB;"}
+      %table
+        %tr
+          %td{:style => "border-left: 1px solid #A3A3A3; border-right: 1px solid #A3A3A3; border-top: 1px solid #A3A3A3; border-bottom: 1px solid #A3A3A3; background-color:#FFFFFF; border-radius:10px; padding:10px 30px 10px 20px;"}
+            %h2{:style => "color:#009933"}
+              El taller "#{@workshop.name}" se impartirá en tu Establecimiento!
+            
+            %p &nbsp;
+            %p
+              %strong 
+                \- Horario:
+              %br
+              %h3{:style => "color:#009933"} #{@reservation.fmt_duration}
+            %p
+              %strong 
+                \- Asegúrate de tener todo listo para atender a tus invitados.
+              Recuerda que los asistentes consumirán tus productos y podrán dejar referencias en tu perfil. Entre mejores referencias obtengas más oportunidades tendrás de conseguir nuevos clientes y tu Establecimiento será más atractivo para nuevos Talleres.
+              %br
+            %p
+              %strong 
+                \- Revisa que las amenidades que ofreces en tu perfil estén actualizadas.
+              Si en tu perfil ofreces un proyector entre tus amenidades, asegúrate que esté disponible para el horario del taller, puede que el Experto dependa totalmente de este para impartir su taller. 
+              %br
+
+%br
+%h3{:style => "color: #2d6ca2"} Afectuosamente, el equipo de Learny

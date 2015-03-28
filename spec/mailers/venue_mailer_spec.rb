@@ -66,7 +66,7 @@ RSpec.describe VenueMailer, :type => :mailer do
     let(:mail) { VenueMailer.workshop_cancelled_by_expert(workshop) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Workshop cancelled by expert")
+      expect(mail.subject).to eq("Se ha cancelado una reservación")
       expect(mail.to).to eq(["to@example.org"])
       expect(mail.from).to eq(["from@example.com"])
     end
