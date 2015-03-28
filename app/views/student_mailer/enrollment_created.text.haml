@@ -1,3 +1,23 @@
-StudentMailer#enrollment_created
+Learny | Inscripción al taller de "#{@workshop.name}"
 
-= @greeting + ", find me in app/views/student_mailer/enrollment_created.text.haml"
+- if @venue.nil?
+	Este taller aún no tiene un Establecimiento asignado, en cuanto se asigne se te notificará.
+- else
+	El taller se impartirá en #{@venue.name}!
+	Horario:
+	#{@workshop.reservation.fmt_duration}
+
+Costo:
+- @workshop.free? ? "Gratuito" : "$ " + @workshop.price.to_s + " MXN"
+
+- if @venue.nil?
+	Te mantendremos informado.
+	No te preocupes, el equipo de Learny te avisará cuando el taller que deseas tenga un establecimiento.
+- else
+	Asegúrate de ser puntual.
+	Recuerda que este espacio esta reservado solo para que disfrutes de tu taller así que este no puede terminar después de la hora programada ya que podría causar conflicto con el itinerario del establecimiento.
+
+	Evalua a tu experto
+	Cuando finalice tu taller recibirás una encuesta donde podrás evaluar al experto, esto lo animará a dar cada vez más talleres.
+
+Afectuosamente, el equipo de Learny

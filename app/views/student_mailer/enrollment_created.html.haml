@@ -1,0 +1,45 @@
+%h1 Learny | Inscripción al taller de "#{@workshop.name}"
+
+.container
+%table
+  %tr
+    %td{:style => "padding:30px 15px 30px 15px; background-color:#EBEBEB;"}
+      %table
+        %tr
+          %td{:style => "border-left: 1px solid #A3A3A3; border-right: 1px solid #A3A3A3; border-top: 1px solid #A3A3A3; border-bottom: 1px solid #A3A3A3; background-color:#FFFFFF; border-radius:10px; padding:10px 30px 10px 20px;"}            
+            - if @venue.nil?
+              %h2{:style => "color:#009933"}
+                Este taller aún no tiene un Establecimiento asignado, en cuanto se asigne uno se te notificará.
+            - else
+              %h2{:style => "color:#009933"}
+                El taller se impartirá en #{@venue.name}!
+              %p
+                %strong 
+                  \- Horario:
+                %br
+                %h3{:style => "color:#009933"} #{@workshop.reservation.fmt_duration}
+            %p
+              %strong 
+                \- Costo:
+              %br
+              %h3{:style => "color:#009933"}
+                = @workshop.free? ? "Gratuito" : "$ " + @workshop.price.to_s + " MXN"
+            - if @venue.nil?
+              %p
+                %strong 
+                  \- Te mantendremos informado.
+                No te preocupes, el equipo de Learny te avisará cuando el taller que deseas tenga un establecimiento.
+            - else
+              %p
+                %strong 
+                  \- Asegúrate de ser puntual.
+                Recuerda que este espacio esta reservado solo para que disfrutes de tu taller así que este no puede terminar después de la hora programada ya que podría causar conflicto con el itinerario del establecimiento.
+                %br
+              %p
+                %strong 
+                  \- Evalua a tu experto
+                Cuando finalice tu taller recibirás una encuesta donde podrás evaluar al experto, esto lo animará a dar cada vez más talleres.
+                %br
+
+%br
+%h3{:style => "color: #2d6ca2"} Afectuosamente, el equipo de Learny

@@ -371,6 +371,8 @@ es-MX:
       - :year
       
   student_mailer:
+    enrollment_created:
+      subject: 'Te has inscrito a un taller en Learny'
     enrolled_in_a_workshop:
       subject: "Te has inscrito en un taller en Learny"
     unenrolled_in_a_workshop:

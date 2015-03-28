@@ -83,7 +83,9 @@ class ExpertMailer < ActionMailer::Base
   #   en.expert_mailer.enrollment_created.subject
   #
   def enrollment_created(enrollment)
-    @greeting = "Hi"
+    @workshop = enrollment.workshop
+    @venue = enrollment.workshop.venue
+    @student = enrollment.student
     mail to: enrollment.workshop.expert.email
   end
 
