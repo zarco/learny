@@ -1,4 +1,4 @@
-Learny | Nuevo estudiante inscrito al taller de #{@workshop.name}
+Learny | Nuevo estudiante inscrito al taller de "#{@workshop.name}"
 - if @venue.nil?
   Este taller aún no tiene un Establecimiento asignado, si no consigues uno puedes contactar al equipo de Learny y te conseguiremos uno.
 - else
@@ -7,6 +7,6 @@ Learny | Nuevo estudiante inscrito al taller de #{@workshop.name}
   #{@workshop.reservation.fmt_duration}
 
 \- Estudiante:
-#{@student.first_name}            
+#{@student.first_name + @student.last_name}            
 
 Afectuosamente, el equipo de Learny
