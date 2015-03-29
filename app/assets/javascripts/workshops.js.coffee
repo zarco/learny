@@ -25,6 +25,10 @@ ready =->
     )
     
   )
+
+  $(".search-workshop").on 'focus', ->
+    $(this).select()
+
   enable_workshop_price = ->
     is_checked = $('#workshop_free').prop('checked')
     if is_checked
