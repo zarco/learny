@@ -1,5 +1,9 @@
 module WorkshopsHelper
 	def random_workshop
-		Workshop.select(:name).limit(1).order("random()").first.name		
+	  
+	  #puts ">>>> #{Workshop.count}"
+	  
+	  workshop=Workshop.select(:name).limit(1).order("random()").first
+		workshop.nil? ? '' : workshop.name		
 	end
 end
