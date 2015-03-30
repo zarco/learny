@@ -65,13 +65,13 @@ RSpec.describe StudentMailer, :type => :mailer do
       let(:mail) { StudentMailer.enrollment_created(enrollment) }
 
       it "renders the headers" do
-        expect(mail.subject).to eq("Enrollment created")
+        expect(mail.subject).to eq("Te has inscrito a un taller en Learny")
         expect(mail.to).to eq([enrollment.student.email])
         expect(mail.from).to eq(["from@example.com"])
       end
 
       it "renders the body" do
-        expect(mail.body.encoded).to match("Hi")
+        expect(mail.body.encoded).to match("Learny | Inscripción al taller")
       end
     end
 
