@@ -8,7 +8,7 @@ RSpec.describe VenueNotifier , :type => :model do
 
   describe "Workshop states" do
     let(:workshop){
-      FactoryGirl.create(:workshop)
+      FactoryGirl.create(:workshop_with_reservation)
     }
 
     it "proposed by expert" do

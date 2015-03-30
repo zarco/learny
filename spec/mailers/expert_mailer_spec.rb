@@ -1,32 +1,36 @@
 require "rails_helper"
 
 RSpec.describe ExpertMailer, :type => :mailer do
-  describe "workshop_proposed_by_expert" do
-    let(:mail) { ExpertMailer.workshop_proposed_by_expert }
+
+  let(:workshop){ FactoryGirl.create(:workshop_with_reservation) }  
+
+
+  describe "workshop_proposed_by_expert" do    
+    let(:mail) { ExpertMailer.workshop_proposed_by_expert(workshop) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Workshop proposed by expert")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.subject).to eq("Has propuesto un nuevo taller")
+      expect(mail.to).to eq([workshop.expert.email])
       expect(mail.from).to eq(["from@example.com"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+      expect(mail.body.encoded).to match("Learny | Nuevo Taller Propuesto")
     end
   end
 
   describe "workshop_proposed_with_reservation" do
-    let(:mail) { ExpertMailer.workshop_proposed_with_reservation }
+    let(:mail) { ExpertMailer.workshop_proposed_with_reservation(workshop) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Workshop proposed with reservation")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.subject).to eq("Se ha confirmado tu nuevo taller")
+      expect(mail.to).to eq([workshop.expert.email])
       expect(mail.from).to eq(["from@example.com"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
-    end
+      expect(mail.body.encoded).to match("Learny | Nuevo Taller Propuesto con Reservación")
+    end    
   end
 
   describe "accepted_by_venue" do
@@ -58,10 +62,10 @@ RSpec.describe ExpertMailer, :type => :mailer do
   end
 
   describe "workshop_cancelled_by_expert" do
-    let(:mail) { ExpertMailer.workshop_cancelled_by_expert }
+    let(:mail) { ExpertMailer.workshop_cancelled_by_expert(workshop) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Workshop cancelled by expert")
+      expect(mail.subject).to eq("Has cancelado un taller")
       expect(mail.to).to eq(["to@example.org"])
       expect(mail.from).to eq(["from@example.com"])
     end
