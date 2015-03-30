@@ -7,7 +7,7 @@
       .well.workshop-search-form
         = form_tag '/workshops', method: :get do
           .input-group.input-group-lg
-            %input.form-control{:placeholder => "#{random_workshop}", :type => "text", :name => "w"}/
+            %input.form-control.search-workshop{:value => "#{random_workshop}", :type => "text", :name => "w"}/
             %span.input-group-btn
               %button.btn.btn-primary{:type => "submit", :value=> "Search"}
                 %span.glyphicon.glyphicon-search

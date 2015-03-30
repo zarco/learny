@@ -21,7 +21,7 @@ RSpec.describe Venues::RegistrationsController, :type => :controller do
         
         v=Venue.first
         c=v.calendars.first
-        expect(c.title).to eq("default")
+        expect(c.title).to eq(I18n.t('views.legends.calendar.main_table', default: 'Main table'))
         expect(c.is_default).to be_truthy
       end
     end

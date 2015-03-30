@@ -24,7 +24,7 @@
       -unless administrator_signed_in? || venue_signed_in? || expert_signed_in? || current_page?(root_path)
         = form_tag '/workshops', method: :get, :class => 'navbar-form navbar-left', :role => 'search' do
           .form-group
-            %input.form-control{:type => "text", :name => "w",:placeholder => "#{random_workshop}"}/
+            %input.form-control.search-workshop{:type => "text", :name => "w",:value => "#{random_workshop}"}/
           %button.btn.btn-primary{:type => "submit", :value=> "Search"}
             %span.glyphicon.glyphicon-search
       -if student_signed_in?

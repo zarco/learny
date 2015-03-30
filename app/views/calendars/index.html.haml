@@ -1,22 +1,46 @@
 .container
   %h1
     = t('views.actions.calendars',default:'Calendars')
-  
-  .table-responsive
-    %table.table.table-striped
-      %tr
-        %th= Calendar.human_attribute_name(:title)
-        %th
-        %th
-        %th
-    
+  .jumbotron
+    .container
       - @calendars.each do |calendar|
-        %tr
-          %td= calendar.title
-          %td= link_to 'Show', calendar
-          %td= link_to 'Edit', edit_calendar_path(calendar)
-          %td= link_to 'Destroy', calendar, :method => :delete, :data => { :confirm => 'Are you sure?' }
-  
-  %br
-  
-  = link_to 'New Calendar', new_calendar_path
+        .col-md-4    
+          .panel.panel-primary
+            .panel-heading
+              %h3.panel-title 
+                = calendar.title
+            .panel-body
+              // Count reservations
+              - num_reservations = calendar.reservations.count                            
+              = num_reservations.to_s << (num_reservations == 1  ? t('views.legends.calendar.reservation_created', default: ' reservation created') : t('views.legends.calendar.reservations_created', default: ' reservations created'))
+              %br        
+              // Count events      
+              - num_events = 0              
+              - calendar.reservations.each do |reservation|                
+                - num_events = num_events + 1 unless reservation.workshop.nil?
+              = num_events.to_s << (num_events == 1  ? t('views.legends.calendar.event_scheduled', default: ' event scheduled') : t('views.legends.calendar.events_scheduled', default: ' events scheduled'))
+            .panel-footer.text-center             
+              = link_to calendar do
+                .button.btn.btn-success{ :type => 'button'}
+                  %span.glyphicon.glyphicon-calendar
+                  = t('views.actions.show', default: 'Show')
+              = link_to edit_calendar_path(calendar) do
+                .button.btn.btn-info{ :type => 'button'}
+                  %span.glyphicon.glyphicon-edit
+                  = t('views.actions.edit', default: 'Edit')
+              = link_to calendar, :method => :delete, :data => { :confirm => '¿Estás seguro?' } do
+                .button.btn.btn-danger{ :type => 'button'}
+                  %span.glyphicon.glyphicon-trash
+                  = t('views.actions.delete', default: 'Delete')
+      .col-md-4    
+        .panel.panel-primary
+          .panel-heading
+            %h3.panel-title
+              = t('views.legends.calendar.title_new_calendar', default: 'New calendar')
+          .panel-body.text-justified
+            = t('views.legends.calendar.description', default: 'Calendars represent an available place in your venue')
+          .panel-footer.text-right
+            = link_to new_calendar_path do
+              .button.btn.btn-success{ :type => 'button'}
+                %span.glyphicon.glyphicon-asterisk
+                = t('views.actions.new', default: 'New')

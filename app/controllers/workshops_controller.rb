@@ -9,6 +9,7 @@ class WorkshopsController < ApplicationController
     if !w.nil?
       @guest = Guest.new
       @workshop_solicited = w
+      w = Workshop.select(:name).limit(1).order("random()").first.name if w.strip.empty?      
       workshops_scheduled = Workshop.search_workshop(w).joins(:reservation).where("starts_at >= ?", DateTime.now)
       workshops_proposed = Workshop.search_workshop(w).where("state = ? ",'proposed')
       @workshops = workshops_scheduled + workshops_proposed

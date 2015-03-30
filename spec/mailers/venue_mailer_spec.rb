@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe VenueMailer, :type => :mailer do
   
   let(:workshop){
-    FactoryGirl.create(:workshop)
+    FactoryGirl.create(:workshop_with_reservation)
   }
   
   describe "workshop_proposed_by_expert" do
@@ -24,13 +24,13 @@ RSpec.describe VenueMailer, :type => :mailer do
     let(:mail) { VenueMailer.workshop_proposed_with_reservation(workshop) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Workshop proposed with reservation")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.subject).to eq("Se ha confirmado un taller en tu Establecimiento")
+      expect(mail.to).to eq([workshop.venue.email])
       expect(mail.from).to eq(["from@example.com"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+      expect(mail.body.encoded).to match("Learny | Hay un nuevo Taller Confirmado en tu Establecimiento")
     end
   end
 
