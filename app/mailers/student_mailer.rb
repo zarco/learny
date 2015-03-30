@@ -51,8 +51,9 @@ class StudentMailer < ActionMailer::Base
   #   en.student_mailer.enrollment_created.subject
   #
   def enrollment_created(enrollment)
-    @greeting = "Hi"
-
+    @workshop = enrollment.workshop
+    @venue = enrollment.workshop.venue
+    @student = enrollment.student
     mail to: enrollment.student.email
   end
 

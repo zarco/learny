@@ -378,6 +378,8 @@ es-MX:
 
   # Mailers
   student_mailer:
+    enrollment_created:
+      subject: 'Te has inscrito a un taller en Learny'
     enrolled_in_a_workshop:
       subject: "Te has inscrito en un taller en Learny"
     unenrolled_in_a_workshop:
@@ -390,6 +392,8 @@ es-MX:
     workshop_cancelled_by_expert:
       subject: "Se ha cancelado una reservación"
   expert_mailer:
+    enrollment_created:
+      subject: 'Un estudiante se ha inscrito a tu taller'
     workshop_proposed_with_reservation:
       subject: "Se ha confirmado tu nuevo taller"
     workshop_proposed_by_expert:

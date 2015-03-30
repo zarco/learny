@@ -1,3 +1,13 @@
-ExpertMailer#enrollment_created
+Learny | Nuevo estudiante inscrito al taller "#{@workshop.name}"
 
-= @greeting + ", find me in app/views/expert_mailer/enrollment_created.text.haml"
+\- #{@student.first_name} #{@student.last_name} Se ha registrado al taller #{@workshop.name}  
+
+- if @venue.nil?
+  Este taller aún no tiene un Establecimiento asignado. El equipo de Learny esta trabajando para encontrar uno que se adapte a tus necesidades.
+- else
+  \- El taller se impartirá en:
+  #{@venue.name}, #{@venue.address}
+  \- Horario:
+  #{@workshop.reservation.fmt_duration}        
+
+Afectuosamente, el equipo de Learny
