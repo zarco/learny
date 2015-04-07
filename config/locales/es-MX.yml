@@ -275,6 +275,8 @@ es-MX:
       privacy: 'Política de privacidad '
       experts:
         propose_new_workshop: 'Proponer nuevo taller'
+        participants: 'Participantes'
+        your_expert: 'Tu experto'
       workshop:
         proposed_successfully: 'Taller propuesto exitosamente.'
         price_per_student: 'por estudiante'
