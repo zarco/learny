@@ -70,12 +70,16 @@
                   .input-group-addon
                     %i.fa.fa-facebook
                   = f.text_field :facebook_link, autofocus: true, class: 'form-control', :placeholder => 'facebook.com/myfb', :value => "#{@expert.fmt_facebook_link}"
+                  .input-group-addon{"data-toggle" => "tooltip", "data-placement" => "top", "title" => "¿Como agregar mi facebook?"}
+                    %span.glyphicon.glyphicon-question-sign{"data-target" => ".modal-facebook", "data-toggle" => "modal", :style => 'cursor: pointer;'}                      
               .form-group.col-md-6.twtr-form
                 = f.label :twitter_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-twitter
                   = f.text_field :twitter_link, autofocus: true, class: 'form-control', :placeholder => '@mytwitter', :value => "#{@expert.fmt_twitter_link}"
+                  .input-group-addon{"data-toggle" => "tooltip", "data-placement" => "top", "title" => "¿Como agregar mi twitter?"}
+                    %span.glyphicon.glyphicon-question-sign{"data-target" => ".modal-twitter", "data-toggle" => "modal", :style => 'cursor: pointer;'}
             .row
               .form-group.col-md-6.lnkd-form
                 = f.label :linkedin_link
@@ -83,13 +87,16 @@
                   .input-group-addon
                     %i.fa.fa-linkedin
                   = f.text_field :linkedin_link, autofocus: true, class: 'form-control', :placeholder => 'id=12345678', :value => "#{@expert.fmt_linkedin_link}"
+                  /.input-group-addon{"data-toggle" => "tooltip", "data-placement" => "top", "title" => "¿Como agregar mi perfil de LinkedIn?"}
+                  ///%span.glyphicon.glyphicon-question-sign{"data-target" => ".modal-linkedin", "data-toggle" => "modal", :style => 'cursor: pointer;'}
               .form-group.col-md-6.gplus-form
                 = f.label :google_plus_link
                 .input-group
                   .input-group-addon
                     %i.fa.fa-google-plus
                   = f.text_field :google_plus_link, autofocus: true, class: 'form-control', :placeholder => '+myprofile', :value => "#{@expert.fmt_google_plus_link}"
-      
+                  .input-group-addon{"data-toggle" => "tooltip", "data-placement" => "top", "title" => "¿Como agregar mi perfil de google plus?"}
+                    %span.glyphicon.glyphicon-question-sign{"data-target" => ".modal-gplus", "data-toggle" => "modal", :style => 'cursor: pointer;'}
       .tab-pane.fade#account
         .panel.panel
           .panel-body.jumbotron
@@ -120,7 +127,55 @@
               = f.password_field :current_password, autocomplete: "off", class: 'form-control'
             .form-group.col-md-6
               = f.submit t('devise.registrations.edit.update',default: 'Update'), :class=>'btn btn-primary btn-lg btn-block' 
-    
+  /Modals       
+  /Facebook       
+  .modal.fade.modal-facebook{"aria-hidden" => "true", "aria-labelledby" => "facebook", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4.modal-title
+            Facebook
+        .modal-body
+          %p.text-justify
+            En tu perfil de facebook encontrarás en la parte superior de tu navegador un enlace, copia y pega solo la parte como se muestra en la imagen:
+          = image_tag("fb_1.png", :alt => "Facebook image 1", :class => 'img-responsive')
+  /Twitter       
+  .modal.fade.modal-twitter{"aria-hidden" => "true", "aria-labelledby" => "twitter", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4.modal-title
+            Twitter
+        .modal-body
+          %p.text-justify
+            En tu perfil de twitter encontrarás en la parte inferior de tu imagen el nombre que debes registrar, copia y pega solo la parte como se muestra en la imagen:
+          = image_tag("tw.png", :alt => "Twitter image", :class => 'img-responsive')
+  /linkedin  
+  .modal.fade.modal-linkedin{"aria-hidden" => "true", "aria-labelledby" => "linkedin", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span.glyphicon.glyphicon-remove-sign{"aria-hidden" => "true"}
+        .modal-body
+  /G+       
+  .modal.fade.modal-gplus{"aria-hidden" => "true", "aria-labelledby" => "gplus", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4.modal-title
+            Google+
+        .modal-body
+          %p.text-justify
+            En tu perfil de Google+ en la sección de "Acerca de" o "About" encontrarás el link de "Google+ URL", copia y pega solo la parte como se muestra en la imagen:
+          = image_tag("gplus.png", :alt => "Google plus image", :class => 'img-responsive')
 
 / /      %h3 Cancel my account
 / /      %p
