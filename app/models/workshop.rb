@@ -5,7 +5,7 @@ class Workshop < ActiveRecord::Base
 
   include PgSearch
     
-  validates :name,:length,:agenda,:description,:state,:expert,:max_number_participants,:min_number_participants,
+  validates :name,:length,:agenda,:description,:state,:expert,:max_number_participants,:min_number_participants, :zone,
      presence: true
   
   validates :max_number_participants,:min_number_participants, :length, numericality: { only_integer: true, greater_than: 0  }
@@ -70,6 +70,7 @@ class Workshop < ActiveRecord::Base
   
   belongs_to :expert
   has_one :reservation
+  belongs_to :zone
   has_one :calendar, through: :reservation 
   has_one :venue, through: :calendar
   

@@ -12,7 +12,8 @@ FactoryGirl.define do
     min_number_participants {1}
     free false
     state :new
-    expert {FactoryGirl.create(:expert)}
+    association :expert, factory: :expert
+    association :zone, factory: :zone
 
     factory :workshop_with_reservation do
       reservation {FactoryGirl.build(:reservation)}

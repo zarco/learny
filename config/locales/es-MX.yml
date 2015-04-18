@@ -105,6 +105,7 @@ es-MX:
         max_number_participants: 'Número máximo de participantes'
         state: 'Estado'
         free: 'Sin costo'
+        zone: 'Zona'
       reservation:
         starts_at: 'Inicia'
         final_time: 'Termina'
@@ -217,6 +218,8 @@ es-MX:
               blank: 'es requerido'
               not_a_number: 'no es un número entero'
               greater_than: 'no es válida'
+            zone:
+              blank: 'es requerida'
         guest:
           attributes:
             email:

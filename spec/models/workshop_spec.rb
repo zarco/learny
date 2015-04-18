@@ -35,9 +35,10 @@ describe Workshop do
     it { should have_one(:reservation)}
     it { should have_one(:calendar)}
     it { should have_one(:venue)}
+    it { should belong_to(:zone)}
     it { should have_many(:enrollments)}
     it { should have_many(:students)}
-
+  
   end
 
   describe 'validations_for_not_free_workshop' do
@@ -47,6 +48,7 @@ describe Workshop do
     it { should validate_presence_of :length }
     it { should validate_presence_of :price }
     it { should validate_presence_of :expert }
+    it { should validate_presence_of :zone }
     it { should validate_presence_of :description }
     it { should validate_presence_of :max_number_participants }
     it { should validate_presence_of :min_number_participants }
