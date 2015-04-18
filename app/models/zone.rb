@@ -3,4 +3,6 @@ class Zone < ActiveRecord::Base
   
   has_many :workshops
   
+  acts_as_paranoid
+  
 end

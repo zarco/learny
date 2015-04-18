@@ -18,4 +18,28 @@ describe  do
     subject {FactoryGirl.build(:zone)}
     it { should have_many(:workshops)}
   end
+  
+  describe 'soft delete' do
+    let(:zone){
+      FactoryGirl.create(:zone)
+    }
+
+    it "deleted" do
+      expect(zone.deleted?).to be_falsey
+      expect(Zone.all.to_a).to eql([zone])
+      zone.destroy
+      expect(zone.deleted?).to be_truthy
+      expect(Zone.all.to_a).to eql([])
+      expect(Zone.with_deleted.to_a).to eql([zone])
+    end
+
+    it "really deleted" do
+      expect(zone.deleted?).to be_falsey
+      expect(Zone.all.to_a).to eql([zone])
+      zone.really_destroy!
+      expect(zone.deleted?).to be_truthy
+      expect(Zone.all.to_a).to eql([])
+      expect(Zone.with_deleted.to_a).to eql([])
+    end
+  end
 end

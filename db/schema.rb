@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418215354) do
+ActiveRecord::Schema.define(version: 20150418230900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,7 +236,10 @@ ActiveRecord::Schema.define(version: 20150418215354) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "zones", ["deleted_at"], name: "index_zones_on_deleted_at", using: :btree
 
   add_foreign_key "calendars", "venues", name: "calendars_venue_id_fk"
   add_foreign_key "enrollments", "students", name: "enrollments_student_id_fk"
@@ -244,4 +247,5 @@ ActiveRecord::Schema.define(version: 20150418215354) do
   add_foreign_key "reservations", "calendars", name: "reservations_calendar_id_fk"
   add_foreign_key "reservations", "workshops", name: "reservations_workshop_id_fk"
   add_foreign_key "workshops", "experts", name: "workshops_expert_id_fk"
+  add_foreign_key "workshops", "zones"
 end
