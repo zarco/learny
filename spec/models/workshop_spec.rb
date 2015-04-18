@@ -26,6 +26,7 @@ describe Workshop do
     it { should respond_to :max_number_participants}
     it { should respond_to :min_number_participants}
     it { should respond_to :free}
+    it { should respond_to :proposed_date}
     it { should respond_to :deleted_at }
   end
 

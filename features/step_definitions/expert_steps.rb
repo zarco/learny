@@ -50,6 +50,7 @@ end
 
 When(/^I submit the required information for proposing a workshop called "(.*?)" in "(.*?)" next friday$/) do |name, venue|
   @workshop = FactoryGirl.build(:workshop, {:name => name})
+  #save_and_open_page
   within('#new_workshop') do
     fill_in Workshop.human_attribute_name(:name), with: @workshop.name
     fill_in Workshop.human_attribute_name(:description), with: @workshop.description
@@ -114,4 +115,9 @@ When(/^I fill in the expert fields$/) do
   #  Rack::Test::UploadedFile.new(File.open(File.join(Rails.root,'spec','fixtures','megan.jpg')))
   File.join(Rails.root,'spec','fixtures','megan.jpg')
 end
+
+Given(/^"(.*?)" is a registered zone$/) do |name|
+  Zone.create!(name: name)
+end
+
 

@@ -41,6 +41,7 @@ es-MX:
       calendar: 'Calendario'
       administrator: 'Administrador'
       contact: 'Contacto'
+      zone: 'Zona'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -105,7 +106,7 @@ es-MX:
         max_number_participants: 'Número máximo de participantes'
         state: 'Estado'
         free: 'Sin costo'
-        zone: 'Zona'
+        proposed_date: 'Fecha propuesta'
       reservation:
         starts_at: 'Inicia'
         final_time: 'Termina'
@@ -124,6 +125,8 @@ es-MX:
         name: 'Nombre'
         mail: 'Correo'
         phone: 'Telefono'
+      zone:
+        name: 'Nombre'
                 
         
     errors:
