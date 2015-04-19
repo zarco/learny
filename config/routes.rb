@@ -3,6 +3,11 @@ LearnyApp::Application.routes.draw do
 
   
 
+  namespace :admin do
+    resources :zones
+    resources :venues
+  end
+
   resources :contacts
 
   devise_for :students, :controllers => { :registrations => "students/registrations" }
@@ -37,11 +42,6 @@ LearnyApp::Application.routes.draw do
   get 'venues/index'
   get 'administrators/index'
   
-
-  namespace :admin do
-    resources :venues
-  end
-
   authenticated :venue do
     root to: 'venues#index', as: :venue_root
   end

@@ -1,4 +1,4 @@
-class Admin::VenuesController < ApplicationController
+class Admin::VenuesController < Admin::AdminController
   before_action :set_admin_venue, only: [:show, :edit, :update, :destroy]
 
   before_filter :authenticate_administrator!

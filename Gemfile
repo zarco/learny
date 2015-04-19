@@ -63,6 +63,7 @@ group :test,:development do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'unicorn'
+  gem 'rails-admin-scaffold'
 end
 
 gem 'devise'

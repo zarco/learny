@@ -1,0 +1,16 @@
+= form_for([:admin, @zone], html: { class: 'form-horizontal  zone'} ) do |f|
+  - if @zone.errors.any?
+    #error_explanation.panel.panel-danger
+      .panel-heading
+        %h2.panel-title= "#{pluralize(@zone.errors.count, "error")} prohibited this zone from being saved:"
+      .panel-body
+        %ul
+          - @zone.errors.full_messages.each do |msg|
+            %li= msg
+
+  .form-group
+    = f.label :name, class: 'control-label col-md-2'
+    .col-md-10= f.text_field :name, class: 'form-control'
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, class: 'btn btn-primary'
