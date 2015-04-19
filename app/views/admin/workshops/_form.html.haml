@@ -1,0 +1,26 @@
+= form_for([:admin, @workshop], html: { class: 'form-horizontal  workshop'} ) do |f|
+  - if @workshop.errors.any?
+    #error_explanation.panel.panel-danger
+      .panel-heading
+        %h2.panel-title= "#{pluralize(@workshop.errors.count, "error")} prohibited this workshop from being saved:"
+      .panel-body
+        %ul
+          - @workshop.errors.full_messages.each do |msg|
+            %li= msg
+
+  .form-group
+    = f.label :name, class: 'control-label col-md-2'
+    .col-md-10= f.text_field :name, class: 'form-control'
+    .col-md-offset-2.col-md-10
+      = f.label :free, for: nil do
+        = f.check_box :free
+        = Workshop.human_attribute_name(:free)
+  .form-group
+    = f.label :state, class: 'control-label col-md-2'
+    .col-md-10= f.text_field :state, class: 'form-control'
+  .form-group
+    = f.label :proposed_date, class: 'control-label col-md-2'
+    .col-md-10= f.datetime_select :proposed_date, class: 'form-control'
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, class: 'btn btn-primary'

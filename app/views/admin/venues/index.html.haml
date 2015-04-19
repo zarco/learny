@@ -1,28 +1,30 @@
 .container
-  %h1 #{Venue.model_name.human.pluralize}
-  
-  .table-responsive
-    %table.table.table-striped
-      %tr
-        %th 
-          = Venue.model_name.human
-        %th
-          / / = Venue.human_attribute_name (:address) 
-        %th
-          = Calendar.model_name.human
-        %th
-          = Reservation.model_name.human
-        %th
-          
-      - @venues.each do |venue|
-        %tr
-          %td= link_to venue.name, '#'
-          %td
-            / /= venue.address
-          %td
-          %td
-          %td= link_to 'Edit', edit_admin_venue_path(venue)
-          
-  %br
-  
-  = link_to 'New Venue', new_admin_venue_path
+  .panel.panel-default
+    .panel-heading
+      %strong #{Venue.model_name.human.pluralize}
+    .panel-body
+      .table-responsive
+        %table.table.table-striped
+          %tr
+            %th 
+              = Venue.model_name.human
+            %th
+              / / = Venue.human_attribute_name (:address) 
+            %th
+              = Calendar.model_name.human
+            %th
+              = Reservation.model_name.human
+            %th
+              
+          - @venues.each do |venue|
+            %tr
+              %td= link_to venue.name, '#'
+              %td
+                / /= venue.address
+              %td
+              %td
+              %td= link_to 'Edit', edit_admin_venue_path(venue)
+              
+      %br
+      
+      = link_to 'New Venue', new_admin_venue_path

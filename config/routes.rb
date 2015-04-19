@@ -1,11 +1,22 @@
 LearnyApp::Application.routes.draw do
   
 
-  
-
   namespace :admin do
+    concern :paginatable do
+      get '(page/:page)', :action => :index, :on => :collection, :as => ''
+    end
+  
+  
     resources :zones
     resources :venues
+    resources :workshops, :concerns => :paginatable do
+       collection do
+         get :proposed
+         get 'proposed/page/:page', :action => :proposed
+       end
+    end
+  
+  
   end
 
   resources :contacts

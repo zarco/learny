@@ -83,7 +83,18 @@
           %li
             = link_to "Expertos", "#"
           %li
-            = link_to "Establecimientos", admin_venues_path
+            = link_to Venue.model_name.human.pluralize, admin_venues_path
+          %li.navbarb-margin-top
+            %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              = Workshop.model_name.human.pluralize
+            %ul.dropdown-menu
+              %li
+                = link_to admin_workshops_path do
+                  = 'Todos'
+              %li
+                = link_to proposed_admin_workshops_path do
+                  = 'Propuestos'
+          
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
               = current_administrator.name

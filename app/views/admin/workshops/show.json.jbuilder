@@ -1,0 +1,1 @@
+json.extract! @workshop, :name, :free, :state, :proposed_date, :created_at, :updated_at

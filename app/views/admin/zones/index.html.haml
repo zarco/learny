@@ -1,28 +1,29 @@
 .container
-  .page-header
-    %h1 
-      = Zone.model_name.human.pluralize
-  
-  %table.table.table-striped
-    %tr
-      %th 
-        =Zone.human_attribute_name(:name)
-      %th
-        =Zone.human_attribute_name(:created_at)
-      %th
-        =Zone.human_attribute_name(:updated_at)
-      %th
+  .panel.panel-default
+    .panel-heading
+      %strong
+        = Zone.model_name.human.pluralize
+    .panel-body
+      %table.table.table-striped
+        %tr
+          %th 
+            =Zone.human_attribute_name(:name)
+          %th
+            =Zone.human_attribute_name(:created_at)
+          %th
+            =Zone.human_attribute_name(:updated_at)
+          %th
+          
+        - @zones.each do |zone|
+          %tr
+            %td= zone.name
+            %td= zone.created_at
+            %td= zone.updated_at
+            %td
+              = link_to 'Show', [:admin, zone], class: 'btn btn-default btn-xs'
+              = link_to 'Edit', edit_admin_zone_path(zone), class: 'btn btn-default btn-xs'
+              = link_to 'Destroy', [:admin, zone], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
       
-    - @zones.each do |zone|
-      %tr
-        %td= zone.name
-        %td= zone.created_at
-        %td= zone.updated_at
-        %td
-          = link_to 'Show', [:admin, zone], class: 'btn btn-default btn-xs'
-          = link_to 'Edit', edit_admin_zone_path(zone), class: 'btn btn-default btn-xs'
-          = link_to 'Destroy', [:admin, zone], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
-  
-  %br
-  
-  = link_to 'New Zone', new_admin_zone_path, class: 'btn btn-primary btn-lg'
+      %br
+      
+      = link_to 'New Zone', new_admin_zone_path, class: 'btn btn-primary btn-lg'
