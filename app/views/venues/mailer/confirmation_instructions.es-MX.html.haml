@@ -8,7 +8,7 @@
         %tr
           %td{:style => "border-left: 1px solid #A3A3A3; border-right: 1px solid #A3A3A3; border-top: 1px solid #A3A3A3; border-bottom: 1px solid #A3A3A3; background-color:#FFFFFF; border-radius:10px; padding:10px 30px 10px 20px;"}
             %h2
-              ¡Bienvenido #{@resource.name || @email}!
+              ¡Te damos la bienvenida #{@resource.name || @email}!
             %p Puedes confirmar tu cuenta de correo mediante el siguiente vínculo:
             %p= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token)
             %p &nbsp;
