@@ -28,7 +28,6 @@
                 = link_to 'Edit', edit_admin_zone_path(venue), class: 'btn btn-default btn-xs'
                 = link_to 'Destroy', [:admin, venue], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 
-              
+      = paginate @venues        
       %br
-      
       = link_to 'New Venue', new_admin_venue_path

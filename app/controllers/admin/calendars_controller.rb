@@ -6,7 +6,7 @@ class Admin::CalendarsController < ApplicationController
   # GET /admin/calendars
   # GET /admin/calendars.json
   def index
-    @calendars = @venue.calendars
+    @calendars = @venue.calendars.page params[:page]
   end
 
   # GET /admin/calendars/1

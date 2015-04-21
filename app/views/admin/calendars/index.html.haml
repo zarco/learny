@@ -25,6 +25,8 @@
               = link_to 'Show', [:admin, @venue,calendar], class: 'btn btn-default btn-xs'
               = link_to 'Edit', edit_admin_venue_calendar_path(@venue,calendar), class: 'btn btn-default btn-xs'
               = link_to 'Destroy', [:admin,@venue, calendar], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+      
+      = paginate @calendars        
       %br
       = link_to 'New Calendar', new_admin_venue_calendar_path(@venue), class: 'btn btn-primary'
       = link_to Venue.model_name.human.pluralize, admin_venues_path, class: 'btn btn-default'

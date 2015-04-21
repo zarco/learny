@@ -6,7 +6,7 @@ class Admin::VenuesController < Admin::AdminController
   # GET /admin/venues
   # GET /admin/venues.json
   def index
-    @venues = Venue.all
+    @venues = Venue.all.page params[:page]
   end
 
   # GET /admin/venues/1

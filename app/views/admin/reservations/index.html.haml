@@ -1,30 +1,36 @@
 .container
   .panel.panel-default
     .panel-heading
-      %h4 Listing reservations
+      %h4
+        = Reservation.model_name.human(count: 2)
     .panel-body
       %table.table.table-stripped
         %tr
-          %th Starts at
-          %th Final time
-          %th Max participants
-          %th Cover
+          %th
+            = Reservation.human_attribute_name(:starts_at)
+          %th
+            = Reservation.human_attribute_name(:final_time)
           %th 
             =Calendar.model_name.human
+          %th
+            = Reservation.human_attribute_name(:created_at)
+          %th
+            = Reservation.human_attribute_name(:updated_at)
           %th
           
         - @reservations.each do |reservation|
           %tr
             %td= reservation.starts_at
             %td= reservation.final_time
-            %td= reservation.max_participants
-            %td= reservation.cover
             %td= reservation.calendar.title
+            %td= reservation.created_at
+            %td= reservation.updated_at
             %td
               = link_to 'Show', [:admin, @venue, reservation], class: 'btn btn-default btn-xs'
               = link_to 'Edit', edit_admin_venue_reservation_path(@venue,reservation), class: 'btn btn-default btn-xs'
               = link_to 'Destroy', [:admin, @venue, reservation], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
       
+      = paginate @reservations        
       %br
       
       = link_to 'New Reservation', new_admin_venue_reservation_path(@venue), class: 'btn btn-primary'

@@ -1,11 +1,11 @@
 class Admin::ReservationsController < ApplicationController
-  before_action :set_venue, only: [:index, :new]
+  before_action :set_venue, only: [:index, :new, :create]
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/reservations
   # GET /admin/reservations.json
   def index
-    @reservations = @venue.reservations
+    @reservations = @venue.reservations.page params[:page]
   end
 
   # GET /admin/reservations/1
@@ -29,7 +29,7 @@ class Admin::ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to [:admin, @reservation], notice: 'Reservation was successfully created.' }
+        format.html { redirect_to [:admin,@venue, @reservation], notice: 'Reservation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @reservation }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class Admin::ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to [:admin, @reservation], notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to [:admin, @venue, @reservation], notice: 'Reservation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,7 +57,7 @@ class Admin::ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to admin_reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to admin_venue_reservations_path(@venue), notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

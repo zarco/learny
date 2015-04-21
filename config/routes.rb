@@ -7,9 +7,9 @@ LearnyApp::Application.routes.draw do
   
   
     resources :zones
-    resources :venues do
-      resources :reservations
-      resources :calendars      
+    resources :venues, :concerns => :paginatable do
+      resources :reservations, :concerns => :paginatable
+      resources :calendars, :concerns => :paginatable      
     end
     resources :workshops, :concerns => :paginatable do
        collection do
