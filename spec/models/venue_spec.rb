@@ -42,6 +42,18 @@ describe Venue do
     end
   end
 
+  describe 'reservations' do
+    it 'retreive' do
+      expert=FactoryGirl.create(:expert)
+      workshop=FactoryGirl.create(:workshop, :expert => expert)
+      venue=FactoryGirl.create(:venue)
+      reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first, :workshop => workshop,:starts_at => Date.new(2511,11,11))
+      
+      reservations=venue.reservations
+      expect(reservations.to_a).to eq([reservation])
+    end
+  end
+
   describe 'soft delete' do
     let(:venue){
       FactoryGirl.create(:no_calendar_venue)

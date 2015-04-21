@@ -29,6 +29,9 @@ class Venue < ActiveRecord::Base
   has_many :calendars
   has_many :venue_pictures
   has_one :contact
+  
+  has_many :reservations, through: :calendars
+  
   accepts_nested_attributes_for :venue_pictures, :contact
   
 

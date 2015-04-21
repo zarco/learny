@@ -9,23 +9,21 @@
             %th 
               = Venue.model_name.human
             %th
-              / / = Venue.human_attribute_name (:address) 
+              = Venue.human_attribute_name(:created_at)
             %th
-              = Calendar.model_name.human
-            %th
-              = Reservation.model_name.human
+              = Venue.human_attribute_name(:updated_at)
             %th
               
           - @venues.each do |venue|
             %tr
-              %td= link_to venue.name, '#'
+              %td= link_to venue.name, venue
               %td
-                / /= venue.address
+                = venue.created_at
               %td
-                = link_to Reservation.model_name.human(count: 2), admin_venue_reservations_path(venue), class: 'btn btn-default btn-xs'
+                = venue.updated_at
               %td
                 = link_to Calendar.model_name.human.pluralize, admin_venue_calendars_path(venue), class: 'btn btn-default btn-xs'
-              %td
+                = link_to Reservation.model_name.human(count: 2), admin_venue_reservations_path(venue), class: 'btn btn-default btn-xs'       
                 = link_to 'Show', [:admin, venue], class: 'btn btn-default btn-xs'
                 = link_to 'Edit', edit_admin_zone_path(venue), class: 'btn btn-default btn-xs'
                 = link_to 'Destroy', [:admin, venue], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'

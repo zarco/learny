@@ -1,7 +1,9 @@
-.page-header
-  %h1 Editing reservation
-
-= render 'form'
-
-= link_to 'Show', [:admin, @reservation], class: 'btn btn-default'
-= link_to 'Back', admin_reservations_path, class: 'btn btn-default'
+.container
+  .panel.panel-default
+    .panel-heading
+      %h4 Editing reservation
+    .panel-body
+      = render 'form'
+      
+      = link_to 'Show', [:admin, @venue, @reservation], class: 'btn btn-default'
+      = link_to 'Back', admin_venue_reservations_path(@venue), class: 'btn btn-default'

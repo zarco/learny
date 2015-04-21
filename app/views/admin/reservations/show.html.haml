@@ -1,25 +1,41 @@
-%p#notice= notice
+.container
+  .panel.panel-default
+    .panel-heading
 
-%dl.dl-horizontal
-  %dt
-    %strong Starts at:
-  %dd= @reservation.starts_at
-%dl.dl-horizontal
-  %dt
-    %strong Final time:
-  %dd= @reservation.final_time
-%dl.dl-horizontal
-  %dt
-    %strong Max participants:
-  %dd= @reservation.max_participants
-%dl.dl-horizontal
-  %dt
-    %strong Calendar:
-  %dd= @reservation.calendar_id
-%dl.dl-horizontal
-  %dt
-    %strong Cover:
-  %dd= @reservation.cover
-
-= link_to 'Edit', edit_admin_reservation_path(@reservation), class: 'btn btn-default'
-= link_to 'Back', admin_reservations_path, class: 'btn btn-default'
+    .panel-body
+      %p#notice= notice
+      
+      %dl.dl-horizontal
+        %dt
+          %strong Starts at:
+        %dd= @reservation.starts_at
+      %dl.dl-horizontal
+        %dt
+          %strong Final time:
+        %dd= @reservation.final_time
+      %dl.dl-horizontal
+        %dt
+          %strong Max participants:
+        %dd= @reservation.max_participants
+      %dl.dl-horizontal
+        %dt
+          %strong Calendar:
+        %dd= @reservation.calendar.title
+      %dl.dl-horizontal
+        %dt
+          %strong Cover:
+        %dd= @reservation.cover
+      %dl.dl-horizontal
+        %dt
+          %strong
+            =Reservation.human_attribute_name(:created_at)
+        %dd= @reservation.created_at
+      %dl.dl-horizontal
+        %dt
+          %strong
+            =Reservation.human_attribute_name(:updated_at)
+        %dd= @reservation.updated_at
+      
+      
+      = link_to 'Edit', edit_admin_venue_reservation_path(@venue,@reservation), class: 'btn btn-default'
+      = link_to 'Back', admin_venue_reservations_path(@venue), class: 'btn btn-default'

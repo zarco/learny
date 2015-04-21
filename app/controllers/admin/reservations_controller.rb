@@ -1,10 +1,11 @@
 class Admin::ReservationsController < ApplicationController
+  before_action :set_venue, only: [:index, :new]
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/reservations
   # GET /admin/reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = @venue.reservations
   end
 
   # GET /admin/reservations/1
@@ -24,7 +25,7 @@ class Admin::ReservationsController < ApplicationController
   # POST /admin/reservations
   # POST /admin/reservations.json
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = @venue.reservations.build(reservation_params)
 
     respond_to do |format|
       if @reservation.save
@@ -63,7 +64,12 @@ class Admin::ReservationsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_venue
+      @venue = Venue.find(params[:venue_id])      
+    end
+    
     def set_reservation
+      set_venue
       @reservation = Reservation.find(params[:id])
     end
 
