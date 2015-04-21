@@ -22,8 +22,14 @@
               %td
                 / /= venue.address
               %td
+                = link_to Reservation.model_name.human(count: 2), [:admin, venue], class: 'btn btn-default btn-xs'
               %td
-              %td= link_to 'Edit', edit_admin_venue_path(venue)
+                = link_to Calendar.model_name.human.pluralize, [:admin, venue], class: 'btn btn-default btn-xs'
+              %td
+                = link_to 'Show', [:admin, venue], class: 'btn btn-default btn-xs'
+                = link_to 'Edit', edit_admin_zone_path(venue), class: 'btn btn-default btn-xs'
+                = link_to 'Destroy', [:admin, venue], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+
               
       %br
       

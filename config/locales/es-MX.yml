@@ -37,7 +37,9 @@ es-MX:
       venue_picture: 'FotoEstablecimiento'
       workshop: 'Workshop'
       enrollment: 'Inscripción'
-      reservation: 'Reservación'
+      reservation: 
+        one: 'Reservación'
+        other: 'Reservaciones'
       calendar: 'Calendario'
       administrator: 'Administrador'
       contact: 'Contacto'
