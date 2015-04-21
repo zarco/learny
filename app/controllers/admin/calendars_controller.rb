@@ -1,5 +1,5 @@
 class Admin::CalendarsController < ApplicationController
-  before_action :set_venue, only: [:index, :new]
+  before_action :set_venue, only: [:index, :new, :create]
   before_action :set_calendar, only: [:show, :edit, :update, :destroy]
 
 
@@ -29,7 +29,7 @@ class Admin::CalendarsController < ApplicationController
     @calendar = @venue.calendars.build(calendar_params)
     respond_to do |format|
       if @calendar.save
-        format.html { redirect_to [:admin, @calendar], notice: 'Calendar was successfully created.' }
+        format.html { redirect_to [:admin,@venue, @calendar], notice: 'Calendar was successfully created.' }
         format.json { render action: 'show', status: :created, location: @calendar }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class Admin::CalendarsController < ApplicationController
   def update
     respond_to do |format|
       if @calendar.update(calendar_params)
-        format.html { redirect_to [:admin, @calendar], notice: 'Calendar was successfully updated.' }
+        format.html { redirect_to [:admin, @venue, @calendar], notice: 'Calendar was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,7 +57,7 @@ class Admin::CalendarsController < ApplicationController
   def destroy
     @calendar.destroy
     respond_to do |format|
-      format.html { redirect_to admin_calendars_url, notice: 'Calendar was successfully destroyed.' }
+      format.html { redirect_to admin_venue_calendars_path(@venue), notice: 'Calendar was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
