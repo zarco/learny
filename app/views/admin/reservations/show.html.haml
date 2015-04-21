@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%dl.dl-horizontal
+  %dt
+    %strong Starts at:
+  %dd= @reservation.starts_at
+%dl.dl-horizontal
+  %dt
+    %strong Final time:
+  %dd= @reservation.final_time
+%dl.dl-horizontal
+  %dt
+    %strong Max participants:
+  %dd= @reservation.max_participants
+%dl.dl-horizontal
+  %dt
+    %strong Calendar:
+  %dd= @reservation.calendar_id
+%dl.dl-horizontal
+  %dt
+    %strong Cover:
+  %dd= @reservation.cover
+
+= link_to 'Edit', edit_admin_reservation_path(@reservation), class: 'btn btn-default'
+= link_to 'Back', admin_reservations_path, class: 'btn btn-default'

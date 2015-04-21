@@ -1,5 +1,4 @@
 LearnyApp::Application.routes.draw do
-  
 
   namespace :admin do
     concern :paginatable do
@@ -8,7 +7,10 @@ LearnyApp::Application.routes.draw do
   
   
     resources :zones
-    resources :venues
+    resources :venues do
+      resources :reservations
+      resources :calendars      
+    end
     resources :workshops, :concerns => :paginatable do
        collection do
          get :proposed

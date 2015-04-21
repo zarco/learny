@@ -1,0 +1,28 @@
+.page-header
+  %h1 Listing reservations
+
+%table.table.table-stripped
+  %tr
+    %th Starts at
+    %th Final time
+    %th Max participants
+    %th Calendar
+    %th Cover
+    %th
+    %th
+    %th
+
+  - @reservations.each do |reservation|
+    %tr
+      %td= reservation.starts_at
+      %td= reservation.final_time
+      %td= reservation.max_participants
+      %td= reservation.calendar_id
+      %td= reservation.cover
+      %td= link_to 'Show', [:admin, reservation], class: 'btn btn-default btn-xs'
+      %td= link_to 'Edit', edit_admin_reservation_path(reservation), class: 'btn btn-default btn-xs'
+      %td= link_to 'Destroy', [:admin, reservation], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+
+%br
+
+= link_to 'New Reservation', new_admin_reservation_path, class: 'btn btn-primary'
