@@ -5,7 +5,7 @@ class Admin::ReservationsController < ApplicationController
   # GET /admin/reservations
   # GET /admin/reservations.json
   def index
-    @reservations = @venue.reservations.page params[:page]
+    @reservations = @venue.reservations.order(starts_at: :desc).page params[:page]
   end
 
   # GET /admin/reservations/1

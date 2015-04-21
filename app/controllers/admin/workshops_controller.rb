@@ -4,7 +4,7 @@ class Admin::WorkshopsController < Admin::AdminController
   # GET /admin/workshops
   # GET /admin/workshops.json
   def index
-    @workshops = Workshop.all.page params[:page]
+    @workshops = Workshop.all.order(name).page params[:page]
   end
   
   

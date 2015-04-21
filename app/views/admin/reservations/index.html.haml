@@ -4,14 +4,14 @@
       %h4
         = Reservation.model_name.human(count: 2)
     .panel-body
-      %table.table.table-stripped
+      %table.table.table-striped
         %tr
           %th
             = Reservation.human_attribute_name(:starts_at)
           %th
             = Reservation.human_attribute_name(:final_time)
           %th 
-            =Calendar.model_name.human
+            = Calendar.model_name.human
           %th
             = Reservation.human_attribute_name(:created_at)
           %th
