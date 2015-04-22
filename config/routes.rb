@@ -15,6 +15,9 @@ LearnyApp::Application.routes.draw do
        collection do
          get :proposed
          get 'proposed/page/:page', :action => :proposed
+         
+         get :scheduled
+         get 'scheduled/page/:page', :action => :scheduled
        end
     end
   

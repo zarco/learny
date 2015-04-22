@@ -94,7 +94,9 @@
               %li
                 = link_to proposed_admin_workshops_path do
                   = 'Propuestos'
-          
+              %li
+                = link_to scheduled_admin_workshops_path do
+                  = 'Calendarizados'
           %li.navbarb-margin-top
             %a.dropdown-toggle(data-toggle="dropdown" href="#")
               = current_administrator.name

@@ -4,13 +4,18 @@ class Admin::WorkshopsController < Admin::AdminController
   # GET /admin/workshops
   # GET /admin/workshops.json
   def index
-    @workshops = Workshop.all.order(name).page params[:page]
+    @workshops = Workshop.all.order('proposed_date desc nulls last').page params[:page]
   end
   
   
   def proposed
     @workshops = Workshop.where(state: 'proposed').order('proposed_date desc nulls last').page params[:page]
   end
+
+  def scheduled
+    @workshops = Workshop.where(state: 'scheduled').order('proposed_date desc nulls last').page params[:page]
+  end
+
 
   # GET /admin/workshops/1
   # GET /admin/workshops/1.json
