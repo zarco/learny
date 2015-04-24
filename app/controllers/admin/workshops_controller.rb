@@ -9,11 +9,11 @@ class Admin::WorkshopsController < Admin::AdminController
   
   
   def proposed
-    @workshops = Workshop.where(state: 'proposed').order('proposed_date desc nulls last').page params[:page]
+    @workshops = Workshop.proposed.order('proposed_date desc nulls last').page params[:page]
   end
 
   def scheduled
-    @workshops = Workshop.where(state: 'scheduled').order('proposed_date desc nulls last').page params[:page]
+    @workshops = Workshop.scheduled.order('proposed_date desc nulls last').page params[:page]
   end
 
 

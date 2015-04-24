@@ -1,13 +1,7 @@
 .container
   .panel.panel-default
     .panel-heading
-      %ul.nav.nav-pills
-        %li.active
-          = link_to Workshop.model_name.human.pluralize, admin_workshops_path
-        %li
-          = link_to 'Propuestos', proposed_admin_workshops_path
-        %li
-          = link_to 'Calendarizados', scheduled_admin_workshops_path
+      =render 'workshops_heading'
   
     .panel-body
       %table.table.table-striped

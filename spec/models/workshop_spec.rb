@@ -200,6 +200,28 @@ describe Workshop do
     end
   end
 
+  describe 'scopes' do
+    
+    it 'proposed' do
+      workshop=FactoryGirl.create(:workshop)
+      workshop.proposed_by_expert
+      expect(workshop.persisted?).to be_truthy
+      expect(Workshop.proposed.to_a).to be_eql([workshop])
+      
+      
+    end
+    
+    it 'scheduled' do
+      workshop=FactoryGirl.create(:workshop)
+      workshop.proposed_by_expert
+      expect(workshop.persisted?).to be_truthy
+      workshop.accepted_by_venue
+      expect(Workshop.scheduled.to_a).to be_eql([workshop])
+    end
+    
+  end
+
+
   describe 'soft delete' do
     let(:workshop){
       FactoryGirl.create(:workshop)

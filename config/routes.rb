@@ -5,7 +5,6 @@ LearnyApp::Application.routes.draw do
       get '(page/:page)', :action => :index, :on => :collection, :as => ''
     end
   
-  
     resources :zones
     resources :reservations, only: [:edit, :destroy, :update, :show]
     resources :venues, :concerns => :paginatable do
@@ -19,9 +18,9 @@ LearnyApp::Application.routes.draw do
        end
        
        resources :reservations, only: [:new, :create]
-       
     end
-  
+
+    get '/' => 'administrators#index'
   
   end
 
@@ -57,7 +56,6 @@ LearnyApp::Application.routes.draw do
   get 'students/index'
   get 'experts/index'
   get 'venues/index'
-  get 'administrators/index'
   
   authenticated :venue do
     root to: 'venues#index', as: :venue_root
@@ -72,7 +70,7 @@ LearnyApp::Application.routes.draw do
   end
   
   authenticated :administrator do
-    root to: 'administrators#index', as: :administrator_root
+    root to: 'admin/administrators#index', as: :administrator_root
   end
   
   unauthenticated do

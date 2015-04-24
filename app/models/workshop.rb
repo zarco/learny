@@ -79,6 +79,11 @@ class Workshop < ActiveRecord::Base
   
   
   accepts_nested_attributes_for :reservation
+
+
+  scope :proposed, -> {where(state: 'proposed')}
+  
+  scope :scheduled, -> {where(state: 'scheduled')}
   
   def free=(free)
     super free
