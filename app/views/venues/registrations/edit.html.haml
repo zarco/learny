@@ -36,6 +36,9 @@
                   = f.label :business_hours
                   = f.text_area :business_hours, autofocus: true, class: 'form-control'
                 .form-group
+                  = f.label :zone, class: 'control-label'
+                  = collection_select :workshop, :zone_id, Zone.all, :id, :name, {}, {:class=>'form-control'}
+                .form-group
                   =f.label :facilities
                   = f.text_field :facilities, autofocus: true, class: 'form-control', hint: ' wifi, proyector, pantalla'
                   %span

@@ -22,6 +22,7 @@ describe Venue do
   describe 'associations' do
     subject {FactoryGirl.build(:venue)}
     it { should have_many(:calendars)}
+    it { should belong_to(:zone)}    
   end
 
   describe 'validations' do

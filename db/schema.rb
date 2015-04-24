@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418230900) do
+ActiveRecord::Schema.define(version: 20150424051650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 20150418230900) do
     t.string   "website",                limit: 255
     t.string   "google_plus_link",       limit: 255
     t.datetime "deleted_at"
+    t.integer  "zone_id"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
@@ -246,6 +247,7 @@ ActiveRecord::Schema.define(version: 20150418230900) do
   add_foreign_key "enrollments", "workshops", name: "enrollments_workshop_id_fk"
   add_foreign_key "reservations", "calendars", name: "reservations_calendar_id_fk"
   add_foreign_key "reservations", "workshops", name: "reservations_workshop_id_fk"
+  add_foreign_key "venues", "zones"
   add_foreign_key "workshops", "experts", name: "workshops_expert_id_fk"
   add_foreign_key "workshops", "zones"
 end
