@@ -6,11 +6,11 @@
         = Workshop.count
   %li{:class => "#{'active' if current_page?(proposed_admin_workshops_path)}"}
     = link_to proposed_admin_workshops_path do
-      Propuestos
+      = t("views.states.proposed", count: 2, default: 'Proposed')
       %span.badge 
         = Workshop.proposed.count
   %li{:class => "#{'active' if current_page?(scheduled_admin_workshops_path)}"}
     = link_to scheduled_admin_workshops_path do
-      Calendarizados
+      = t("views.states.scheduled", count: 2, default: 'Scheduled')
       %span.badge 
         = Workshop.scheduled.count

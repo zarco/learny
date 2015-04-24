@@ -15,7 +15,7 @@
             %th
               
           - @venues.each do |venue|
-            %tr
+            %tr{:class => "venue-#{venue.to_param}"}
               %td= link_to venue.name, venue
               %td
                 = venue.created_at
