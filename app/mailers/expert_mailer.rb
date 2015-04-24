@@ -32,7 +32,7 @@ class ExpertMailer < ActionMailer::Base
   #
   #   en.expert_mailer.accepted_by_venue.subject
   #
-  def accepted_by_venue
+  def workshop_accepted_by_venue(workshop)
     @greeting = "Hi"
 
     mail to: "to@example.org"

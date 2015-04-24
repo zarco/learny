@@ -7,18 +7,19 @@ LearnyApp::Application.routes.draw do
   
   
     resources :zones
+    resources :reservations, only: [:edit, :destroy, :update, :show]
     resources :venues, :concerns => :paginatable do
-      resources :reservations, :concerns => :paginatable
+      resources :reservations, :concerns => :paginatable, only: [:index, :show]
       resources :calendars, :concerns => :paginatable      
     end
     resources :workshops, :concerns => :paginatable do
        collection do
-         get :proposed
-         get 'proposed/page/:page', :action => :proposed
-         
-         get :scheduled
-         get 'scheduled/page/:page', :action => :scheduled
+         get 'proposed(/page/:page)', :action => :proposed, :as => :proposed
+         get 'scheduled(/page/:page)', :action => :scheduled, :as => :scheduled
        end
+       
+       resources :reservations, only: [:new, :create]
+       
     end
   
   

@@ -34,10 +34,10 @@ RSpec.describe ExpertMailer, :type => :mailer do
   end
 
   describe "accepted_by_venue" do
-    let(:mail) { ExpertMailer.accepted_by_venue }
+    let(:mail) { ExpertMailer.workshop_accepted_by_venue(workshop) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Accepted by venue")
+      expect(mail.subject).to eq("Workshop accepted by venue")
       expect(mail.to).to eq(["to@example.org"])
       expect(mail.from).to eq(["from@example.com"])
     end

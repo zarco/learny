@@ -5,5 +5,7 @@
     .panel-body
       = render 'form'
       
-      = link_to 'Show', [:admin, @venue, @reservation], class: 'btn btn-default'
-      = link_to 'Back', admin_venue_reservations_path(@venue), class: 'btn btn-default'
+      - venue=@reservation.venue
+      - if venue.present?
+        = link_to 'Show', [:admin, venue, @reservation], class: 'btn btn-default'
+        = link_to 'Back', admin_venue_reservations_path(venue), class: 'btn btn-default'

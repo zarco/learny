@@ -1,8 +1,14 @@
 .container
   .panel.panel-default
     .panel-heading
-      %strong
-        = Workshop.model_name.human.pluralize
+      %ul.nav.nav-pills
+        %li
+          = link_to Workshop.model_name.human.pluralize, '#'
+        %li.active
+          = link_to 'Propuestos', proposed_admin_workshops_path
+        %li
+          = link_to 'Calendarizados', scheduled_admin_workshops_path
+      
       
     .panel-body
       %table.table.table-striped
@@ -26,6 +32,7 @@
             %td= workshop.state
             %td= workshop.proposed_date
             %td
+              = link_to "Crear reservacion", new_admin_workshop_reservation_path(workshop) , class: 'btn btn-default btn-xs'
               = link_to 'Show', [:admin, workshop], class: 'btn btn-default btn-xs'
               = link_to 'Edit', edit_admin_workshop_path(workshop), class: 'btn btn-default btn-xs'
               = link_to 'Destroy', [:admin, workshop], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'

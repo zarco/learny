@@ -41,6 +41,5 @@
             =Reservation.human_attribute_name(:updated_at)
         %dd= @reservation.updated_at
       
-      
-      = link_to 'Edit', edit_admin_venue_reservation_path(@venue,@reservation), class: 'btn btn-default'
-      = link_to 'Back', admin_venue_reservations_path(@venue), class: 'btn btn-default'
+        = link_to 'Edit', edit_admin_reservation_path(@reservation), class: 'btn btn-default'
+        = link_to 'Back', admin_venue_reservations_path(@reservation.venue), class: 'btn btn-default'

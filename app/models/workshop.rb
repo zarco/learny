@@ -113,6 +113,13 @@ class Workshop < ActiveRecord::Base
       end
     end
   end
+
+  def proposed_final_time
+    if self.proposed_date
+      self.proposed_date += self.length.hours
+    end
+  end
+
   
   private
   def reservation_changes(reservation_id)
