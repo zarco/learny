@@ -39,7 +39,7 @@ class Admin::ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to [:admin,@parent, @reservation], notice: 'Reservation was successfully created.' }
+        format.html { redirect_to [:admin,@reservation], notice: 'Reservation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @reservation }
       else
         format.html { render action: 'new' }

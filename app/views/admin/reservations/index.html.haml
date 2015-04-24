@@ -1,8 +1,7 @@
 .container
   .panel.panel-default
     .panel-heading
-      %h4
-        = Reservation.model_name.human(count: 2)
+      %h4 #{@venue.name} - #{Reservation.model_name.human(count: 2)}
     .panel-body
       %table.table.table-striped
         %tr
