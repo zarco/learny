@@ -5,7 +5,6 @@ Feature: The expert can propose a workshop
 	
 Background: 
 	Given I am logged in as expert
-	And "Cafe 7" has made a reservation for next friday
 	And "Condesa" is a registered zone 
 
 Scenario: Proposing a workshop from the expert's home page

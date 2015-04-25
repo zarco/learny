@@ -119,11 +119,7 @@
                   = t('views.actions.calendars',default:'Calendars')
               %li
                 = link_to reservations_path do
-                  = t('views.actions.reservations',default:'Reservations')
-              %li
-                = link_to new_reservation_path do
-                  = t('views.actions.make_reservation',default:'Make a reservation')
-              
+                  = t('views.actions.reservations',default:'Reservations')              
               %li.divider
               %li
                 = link_to destroy_venue_session_path, data: { method: :delete } do

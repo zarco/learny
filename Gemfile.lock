@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/namick/obfuscate_id
-  revision: 188f1e851fd9ac46f2d4c35eaacb23636bdeb0b4
+  revision: bd3ee63bbe3bf2de93023947478831f4ee01a1bf
   specs:
     obfuscate_id (0.2.0)
       rails (~> 4.2.0)
@@ -100,7 +100,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    excon (0.45.2)
+    excon (0.45.3)
     execjs (2.5.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -259,7 +259,7 @@ GEM
     paranoia (2.1.1)
       activerecord (~> 4.0)
     pg (0.18.1)
-    pg_search (0.7.9)
+    pg_search (1.0.0)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
@@ -364,7 +364,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.8.3)
+    unicorn (4.9.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)

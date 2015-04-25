@@ -40,7 +40,7 @@ LearnyApp::Application.routes.draw do
   resources :venues
   resources :venue_pictures
   resources :calendars
-  resources :reservations
+  resources :reservations, except: [:new, :create]
   resources :workshops, :concerns => :paginatable
   resources :enrollments, :concerns => :paginatable
   resources :guests, only: [:create]
