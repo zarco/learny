@@ -9,11 +9,11 @@ Background:
 
 Scenario: Proposing a workshop from the expert's home page
 	Given I am at my home page as expert
-	When I submit the required information for proposing a workshop called "Basic Dutch" in "Cafe 7" next friday
+	When I submit the required information for proposing a workshop called "Basic Dutch"
 	Then I can see a confirmation message and the details of the "Basic Dutch" workshop
 	And I can see the "Basic Dutch" workshop listed in the "proposed" state in 'My workshops' page
 	
 Scenario: Proposing a new workshop
 	Given I am at the form for proposing a new workshop
-	When I submit the required information for proposing a workshop called "Basic Dutch" in "Cafe 7" next friday
+	When I submit the required information for proposing a workshop called "Basic Dutch"
 	Then I can see the "Basic Dutch" workshop listed in the "proposed" state in 'My workshops' page

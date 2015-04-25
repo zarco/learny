@@ -48,7 +48,7 @@ Given(/^"(.*?)" has made a reservation for next friday$/) do |venue|
   @venue.calendars.first.reservations.create(FactoryGirl.attributes_for(:reservation))
 end
 
-When(/^I submit the required information for proposing a workshop called "(.*?)" in "(.*?)" next friday$/) do |name, venue|
+When(/^I submit the required information for proposing a workshop called "(.*?)"$/) do |name|
   @workshop = FactoryGirl.build(:workshop, {:name => name})
   #save_and_open_page
   within('#new_workshop') do
