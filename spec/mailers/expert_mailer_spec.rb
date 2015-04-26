@@ -37,13 +37,13 @@ RSpec.describe ExpertMailer, :type => :mailer do
     let(:mail) { ExpertMailer.workshop_accepted_by_venue(workshop) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Workshop accepted by venue")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.subject).to eq("Se ha confirmado un taller en un Establecimiento")
+      expect(mail.to).to eq([workshop.expert.email])
       expect(mail.from).to eq(["from@example.com"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+      expect(mail.body.encoded).to match("Learny | Taller aceptado por establecimiento")
     end
   end
 

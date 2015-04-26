@@ -105,7 +105,7 @@ RSpec.describe Reservation, :type => :model do
       it 'valid start at' do
         other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: calendar, 
           starts_at: base_date.change(hour: 15), final_time: base_date.change(hour: 16))
-        puts "#{other_reservation.starts_at} #{other_reservation.final_time}"
+        #puts "#{other_reservation.starts_at} #{other_reservation.final_time}"
         other_reservation.valid?
         #puts ">>>>> #{other_reservation.errors.full_messages}"
         expect(other_reservation.valid?).to be_truthy

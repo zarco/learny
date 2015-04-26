@@ -413,6 +413,8 @@ es-MX:
       subject: "Has propuesto un nuevo taller"
     workshop_cancelled_by_expert:
       subject: "Has cancelado un taller"
+    workshop_accepted_by_venue:
+      subject: "Se ha confirmado un taller en un Establecimiento"
 
 
 # Carrierwave I18n

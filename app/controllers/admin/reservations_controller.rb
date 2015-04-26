@@ -32,13 +32,15 @@ class Admin::ReservationsController < ApplicationController
   def create
     @reservation = @venue.reservations.build(reservation_params) if @venue
 
-    if @workshop
-      @reservation = Reservation.new(reservation_params.merge(workshop_id: @workshop.id))
-      @workshop.accepted_by_venue
+    Reservation.transaction do
+      if @workshop
+        @reservation = Reservation.create(reservation_params.merge(workshop_id: @workshop.id))
+        @workshop.accepted_by_venue if @reservation.valid?
+      end
     end
-
+    
     respond_to do |format|
-      if @reservation.save
+      if @reservation.persisted?
         format.html { redirect_to [:admin,@reservation], notice: 'Reservation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @reservation }
       else
