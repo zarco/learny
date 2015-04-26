@@ -36,10 +36,6 @@ class ExpertMailer < ActionMailer::Base
     @workshop = workshop
     @reservation = workshop.reservation
     @venue = @reservation.venue
-    puts "#{@workshop}"
-    puts "#{@reservation}"
-    puts "#{@venue}"
-    
     mail to: workshop.expert.email
   end
 
