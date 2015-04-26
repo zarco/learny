@@ -111,7 +111,7 @@ class Reservation < ActiveRecord::Base
     if reservation.present?
       message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.already_reserved', 
         duration: reservation.fmt_duration)
-      errors.add(:workshop_id, message)
+      errors.add(:starts_at, message)
     end  
   end
   
@@ -121,7 +121,7 @@ class Reservation < ActiveRecord::Base
     if reservation.present?
       message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.already_reserved', 
         duration: reservation.fmt_duration)
-      errors.add(:workshop_id, message)
+      errors.add(:starts_at, message)
     end  
   end
   
@@ -131,7 +131,7 @@ class Reservation < ActiveRecord::Base
     if reservation.present?
       message=I18n.t('activerecord.errors.models.reservation.attributes.final_time.already_reserved', 
         duration: reservation.fmt_duration)
-      errors.add(:workshop_id, message)
+      errors.add(:final_time, message)
     end  
   end
   
