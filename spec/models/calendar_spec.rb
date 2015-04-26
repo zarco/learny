@@ -70,10 +70,10 @@ RSpec.describe Calendar, :type => :model do
       
       it "deleted" do
         FactoryGirl.create(:reservation, calendar: calendar)
-        FactoryGirl.create(:reservation, calendar: calendar)
-      
+        FactoryGirl.create(:other_reservation, calendar: calendar)
+        
         FactoryGirl.create(:reservation, calendar: other_calendar)
-        FactoryGirl.create(:reservation, calendar: other_calendar)
+        FactoryGirl.create(:other_reservation, calendar: other_calendar)
         
         expect(Reservation.all.count).to eql(4)
         other_calendar.destroy

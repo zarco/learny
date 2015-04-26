@@ -44,14 +44,20 @@ RSpec.describe Reservation, :type => :model do
     it { should_not allow_value(-1).for(:cover) }
     it { should_not allow_value('a').for(:cover) }
     it { should allow_value(nil).for(:cover) }
-
+  end
+  
+  describe 'special validations' do
+    let(:base_date){
+        DateTime.now.change(hour: 12, min: 00)+1.day
+    }
+    
     it 'workshop already reserved' do
       workshop=FactoryGirl.create(:workshop)
       expect(workshop.reservation).to be_nil
       reservation=FactoryGirl.create(:reservation, workshop: workshop)
       #puts "first reservation: #{reservation.valid?} #{reservation.errors.full_messages}"
       expect(reservation.valid?).to be_truthy
-      other_reservation=FactoryGirl.build(:reservation, workshop: workshop)
+      other_reservation=FactoryGirl.build(:other_reservation, workshop: workshop)
       expect(other_reservation.valid?).to be_falsey
       #puts "second reservation: #{other_reservation.errors.full_messages}"
     end
@@ -60,21 +66,19 @@ RSpec.describe Reservation, :type => :model do
       workshop=FactoryGirl.build(:workshop)
       workshop.save
       expect(workshop.reservation).to be_nil
-      reservation=FactoryGirl.create(:reservation, workshop: workshop)
+      reservation=FactoryGirl.build(:reservation, workshop: workshop)
+      #puts "first reservation: #{reservation.valid?} #{reservation.errors.full_messages}"
+      reservation.save
       #puts "first reservation: #{reservation.valid?} #{reservation.errors.full_messages}"
       expect(reservation.valid?).to be_truthy
-      other_reservation=FactoryGirl.build(:reservation, workshop: workshop)
+      other_reservation=FactoryGirl.build(:other_reservation, workshop: workshop)
+      #puts "second reservation: #{other_reservation.valid?} #{other_reservation.errors.full_messages}" 
       expect(other_reservation.valid?).to be_falsey
-      #puts "second reservation: #{other_reservation.errors.full_messages}"      
+           
     end
 
 
     describe 'date range' do
-      let(:base_date){
-        DateTime.now.change(hour: 12, min: 00)+1.day
-      }
-        
-      
       let(:venue){
         FactoryGirl.create(:venue)
       }
@@ -142,9 +146,8 @@ RSpec.describe Reservation, :type => :model do
         expect(other_reservation.valid?).to be_falsey
         #puts ">>>>> #{other_reservation.errors.full_messages}"
       end
-
     end
-
+    
   end
 
   describe 'validate workshop' do

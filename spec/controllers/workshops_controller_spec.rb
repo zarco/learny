@@ -150,7 +150,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "updates the requested workshop with reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        new_reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
+        new_reservation=FactoryGirl.create(:other_reservation, :calendar => venue.calendars.first)
 
         workshop=FactoryGirl.create(:workshop)
         workshop.update(:reservation => reservation)
@@ -198,7 +198,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "updates the requested workshop with not suitable reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        new_reservation=FactoryGirl.create(:reservation, :max_participants=>1,:calendar => venue.calendars.first)
+        new_reservation=FactoryGirl.create(:other_reservation, :max_participants=>1,:calendar => venue.calendars.first)
 
         workshop=FactoryGirl.create(:workshop, valid_attributes)
         workshop.update(:reservation => reservation)

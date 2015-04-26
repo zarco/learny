@@ -106,8 +106,9 @@ class Reservation < ActiveRecord::Base
   end
   
   def invalid_date_interval 
-    reservation=Reservation.where(calendar: self.calendar).where('? <= starts_at and ? >= final_time',
+    reservation=Reservation.where(calendar: self.calendar).where.not(id: self.id).where('? <= starts_at and ? >= final_time',
       self.starts_at, self.final_time).first
+    #puts "Invalid date interval #{starts_at} #{final_time} #{reservation}"
     if reservation.present?
       message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.already_reserved', 
         duration: reservation.fmt_duration)
@@ -116,7 +117,7 @@ class Reservation < ActiveRecord::Base
   end
   
   def invalid_date_interval_starts_at
-    reservation=Reservation.where(calendar: self.calendar).where('? > starts_at and ? < final_time',
+    reservation=Reservation.where(calendar: self.calendar).where.not(id: self.id).where('? > starts_at and ? < final_time',
        self.starts_at,self.starts_at).first
     if reservation.present?
       message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.already_reserved', 
@@ -126,7 +127,7 @@ class Reservation < ActiveRecord::Base
   end
   
   def invalid_date_interval_final_time 
-    reservation=Reservation.where(calendar: self.calendar).where('? > starts_at and ? < final_time',
+    reservation=Reservation.where(calendar: self.calendar).where.not(id: self.id).where('? > starts_at and ? < final_time',
        self.final_time, self.final_time).first
     if reservation.present?
       message=I18n.t('activerecord.errors.models.reservation.attributes.final_time.already_reserved', 
