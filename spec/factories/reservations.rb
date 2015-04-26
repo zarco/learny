@@ -14,5 +14,10 @@ FactoryGirl.define do
       max_participants nil
       all_day nil
     end
+    
+    trait :with_workshop do
+      association :workshop, factory: :workshop
+    end
+    
   end
 end

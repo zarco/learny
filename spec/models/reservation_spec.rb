@@ -24,7 +24,7 @@ RSpec.describe Reservation, :type => :model do
     subject {FactoryGirl.build(:reservation)}
     it { should belong_to(:calendar)}
     it { should belong_to(:workshop)}
-   
+
   end
 
   describe 'validations' do
@@ -45,30 +45,123 @@ RSpec.describe Reservation, :type => :model do
     it { should_not allow_value('a').for(:cover) }
     it { should allow_value(nil).for(:cover) }
 
+    it 'workshop already reserved' do
+      workshop=FactoryGirl.create(:workshop)
+      expect(workshop.reservation).to be_nil
+      reservation=FactoryGirl.create(:reservation, workshop: workshop)
+      #puts "first reservation: #{reservation.valid?} #{reservation.errors.full_messages}"
+      expect(reservation.valid?).to be_truthy
+      other_reservation=FactoryGirl.build(:reservation, workshop: workshop)
+      expect(other_reservation.valid?).to be_falsey
+      #puts "second reservation: #{other_reservation.errors.full_messages}"
+    end
+
+    it 'workshop already reserved (save)' do
+      workshop=FactoryGirl.build(:workshop)
+      workshop.save
+      expect(workshop.reservation).to be_nil
+      reservation=FactoryGirl.create(:reservation, workshop: workshop)
+      #puts "first reservation: #{reservation.valid?} #{reservation.errors.full_messages}"
+      expect(reservation.valid?).to be_truthy
+      other_reservation=FactoryGirl.build(:reservation, workshop: workshop)
+      expect(other_reservation.valid?).to be_falsey
+      #puts "second reservation: #{other_reservation.errors.full_messages}"      
+    end
+
+
+    describe 'date range' do
+      let(:base_date){
+        DateTime.now.change(hour: 12, min: 00)+1.day
+      }
+        
+      
+      let(:venue){
+        FactoryGirl.create(:venue)
+      }
+      
+      let(:calendar){
+        venue.calendars.first
+      }
+      
+      let(:workshop){
+        FactoryGirl.create(:workshop)
+      }
+      before(:each){
+        FactoryGirl.create(:reservation, calendar: calendar, 
+          starts_at: base_date, final_time: base_date.change(hour: 15))
+      }
+      
+      let(:other_workshop){
+        FactoryGirl.create(:workshop)
+      }
+      let(:other_venue){
+        FactoryGirl.create(:venue)
+      }
+      
+      it 'valid start at' do
+        other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: calendar, 
+          starts_at: base_date.change(hour: 15), final_time: base_date.change(hour: 16))
+        puts "#{other_reservation.starts_at} #{other_reservation.final_time}"
+        other_reservation.valid?
+        #puts ">>>>> #{other_reservation.errors.full_messages}"
+        expect(other_reservation.valid?).to be_truthy
+      end
+        
+      it 'valid final time' do
+        other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: calendar, 
+          starts_at: base_date.change(hour: 11), final_time: base_date.change(hour: 12))
+        #other_reservation.valid?
+        #puts "#{other_reservation.starts_at} #{other_reservation.final_time}"
+        #puts ">>>>> #{other_reservation.errors.full_messages}"
+        expect(other_reservation.valid?).to be_truthy
+      end
+
+      it 'invalid start time' do
+        other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: calendar, 
+          starts_at: base_date.change(hour: 13), final_time: base_date.change(hour: 16))
+        #expect(other_reservation.valid?).to be_falsey
+        puts ">>>>> #{other_reservation.errors.full_messages}"
+      end
+      
+      it 'invalid final time' do
+        other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: calendar, 
+          starts_at: base_date.change(hour: 11), final_time: base_date.change(hour: 13))
+        expect(other_reservation.valid?).to be_falsey
+        #puts ">>>>> #{other_reservation.errors.full_messages}"
+      end
+      it 'invalid date range' do
+        other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: venue.calendars.first, 
+          starts_at: base_date.change(hour: 11), final_time: base_date.change(hour: 16))
+        expect(other_reservation.valid?).to be_falsey
+        #puts ">>>>> #{other_reservation.errors.full_messages}"
+      end
+
+    end
+
   end
-  
+
   describe 'validate workshop' do
     before(:each) do
-       @reservation=FactoryGirl.create(:reservation, :max_participants => 25)
+      @reservation=FactoryGirl.create(:reservation, :max_participants => 25)
     end
-    
+
     it 'valid workshop' do
       workshop=FactoryGirl.create(:workshop)
       expect(@reservation.valid?).to be_truthy
     end
-    
+
     it 'valid workshop same time' do
       workshop=FactoryGirl.create(:workshop, :length => 4)
       @reservation.workshop=workshop
       expect(@reservation.valid?).to be_truthy
       expect(@reservation.availability_in_hours).to eq(4)
     end
-    
+
     it 'invalid participants number' do
-      workshop=FactoryGirl.create(:workshop, :max_number_participants => 100) 
+      workshop=FactoryGirl.create(:workshop, :max_number_participants => 100)
       @reservation.workshop=workshop
       expect(@reservation.valid?).to be_falsey
-      #expect(@reservation.errors).to eq.error_on(:workshop)
+    #expect(@reservation.errors).to eq.error_on(:workshop)
     end
 
     it 'invalid workshop almost same time' do
@@ -77,13 +170,13 @@ RSpec.describe Reservation, :type => :model do
       expect(@reservation.availability_in_hours).to eq(4)
       expect(@reservation.valid?).to be_falsey
     end
-    
+
     it 'invalid duration' do
       workshop=FactoryGirl.create(:workshop, :length=> 10)
       @reservation.workshop=workshop
       #puts ">>>>>>>>>>>>> #{@reservation.availability_in_hours}"
       expect(@reservation.valid?).to be_falsey
-      #expect(@reservation.errors).to eq(1).error_on(:workshop)
+    #expect(@reservation.errors).to eq(1).error_on(:workshop)
     end
   end
 
@@ -93,32 +186,32 @@ RSpec.describe Reservation, :type => :model do
       expect(reservation.valid?).to be_falsey
     end
   end
-  
+
   describe 'validate start in the past' do
     it 'one day' do
       reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.day)
       expect(reservation.valid?).to be_falsey
     end
-    
+
     it 'one hour' do
       reservation=FactoryGirl.build(:reservation, :starts_at => Time.now-1.hour)
       expect(reservation.valid?).to be_falsey
     end
 
   end
-  
+
   describe 'availability in hours' do
     it 'difference' do
       reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2014,01,01,13,30))
       expect(reservation.availability_in_hours).to eql(3.5)
     end
-    
+
     it 'other difference' do
       reservation=FactoryGirl.build(:reservation, :starts_at => Time.new(2014,01,01,10,00), :final_time => Time.new(2018,10,31,13,30))
       reservation.valid?
       expect(reservation.availability_in_hours).to eql(3.5)
     end
-    
+
   end
 
   describe 'methods' do

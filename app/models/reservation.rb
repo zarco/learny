@@ -12,6 +12,8 @@ class Reservation < ActiveRecord::Base
   validates :cover, numericality: { greater_than_or_equal_to: 0  }, allow_nil: true
 
   validate :workshop_does_not_fit, :invalid_starts_at, :invalid_final_time
+  validate :invalid_date_interval_starts_at, :invalid_date_interval_final_time, :invalid_date_interval
+  validate :workshop_reserved?, on: :create
 
   scope :availables, lambda {where(:workshop => nil).where('starts_at >= ?', Date.today) }
   scope :find_by_starts_at, lambda {|value| (where('starts_at >= (?)',  Date.parse(value))) unless value.blank? }
@@ -81,7 +83,7 @@ class Reservation < ActiveRecord::Base
   end
 
   def workshop_does_not_fit
-    if !workshop.nil?   
+    unless workshop.nil?   
       #puts "workshop #{self.workshop.max_number_participants} >  reservation #{self.max_participants}"
       if workshop.max_number_participants > max_participants 
         #message="There is not enough places for #{self.workshop.max_number_participants} participants"
@@ -102,4 +104,48 @@ class Reservation < ActiveRecord::Base
             
     end
   end
+  
+  def invalid_date_interval 
+    reservation=Reservation.where(calendar: self.calendar).where('? < starts_at and ? > final_time',
+      self.starts_at, self.final_time).first
+    if reservation.present?
+      message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.already_reserved', 
+        duration: reservation.fmt_duration)
+      errors.add(:workshop_id, message)
+    end  
+  end
+  
+  def invalid_date_interval_starts_at
+    reservation=Reservation.where(calendar: self.calendar).where('? > starts_at and ? < final_time',
+       self.starts_at,self.starts_at).first
+    if reservation.present?
+      message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.already_reserved', 
+        duration: reservation.fmt_duration)
+      errors.add(:workshop_id, message)
+    end  
+  end
+  
+  def invalid_date_interval_final_time 
+    reservation=Reservation.where(calendar: self.calendar).where('? > starts_at and ? < final_time',
+       self.final_time, self.final_time).first
+    if reservation.present?
+      message=I18n.t('activerecord.errors.models.reservation.attributes.final_time.already_reserved', 
+        duration: reservation.fmt_duration)
+      errors.add(:workshop_id, message)
+    end  
+  end
+  
+  def workshop_reserved?
+    unless workshop.nil? 
+      #count= Reservation.where(workshop: workshop).where.not(id: self.id).count
+      count= Reservation.where(workshop: workshop).count
+      #puts count
+      if count > 0
+        message=I18n.t('activerecord.errors.models.reservation.attributes.workshop.previously_reserved')
+        #puts ">>> workshop_reserved? #{count} #{message}" 
+        errors.add(:workshop_id, message)
+      end
+    end
+  end
+  
 end
