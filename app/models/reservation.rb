@@ -106,7 +106,7 @@ class Reservation < ActiveRecord::Base
   end
   
   def invalid_date_interval 
-    reservation=Reservation.where(calendar: self.calendar).where('? < starts_at and ? > final_time',
+    reservation=Reservation.where(calendar: self.calendar).where('? <= starts_at and ? >= final_time',
       self.starts_at, self.final_time).first
     if reservation.present?
       message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.already_reserved', 

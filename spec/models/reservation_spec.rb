@@ -119,8 +119,8 @@ RSpec.describe Reservation, :type => :model do
       it 'invalid start time' do
         other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: calendar, 
           starts_at: base_date.change(hour: 13), final_time: base_date.change(hour: 16))
-        #expect(other_reservation.valid?).to be_falsey
-        puts ">>>>> #{other_reservation.errors.full_messages}"
+        expect(other_reservation.valid?).to be_falsey
+        #puts ">>>>> #{other_reservation.errors.full_messages}"
       end
       
       it 'invalid final time' do
@@ -132,6 +132,13 @@ RSpec.describe Reservation, :type => :model do
       it 'invalid date range' do
         other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: venue.calendars.first, 
           starts_at: base_date.change(hour: 11), final_time: base_date.change(hour: 16))
+        expect(other_reservation.valid?).to be_falsey
+        #puts ">>>>> #{other_reservation.errors.full_messages}"
+      end
+      
+       it 'invalid same range' do
+        other_reservation=FactoryGirl.build(:reservation, workshop: workshop, calendar: venue.calendars.first, 
+          starts_at: base_date.change(hour: 12), final_time: base_date.change(hour: 15))
         expect(other_reservation.valid?).to be_falsey
         #puts ">>>>> #{other_reservation.errors.full_messages}"
       end
