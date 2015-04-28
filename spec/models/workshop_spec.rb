@@ -49,7 +49,7 @@ describe Workshop do
     it { should validate_presence_of :length }
     it { should validate_presence_of :price }
     it { should validate_presence_of :expert }
-    it { should validate_presence_of :zone }
+    #it { should validate_presence_of :zone }
     it { should validate_presence_of :description }
     it { should validate_presence_of :max_number_participants }
     it { should validate_presence_of :min_number_participants }

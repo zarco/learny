@@ -17,10 +17,17 @@
         = Workshop.human_attribute_name(:free)
   .form-group
     = f.label :state, class: 'control-label col-md-2'
-    .col-md-10= f.text_field :state, class: 'form-control'
+    .col-md-10 
+      = @workshop.state
   .form-group
     = f.label :proposed_date, class: 'control-label col-md-2'
     .col-md-10= f.datetime_select :proposed_date, class: 'form-control'
   .form-group
+    = f.label :zone, class: 'control-label col-md-2'
+    .col-md-10= collection_select :workshop, :zone_id, Zone.all, :id, :name, {}, {:class=>'form-control'}
+  
+    
+  .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'
+      

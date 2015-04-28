@@ -79,6 +79,6 @@ class Admin::WorkshopsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workshop_params
-      params.require(:workshop).permit(:name, :free, :state, :proposed_date)
+      params.require(:workshop).permit(:name, :free, :state, :proposed_date, :zone_id)
     end
 end
