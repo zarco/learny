@@ -342,7 +342,7 @@ GEM
       activesupport (>= 3.0.0)
     simple_calendar (1.1.10)
       rails (>= 3.0)
-    spring (1.3.4)
+    spring (1.3.5)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)

@@ -44,13 +44,14 @@
   .form-group
     = f.label :agenda
     = f.text_area :agenda, :class => 'form-control', :rows=>4
-  .form-group.datetime-select
-    = f.label :proposed_date
-    .form-inline
-      = f.datetime_select :proposed_date
-  .form-group
-    = f.label :zone, class: 'control-label'
-    = collection_select :workshop, :zone_id, Zone.all, :id, :name, {}, {:class=>'form-control'}
+  - unless @workshop.scheduled? or @workshop.given?
+    .form-group.datetime-select
+      = f.label :proposed_date
+      .form-inline
+        = f.datetime_select :proposed_date
+    .form-group
+      = f.label :zone, class: 'control-label'
+      = collection_select :workshop, :zone_id, Zone.all, :id, :name, {}, {:class=>'form-control'}
 
             
   .actions 
