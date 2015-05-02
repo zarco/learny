@@ -1,0 +1,20 @@
+= form_for([:admin,@venue, @calendar], html: { class: 'form-horizontal  calendar'} ) do |f|
+  - if @calendar.errors.any?
+    #error_explanation.panel.panel-danger
+      .panel-heading
+        %h2.panel-title= "#{pluralize(@calendar.errors.count, "error")} prohibited this calendar from being saved:"
+      .panel-body
+        %ul
+          - @calendar.errors.full_messages.each do |msg|
+            %li= msg
+
+  .form-group
+    = f.label :title, class: 'control-label col-md-2'
+    .col-md-10= f.text_field :title, class: 'form-control'
+    .col-md-offset-2.col-md-10
+      = f.label :is_default, for: nil do
+        = f.check_box :is_default
+        = Calendar.human_attribute_name(:is_default)
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, class: 'btn btn-primary'

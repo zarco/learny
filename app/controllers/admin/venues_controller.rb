@@ -1,4 +1,4 @@
-class Admin::VenuesController < ApplicationController
+class Admin::VenuesController < Admin::AdminController
   before_action :set_admin_venue, only: [:show, :edit, :update, :destroy]
 
   before_filter :authenticate_administrator!
@@ -6,7 +6,7 @@ class Admin::VenuesController < ApplicationController
   # GET /admin/venues
   # GET /admin/venues.json
   def index
-    @venues = Venue.all
+    @venues = Venue.all.page params[:page]
   end
 
   # GET /admin/venues/1

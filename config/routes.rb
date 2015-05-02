@@ -1,7 +1,28 @@
 LearnyApp::Application.routes.draw do
-  
 
+  namespace :admin do
+    concern :paginatable do
+      get '(page/:page)', :action => :index, :on => :collection, :as => ''
+    end
   
+    resources :zones
+    resources :reservations, only: [:edit, :destroy, :update, :show]
+    resources :venues, :concerns => :paginatable do
+      resources :reservations, :concerns => :paginatable, only: [:index, :show]
+      resources :calendars, :concerns => :paginatable      
+    end
+    resources :workshops, :concerns => :paginatable do
+       collection do
+         get 'proposed(/page/:page)', :action => :proposed, :as => :proposed
+         get 'scheduled(/page/:page)', :action => :scheduled, :as => :scheduled
+       end
+       
+       resources :reservations, only: [:new, :create]
+    end
+
+    get '/' => 'administrators#index'
+  
+  end
 
   resources :contacts
 
@@ -19,7 +40,7 @@ LearnyApp::Application.routes.draw do
   resources :venues
   resources :venue_pictures
   resources :calendars
-  resources :reservations
+  resources :reservations, except: [:new, :create]
   resources :workshops, :concerns => :paginatable
   resources :enrollments, :concerns => :paginatable
   resources :guests, only: [:create]
@@ -35,13 +56,7 @@ LearnyApp::Application.routes.draw do
   get 'students/index'
   get 'experts/index'
   get 'venues/index'
-  get 'administrators/index'
   
-
-  namespace :admin do
-    resources :venues
-  end
-
   authenticated :venue do
     root to: 'venues#index', as: :venue_root
   end
@@ -55,7 +70,7 @@ LearnyApp::Application.routes.draw do
   end
   
   authenticated :administrator do
-    root to: 'administrators#index', as: :administrator_root
+    root to: 'admin/administrators#index', as: :administrator_root
   end
   
   unauthenticated do

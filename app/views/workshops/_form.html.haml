@@ -44,17 +44,15 @@
   .form-group
     = f.label :agenda
     = f.text_area :agenda, :class => 'form-control', :rows=>4
-  .form-group
-    %label{:for => "establecimiento"} Establecimiento
-    .input-group
-      - venue=( @workshop.venue.name + ' - ' + @workshop.reservation.starts_at.to_s )if !@workshop.venue.nil?
-      %input.form-control#establecimiento{:placeholder => "Buscar establecimiento", :readonly => "readonly", :value => venue }
-      /%input{:type=>"hidden"}
-      = f.fields_for :reservation, @reservation do |builder| 
-        = builder.hidden_field :id, value: @reservation.to_param
-      %span.input-group-btn
-        %button.btn_find_venue.btn.btn-default{:type => "button", 'data-toggle'=>'modal', 'data-target'=>'.dlg_find_venue'}
-          %span.glyphicon.glyphicon-search
+  - unless @workshop.scheduled? or @workshop.given?
+    .form-group.datetime-select
+      = f.label :proposed_date
+      .form-inline
+        = f.datetime_select :proposed_date
+    .form-group
+      = f.label :zone, class: 'control-label'
+      = collection_select :workshop, :zone_id, Zone.all, :id, :name, {}, {:class=>'form-control'}
+
             
   .actions 
     = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg btn-block'

@@ -22,6 +22,7 @@ describe Venue do
   describe 'associations' do
     subject {FactoryGirl.build(:venue)}
     it { should have_many(:calendars)}
+    it { should belong_to(:zone)}    
   end
 
   describe 'validations' do
@@ -39,6 +40,18 @@ describe Venue do
 
       next_workshops=venue.next_workshops
       expect(next_workshops.count).to eq(1)
+    end
+  end
+
+  describe 'reservations' do
+    it 'retreive' do
+      expert=FactoryGirl.create(:expert)
+      workshop=FactoryGirl.create(:workshop, :expert => expert)
+      venue=FactoryGirl.create(:venue)
+      reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first, :workshop => workshop,:starts_at => Date.new(2511,11,11))
+      
+      reservations=venue.reservations
+      expect(reservations.to_a).to eq([reservation])
     end
   end
 

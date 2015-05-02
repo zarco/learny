@@ -1,0 +1,34 @@
+.container
+  .panel.panel-default
+    .panel-heading
+      %h4 #{@venue.name} - #{Calendar.model_name.human.pluralize}
+    .panel-body 
+      %table.table.table-striped
+        %tr
+          %th 
+            = Calendar.human_attribute_name(:title)
+          %th 
+            = Calendar.human_attribute_name(:is_default)
+          %th
+            = Calendar.human_attribute_name(:created_at)
+          %th
+            = Calendar.human_attribute_name(:updated_at)
+          %th
+      
+        - @calendars.each do |calendar|
+          %tr
+            %td= calendar.title
+            %td= calendar.is_default
+            %td= calendar.created_at
+            %td= calendar.updated_at
+            %td
+              = link_to 'Show', [:admin, @venue,calendar], class: 'btn btn-default btn-xs'
+              = link_to 'Edit', edit_admin_venue_calendar_path(@venue,calendar), class: 'btn btn-default btn-xs'
+              = link_to 'Destroy', [:admin,@venue, calendar], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+      
+      = paginate @calendars        
+      %br
+      = link_to 'New Calendar', new_admin_venue_calendar_path(@venue), class: 'btn btn-primary'
+      = link_to Venue.model_name.human.pluralize, admin_venues_path, class: 'btn btn-default'
+      
+      %br

@@ -1,0 +1,16 @@
+%ul.nav.nav-pills
+  %li{:class => "#{'active' if current_page?(admin_workshops_path)}"}
+    = link_to  admin_workshops_path do
+      = Workshop.model_name.human.pluralize
+      %span.badge 
+        = Workshop.count
+  %li{:class => "#{'active' if current_page?(proposed_admin_workshops_path)}"}
+    = link_to proposed_admin_workshops_path do
+      = t("views.states.proposed", count: 2, default: 'Proposed')
+      %span.badge 
+        = Workshop.proposed.count
+  %li{:class => "#{'active' if current_page?(scheduled_admin_workshops_path)}"}
+    = link_to scheduled_admin_workshops_path do
+      = t("views.states.scheduled", count: 2, default: 'Scheduled')
+      %span.badge 
+        = Workshop.scheduled.count

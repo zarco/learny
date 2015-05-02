@@ -1,28 +1,33 @@
 .container
-  %h1 Listing admin_venues
-  
-  .table-responsive
-    %table.table.table-striped
-      %tr
-        %th 
-          = Venue.model_name.human
-        %th
-          / / = Venue.human_attribute_name (:address) 
-        %th
-          = Calendar.model_name.human
-        %th
-          = Reservation.model_name.human
-        %th
-          
-      - @venues.each do |venue|
-        %tr
-          %td= link_to venue.name, '#'
-          %td
-            / /= venue.address
-          %td
-          %td
-          %td= link_to 'Edit', edit_admin_venue_path(venue)
-          
-  %br
-  
-  = link_to 'New Venue', new_admin_venue_path
+  .panel.panel-default
+    .panel-heading
+      %strong #{Venue.model_name.human.pluralize}
+    .panel-body
+      .table-responsive
+        %table.table.table-striped
+          %tr
+            %th 
+              = Venue.model_name.human
+            %th
+              = Venue.human_attribute_name(:created_at)
+            %th
+              = Venue.human_attribute_name(:updated_at)
+            %th
+              
+          - @venues.each do |venue|
+            %tr{:class => "venue-#{venue.to_param}"}
+              %td= link_to venue.name, venue
+              %td
+                = venue.created_at
+              %td
+                = venue.updated_at
+              %td
+                = link_to Calendar.model_name.human.pluralize, admin_venue_calendars_path(venue), class: 'btn btn-default btn-xs'
+                = link_to Reservation.model_name.human(count: 2), admin_venue_reservations_path(venue), class: 'btn btn-default btn-xs'       
+                = link_to 'Show', [:admin, venue], class: 'btn btn-default btn-xs'
+                = link_to 'Edit', edit_admin_venue_path(venue), class: 'btn btn-default btn-xs'
+                = link_to 'Destroy', [:admin, venue], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+
+      = paginate @venues        
+      %br
+      = link_to 'New Venue', new_admin_venue_path

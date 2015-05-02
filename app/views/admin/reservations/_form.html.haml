@@ -1,0 +1,39 @@
+= form_for([:admin,@parent, @reservation], html: { class: 'form-horizontal  reservation'} ) do |f|
+  - if @reservation.errors.any?
+    #error_explanation.panel.panel-danger
+      .panel-heading
+        %h2.panel-title= "#{pluralize(@reservation.errors.count, "error")} prohibited this reservation from being saved:"
+      .panel-body
+        %ul
+          - @reservation.errors.full_messages.each do |msg|
+            %li= msg
+
+  .form-group.datetime-select
+    = f.label :starts_at, class: 'control-label col-md-2'
+    .form-inline
+      .col-md-10= f.datetime_select :starts_at, class: 'form-control'
+  .form-group.datetime-select
+    = f.label :final_time, class: 'control-label col-md-2'
+    .form-inline
+      .col-md-10= f.time_select :final_time, class: 'form-control'
+  .form-group
+    = f.label :max_participants, class: 'control-label col-md-2'
+    .col-md-10= f.number_field :max_participants, class: 'form-control'
+  .form-group
+    = f.label :cover, class: 'control-label col-md-2'
+    .col-md-10= f.number_field :cover, class: 'form-control'
+  
+  - if @workshop
+    .form-group
+      = f.label :calendar_id, class: 'control-label col-md-2'
+      .col-md-10= collection_select :reservation, :calendar_id, Calendar.all, :id, :title_with_venue, {}, {:class=>'form-control'}
+  - if @venue
+    .form-group
+      = f.label :calendar_id, class: 'control-label col-md-2'
+      .col-md-10= collection_select :reservation, :calendar_id, @venue.calendars, :id, :title, {}, {:class=>'form-control'}
+
+  
+  
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, class: 'btn btn-primary'

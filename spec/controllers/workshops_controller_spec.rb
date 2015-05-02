@@ -28,11 +28,15 @@ RSpec.describe WorkshopsController, :type => :controller do
     sign_in @expert
   end
 
+  let(:zone){
+    FactoryGirl.create(:zone)
+  }
+
   # This should return the minimal set of attributes required to create a valid
   # Workshop. As you add validations to Workshop, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:workshop, :expert => @expert)
+    FactoryGirl.attributes_for(:workshop, expert_id: @expert.id, zone_id: zone.id)
   }
 
   let(:invalid_attributes) {
@@ -86,7 +90,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "creates a new Workshop with an existing Reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => {id: reservation.to_param})
+        workshop=FactoryGirl.attributes_for(:workshop, zone_id: zone.id, :reservation_attributes => {id: reservation.to_param})
         expect {
           post :create, {:workshop => workshop}, valid_session
         }.to change(Workshop, :count).by(1)
@@ -97,7 +101,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       end
 
       it "creates a new Workshop with a blank reservation" do
-        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => {:id => ''})
+        workshop=FactoryGirl.attributes_for(:workshop, zone_id: zone.id, :reservation_attributes => {:id => ''})
         expect {
           post :create, {:workshop => workshop}, valid_session
         }.to change(Workshop, :count).by(1)
@@ -122,7 +126,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "with not suitable reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        workshop=FactoryGirl.attributes_for(:workshop, :reservation_attributes => {id: reservation.to_param})
+        workshop=FactoryGirl.attributes_for(:workshop, zone_id: zone.id, :reservation_attributes => {id: reservation.to_param})
         expect {
           post :create, {:workshop => workshop.merge({:max_number_participants => 1000})}, valid_session
         }.to_not change(Workshop, :count)
@@ -146,7 +150,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "updates the requested workshop with reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        new_reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
+        new_reservation=FactoryGirl.create(:other_reservation, :calendar => venue.calendars.first)
 
         workshop=FactoryGirl.create(:workshop)
         workshop.update(:reservation => reservation)
@@ -194,7 +198,7 @@ RSpec.describe WorkshopsController, :type => :controller do
       it "updates the requested workshop with not suitable reservation" do
         venue=FactoryGirl.create(:venue)
         reservation=FactoryGirl.create(:reservation, :calendar => venue.calendars.first)
-        new_reservation=FactoryGirl.create(:reservation, :max_participants=>1,:calendar => venue.calendars.first)
+        new_reservation=FactoryGirl.create(:other_reservation, :max_participants=>1,:calendar => venue.calendars.first)
 
         workshop=FactoryGirl.create(:workshop, valid_attributes)
         workshop.update(:reservation => reservation)

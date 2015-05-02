@@ -1,0 +1,9 @@
+.container
+  .panel.panel-default
+    .panel-heading
+      %h5 Editing calendar
+    .panel-body
+      = render 'form'
+      
+      = link_to 'Show', [:admin,@venue, @calendar], class: 'btn btn-default'
+      = link_to 'Back', admin_venue_calendars_path(@venue), class: 'btn btn-default'

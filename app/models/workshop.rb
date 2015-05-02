@@ -5,7 +5,7 @@ class Workshop < ActiveRecord::Base
 
   include PgSearch
     
-  validates :name,:length,:agenda,:description,:state,:expert,:max_number_participants,:min_number_participants,
+  validates :name,:length,:agenda,:description,:state,:expert,:max_number_participants,:min_number_participants, #:zone,
      presence: true
   
   validates :max_number_participants,:min_number_participants, :length, numericality: { only_integer: true, greater_than: 0  }
@@ -70,6 +70,7 @@ class Workshop < ActiveRecord::Base
   
   belongs_to :expert
   has_one :reservation
+  belongs_to :zone
   has_one :calendar, through: :reservation 
   has_one :venue, through: :calendar
   
@@ -78,6 +79,11 @@ class Workshop < ActiveRecord::Base
   
   
   accepts_nested_attributes_for :reservation
+
+
+  scope :proposed, -> {where(state: 'proposed')}
+  
+  scope :scheduled, -> {where(state: 'scheduled')}
   
   def free=(free)
     super free
@@ -112,6 +118,13 @@ class Workshop < ActiveRecord::Base
       end
     end
   end
+
+  def proposed_final_time
+    if self.proposed_date
+      self.proposed_date += self.length.hours
+    end
+  end
+
   
   private
   def reservation_changes(reservation_id)

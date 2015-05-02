@@ -1,0 +1,32 @@
+%h1 Learny | Taller aceptado por establecimiento
+
+.container
+%table
+  %tr
+    %td{:style => "padding:30px 15px 30px 15px; background-color:#EBEBEB;"}
+      %table
+        %tr
+          %td{:style => "border-left: 1px solid #A3A3A3; border-right: 1px solid #A3A3A3; border-top: 1px solid #A3A3A3; border-bottom: 1px solid #A3A3A3; background-color:#FFFFFF; border-radius:10px; padding:10px 30px 10px 20px;"}
+            %h2{:style => "color:#009933"}
+              El taller "#{@workshop.name}" ha sido confirmado con éxito!
+            
+            %p &nbsp;
+            %p
+              %strong 
+                \- El taller está confirmado en el Establecimiento:
+              %br
+              %h3{:style => "color:#009933"} #{@venue.name}
+            %p
+              %strong 
+                \- Horario:
+              %br
+              %h3{:style => "color:#009933"} #{@reservation.fmt_duration}
+              %br
+            %p
+              %strong 
+                \- Prepara tu clase de manera dinámica y divertida para generar mejores referencias.
+              Recuerda que los Estudiantes podrán dejar evaluaciones en tu perfil. Entre mejores referencias obtengas más oportunidades tendrás de conseguir nuevos Estudiantes en el futuro.
+              %br
+
+%br
+%h3{:style => "color: #2d6ca2"} Afectuosamente, el equipo de Learny

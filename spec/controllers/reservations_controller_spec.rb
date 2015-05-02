@@ -67,12 +67,12 @@ RSpec.describe ReservationsController, :type => :controller do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new reservation as @reservation" do
-      get :new, {}, valid_session
-      expect(assigns(:reservation)).to be_a_new(Reservation)
-    end
-  end
+#  describe "GET new" do
+#    it "assigns a new reservation as @reservation" do
+#      get :new, {}, valid_session
+#      expect(assigns(:reservation)).to be_a_new(Reservation)
+#    end
+#  end
 
   describe "GET edit" do
     it "assigns the requested reservation as @reservation" do
@@ -82,38 +82,38 @@ RSpec.describe ReservationsController, :type => :controller do
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Reservation" do
-        expect {
-          post :create, {:reservation => valid_attributes}, valid_session
-        }.to change(Reservation, :count).by(1)
-      end
+#  describe "POST create" do
+#    describe "with valid params" do
+#      it "creates a new Reservation" do
+#        expect {
+#          post :create, {:reservation => valid_attributes}, valid_session
+#        }.to change(Reservation, :count).by(1)
+#      end
 
-      it "assigns a newly created reservation as @reservation" do
-        post :create, {:reservation => valid_attributes}, valid_session
-        expect(assigns(:reservation)).to be_a(Reservation)
-        expect(assigns(:reservation)).to be_persisted
-      end
+#      it "assigns a newly created reservation as @reservation" do
+#        post :create, {:reservation => valid_attributes}, valid_session
+#        expect(assigns(:reservation)).to be_a(Reservation)
+#        expect(assigns(:reservation)).to be_persisted
+#      end
 
-      it "redirects to the created reservation" do
-        post :create, {:reservation => valid_attributes}, valid_session
-        expect(response).to redirect_to(Reservation.last.calendar)
-      end
-    end
+#      it "redirects to the created reservation" do
+#        post :create, {:reservation => valid_attributes}, valid_session
+#        expect(response).to redirect_to(Reservation.last.calendar)
+#      end
+#    end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved reservation as @reservation" do
-        post :create, {:reservation => invalid_attributes}, valid_session
-        expect(assigns(:reservation)).to be_a_new(Reservation)
-      end
+#    describe "with invalid params" do
+#      it "assigns a newly created but unsaved reservation as @reservation" do
+#        post :create, {:reservation => invalid_attributes}, valid_session
+#        expect(assigns(:reservation)).to be_a_new(Reservation)
+#      end
 
-      it "re-renders the 'new' template" do
-        post :create, {:reservation => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
+#      it "re-renders the 'new' template" do
+#        post :create, {:reservation => invalid_attributes}, valid_session
+#        expect(response).to render_template("new")
+#      end
+#    end
+#  end
 
   describe "PUT update" do
     describe "with valid params" do

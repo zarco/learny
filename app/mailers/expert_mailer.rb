@@ -32,10 +32,11 @@ class ExpertMailer < ActionMailer::Base
   #
   #   en.expert_mailer.accepted_by_venue.subject
   #
-  def accepted_by_venue
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def workshop_accepted_by_venue(workshop)
+    @workshop = workshop
+    @reservation = workshop.reservation
+    @venue = @reservation.venue
+    mail to: workshop.expert.email
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml

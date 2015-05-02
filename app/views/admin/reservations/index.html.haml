@@ -1,0 +1,39 @@
+.container
+  .panel.panel-default
+    .panel-heading
+      %h4 #{@venue.name} - #{Reservation.model_name.human(count: 2)}
+    .panel-body
+      %table.table.table-striped
+        %tr
+          %th
+            = Workshop.model_name.human
+          %th
+            = Reservation.human_attribute_name(:starts_at)
+          %th 
+            = Calendar.model_name.human
+          %th
+            = Reservation.human_attribute_name(:created_at)
+          %th
+            = Reservation.human_attribute_name(:updated_at)
+          %th
+          
+        - @reservations.each do |reservation|
+          %tr
+            %td
+              - workshop=reservation.workshop
+              = link_to workshop.name, workshop if workshop.present?
+            %td= reservation.fmt_duration
+            %td= reservation.calendar.title
+            %td= reservation.created_at
+            %td= reservation.updated_at
+            %td
+              = link_to 'Show', [:admin, @venue, reservation], class: 'btn btn-default btn-xs'
+              = link_to 'Edit', edit_admin_reservation_path(reservation), class: 'btn btn-default btn-xs'
+              = link_to 'Destroy', [:admin, reservation], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+      
+      = paginate @reservations        
+      %br
+      
+      - if @workshop
+        = link_to 'New Reservation', new_admin_workshop_reservation_path(@workshop,@venue), class: 'btn btn-primary'
+      = link_to Venue.model_name.human.pluralize, admin_venues_path, class: 'btn btn-default'

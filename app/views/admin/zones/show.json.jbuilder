@@ -1,0 +1,1 @@
+json.extract! @zone, :name, :created_at, :updated_at
