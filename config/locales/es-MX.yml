@@ -44,6 +44,7 @@ es-MX:
       administrator: 'Administrador'
       contact: 'Contacto'
       zone: 'Zona'
+      student_survey: 'Encuesta'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -129,7 +130,13 @@ es-MX:
         phone: 'Telefono'
       zone:
         name: 'Nombre'
-                
+      student_survey:
+        rating_workshop: 'Calificación del taller'
+        rating_expert: 'Calificación del experto'
+        rating_venue: 'Calificación del establecimiento'
+        rating_learny: 'Calificación de Learny'
+        workshop_comment: 'Comentarios del taller'
+        venue_comment: 'Comentarios del establecimiento'
         
     errors:
       messages:
