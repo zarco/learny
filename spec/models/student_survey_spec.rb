@@ -31,5 +31,51 @@ describe StudentSurvey do
     it { should validate_presence_of :rating_expert }
     it { should validate_presence_of :rating_venue }
     it { should validate_presence_of :rating_learny }
+    
+    it { should validate_numericality_of(:rating_workshop) }
+    it { should_not allow_value(-1).for(:rating_workshop) }
+    it { should_not allow_value(1.1).for(:rating_workshop) }
+    it { should_not allow_value(6).for(:rating_workshop) }
+    it { should_not allow_value('a').for(:rating_workshop) }
+    it { should allow_value(0).for(:rating_workshop)}
+    it { should allow_value(5).for(:rating_workshop)}
+    
+    it { should validate_numericality_of(:rating_expert) }
+    it { should_not allow_value(-1).for(:rating_expert) }
+    it { should_not allow_value(1.1).for(:rating_expert) }
+    it { should_not allow_value(6).for(:rating_expert) }
+    it { should_not allow_value('a').for(:rating_expert) }
+    it { should allow_value(0).for(:rating_expert)}
+    it { should allow_value(5).for(:rating_expert)}
+    
+    it { should validate_numericality_of(:rating_venue) }
+    it { should_not allow_value(-1).for(:rating_venue) }
+    it { should_not allow_value(1.1).for(:rating_venue) }
+    it { should_not allow_value(6).for(:rating_venue) }
+    it { should_not allow_value('a').for(:rating_venue) }
+    it { should allow_value(0).for(:rating_venue)}
+    it { should allow_value(5).for(:rating_venue)}
+    
+    it { should validate_numericality_of(:rating_learny) }
+    it { should_not allow_value(-1).for(:rating_learny) }
+    it { should_not allow_value(1.1).for(:rating_learny) }
+    it { should_not allow_value(6).for(:rating_learny) }
+    it { should_not allow_value('a').for(:rating_learny) }
+    it { should allow_value(0).for(:rating_learny)}
+    it { should allow_value(5).for(:rating_learny)}    
+  end
+  
+  describe 'workshop validations' do
+    describe 'only for given workshop' do
+      
+    end
+    
+    describe 'one per enrolled student' do
+      
+    end 
+    
+    describe 'only for enrolled student' do
+      
+    end
   end
 end

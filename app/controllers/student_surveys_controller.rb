@@ -32,7 +32,7 @@ class StudentSurveysController < ApplicationController
 
     respond_to do |format|
       if @student_survey.save
-        format.html { redirect_to @student_survey, notice: 'Student survey was successfully created.' }
+        format.html { redirect_to @student_survey, notice: I18n.t('controllers.students_survey.create',default: 'Student survey was successfully created.') }
         format.json { render :show, status: :created, location: @student_survey }
       else
         format.html { render :new }

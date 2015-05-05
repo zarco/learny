@@ -2,6 +2,8 @@ es-MX:
   controllers:
     enrollments:
       create: 'Inscripción exitosa'
+    students_survey:
+      create: 'Te agradecemos por completar la encuesta. Tu opinión nos es muy importante y será tomada en cuenta para seguir mejorando.'
   devise:
     sessions:
       sign_in: 'Ingresar'
