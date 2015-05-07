@@ -12,10 +12,8 @@
             =Workshop.human_attribute_name(:free)
           %th 
             =Workshop.human_attribute_name(:state)
-          %th
-            =Venue.model_name.human
           %th 
-            =Reservation.model_name.human
+            =Workshop.human_attribute_name(:proposed_date)
           %th
           
         - @workshops.each do |workshop|
@@ -25,10 +23,7 @@
                 = workshop.name
             %td= workshop.free
             %td= workshop.state
-            %td
-              = link_to workshop.venue.name, workshop.venue
-            %td
-              = workshop.reservation.fmt_duration 
+            %td= workshop.proposed_date
             %td
               = link_to 'Show', [:admin, workshop], class: 'btn btn-default btn-xs'
               = link_to 'Edit', edit_admin_workshop_path(workshop), class: 'btn btn-default btn-xs'

@@ -1,5 +1,21 @@
 class Admin::WorkshopsController < Admin::AdminController
-  before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+  before_action :set_workshop, only: [:show, :edit, :update, :destroy, :state]
+
+  def state
+    puts "Workshop: #{@workshop.state} - #{@workshop.state_events} - #{@workshop.state_transitions}"
+    changed=@workshop.has_been_given
+    
+    respond_to do |format|
+        if changed
+          format.html { redirect_to [:admin, @workshop], notice: "Workshop's state was successfully updated." }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to [:admin, @workshop], alert: "Workshop's state was not updated." }
+          format.json { render json: @workshop.errors, status: :unprocessable_entity }
+        end
+    end
+  end
+
 
   # GET /admin/workshops
   # GET /admin/workshops.json
@@ -13,7 +29,19 @@ class Admin::WorkshopsController < Admin::AdminController
   end
 
   def scheduled
+    @workshops = Workshop.scheduled.next_scheduled.order('starts_at').page params[:page]
+  end
+  
+  def scheduled_past
+    @workshops = Workshop.scheduled.past_scheduled.order('starts_at desc').page params[:page]
+  end
+  
+  def scheduled
     @workshops = Workshop.scheduled.order('proposed_date desc nulls last').page params[:page]
+  end
+  
+  def given
+    @workshops = Workshop.given.order('proposed_date desc nulls last').page params[:page]
   end
 
 

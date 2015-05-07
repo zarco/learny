@@ -83,8 +83,11 @@ class Workshop < ActiveRecord::Base
 
 
   scope :proposed, -> {where(state: 'proposed')}
-  
   scope :scheduled, -> {where(state: 'scheduled')}
+  scope :given, -> {where(state: 'given')}
+  
+  scope :next_scheduled, -> {scheduled.joins(:reservation).where('final_time >= ?', Time.now)}
+  scope :past_scheduled, -> {scheduled.joins(:reservation).where("final_time < ?", Time.now)}
   
   def free=(free)
     super free

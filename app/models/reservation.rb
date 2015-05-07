@@ -75,7 +75,7 @@ class Reservation < ActiveRecord::Base
   end
 
   def invalid_starts_at 
-    if starts_at.present? && starts_at < Time.now 
+    if starts_at.present? && starts_at_changed? && starts_at < Time.now 
         message=I18n.t('activerecord.errors.models.reservation.attributes.starts_at.date_in_the_past')
         #puts message
         errors.add(:starts_at, message)

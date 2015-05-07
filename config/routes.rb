@@ -15,6 +15,12 @@ LearnyApp::Application.routes.draw do
        collection do
          get 'proposed(/page/:page)', :action => :proposed, :as => :proposed
          get 'scheduled(/page/:page)', :action => :scheduled, :as => :scheduled
+         get 'scheduled/past(/page/:page)', :action => :scheduled_past, :as => :scheduled_past
+         get 'given(/page/:page)', :action => :given, :as => :given
+       end
+       
+       member do
+         patch 'state'
        end
        
        resources :reservations, only: [:new, :create]
