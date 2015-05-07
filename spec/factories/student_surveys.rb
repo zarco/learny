@@ -6,6 +6,13 @@ FactoryGirl.define do
     rating_learny 1
     workshop_comment "MyText"
     venue_comment "MyText"
+    association :workshop, factory: :given_workshop
+    association :student, factory: :student
+
+    initialize_with{
+      Enrollment.create(workshop: workshop, student: student)
+      new(workshop: workshop, student: student)
+    }
 
     factory :invalid_student_survey do
       rating_workshop nil

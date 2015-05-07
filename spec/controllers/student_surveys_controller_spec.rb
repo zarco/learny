@@ -37,12 +37,9 @@ RSpec.describe StudentSurveysController, type: :controller do
   }
     
   let(:workshop){
-    FactoryGirl.create(:workshop, free: true)
+    FactoryGirl.create(:given_workshop, free: true)
   }
 
-  let(:enrollment){
-    FactoryGirl.create(:enrollment, workshop: workshop, student: student)
-  }
 
   let(:invalid_attributes) {
     FactoryGirl.attributes_for(:invalid_student_survey)
@@ -63,6 +60,7 @@ RSpec.describe StudentSurveysController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested student_survey as @student_survey" do
+      Enrollment.create!(workshop: workshop, student: @student)
       student_survey = StudentSurvey.create! valid_attributes.merge({workshop: workshop, student: @student})
       get :show, {:id => student_survey.to_param}, valid_session
       expect(assigns(:student_survey)).to eq(student_survey)
@@ -89,18 +87,21 @@ RSpec.describe StudentSurveysController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new StudentSurvey" do
+        Enrollment.create!(workshop: workshop, student: @student)
         expect {
           post :create, {workshop_id: workshop.to_param, :student_survey => valid_attributes}, valid_session
         }.to change(StudentSurvey, :count).by(1)
       end
 
       it "assigns a newly created student_survey as @student_survey" do
+        Enrollment.create!(workshop: workshop, student: @student)
         post :create, {workshop_id: workshop.to_param, :student_survey => valid_attributes}, valid_session
         expect(assigns(:student_survey)).to be_a(StudentSurvey)
         expect(assigns(:student_survey)).to be_persisted
       end
 
       it "redirects to the created student_survey" do
+        Enrollment.create!(workshop: workshop, student: @student)
         post :create, {workshop_id: workshop.to_param, :student_survey => valid_attributes}, valid_session
         expect(response).to redirect_to(StudentSurvey.last)
       end

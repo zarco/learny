@@ -25,6 +25,10 @@ FactoryGirl.define do
       price nil
     end
 
+    factory :given_workshop do
+      state :given
+    end
+
     factory :invalid_workshop do
       name nil
       price 10.00*-1

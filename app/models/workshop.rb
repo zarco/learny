@@ -75,6 +75,7 @@ class Workshop < ActiveRecord::Base
   has_one :venue, through: :calendar
   
   has_many :enrollments
+  has_many :student_surveys
   has_many :students, through: :enrollments
   
   
@@ -92,6 +93,15 @@ class Workshop < ActiveRecord::Base
   
   def small_description(total_words=250)
     description.truncate(total_words, separator: " ")
+  end
+  
+  def student_enrolled?(student)
+    count=enrollments.where(student: student).count
+    count > 0
+  end
+  
+  def student_survey_done?(student)
+    student_surveys.where(student: student).count > 0
   end
   
   def update_reservation(reservation_id)    
