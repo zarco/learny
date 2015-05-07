@@ -17,7 +17,11 @@ class StudentSurveysController < ApplicationController
 
   # GET /student_surveys/new
   def new
-    @student_survey = StudentSurvey.new(workshop: @workshop)
+    @student_survey = StudentSurvey.new(workshop: @workshop, student: current_student)
+    unless @student_survey.valid?
+      #flash[:error]=@student_survey.errors.full_messages
+      redirect_to student_root_path, alert: @student_survey.errors.full_messages.first
+    end
   end
 
   # GET /student_surveys/1/edit

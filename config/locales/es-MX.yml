@@ -240,9 +240,9 @@ es-MX:
         student_survey:
           attributes:
             workshop:
-              not_given: 'El taller aún no ha sido impartido. No es posible realizar la encuesta en este momento.'
-              student_not_enrolled: 'La encuesta solo puede ser llenada para talleres en los que estuvieras presente'
-              survey_already_done: 'Ya has respondido la encuesta para este taller anteiormente'
+              not_given: 'aún no ha sido impartido. No es posible realizar la encuesta en este momento.'
+              student_not_enrolled: '. La encuesta solo puede ser llenada para talleres en los que estuvieras presente'
+              survey_already_done: '. Ya has respondido la encuesta para este taller anteriormente'
         guest:
           attributes:
             email:

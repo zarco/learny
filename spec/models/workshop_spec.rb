@@ -39,6 +39,7 @@ describe Workshop do
     it { should belong_to(:zone)}
     it { should have_many(:enrollments)}
     it { should have_many(:students)}
+    it { should have_many(:student_surveys)}
   
   end
 
