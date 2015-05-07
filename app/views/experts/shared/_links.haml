@@ -2,11 +2,11 @@
   .col-md-6
     = link_to "/auth/facebook?u=2", {:class => "btn btn-block btn-social btn-md btn-facebook"} do
       %i.fa.fa-facebook
-      Iniciar con Facebook
+      = t('views.legends.sign_up_with_facebook',default: 'Sign up with Facebook')
   .col-md-6
     = link_to "/auth/twitter?u=2", {:class => "btn btn-block btn-social btn-md btn-twitter"} do
       %i.fa.fa-twitter
-      Iniciar con Twitter
+      = t('views.legends.sign_up_with_twitter',default: 'Sign up with Twitter')
 - if controller_name != 'sessions'
   = link_to t('devise.sessions.sign_in',default: "Log in"), new_session_path(resource_name)
   %br/

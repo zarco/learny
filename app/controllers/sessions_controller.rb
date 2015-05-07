@@ -14,8 +14,8 @@ class SessionsController < ApplicationController
 	  if user
 	  	@student = user if u == Users::STUDENT
 		  @expert = user if u == Users::EXPERT
-		  @venue = user if u == Users::VENUE
-	    flash[:notice] = "Has iniciado sesión correctamente desde #{provider.capitalize}"
+		  @venue = user if u == Users::VENUE		  
+	    flash[:notice] = I18n.t('views.legends.signed_up_successfully_social_network', provider: provider.capitalize, default: 'You have signed up successfully')
 			sign_in_and_redirect @student, :event => :authentication if u == Users::STUDENT
 			sign_in_and_redirect @expert, :event => :authentication if u == Users::EXPERT
 			sign_in_and_redirect @venue, :event => :authentication if u == Users::VENUE
