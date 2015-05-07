@@ -1,0 +1,31 @@
+.container
+  .panel.panel-default
+    .panel-heading
+      =render 'workshops_heading'
+      
+    .panel-body
+      %table.table.table-striped
+        %tr
+          %th 
+            =Workshop.human_attribute_name(:name)
+          %th 
+            =Workshop.human_attribute_name(:free)
+          %th 
+            =Workshop.human_attribute_name(:state)
+          %th 
+            =Workshop.human_attribute_name(:proposed_date)
+          %th
+          
+        - @workshops.each do |workshop|
+          %tr
+            %td
+              = link_to workshop_path(workshop) do
+                = workshop.name
+            %td= workshop.free
+            %td= workshop.state
+            %td= workshop.proposed_date
+            %td
+              = link_to 'Show', [:admin, workshop], class: 'btn btn-default btn-xs'
+              = link_to 'Edit', edit_admin_workshop_path(workshop), class: 'btn btn-default btn-xs'
+              = link_to 'Destroy', [:admin, workshop], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+      = paginate @workshops

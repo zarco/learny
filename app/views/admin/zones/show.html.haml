@@ -1,0 +1,17 @@
+.container
+  %p#notice= notice
+  
+  %dl.dl-horizontal
+    %dt
+      %strong #{Zone.human_attribute_name(:nombre)}:
+    %dd= @zone.name
+    %dt
+      %strong #{Zone.human_attribute_name(:created_at)}:
+    %dd= @zone.created_at
+    %dt
+      %strong #{Zone.human_attribute_name(:updated_at)}:
+    %dd= @zone.updated_at
+  
+  
+  = link_to 'Edit', edit_admin_zone_path(@zone), class: 'btn btn-default'
+  = link_to 'Back', admin_zones_path, class: 'btn btn-default'

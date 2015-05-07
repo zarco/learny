@@ -1,0 +1,26 @@
+
+.container
+  %dl.dl-horizontal
+    %dt
+      %strong 
+        =Calendar.human_attribute_name(:title)
+    %dd= @calendar.title
+  %dl.dl-horizontal
+    %dt
+      %strong 
+        =Calendar.human_attribute_name(:is_default)
+    %dd= @calendar.is_default
+  %dl.dl-horizontal
+    %dt
+      =Calendar.human_attribute_name(:created_at)
+    %dd= @calendar.created_at
+  %dl.dl-horizontal
+    %dt
+      %strong
+        =Calendar.human_attribute_name(:updated_at)
+    %dd= @calendar.updated_at
+  
+  
+  
+  = link_to 'Edit', edit_admin_venue_calendar_path(@venue,@calendar), class: 'btn btn-default'
+  = link_to 'Back', admin_venue_calendars_path(@venue), class: 'btn btn-default'

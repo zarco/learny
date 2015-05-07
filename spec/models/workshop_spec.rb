@@ -26,6 +26,7 @@ describe Workshop do
     it { should respond_to :max_number_participants}
     it { should respond_to :min_number_participants}
     it { should respond_to :free}
+    it { should respond_to :proposed_date}
     it { should respond_to :deleted_at }
   end
 
@@ -35,9 +36,10 @@ describe Workshop do
     it { should have_one(:reservation)}
     it { should have_one(:calendar)}
     it { should have_one(:venue)}
+    it { should belong_to(:zone)}
     it { should have_many(:enrollments)}
     it { should have_many(:students)}
-
+  
   end
 
   describe 'validations_for_not_free_workshop' do
@@ -47,6 +49,7 @@ describe Workshop do
     it { should validate_presence_of :length }
     it { should validate_presence_of :price }
     it { should validate_presence_of :expert }
+    #it { should validate_presence_of :zone }
     it { should validate_presence_of :description }
     it { should validate_presence_of :max_number_participants }
     it { should validate_presence_of :min_number_participants }
@@ -196,6 +199,28 @@ describe Workshop do
       expect(workshop.send(:reservation_changes,nil)).to be_falsey
     end
   end
+
+  describe 'scopes' do
+    
+    it 'proposed' do
+      workshop=FactoryGirl.create(:workshop)
+      workshop.proposed_by_expert
+      expect(workshop.persisted?).to be_truthy
+      expect(Workshop.proposed.to_a).to be_eql([workshop])
+      
+      
+    end
+    
+    it 'scheduled' do
+      workshop=FactoryGirl.create(:workshop)
+      workshop.proposed_by_expert
+      expect(workshop.persisted?).to be_truthy
+      workshop.accepted_by_venue
+      expect(Workshop.scheduled.to_a).to be_eql([workshop])
+    end
+    
+  end
+
 
   describe 'soft delete' do
     let(:workshop){

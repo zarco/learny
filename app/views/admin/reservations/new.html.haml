@@ -1,0 +1,9 @@
+.container
+  .panel.panel-default
+    .panel-heading
+      %h4 New reservation
+    .panel-body
+      = render 'form'
+      
+      - if @venue
+        = link_to 'Back', admin_venue_reservations_path(@venue), class: 'btn btn-default'

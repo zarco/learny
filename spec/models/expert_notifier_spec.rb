@@ -20,7 +20,7 @@ RSpec.describe ExpertNotifier , :type => :model do
     end
     
     it "accepted by venue" do
-      notifier.accepted_by_venue(workshop)
+      notifier.workshop_accepted_by_venue(workshop)
     end
 
     it "has been given" do

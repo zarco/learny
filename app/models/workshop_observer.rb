@@ -29,7 +29,7 @@ class WorkshopObserver < ActiveRecord::Observer
         notifiers=[@expert_notifier,@venue_notifier]
         notify(notifiers,:workshop_proposed_with_reservation, workshop)
       when :accepted_by_venue
-        #puts "notifying expert"
+        #puts ">>>>>>>>>>>>>>>>>>>>>>>> ## notifying expert"
         notifiers=[@expert_notifier]
         notify(notifiers,:workshop_accepted_by_venue, workshop)
       when :cancelled_by_expert

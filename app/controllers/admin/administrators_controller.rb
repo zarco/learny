@@ -1,4 +1,4 @@
-class AdministratorsController < ApplicationController
+class Admin::AdministratorsController < ApplicationController
   
   before_filter :authenticate_administrator!
   

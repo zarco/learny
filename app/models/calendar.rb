@@ -12,4 +12,8 @@ class Calendar < ActiveRecord::Base
   def title  	  	
     self.title = self[:title] == "default" ? I18n.t('views.legends.calendar.main_table', default: 'Main table') : self[:title]
   end
+  
+  def title_with_venue
+    venue.name+ ' - '+ title
+  end
 end

@@ -9,9 +9,9 @@ class ExpertNotifier
     ExpertMailer.workshop_proposed_with_reservation(workshop).deliver_now
   end
 
-  def accepted_by_venue(workshop)
-    #puts "accepted_by_venue #{workshop}"
-    ExpertMailer.accepted_by_venue.deliver_now
+  def workshop_accepted_by_venue(workshop)
+    #puts "workshop accepted_by_venue #{workshop}"
+    ExpertMailer.workshop_accepted_by_venue(workshop).deliver_now
   end
 
   def workshop_has_been_given(workshop)

@@ -1,0 +1,45 @@
+.container
+  .panel.panel-default
+    .panel-heading
+      %h4
+        = Reservation.model_name.human
+    .panel-body
+    
+      %dl.dl-horizontal
+        %dt
+          %strong
+            = Reservation.human_attribute_name(:starts_at)
+        %dd= @reservation.starts_at
+      %dl.dl-horizontal
+        %dt
+          %strong
+            = Reservation.human_attribute_name(:final_time)
+        %dd= @reservation.final_time
+      %dl.dl-horizontal
+        %dt
+          %strong
+            = Reservation.human_attribute_name(:max_participants)
+        %dd= @reservation.max_participants
+      %dl.dl-horizontal
+        %dt
+          %strong
+            = Calendar.model_name.human
+        %dd= @reservation.calendar.title
+      %dl.dl-horizontal
+        %dt
+          %strong
+            = Reservation.human_attribute_name(:cover)
+        %dd= @reservation.cover
+      %dl.dl-horizontal
+        %dt
+          %strong
+            =Reservation.human_attribute_name(:created_at)
+        %dd= @reservation.created_at
+      %dl.dl-horizontal
+        %dt
+          %strong
+            =Reservation.human_attribute_name(:updated_at)
+        %dd= @reservation.updated_at
+      
+        = link_to 'Edit', edit_admin_reservation_path(@reservation), class: 'btn btn-default'
+        = link_to 'Back', admin_venue_reservations_path(@reservation.venue), class: 'btn btn-default'

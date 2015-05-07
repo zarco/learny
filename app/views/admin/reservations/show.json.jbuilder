@@ -1,0 +1,1 @@
+json.extract! @reservation, :starts_at, :final_time, :max_participants, :calendar_id, :cover, :created_at, :updated_at

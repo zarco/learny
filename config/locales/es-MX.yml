@@ -37,10 +37,13 @@ es-MX:
       venue_picture: 'FotoEstablecimiento'
       workshop: 'Workshop'
       enrollment: 'Inscripción'
-      reservation: 'Reservación'
+      reservation: 
+        one: 'Reservación'
+        other: 'Reservaciones'
       calendar: 'Calendario'
       administrator: 'Administrador'
       contact: 'Contacto'
+      zone: 'Zona'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -105,6 +108,7 @@ es-MX:
         max_number_participants: 'Número máximo de participantes'
         state: 'Estado'
         free: 'Sin costo'
+        proposed_date: 'Fecha propuesta'
       reservation:
         starts_at: 'Inicia'
         final_time: 'Termina'
@@ -123,6 +127,8 @@ es-MX:
         name: 'Nombre'
         mail: 'Correo'
         phone: 'Telefono'
+      zone:
+        name: 'Nombre'
                 
         
     errors:
@@ -185,11 +191,14 @@ es-MX:
               not_a_number: 'debe ser un número entero'
             final_time:
               date_in_the_past: 'no puede ser antes de la hora de inicio'
+              already_reserved: 'Ya existe una reservación en el calendario: %{duration}'
             starts_at:
               date_in_the_past: 'no puede ser una fecha pasada'
+              already_reserved: 'Ya existe una reservación en el calendario: %{duration}'
             workshop:
               too_many_participants: 'La reservación no es suficiente para %{participants} participantes'
               too_much_time: 'El tiempo de la reservación no es suficiente para el taller'
+              previously_reserved: 'El taller ya cuenta con una reservacion'
             cover:
               not_a_number: 'debe ser una cifra'
               greater_than_or_equal_to: 'debe ser mayor o igual a 0'
@@ -217,6 +226,8 @@ es-MX:
               blank: 'es requerido'
               not_a_number: 'no es un número entero'
               greater_than: 'no es válida'
+            zone:
+              blank: 'es requerida'
         guest:
           attributes:
             email:
@@ -404,6 +415,8 @@ es-MX:
       subject: "Has propuesto un nuevo taller"
     workshop_cancelled_by_expert:
       subject: "Has cancelado un taller"
+    workshop_accepted_by_venue:
+      subject: "Se ha confirmado un taller en un Establecimiento"
 
 
 # Carrierwave I18n
