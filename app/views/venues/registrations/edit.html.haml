@@ -130,14 +130,15 @@
               - if devise_mapping.confirmable? && resource.pending_reconfirmation?
                 %div
                   Currently waiting confirmation for: #{resource.unconfirmed_email}
-              .form-group
-                = f.label :password
-                %i
-                  = t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it', default: "(leave blank if you do not want to change it)")              
-                = f.password_field :password, autocomplete: "off", class: 'form-control'
-              .form-group
-                = f.label :password_confirmation
-                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+              - unless signed_up_with_social_network?(@venue)
+                .form-group
+                  = f.label :password
+                  %i
+                    = t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it', default: "(leave blank if you do not want to change it)")              
+                  = f.password_field :password, autocomplete: "off", class: 'form-control'
+                .form-group
+                  = f.label :password_confirmation
+                  = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
                   
     .row
       .col-md-12
