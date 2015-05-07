@@ -96,3 +96,6 @@ gem 'rails-observers'
 gem "paranoia", "~> 2.0"
 gem "obfuscate_id", git: "https://github.com/namick/obfuscate_id"
 #gem 'encrypted_id'
+
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'

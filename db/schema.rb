@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306204326) do
+ActiveRecord::Schema.define(version: 20150507170403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(version: 20150306204326) do
     t.string   "genre"
     t.string   "google_plus_link"
     t.datetime "deleted_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "experts", ["confirmation_token"], name: "index_experts_on_confirmation_token", unique: true, using: :btree
@@ -151,6 +153,8 @@ ActiveRecord::Schema.define(version: 20150306204326) do
     t.date     "birthday"
     t.string   "genre"
     t.datetime "deleted_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "students", ["deleted_at"], name: "index_students_on_deleted_at", using: :btree
@@ -195,6 +199,8 @@ ActiveRecord::Schema.define(version: 20150306204326) do
     t.string   "website"
     t.string   "google_plus_link"
     t.datetime "deleted_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree

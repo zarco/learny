@@ -39,6 +39,24 @@ class Student < ActiveRecord::Base
     .limit(number)
   end
 
+  def self.create_with_omniauth(auth)
+    create! do |student|
+      student.provider = auth.provider
+      student.uid = auth.uid
+      if auth.provider == 'facebook' 
+        student.first_name = auth.extra.raw_info.first_name
+        student.last_name = auth.extra.raw_info.last_name
+        student.email = auth.info.email
+      elsif auth.provider == 'twitter'
+        student.first_name = auth.extra.raw_info.name
+        student.email = auth.uid + '@twitter.com'       
+        student.last_name = 'Student'
+      end
+      student.password = Devise.friendly_token[0,20]
+      student.skip_confirmation!
+    end
+  end
+
   #def update(params)
   #  if params[:password].blank?
   #    params.delete(:password)

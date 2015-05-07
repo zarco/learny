@@ -17,3 +17,6 @@
   - resource_class.omniauth_providers.each do |provider|
     = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
     %br/
+= link_to "Sign in with Facebook", "/auth/facebook?u=2"
+%br/
+= link_to "Sign in with Twitter", "/auth/twitter?u=2"
