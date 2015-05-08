@@ -1,6 +1,14 @@
 require "rails_helper"
 
 RSpec.describe StudentMailer, :type => :mailer do
+  let(:workshop){
+    FactoryGirl.create(:given_workshop, :reservation)
+  }
+  
+  let(:student){
+    FactoryGirl.build(:student)
+  }
+  
   describe "workshop_cancelled_by_expert" do
     let(:mail) { StudentMailer.workshop_cancelled_by_expert }
 
@@ -16,16 +24,16 @@ RSpec.describe StudentMailer, :type => :mailer do
   end
 
   describe "workshop_has_been_given" do
-    let(:mail) { StudentMailer.workshop_has_been_given }
+    let(:mail) { StudentMailer.workshop_has_been_given(workshop,student) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Workshop has been given")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.subject).to eq(I18n.t('student_mailer.workshop_has_been_given.subject'))
+      expect(mail.to).to eq([student.email])
       expect(mail.from).to eq(["from@example.com"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+      expect(mail.body.encoded).to match(workshop.name)
     end
   end
 

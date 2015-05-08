@@ -17,10 +17,12 @@ class StudentMailer < ActionMailer::Base
   #
   #   en.student_mailer.workshop_has_been_given.subject
   #
-  def workshop_has_been_given
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def workshop_has_been_given(workshop, student)
+    @workshop=workshop
+    @reservation=workshop.reservation
+    @venue=workshop.venue
+    @student=student
+    mail to: student.email
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml

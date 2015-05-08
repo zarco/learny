@@ -412,6 +412,8 @@ es-MX:
       subject: "Te has inscrito en un taller en Learny"
     unenrolled_in_a_workshop:
       subject: "Has cancelado tu inscripción"
+    workshop_has_been_given:
+      subject: "Has participado en un taller en Learny"
   venue_mailer:
     reservation_updated:
       subject: "Se ha actualizado una reservación"

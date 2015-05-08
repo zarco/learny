@@ -42,7 +42,8 @@ class WorkshopObserver < ActiveRecord::Observer
         #@student_notifier.workshop_has_been_given(workshop)
         #puts "notifying experts. Assesment"
         #puts "notifying venue. Assesment"
-        notifiers=[@student_notifier,@expert_notifier,@venue_notifier]
+        #notifiers=[@student_notifier,@expert_notifier,@venue_notifier]
+        notifiers=[@student_notifier]
         notify(notifiers,:workshop_has_been_given, workshop)
       when :revoked_by_venue
         #@student_notifier.workshop_revoked_by_venue(workshop)

@@ -2,7 +2,7 @@ class StudentSurveysController < ApplicationController
   
   before_action :set_workshop, only: [:new, :create]
   before_action :set_student_survey, only: [:show, :edit, :update, :destroy]
-  
+  before_filter :authenticate_student!
 
   # GET /student_surveys
   # GET /student_surveys.json
