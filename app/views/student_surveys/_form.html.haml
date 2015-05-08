@@ -9,16 +9,16 @@
     .col.col-md-6
       .form-group
         = f.label :rating_workshop
-        = f.text_field :rating_workshop,  :class => 'form-control rating' 
+        = f.text_field :rating_workshop,  class: 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
       .form-group
         = f.label :rating_expert
-        = f.text_field :rating_workshop,  :class => 'form-control rating' 
+        = f.text_field :rating_expert,  :class => 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
       .form-group
         = f.label :rating_venue
-        = f.text_field :rating_workshop,  :class => 'form-control rating' 
+        = f.text_field :rating_venue,  :class => 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
       .form-group
         = f.label :rating_learny
-        = f.text_field :rating_workshop,  :class => 'form-control rating' 
+        = f.text_field :rating_learny,  :class => 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
     .col.col-md-6
       .form-group
         = f.label :workshop_comment

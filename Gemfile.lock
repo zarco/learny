@@ -14,6 +14,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     CFPropertyList (2.3.1)
     actionmailer (4.2.0)
@@ -56,8 +57,6 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.4.0)
-      railties (>= 3.0)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -204,8 +203,6 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    font-awesome-rails (4.3.0.0)
-      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     gherkin (2.12.2)
       multi_json (~> 1.3)
@@ -287,6 +284,19 @@ GEM
       sprockets-rails
     rails-admin-scaffold (0.1.0)
       rails (>= 4.0)
+    rails-assets-bootstrap (3.3.4)
+      rails-assets-jquery (>= 1.9.1)
+    rails-assets-bootstrap-datepicker (1.4.0)
+      rails-assets-bootstrap (>= 2.0.4, < 4.0)
+      rails-assets-jquery (>= 1.7.1)
+    rails-assets-bootstrap-social (4.9.0)
+      rails-assets-bootstrap (~> 3)
+      rails-assets-font-awesome (~> 4.3)
+    rails-assets-bootstrap-star-rating (3.5.1)
+      rails-assets-bootstrap (>= 3.0.0)
+      rails-assets-jquery (>= 1.9.0)
+    rails-assets-font-awesome (4.3.0)
+    rails-assets-jquery (2.1.4)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -347,7 +357,7 @@ GEM
       activesupport (>= 3.0.0)
     simple_calendar (1.1.10)
       rails (>= 3.0)
-    spring (1.3.5)
+    spring (1.3.6)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -387,7 +397,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-datepicker-rails
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)
@@ -397,7 +406,6 @@ DEPENDENCIES
   factory_girl_rails
   ffaker (~> 1.25.0)
   fog
-  font-awesome-rails
   haml-rails
   high_voltage
   jbuilder (~> 2.0)
@@ -413,6 +421,11 @@ DEPENDENCIES
   rack-timeout
   rails (= 4.2.0)
   rails-admin-scaffold
+  rails-assets-bootstrap!
+  rails-assets-bootstrap-datepicker!
+  rails-assets-bootstrap-social!
+  rails-assets-bootstrap-star-rating!
+  rails-assets-font-awesome!
   rails-observers
   rails_12factor
   rspec-rails
