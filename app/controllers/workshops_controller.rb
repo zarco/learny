@@ -103,6 +103,10 @@ class WorkshopsController < ApplicationController
     end
   end
 
+  def all
+    @workshops = Workshop.order("proposed_date DESC").page(params[:page]).per_page(10)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

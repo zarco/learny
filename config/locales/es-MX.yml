@@ -275,6 +275,8 @@ es-MX:
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      workshops: 'Talleres'
+      count_workshops: "Ver los %{num_workshops} talleres"
       administrator: 'Administración'
       contact: 'Contacto'
       email_contact: 'cursos@learny.me'

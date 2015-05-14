@@ -40,6 +40,13 @@ ready =->
     enable_workshop_price()
   
   enable_workshop_price()
-  
+
+$(window).scroll ->
+  url = $('.pagination .next_page').attr('href')
+  if url && $(window).scrollTop() > $(document).height() - $(window).height() - 250    
+    bar = "<div class='progress'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='90' aria-valuemin='0' aria-valuemax='100' style='width: 82%'></div></div>"
+    $('.pagination').addClass('col-md-12 col-xs-12').text('Buscando talleres...').append(bar)
+    $.getScript(url)
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

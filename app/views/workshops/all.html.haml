@@ -1,0 +1,8 @@
+.container
+	.page-header.text-center    
+		%h3 Talleres
+	#workshops	
+		%ul.list-group
+			- @workshops.each do |workshop|
+				= render workshop
+	= will_paginate @workshops

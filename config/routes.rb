@@ -1,5 +1,7 @@
 LearnyApp::Application.routes.draw do
 
+  get 'workshops/all', as: 'all_workshops'
+
   namespace :admin do
     concern :paginatable do
       get '(page/:page)', :action => :index, :on => :collection, :as => ''
