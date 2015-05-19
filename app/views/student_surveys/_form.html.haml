@@ -1,0 +1,32 @@
+= form_for [@workshop,@student_survey], html: {class: "center",role:'form'} do |f|
+  - if @student_survey.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@student_survey.errors.count, "error")} prohibited this student_survey from being saved:"
+      %ul
+        - @student_survey.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col.col-md-6
+      .form-group
+        = f.label :rating_workshop
+        = f.text_field :rating_workshop,  class: 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
+      .form-group
+        = f.label :rating_expert
+        = f.text_field :rating_expert,  :class => 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
+      .form-group
+        = f.label :rating_venue
+        = f.text_field :rating_venue,  :class => 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
+      .form-group
+        = f.label :rating_learny
+        = f.text_field :rating_learny,  :class => 'form-control rating', 'data-step'=> '1.0' , 'data-show-caption' =>'false'
+    .col.col-md-6
+      .form-group
+        = f.label :workshop_comment
+        = f.text_area :workshop_comment, :class => 'form-control', :rows=>3
+      .form-group
+        = f.label :venue_comment
+        = f.text_area :venue_comment, :class => 'form-control', :rows=>3
+
+      .actions
+        = f.submit 'Save', :class => 'btn btn-primary btn-lg btn-block'
+    

@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
-//= require bootstrap-datepicker/core
+//= require bootstrap
+//= require bootstrap-datepicker
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
+//= require bootstrap-star-rating
 //= require turbolinks
 //= require commons
 //= require scroll

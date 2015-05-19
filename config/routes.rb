@@ -15,6 +15,12 @@ LearnyApp::Application.routes.draw do
        collection do
          get 'proposed(/page/:page)', :action => :proposed, :as => :proposed
          get 'scheduled(/page/:page)', :action => :scheduled, :as => :scheduled
+         get 'scheduled/past(/page/:page)', :action => :scheduled_past, :as => :scheduled_past
+         get 'given(/page/:page)', :action => :given, :as => :given
+       end
+       
+       member do
+         patch 'state'
        end
        
        resources :reservations, only: [:new, :create]
@@ -40,8 +46,11 @@ LearnyApp::Application.routes.draw do
   resources :venues
   resources :venue_pictures
   resources :calendars
-  resources :reservations, except: [:new, :create]
-  resources :workshops, :concerns => :paginatable
+  resources :reservations
+  resources :workshops, :concerns => :paginatable do
+    resources :student_surveys, only: [:new, :create]
+  end
+  resources :student_surveys, only: [:show]
   resources :enrollments, :concerns => :paginatable
   resources :guests, only: [:create]
   

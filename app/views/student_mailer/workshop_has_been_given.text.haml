@@ -1,3 +1,11 @@
-StudentMailer#workshop_has_been_given
+Learny | Gracias por tu asistencia al taller de "#{@workshop.name}"
 
-= @greeting + ", find me in app/views/student_mailer/workshop_has_been_given.text.haml"
+Queremos agradecer tu asistencia al taller #{@workshop.name}, el cual fue realizado
+en #{@venue.name}, #{@venue.address} con un horario de  #{@workshop.reservation.fmt_duration}
+
+De igual modo te invitamos a participar en la encuesta del taller accediendo al siguiente enlace
+
+
+Tu opinión nos resulta muy importante para seguir mejorando nuestro servicio.
+
+Afectuosamente, el equipo de Learny
