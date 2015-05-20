@@ -10,11 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap.min
- *= require bootstrap_and_overrides
- *= require bootstrap-datepicker3
+ *= require bootstrap
  *= require font-awesome
  *= require bootstrap-social
+ *= require bootstrap-star-rating
  *= require theme
  */ 
 

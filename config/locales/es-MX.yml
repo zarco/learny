@@ -2,6 +2,8 @@ es-MX:
   controllers:
     enrollments:
       create: 'Inscripción exitosa'
+    students_survey:
+      create: 'Te agradecemos por completar la encuesta. Tu opinión nos es muy importante y será tomada en cuenta para seguir mejorando.'
   devise:
     sessions:
       sign_in: 'Ingresar'
@@ -44,6 +46,7 @@ es-MX:
       administrator: 'Administrador'
       contact: 'Contacto'
       zone: 'Zona'
+      student_survey: 'Encuesta'
     attributes:
       student:
         email: 'Correo electrónico'
@@ -129,7 +132,13 @@ es-MX:
         phone: 'Telefono'
       zone:
         name: 'Nombre'
-                
+      student_survey:
+        rating_workshop: 'Calificación del taller'
+        rating_expert: 'Calificación del experto'
+        rating_venue: 'Calificación del establecimiento'
+        rating_learny: 'Calificación de Learny'
+        workshop_comment: 'Comentarios del taller'
+        venue_comment: 'Comentarios del establecimiento'
         
     errors:
       messages:
@@ -228,6 +237,12 @@ es-MX:
               greater_than: 'no es válida'
             zone:
               blank: 'es requerida'
+        student_survey:
+          attributes:
+            workshop:
+              not_given: 'aún no ha sido impartido. No es posible realizar la encuesta en este momento.'
+              student_not_enrolled: '. La encuesta solo puede ser llenada para talleres en los que estuvieras presente'
+              survey_already_done: '. Ya has respondido la encuesta para este taller anteriormente'
         guest:
           attributes:
             email:
@@ -399,6 +414,8 @@ es-MX:
       subject: "Te has inscrito en un taller en Learny"
     unenrolled_in_a_workshop:
       subject: "Has cancelado tu inscripción"
+    workshop_has_been_given:
+      subject: "Has participado en un taller en Learny"
   venue_mailer:
     reservation_updated:
       subject: "Se ha actualizado una reservación"

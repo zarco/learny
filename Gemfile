@@ -75,20 +75,15 @@ gem 'fog'#, '~> 1.3.1'
 gem 'mini_magick'
 
 
-#
-
 
 gem "letter_opener", :group => :development
 
 gem "simple_calendar", "~> 1.1.0"
-gem 'bootstrap-datepicker-rails'
 
-gem 'font-awesome-rails'
 
 gem 'kaminari'
 gem 'time_difference', '~> 0.3.2'
 
-#gem 'foreigner'
 gem 'rack-timeout'
 
 gem 'state_machine', :git => 'https://github.com/seuros/state_machine.git'
@@ -96,7 +91,19 @@ gem 'rails-observers'
 
 gem "paranoia", "~> 2.0"
 gem "obfuscate_id", git: "https://github.com/namick/obfuscate_id"
+
 #gem 'encrypted_id'
 
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+
+
+# Dependencias con bower
+# gem 'rails-assets-BOWER_PACKAGE_NAME'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-font-awesome'
+  gem 'rails-assets-bootstrap-star-rating'
+  gem 'rails-assets-bootstrap-datepicker'
+  gem 'rails-assets-bootstrap-social'
+end

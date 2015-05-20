@@ -1,0 +1,19 @@
+%h1 Listing student_surveys
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @student_surveys.each do |student_survey|
+      %tr
+        %td= link_to 'Show', student_survey
+        %td= link_to 'Edit', edit_student_survey_path(student_survey)
+        %td= link_to 'Destroy', student_survey, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Student survey', new_student_survey_path
