@@ -30,6 +30,7 @@
             %td
               = workshop.reservation.fmt_duration 
             %td
+              = link_to I18n.t("views.states.given"), state_admin_workshop_path(workshop), :method => :patch, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-default btn-xs'
               = link_to 'Show', [:admin, workshop], class: 'btn btn-default btn-xs'
               = link_to 'Edit', edit_admin_workshop_path(workshop), class: 'btn btn-default btn-xs'
               = link_to 'Destroy', [:admin, workshop], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'

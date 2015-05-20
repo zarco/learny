@@ -75,6 +75,7 @@ class Workshop < ActiveRecord::Base
   has_one :venue, through: :calendar
   
   has_many :enrollments
+  has_many :student_surveys
   has_many :students, through: :enrollments
   
   
@@ -82,8 +83,11 @@ class Workshop < ActiveRecord::Base
 
 
   scope :proposed, -> {where(state: 'proposed')}
-  
   scope :scheduled, -> {where(state: 'scheduled')}
+  scope :given, -> {where(state: 'given')}
+  
+  scope :next_scheduled, -> {scheduled.joins(:reservation).where('final_time >= ?', Time.now)}
+  scope :past_scheduled, -> {scheduled.joins(:reservation).where("final_time < ?", Time.now)}
   
   def free=(free)
     super free
@@ -92,6 +96,15 @@ class Workshop < ActiveRecord::Base
   
   def small_description(total_words=250)
     description.truncate(total_words, separator: " ")
+  end
+  
+  def student_enrolled?(student)
+    count=enrollments.where(student: student).count
+    count > 0
+  end
+  
+  def student_survey_done?(student)
+    student_surveys.where(student: student).count > 0
   end
   
   def update_reservation(reservation_id)    

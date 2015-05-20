@@ -11,7 +11,9 @@ class StudentNotifier
   
   def workshop_has_been_given(workshop)
     #puts "workshop_has_been_given #{workshop}"
-    StudentMailer.workshop_has_been_given.deliver_now
+    workshop.students.each do |student|
+      StudentMailer.workshop_has_been_given(workshop,student).deliver_now
+    end
   end
   
   def workshop_revoked_by_venue(workshop)

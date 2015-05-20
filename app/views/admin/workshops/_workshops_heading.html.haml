@@ -9,8 +9,27 @@
       = t("views.states.proposed", count: 2, default: 'Proposed')
       %span.badge 
         = Workshop.proposed.count
-  %li{:class => "#{'active' if current_page?(scheduled_admin_workshops_path)}"}
-    = link_to scheduled_admin_workshops_path do
+        
+  %li.dropdown
+    %a{class: 'dropdown-toggle', 'data-toggle' => 'dropdown', href: '#'}
       = t("views.states.scheduled", count: 2, default: 'Scheduled')
       %span.badge 
         = Workshop.scheduled.count
+      %span.caret
+    %ul.dropdown-menu
+      %li
+        = link_to scheduled_admin_workshops_path do
+          Siguientes
+          %span.badge 
+            = Workshop.next_scheduled.count
+      %li
+        = link_to scheduled_past_admin_workshops_path do
+          Anteriores
+          %span.badge 
+            = Workshop.past_scheduled.count
+      
+  %li{:class => "#{'active' if current_page?(given_admin_workshops_path)}"}
+    = link_to given_admin_workshops_path do
+      = t("views.states.given", count: 2, default: 'Given')
+      %span.badge 
+        = Workshop.given.count
