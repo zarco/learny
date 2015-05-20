@@ -128,14 +128,6 @@
       
       -else
         %ul.nav.navbar-nav.navbar-right
-          %li.navbarb-margin-top
-            %a.dropdown-toggle(data-toggle="dropdown" href="#")
-              = t('views.legends.workshops', default:'Workshops')
-            %ul.dropdown-menu
-              %li
-                = link_to all_workshops_path do
-                  .span.glyphicon.glyphicon-th-list
-                  = t('views.legends.count_workshops', num_workshops: count_workshops, default:'See all workshops')
           %li
             = form_tag '#', :class => 'navbar-form navbar-right', :role => 'subscribe' do
               %button.btn.btn-primary{'data-toggle'=>"modal", 'type'=>'button', 'data-target'=>'#mdl_signin', :value => t('devise.sessions.sign_up', default: 'Sign up')}

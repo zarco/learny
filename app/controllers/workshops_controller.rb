@@ -104,7 +104,7 @@ class WorkshopsController < ApplicationController
   end
 
   def all
-    @workshops = Workshop.order("proposed_date DESC").page(params[:page]).per_page(10)
+    @workshops = Workshop.paginate(:page => params[:page], :per_page => 10)
   end
 
   private
