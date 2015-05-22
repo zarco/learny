@@ -90,7 +90,7 @@
           %button.btn.btn-lg.btn-block.btn-success{:type => "button"}
             %span.glyphicon.glyphicon-gift
             Añadir a lista de deseos
-  - elsif !student_signed_in? && !expert_signed_in? && !venue_signed_in? && !administrator_signed_in?
+  - elsif !student_signed_in? && !expert_signed_in? && !venue_signed_in? && !administrator_signed_in? && @workshop.proposed_date > Time.now
     .col-md-4
       .panel.panel-info
         .panel-body
