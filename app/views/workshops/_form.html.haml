@@ -54,7 +54,7 @@
       = collection_select :workshop, :zone_id, Zone.all, :id, :name, {}, {:class=>'form-control'}
 
             
-  .actions 
+  .actions
     = f.submit t('views.actions.propose',default: 'Propose'), :class => 'btn btn-primary btn-lg btn-block'
 
 

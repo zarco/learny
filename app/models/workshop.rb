@@ -138,7 +138,6 @@ class Workshop < ActiveRecord::Base
     end
   end
 
-  
   private
   def reservation_changes(reservation_id)
     current_reservation_id = self.reservation.nil? ? nil : reservation.id
