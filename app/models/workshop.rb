@@ -142,6 +142,11 @@ class Workshop < ActiveRecord::Base
     atts=self.attributes.except('id', 'proposed_date', 'zone_id','state')
     Workshop.new(atts)
   end
+  
+  def self.replicate(id)
+    workshop=Workshop.find(id)
+    workshop.replicate
+  end
 
   private
   def reservation_changes(reservation_id)

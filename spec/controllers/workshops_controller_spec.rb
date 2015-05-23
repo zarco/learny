@@ -69,6 +69,19 @@ RSpec.describe WorkshopsController, :type => :controller do
       get :new, {}, valid_session
       expect(assigns(:workshop)).to be_a_new(Workshop)
     end
+    
+    it "replicates a previous workshop" do
+      workshop = Workshop.create! valid_attributes
+      get :new, {:id => workshop.to_param}, valid_session
+      cloned=assigns(:workshop)
+      expect(cloned).to be_a_new(Workshop)
+      expect(cloned.persisted?).to be_falsey
+      expect(cloned.id).to be_nil
+      expect(cloned.proposed_date).to be_nil
+      expect(cloned.zone).to be_nil
+      expect(cloned.state).to be_eql('new')     
+      expect(cloned.name).to be_eql(workshop.name)
+    end
   end
 
   describe "GET edit" do
@@ -86,6 +99,10 @@ RSpec.describe WorkshopsController, :type => :controller do
           post :create, {:workshop => valid_attributes}, valid_session
         }.to change(Workshop, :count).by(1)
       end
+      
+      
+      
+      
 
       it "creates a new Workshop with an existing Reservation" do
         venue=FactoryGirl.create(:venue)

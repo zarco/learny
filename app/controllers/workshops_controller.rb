@@ -34,27 +34,9 @@ class WorkshopsController < ApplicationController
 
   # GET /workshops/new
   def new
-    id = params[:id]
-    if id
-      wk = Workshop.where("id = ?", id).first
-      @workshop = Workshop.new do |w|
-        w.name = wk.name
-        w.price = wk.price
-        w.length = wk.length
-        w.previous_skills = wk.previous_skills
-        w.agenda = wk.agenda
-        w.target_public = wk.target_public
-        w.description = wk.description
-        w.max_number_participants = wk.max_number_participants
-        w.expert_id = wk.expert_id
-        w.free = wk.free
-        w.min_number_participants = wk.min_number_participants        
-        w.reservation = Reservation.new
-      end      
-    else
-      @workshop = Workshop.new
-      @workshop.reservation=Reservation.new
-    end
+    id=params[:id]
+    @workshop = id ? Workshop.replicate(id) : Workshop.new
+    @workshop.reservation=Reservation.new
   end
 
   # GET /workshops/1/edit
