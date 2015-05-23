@@ -24,7 +24,7 @@
           - if workshop.reservation.nil?
             = link_to 'Destroy', workshop, :method => :delete, :data => { :confirm => 'Are you sure?' }            
           - if workshop.given?
-            = link_to 'Repetir taller', new_workshop_path + "?id=" + workshop.id.to_s      
+            = link_to 'Repetir taller', new_workshop_path(workshop)      
   
   %br
   = paginate @workshops
