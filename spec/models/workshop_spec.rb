@@ -247,4 +247,33 @@ describe Workshop do
     end
   end
 
+  describe 'clone' do
+    let(:base_workshop){
+      FactoryGirl.create(:workshop)
+    }
+    
+    it 'successfully' do      
+      expect(base_workshop.persisted?).to be_truthy 
+      cloned=base_workshop.replicate
+      expect(cloned.persisted?).to be_falsey
+      expect(cloned.id).to be_nil
+      expect(cloned.proposed_date).to be_nil
+      expect(cloned.zone).to be_nil
+      expect(cloned.state).to be_eql('new')      
+    end
+    
+    
+    it 'successfully static' do
+      expect(base_workshop.persisted?).to be_truthy 
+      cloned=Workshop.replicate(base_workshop.to_param)
+      expect(cloned.persisted?).to be_falsey
+      expect(cloned.id).to be_nil
+      expect(cloned.proposed_date).to be_nil
+      expect(cloned.zone).to be_nil
+      expect(cloned.state).to be_eql('new')      
+    end
+    
+  end
+
+
 end

@@ -34,7 +34,8 @@ class WorkshopsController < ApplicationController
 
   # GET /workshops/new
   def new
-    @workshop = Workshop.new
+    id=params[:id]
+    @workshop = id ? Workshop.replicate(id) : Workshop.new
     @workshop.reservation=Reservation.new
   end
 
