@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20150507170403) do
     t.datetime "deleted_at"
     t.string   "provider"
     t.string   "uid"
+    t.integer  "zone_id"
   end
 
   add_index "venues", ["confirmation_token"], name: "index_venues_on_confirmation_token", unique: true, using: :btree
