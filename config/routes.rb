@@ -43,13 +43,17 @@ LearnyApp::Application.routes.draw do
     get '(page/:page)', :action => :index, :on => :collection, :as => ''
   end
 
+  concern :replicable do
+    get '(:id)', :action => :new, :on=> :new, :as => ''
+  end
+
   resources :experts, only: [:show]
   resources :students, only: [:index, :show]
   resources :venues
   resources :venue_pictures
   resources :calendars
   resources :reservations
-  resources :workshops, :concerns => :paginatable do
+  resources :workshops, :concerns => [:paginatable, :replicable] do
     resources :student_surveys, only: [:new, :create]
   end
   resources :student_surveys, only: [:show]
