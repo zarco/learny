@@ -1,8 +1,57 @@
 .container
-	.page-header.text-center    
+	.page-header.text-center		
 		%h3 Talleres
 	#workshops	
 		%ul.list-group
 			- @workshops.each do |workshop|
-				= render workshop
-	= will_paginate @workshops
+				%li.list-group-item
+					.test				
+						.price-workshop-ribbon
+							%p
+								= workshop.free? ? t('views.legends.workshop.free_workshop', default: 'Free workshop') : "$ " << workshop.price.to_s << " MXN"
+						- if workshop.reservation.nil?
+							.not-scheduled-workshop-ribbon
+								%p
+									= t('views.legends.workshop.not_scheduled', default: 'Workshop is not scheduled yet')
+						.row
+							.col-md-12
+								%h2
+									= link_to workshop.name, workshop, class: 'color:white'
+									%small
+										= workshop.small_description 100		
+						.row
+							.col-md-5
+								%blockquote
+									%h4
+										- unless workshop.expert.avatar_url.nil?
+											%img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => workshop.expert.avatar.icon.url}
+											&nbsp;
+									
+										= link_to workshop.expert.full_name , workshop.expert
+									%h5
+										= workshop.expert.occupation
+							.col-md-7
+								- unless workshop.reservation.nil?
+									- venue=workshop.venue
+									
+									%blockquote
+										%h4
+											- unless venue.avatar_url.nil?
+												%img.pull-left.featurette-image.img-responsive.img-circle{:width=>'45px', :alt => "Profile", :src => venue.avatar.icon.url}
+												&nbsp;
+											= link_to venue.name, venue									
+										%h5
+											%span.badge
+												= workshop.reservation.fmt_duration unless workshop.reservation.nil?
+										
+										%h4
+											%span.small
+												=venue.address	 
+											
+				/%tr
+				/%td= link_to workshop.name, workshop
+				/%td= (link_to venue.name , 'workshop.reservation.calendar.venue') if !venue.nil? 
+				/%td= link_to workshop.expert.full_name , workshop.expert 
+				/%td= workshop.reservation.fmt_starts_at if !workshop.reservation.nil?
+				%br
+	= paginate @workshops

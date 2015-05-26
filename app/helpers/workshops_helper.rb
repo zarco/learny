@@ -10,8 +10,4 @@ module WorkshopsHelper
 	def small_description_profile(description,total_words=300)
     	truncate(description,length: total_words,separator: ' ')
   	end
-
-  	def count_workshops
-  		Workshop.count
-  	end
 end

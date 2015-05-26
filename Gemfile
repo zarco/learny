@@ -94,7 +94,6 @@ gem "obfuscate_id", git: "https://github.com/namick/obfuscate_id"
 
 #gem 'encrypted_id'
 
-gem 'will_paginate'
 
 
 # Dependencias con bower
