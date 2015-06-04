@@ -24,7 +24,7 @@ RSpec.describe WorkshopsController, :type => :controller do
 
   before(:each) do
     @expert=FactoryGirl.create(:expert)
-    @expert.confirm!
+    @expert.confirm
     sign_in @expert
   end
 

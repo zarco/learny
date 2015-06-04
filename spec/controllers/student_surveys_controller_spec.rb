@@ -24,7 +24,7 @@ RSpec.describe StudentSurveysController, type: :controller do
 
   before(:each) do
     @student=FactoryGirl.create(:student)
-    @student.confirm!
+    @student.confirm
     sign_in @student
   end
 
