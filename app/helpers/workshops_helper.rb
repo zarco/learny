@@ -5,9 +5,6 @@ module WorkshopsHelper
 	require 'cgi'
 	require 'openssl'
 	require "json"
-	 
-	DISQUS_SECRET_KEY = 'bWrU6cMaqBkIhKkRcWHnRUZcJU3QDlT9oAIXmqOkbqIGNxHY3gtL2CLR9gxs8LOG'
-	DISQUS_PUBLIC_KEY = 'WxvhqqQdGUrEC9j7MprxEIbGUHQRue1AubhqIMqSYQJRYcSnuC6MEBirRfNOJUkA'
 
 	def random_workshop
 	  
