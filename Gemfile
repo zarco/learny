@@ -92,6 +92,10 @@ gem 'rails-observers'
 gem "paranoia", "~> 2.0"
 gem "obfuscate_id", git: "https://github.com/namick/obfuscate_id"
 
+#gem 'encrypted_id'
+
+
+
 # Dependencias con bower
 # gem 'rails-assets-BOWER_PACKAGE_NAME'
 source 'https://rails-assets.org' do
@@ -101,3 +105,4 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-datepicker'
   gem 'rails-assets-bootstrap-social'
 end
+

@@ -290,6 +290,7 @@ es-MX:
       student: 'Estudiante'
       expert: 'Experto'
       venue: 'Establecimiento'
+      all_workshops: 'Ver todos'
       administrator: 'Administración'
       contact: 'Contacto'
       email_contact: 'cursos@learny.me'

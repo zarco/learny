@@ -104,6 +104,10 @@ class WorkshopsController < ApplicationController
     end
   end
 
+  def all
+    @workshops = Workshop.page(params[:page]).per(10)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
