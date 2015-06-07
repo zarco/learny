@@ -74,7 +74,8 @@
             Si necesitas más información no dudes en preguntar, los mensajes serán leidos por tu experto para atenderte en lo que desees.
         .col-md-12
           -if student_signed_in? || expert_signed_in?
-            = get_disqus_sso(current_student).html_safe
+            - user = student_signed_in ? current_student : current_expert
+            = get_disqus_sso(user).html_safe
           #disqus_thread
           :javascript
             /* * * CONFIGURATION VARIABLES * * */
