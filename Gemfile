@@ -94,7 +94,8 @@ gem "obfuscate_id", git: "https://github.com/namick/obfuscate_id"
 
 #gem 'encrypted_id'
 
-
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 # Dependencias con bower
 # gem 'rails-assets-BOWER_PACKAGE_NAME'

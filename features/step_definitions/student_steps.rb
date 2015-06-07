@@ -45,7 +45,7 @@ end
 
 Given(/^I am logged in as student$/) do
   @student = FactoryGirl.create(:student)
-  @student.confirm!
+  @student.confirm
   visit new_student_session_path
   fill_in Student.human_attribute_name(:email), with: @student.email
   fill_in Student.human_attribute_name(:password), with: @student.password

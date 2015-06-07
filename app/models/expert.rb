@@ -73,4 +73,22 @@ class Expert < ActiveRecord::Base
     first_name + ' ' + last_name
   end
 
+  def self.create_with_omniauth(auth)
+    create! do |expert|
+      expert.provider = auth.provider
+      expert.uid = auth.uid
+      if auth.provider == 'facebook' 
+        expert.first_name = auth.extra.raw_info.first_name
+        expert.last_name = auth.extra.raw_info.last_name
+        expert.email = auth.info.email
+      elsif auth.provider == 'twitter'
+        expert.first_name = auth.extra.raw_info.name
+        expert.last_name = 'Expert'
+        expert.email = auth.uid + '@twitter.com'       
+      end
+      expert.password = Devise.friendly_token[0,20]
+      expert.skip_confirmation!
+    end
+  end
+
 end

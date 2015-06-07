@@ -350,7 +350,9 @@ es-MX:
       close: 'Cerrar'
       news: 'Noticias'
       recomendations: 'Recomendaciones'      
-      
+      sign_up_with_facebook: 'Iniciar con Facebook'
+      sign_up_with_twitter: 'Iniciar con Twitter'
+      signed_up_successfully_social_network: "Has iniciado sesión correctamente desde %{provider}"
     status:
       active: 'Activo'
       inactive: 'Inactivo'

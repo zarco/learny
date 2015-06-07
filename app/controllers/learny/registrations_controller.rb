@@ -1,10 +1,12 @@
 class Learny::RegistrationsController < Devise::RegistrationsController
-  
+  include SessionsHelper 
+
   def update
     self.resource = resource.class.find(  send(:"current_#{resource_name}").to_param)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    resource_updated = resource.update_with_password(account_update_params)
+    resource_updated = resource.update_with_password(account_update_params) unless signed_up_with_social_network?(self.resource)
+    resource_updated = resource.update_without_password(account_update_params) if signed_up_with_social_network?(self.resource)
     if resource_updated
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
@@ -17,6 +19,6 @@ class Learny::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       respond_with resource
     end
-  end
+  end 
   
 end

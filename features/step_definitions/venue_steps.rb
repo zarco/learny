@@ -28,7 +28,7 @@ end
 
 Given(/^I am logged in as venue$/) do
   @venue = FactoryGirl.create(:venue)
-  @venue.confirm!
+  @venue.confirm
   visit new_venue_session_path
   fill_in Expert.human_attribute_name(:email), with: @venue.email
   fill_in Expert.human_attribute_name(:password), with: @venue.password

@@ -24,7 +24,7 @@ RSpec.describe ReservationsController, :type => :controller do
 
   before(:each) do
     @venue=FactoryGirl.create(:no_calendar_venue)
-    @venue.confirm!
+    @venue.confirm
     sign_in @venue
   end
 

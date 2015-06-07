@@ -39,6 +39,8 @@ LearnyApp::Application.routes.draw do
   devise_for :venues, :controllers => { :registrations => "venues/registrations" }  
   devise_for :administrators
 
+  get "/auth/:provider/callback" => "sessions#create"
+
   concern :paginatable do
     get '(page/:page)', :action => :index, :on => :collection, :as => ''
   end
