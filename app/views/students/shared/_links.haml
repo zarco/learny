@@ -3,10 +3,10 @@
     = link_to "/auth/facebook?u=1", {:class => "btn btn-block btn-social btn-md btn-facebook"} do
       %i.fa.fa-facebook
       = t('views.legends.sign_up_with_facebook',default: 'Sign up with Facebook')
-  .col-md-6
-    = link_to "/auth/twitter?u=1", {:class => "btn btn-block btn-social btn-md btn-twitter"} do
-      %i.fa.fa-twitter
-      = t('views.legends.sign_up_with_twitter',default: 'Sign up with Twitter')
+//.col-md-6
+//= link_to "/auth/twitter?u=1", {:class => "btn btn-block btn-social btn-md btn-twitter"} do
+//%i.fa.fa-twitter
+//= t('views.legends.sign_up_with_twitter',default: 'Sign up with Twitter')
 - if controller_name != 'sessions'
   = link_to t('devise.sessions.sign_in',default: "Log in"), new_session_path(resource_name)
   %br/
