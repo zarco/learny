@@ -338,7 +338,7 @@ footer p{
     font-size: 1.2em;
 }
 
-.btn-social {
+.social.btn-social {
     display: inline-block;
     width: 45px;
     height: 45px;
@@ -349,7 +349,7 @@ footer p{
     line-height: 45px;
 }
 
-.btn-social > :first-child{
+.social.btn-social > :first-child{
     border-right: 0px;
     left: 12px;
     top: 5px;

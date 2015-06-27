@@ -33,12 +33,13 @@
             .row              
               .col-md-6.col-md-offset-3
                 = form_tag '/workshops', method: :get, :role => 'search' do
-                  .form-group
+                  .form-group{:style => 'margin-bottom:0;'}
                     .input-group.input-group-lg
                       %input.form-control.search-workshop{:name => "w", :type => "text",:value => "#{random_workshop}"}/
                       %span.input-group-btn
                         %button.btn.btn-primary{:type => "submit", :value => "Search"}
-                          %span.glyphicon.glyphicon-search              
+                          %span.glyphicon.glyphicon-search  
+                = link_to t('views.legends.all_workshops', default:'See all workshops'),all_workshops_path, :class => 'pull-left',:style => 'color:#333;font-size:16px;'
           %hr.star-light/
           %span.skills
             %h3#slogan-part1 

@@ -40,6 +40,6 @@ ready =->
     enable_workshop_price()
   
   enable_workshop_price()
-  
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

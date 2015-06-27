@@ -30,7 +30,7 @@ end
 
 Given(/^I am logged in as expert$/) do
   @expert = FactoryGirl.create(:expert)
-  @expert.confirm!
+  @expert.confirm
   visit new_expert_session_path
   fill_in Expert.human_attribute_name(:email), with: @expert.email
   fill_in Expert.human_attribute_name(:password), with: @expert.password
@@ -43,7 +43,7 @@ end
 
 Given(/^"(.*?)" has made a reservation for next friday$/) do |venue|
   @venue=FactoryGirl.create(:venue, :name => venue)
-  @venue.confirm!
+  @venue.confirm
   reservation=FactoryGirl.create(:reservation)
   @venue.calendars.first.reservations.create(FactoryGirl.attributes_for(:reservation))
 end
