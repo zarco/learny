@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507170403) do
+ActiveRecord::Schema.define(version: 20150602184236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,14 @@ ActiveRecord::Schema.define(version: 20150507170403) do
   end
 
   add_index "reservations", ["deleted_at"], name: "index_reservations_on_deleted_at", using: :btree
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "term"
+    t.text     "actor"
+    t.integer  "id_actor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "student_surveys", force: :cascade do |t|
     t.integer  "rating_workshop",  default: 0, null: false

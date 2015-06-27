@@ -14,6 +14,7 @@ class WorkshopsController < ApplicationController
       workshops_proposed = Workshop.search_workshop(w).where("state = ? ",'proposed')
       @workshops = workshops_scheduled + workshops_proposed
       @old_workshops = Workshop.search_workshop(w).joins(:reservation).where("starts_at < ?", DateTime.now)
+      Search.save_search(current_student, current_expert, current_venue, w)
       render 'search'  
     elsif expert_signed_in? 
       @workshops = current_expert.workshops.page params[:page]
